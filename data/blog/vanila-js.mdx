@@ -1,0 +1,228 @@
+
+# [#Javascript] Prototype
+
+시작
+
+프로토타입을 보면서 가장 혼동이 왔던 부분은, JAVA에서 사용했던 ‘클래스’개념과 ‘프로토타입’개념에 대한 차이가 명확하게 다가오지 않는 부분이었다. 프로토타입을 키워드로 서치를 할 경우, 객체지향 프로그래밍이라는 키워드를 기반으로 클래스가 모호하게 함께 언급되고, ES2015부터 클래스를 지원했다는 것도 혼동에 한 몫 했던 것 같다. 프로토타입과 클래스 모두 객체지향 프로그래밍의 종류들이나, 프로토타입 기반 프로그래밍은 객체의 원본을 복제하여 재사용하는 방식으로, 클래스와 상속 개념이 없는 클래스리스(Class-less) 프로그래밍이다.
+> *Unlike most other languages, JavaScript’s object system is based on **prototypes, not classes**. Unfortunately, most JavaScript developers don’t understand JavaScript’s object system, or how to put it to best use. Others do understand it, but want it to behave more like class based systems. The result is that JavaScript’s object system has a confusing split personality, which means that JavaScript developers need to know a bit about **both prototypes and classes**. (다른 대부분의 언어와는 달리, JavaScript의 객체 시스템은 **클래스가 아닌 프로토 타입을** 기반으로 합니다. 안타깝게도 대부분의 JavaScript 개발자는 JavaScript의 객체 시스템을 이해하지 못하거나, 잘 사용하지 못합니다. 혹은 어떤 사람들은 객체 시스템은 이해를 하고 있으나, 클래스 기반 시스템에 가깝게 작동하도록 합니다. 그 결과 JavaScript의 객체 시스템은 나눠져 혼란스러운 특성을 가지므로 JavaScript 개발자**는 프로토 타입과 클래스 모두** 조금씩 알아야합니다.)*
+> *Eric Elliot 「Master the JavaScript Interview: What’s the Difference Between Class & Prototypal Inheritance?」中*
+
+## 목록
+
+1. Prototype in Jascript
+2. 목적
+3. 사용
+4. Prototype 내장 메소드
+5. Object 메소드 
+6. 정리
+
+## 1. Prototype in Javascript
+
+자바스크립트의 모든 객체는 Object의 프로토타입을 기반으로 한다. 다시 말해, 각각의 객체들은 프로토타입을 갖는데, 이 프로토타입은 다시 또 자신의 프로토타입을 갖고있다. 이 중에서 모든 프로토타입들의 시작점인 원형이 Object 프로토타입이다. 또한 각각 참조되는 프로토타입들을 타고가다 보면 null을 프로토타입으로 가지는 객체에서 종점을 맞이하고 끝이난다. null은 그 이상의 프로토타입을 가질 수 없기 때문이다.
+
+프로토타입은 아래의 두가지 역할을 한다.
+
+1) new 키워드로 생성자 역할을 할 수 있다,
+2) 각각의 프로토타입은 다시 다른 객체의 프로토타입이 되어 참조 된다.
+
+* Prototype property: 프로토타입 내에 정의되어있는 속성 값 혹은 메소드를 의미하고. 아래는 Vue.prototype에서 볼 수 있는 vue의 프로토타입 프로퍼티이다.
+
+* 프로토타입 체인: 현재의 객체에 존재하지 않는 프로퍼티나 메소드에 접근할 때 __proto__내 링크를 따라 연결 된 프로토타입 객체의 프로퍼티나 메소드를 접근하고 공유받을 수 있는 특성
+
+* [[Prototype]]: 모든 객체에 은닉 되어있는 객체로, Object.prototype을 의미한다. 자신을 생성한 생성자 함수가 기본적으로 및 property, __proto__가 내장
+
+* __proto__: Object.prototype의 접근자로, [[Prototype]]의 getter, setter가 내장되어있다. 별도의 객체가 생성되지 않았다면 Object 프로토타입 객체로 이어짐
+
+* constructor: 객체의 참조 데이터의 형(Type)을 조회할 수 있으며, 생성자를 출력
+
+## 2. 목적
+
+① 각 컴포넌트 내 객체 공유 및 재사용을 위해
+
+② 중복 정의를 막는 등을 통한 메모리의 절약
+
+프론트에서 활용해야 하는 유저 데이터나 도큐먼트 데이터 등과 같이, 컴포넌트 내에서 반복적으로 사용하는 데이터의 경우, 매번 속성을 부여하고 처리를 위한 함수를 컴포넌트 별로 정의하는 일은 매우 비효율적이다. 이러한 데이터들의 재사용을 원활하게 돕고, 또한 데이터의 명세를 명시적으로 정의하기 때문에 일관성을 유지할 수 있다.
+> [*[프로토타입을 사용했을 때와 사용하지 않았을 때의 비교](일본어)](https://blog.basyura.org/entry/20110105/p1)*
+> *・this.xxx를 사용하여 전역 함수를 멤버 (객체의 외부에서 액세스 할 수있는 기능)로 정의하는 경우 : 506 [ms]
+・this.xxx를 사용해 내부 함수를 멤버로 정의하는 경우 : 860 [ms]
+・prototype을 사용하여 함수를 하나씩 정의하는 경우 : 315 [ms]
+・prototype을 사용하여 한 번에 함수를 정의하는 경우 : 322 [ms]*
+
+## 3. 사용
+
+・프로토타입 정의하기
+
+    function Person(first, last, age, gender, interests) {
+
+      // property and method definitions
+      this.name = {
+        'first': first,
+        'last' : last
+      };
+      this.age = age;
+      this.gender = gender;
+      //...see link in summary above for full definition
+    }
+
+[[코드예시]](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+
+위의 예시처럼, 프로토타입 Person을 함수 형태로 정의하고, 각각 필요한 속성 값들을 정의한다.
+위의 예시에는 없지만, 프로토타입 내에 공유할 수 있는 메소드도 정의할 수 있다. 반복적으로 사용해야 하는 메소드의 경우 프로토타입 내에 정의 해 두면 된다.
+
+    let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+Person 오브젝트는 위와 같이 new 키워드로 생성하고, 파라미터 값으로 각각의 속성값을 넘겨주면 된다.
+그후, 개발자 도구에서 찍어보면 아래와 같이 prototype properties를 확인 할 수 있다.
+직접 정의 한 프로퍼티 값(name, gender, age)이 기본 프로퍼티들과 함께 위치하고 있다.
+
+![](https://cdn-images-1.medium.com/max/2000/0*oGBaRg3xlGG5V2Vi.png)
+
+## 4. Prototype 내장 메소드
+
+* ***obj*.hasOwnProperty(***props***)
+**Param: 오브젝트 내 property의 key값(String)
+Output: boolean 값
+파라미터로 넘긴 인자가 해당 객체에 프로퍼티 값으로 직접 정의 되어있거나 오버라이딩 되어있는지 여부를 boolean 값으로 리턴(정의 된 프로퍼티가 아닌 프로토타입 체인 상에 존재한다면 false를 리턴)
+
+* ***obj.*isPrototypeOf(***props***)
+**Param: 오브젝트 내 property의 key값(String) 
+Output: Boolean 값
+객체의 프로토타입 체인 내에 해당 key값의 객체가 프로퍼티로 속해 있는지 여부를 리턴한다.
+
+* ***obj.*prototypeIsEnumerable(***props***)**
+Param: 오브젝트 내 property의 key값(String)
+Output: Boolean 값
+객체 내 해당 key값이 프로퍼티가 루프로 나열이 가능한 속성인지의 여부를 리턴
+
+* ***obj.*toLocaleString(***locales: ‘en-GB’, ‘kr-KR’ , options: { timeZone: ‘UTC’*}**)
+**Param: locales, options
+Output: String 값
+각 국가코드에 맞는 날짜 및 시간 표현을 문자열로 리턴한다.
+
+    const event = new Date(Date.UTC(2021, 03, 26, 12, 25, 0))
+    console.log(event.toLocaleString('en-GB', { timeZone: 'UTC' }))
+    // expected output: "26/04/2021, 12:25:00"
+    console.log(event.toLocaleString('ko-KR', { timeZone: 'UTC' }))
+    // expected output: "2021. 4. 26. 오후 12:25:00"
+
+* ***obj*.toString()**
+Param: String으로 표현할 객체
+Output: String 값
+이 메소드는 객체가 텍스트 값으로 표현 될 때 자동으로 호출된다([링크](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString))
+기본적으로 toString()메소드가 상속지만, Object내에서 재정의하는 형태로 사용되기도 한다. 단, toString()을 다시 정의하지 않고 객체 형을 넘길 시, 이 메소드는 "[object type]"를 리턴한다.
+
+* 따라서, 각 객체는 toString() 메소드를 기본적으로 갖게 되는데, 왜일까?(실제로 면접에서 이 질문을 받았다ㅜ)
+
+    const event = new Date(Date.UTC(2021, 03, 26, 12, 25, 0))
+    console.log(event.toString())
+
+위와 같이 오브젝트에 toString()을 사용하면 각 오브젝트에 맞는 스트링 형태를 제공해준다. Date 객체의 경우에는 날짜를 스트링 값으로, Integer는 숫자를 문자열로 바꾸어 리턴하는 것 처럼 말이다. 이를 사용자 정의 객체에서 사용할 경우, 우리는 toString()의 재정의를 통해 객체의 문자열 요청시, 해당오브젝트에 알맞는 혹은 원하는 형태의 문자열 값을 리턴해 줄 수 있다.
+
+    function Color (r, g, b) {
+    this.r = r
+    this.g = g
+    this.b = b
+
+    this.toString = function () { return 'rgba('+ ${this.r} + ${this.g} + ${this.b}+ ')' } 
+    }
+
+    color = new Color (0, 0, 0)
+    console.log(color.toString())
+    // expected output : rgba(0, 0, 0)
+
+* ***obj*.valueOf()**:
+Param: -
+Output: 해당 객체의 원시 데이터
+
+## 5. Object 메소드
+
+* **Object.assign(***target, source***)**:
+Param: copy target, copy source
+Output: 복사된 된 객체
+
+    const obj = { a: 1 };
+    const copy = Object.assign({}, obj);
+    console.log(copy); // { a: 1 }
+
+하지만, 기본적으로 shallow-copy를 지원하기 때문에, deep-copy를 위해서는 [아래의 방법](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)을 쓰거나, 혹은 lodash.clone()과 같은 라이브러리를 사용한다.
+
+    function test() {
+      'use strict';
+
+      let obj1 = { a: 0 , b: { c: 0}};
+      let obj2 = Object.assign({}, obj1);
+      console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
+
+      obj1.a = 1;
+      console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 0}}
+      console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
+
+      obj2.a = 2;
+      console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 0}}
+      console.log(JSON.stringify(obj2)); // { "a": 2, "b": { "c": 0}}
+
+      obj2.b.c = 3;
+      console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 3}}
+      console.log(JSON.stringify(obj2)); // { "a": 2, "b": { "c": 3}}
+
+      // Deep Clone
+      obj1 = { a: 0 , b: { c: 0}};
+      let obj3 = JSON.parse(JSON.stringify(obj1));
+      obj1.a = 4;
+      obj1.b.c = 4;
+      console.log(JSON.stringify(obj3)); // { "a": 0, "b": { "c": 0}}
+    }
+
+    test();
+
+* **Object.create(***prototype***)**
+Param: 프로토타입
+Output: 지정 한 프로토타입 및 Property를 갖는 새로운 빈 객체
+지정한 프로토타입을 갖는 빈 객체를 생성한다. 생성자 함수부터 상속의 기능을 제대로 물려받는다는 점에서 직접 프로토타입에 객체를 할당하는 법과 차이를 가진다.(특히 직접 객체를 할당할 경우, 프로토타입 관계에서 꼬이게 된다.)
+
+* **Object.defineProperty()**: 객체에 속성을 새롭게 정의하거나 수정한 후 해당 객체를 반환
+
+* **Object.defineProperties()**: 객체에 복수의 속성을 새롭게 정의하거나 수정한 후 해당 객체를 반환
+
+* **Object.freeze()**: 새로운 property의 추가/제거 불가능, 기존 property의 변경도 불가능하도록 설정
+
+* **Object.seal()** : 새로운 property의 추가/제거 불가능, 기존 property의 변경은 가능하도록 설정
+
+* **Object.isFrozen()** : 객체의 상태가 freeze 상태인지 확인
+
+* **Object.isSealed()** : 객체의 상태가 seal 상태인지 확인
+
+* **Object.preventExtensions()**: 객체에 새 property가 추가되는 것을 불가능 하도록 설정
+
+* **Object.isExtensible()** : 새로운 property를 추가할 수 있는지 확인
+
+* **Object.entries()**: 오브젝트의 속성 및 프로토타입 체인의 속성들을 key — value의 쌍으로 루프로 나열
+
+* [**Object.fromEntries()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries)**
+
+* **Object.getOwnPropertyDescriptor(***obj, prop***)**: 해당 객체 스스로의 속성에 대한 property의 descriptor를 리턴(프로토타입 체인 내 존재하는 속성 제외)
+
+* **Object.getOwnPropertyDescriptors(***obj, prop***)**: 해당 객체 스스로의 속성에 대한 모든 properties의 descriptor를 리턴(프로토타입 체인 내 존재하는 속성 제외), 각 property의 설명자의 조회가 가능
+
+* **Object.getOwnPropertyNames(***obj***)**: 해당 객체 모든 properties의 key값을 Array로 리턴
+
+* **Object.getOwnPropertySymbols(***obj***)**: 객체 내에 있는 모든 Symbol property를 Array로 리턴
+
+* **Object.getPrototypeOf(***obj***)**
+Param : 객체
+Output : 프로토타입
+[사용 예시](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf): Object.getPrototypeOf(object1) === prototype1
+
+* **Object.is(***param1, param2***)** : param1과 param2가 동일한 값인지 비교
+
+* **Object.prototype.isPrototypeOf()**: 해당 객체가 다른 객체의 프로토타입 체인에 속해있는지 확인
+
+* **Object.keys()** : 객체 중 루프로 나열이 가능한 속성 중 key값을 array형태로 반환
+
+* [**Object.setPrototypeOf()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)**: [[Prototype]] 프로퍼티를 다른 객체나 null로 설정(비권장)
+
+* **Object.values()** : 객체 중 루프로 나열이 가능한 속성 중 value값을 array형태로 리턴
+
+## 6. 정리
+
+Prototype을 사용할 경우, 메모리의 절약이 가능하며 2배가량의 속도 이득을 볼 수 있다(2번 참고). 설계 방식이 까다롭고 사용법을 익히는 데에 시간이 필요하지만, 다루는 객체가 복잡해지고 또 실행의 빈도 수가 높아짐에 따라 프론트엔드 쪽에서 다뤄야 하는 필수 요소이다.

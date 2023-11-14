@@ -1,0 +1,182 @@
+
+# [#GIT] Summary of Git Flow
+
+Goal
+
+In this post, I wanna explain concepts and necessity of Git Flow, the functional terminology you should be familiar with before working on it, and the overall flow of the process.
+
+## Contents
+
+1. Git Flow
+
+1. What made me consider Git Flow
+
+1. Preparation in advance
+
+1. Branch
+①Life cycle of branch
+②Naming convention of branch
+③Command executed during branch work
+
+1. Merge
+① Merge direction
+② How to reduct Conflicts
+③ How to cope with Conflict situations
+
+1. Pull
+
+1. Pull Request
+
+1. Summary
+
+## 1.Git Flow
+
+Git flow is the work of procedure performed by using Git’s branch.
+It proposes methodology that What kind of branch we should create and merge.
+
+References
+[Vincent Driessen](https://nvie.com/about/) ‘s A successful Git branching model
+: [https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
+
+## 2. What made me consider Git Flow
+
+When the long-term development of the various people and teams, **if you use Git without specifying the operating rules, It can occur happening such as confilicts or merge mistakes oftenly**. So, ‘Git flow’ is a adopted method when using Git to reduce mistakes.
+
+## 3. Preparation in advance
+
+1) Create a remote repository that can be shared by multiple people, and upload the project source code.
+2) Create a .gitignore file as needed.
+3) Create a local repository to work on the local PC and clone the project from the remote repository.
+
+*.gitignore
+: This is a list of files and directories that you want to ignore the change history. Files and directories in the list are skipped when you add git. (Even after writing, it is often not applicable than expected.)
+
+## 4. Branch
+
+Branches divided into 5 development points: **master, release , develop, feature, and hot-fix**.
+
+* feature
+…… A branch used to make individual functions and fix bugs.
+
+* **develop**
+…… A branch for on-going developments.
+
+* release
+…… A branch that is used just before release, with minimal adjustments.
+
+* **master**
+…… Top-level branch, holding the project. Do not modify the source in this branch because it stores the original source.
+
+* hot-fix
+…… A branch to cope with urgent bug fixes of projects that have been released.
+
+The project version is managed by tagging(Tag).
+
+### ① Life cycle of branch
+
+1. A branch that not removed once created
+: master, develop
+
+1. Branches removed after being used
+: feature, release, hotfix
+
+### ② Naming convention of branch
+
+: “[Branch name] – [date or version, git issue etc.]”
+(ex: realease-1.2 or dev01-200730, feature #100)
+
+### ③ Command to be executed during branch work
+
+    $ git checkout master 
+     // Switch to'master' branch 
+    (check out: switch from the branch the current user is involved in to another branch) 
+    $ git merge --no-ff release-1.2 
+    //'merge' (branch merge ＊merge) For directions, refer to No. 4 (about Merge)) 
+    $ git tag -a 1.2 
+    //Add a description of the project such as version name
+
+## 5. Merge
+
+Merge means combining the changes between branches into one development branch.
+
+![](https://cdn-images-1.medium.com/max/NaN/1*b31hiO4ynbDLRrXWEFF4aQ.png)
+
+For the process of solving the above situation, refer to the tutorial ( [Git Branching — Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) )
+
+### ① Merge direction
+
+**[Case]
+**Create a hotfix branch and Confirm fixed bug. Next, merge the hotfix branch to ultimately deploy the operating environment.
+
+git merge Do the following with the command.
+
+    $ git checkout master // put branch head in master 
+    $ git merge hotfix
+
+Since we need to move the latest commit to the source code to the hotfifx branch, we put the head on the master(or development) and merge it with the hotfix. This type of merge is called fast-forward.
+
+### ② How to reduct Conflicts
+
+Conflict refers to the crash between source codes that occurs during merge .
+
+* Before starting source code updates, pull and import the latest source (Refer to No. 6 for pull)
+
+* Merge at an appropriate time (because the later the merge time, the more conflict corrections are needed)
+
+The key is **to continually update changes of the master(or development) branch’s to your local branch** makes minimized conflicts when you merging.
+
+### ③ How to cope with Conflict situations
+
+* <Basic> If the conflicted part can be fixed, correct the conflict code and try to merge again.
+
+* Return to the status to before merging.
+
+    $ git merge --abort
+
+* When you wanna revert to it before merging status, After modifying the code.
+
+    $ git reset --hard HEAD
+
+In addition to these, there are commands such as revert ( revert to status before merging with leaving the record) and reset ( revert to status before merging without leaving the record after commit)
+
+When a merge is complete, any existing branches you don’t need must be deleted.
+
+## 6. Pull
+
+pull is follow 2 steps such as below.
+1) Do fetch(bring a change in the remote repository, but do not combining)
+2) and running merge command
+
+* pull : When you wanna combine commit history of the remote repository with the data in my local repository.
+
+* fetch : When you want to check only the commit history of the remote repository.
+
+So, if you pull with uncommitted changes, the merge will be failed.
+
+## 7. Pull Request
+
+When doing projects as a team, it can make sharing changes in the developer’s local repository with other members. Changes from source code are displayed in an easy-to-read manner, and the merger is needed to notified. In addition, you can communicate about the merger of the source code, and if a problem occurs, you can check through the history.
+
+**[Pull Request process in progress during development]**
+
+1. [Developer] Proceed with development such as adding functions.
+
+1. [Developer] Push when the function addition is complete.
+
+1. [Developer] Create a Pull Request.
+
+1. [Responsible person] Check the changes in Pull Request and Review the Pull Request.
+
+1. [Contact] Merge if there is no problem with the source code.
+If it is not necessary to merge as a result, it should be closed.
+
+## 8. Organize
+
+Git Flow is an efficient project versioning strategy for long-term development as a team.
+
+* The purpose is to merge the developed source codes without difficulty, and to manage the source codes that work correctly in the branch of the release environment.
+
+* If it is difficult to manage the source code of the develop branch in the state just before release, there is a way to manage the source code just before the release by creating a **staging branch** for intermediate verification .
+(Creating a branch for staging has the advantage of creating an environment where you can focus on development.)
+
+* Before you start working with Git, you can also reduce mistakes by organizing the expected order or statement of each process as a spreadsheet.

@@ -1,0 +1,110 @@
+
+# React 기반 Headless-Wordpress 구축(feat. WSL)
+
+목록
+
+1. 목적
+
+1. WSL 개발 환경 구성
+① WSL 설치 및 WSL2 업데이트
+② Windows Terminal 설치
+③ Ubuntu 설치 및 설정 등
+
+1. Next 프로젝트 생성 및 기동
+
+1. Git, 기존 GraphQL 연동
+
+## 1. 목적
+
+최근 React의 인기가 높아지면서, 
+기존 워드프레스의 CMS API를 활용하면서 프론트엔드를 React로 구성할 수 있도록 Headless-CMS에 관심을 가지게 되었다.
+(Wordpress는 기본적으로 PHP 기반 CMS(Content Management System)인데,
+높은 확장성을 가지고 있고, 다양한 플러그인을 지원하기 때문에 자유도가 높다.)
+
+게다가, 줄곧 WSL(Windows Subsystem for Linux)을 계속 사용해보고 싶었던 터라
+윈도우 노트북에 Ubuntu + NextJS + GraphQL의 구성으로 데이터만 받아와서 뿌려줄 수 있도록 프로젝트를 생성하기로 했다.
+
+참고: [How to use NextJS with Headless WordPress](https://better-wordpress.dev/posts/how-to-use-nextjs-with-headless-wordpress/)
+
+앞으로 개인 블로그를 베이스로, 아래의 것들을 해보려고 한다.
+
+* WSL 및 우분투 환경 활용
+
+* React (NEXT) 프로젝트
+
+* 서버 로직 작성 없이 GraphQL로 데이터 주고받기
+
+* 테스트코드 작성, 개인 블로그 백업 등
+
+## 2. WSL 개발 환경 구성
+
+WSL은 리눅스용 윈도우 서브시스템이다.
+윈도우 환경에서도 리눅스 개발이 가능하도록 한 MS사의 업데이트로, 
+깃허브 무료화와 함께 주목을 받았다.
+
+[https://www.youtube.com/watch?v=7eVG4o8mS_I](https://www.youtube.com/watch?v=7eVG4o8mS_I)
+
+전체적으로는 아래와 같은 순서로 진행했다.
+
+① WSL 설치 및 WSL2 업데이트
+② Windows Terminal 설치
+③ Ubuntu 설치 및 설정 등
+
+**① WSL 설치 및 WSL2 업데이트**
+
+Powershell에서 수동으로 설치했다.
+참고: [Windows 10에 Linux용 Windows 하위 시스템 설치 가이드](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)
+
+**② Windows Terminal 설치**
+
+편의성을 위해 Windows Apps에서 Windows Terminal을 설치했다.
+ Windows Terminal은 명령어 프롬프트창을 브라우저의 탭 처럼 사용할 수 있고, 폰트도 일반 cmd보다 직관적이다.
+
+**③ Ubuntu 설치 및 설정 등**
+
+Windows Apps에서 Ubuntu를 받아 인스톨 후, 패스워드를 설정하면 WSL에서 무리 없이 동작하는 것을 확인할 수 있다.
+
+문제는 이 다음부터인데, 
+개발에 필요한 라이브러리들의 인스톨이 아래 에러가 떠서 진행을 못했다.
+
+getaddrinfo EAI_AGAIN registry.npmjs.org
+
+아예 서버로부터 fetch조차 못하길래 hostname -I을 확인하니 공란이 뜨길래 ssh 접속 설정을 진행했다.
+
+윈도우 — 네트워크 연결을 확인하면, WSL용 가상 이더넷이 새로 생긴 걸 확인할 수 있다. 프롬프트 창에서는 맨 아래 추가된 것을 볼 수있다.
+
+WSL에 설치 된 Ubuntu로 SSH 설정을 하는 과정은 [여기](https://blogger.pe.kr/853)에 정리가 잘되어있다.
+
+**[WSL에 설치된 Ubuntu 종료]**
+
+설정을 끝내고 Ubuntu를 종료하기 위해 shutdown을 루트 권한으로 실행하면 종료가 안된다.
+서칭을 해보니, Windows — Services — LXSSMANAGER를 종료하면 된다고 하는데,
+종료가 제대로 안 된건지, 종료후 부팅이 안되는 건지 동작을 제대로 못하는 걸 발견했다.
+
+[가상 메모리 지정](https://velog.io/@nayoon-kim/%EC%97%90%EB%9F%AC-wsl-%EC%8B%A4%ED%96%89-%EC%95%88%EB%90%A0-%EB%95%8C)을 해 주고, 외부 터미널에서 프로세스를 지정해서 종료하니 이후부터는 실행/종료 문제는 없었다.
+
+**[WSL에 설치된 Ubuntu 경로]**
+
+\\wsl$\Ubuntu\home\<계정명>
+
+## 3. 프로젝트 생성 및 기동
+
+Ubuntu 환경에 nodeJS, yarn, curl등을 인스톨한 후 Next.js WordPress Starter 앱을 만들었다. 더미 데이터를 GraphQL을 통해 읽어오는 설정 파일을 만들어준 후 프로젝트를 기동하면, Fake Data가 아래처럼 뜬다.
+
+아래는 생성된 프로젝트 구조
+
+## 4. GraphQL 및 Git 연동
+
+기존 블로그들의 데이터들을 넥스트 프로젝트로 가져오기 위한 작업을 진행 해 주었다. 먼저, 워드프레스용 GraphQL 확장 플러그인 [WQGraphQL](https://www.wpgraphql.com/)을 인스톨하고 문제 없이 기존 데이터를 가져오는 것까지 확인하였다.
+
+설치하고 나면 graphQL IDE에서 간편하게 조작을 할 수 있다. 왼쪽 스닙펫들을 누르면, 가운데서 쿼리를 조합해서 날리고 결과를 오른쪽에서 확인할 수 있는데, 최근에 쓴 글들의 정보들을 리스폰스로 받은 걸 확인할 수 있다.
+
+graphQL Endpoint 노출 활성화를 시켰고, 
+https://atomic-temporary-180105059.wpcomstaging.com/graphql 로 리퀘스트가 가는 걸 확인할 수 있다. 프로덕션 환경에서 디버깅 로그는 우선 비활성화 해 놓았다.
+
+프로젝트 설정 파일까지 수정하고 현재는 아래와 같은 화면을 확인 할 수 있다.
+
+아직은 여백의 미가 있지만, 이 쪽에도 차근차근 업데이트를 할 예정이다. 
+[깃 리포지터리](https://github.com/ko-dev-jp/Headless-CMS-next)
+
+이렇게 로컬에 WSL 환경을 구축하고 기존 블로그를 리엑트로 가져오는 시도가 끝났다.

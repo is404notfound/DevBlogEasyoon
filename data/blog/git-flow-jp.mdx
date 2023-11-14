@@ -1,0 +1,196 @@
+
+# [Git] Gitで用いるGit-Flowまとめ
+
+Git,GitLab,Gitflow
+
+■出典： [[Git] Gitで用いるGit-Flowまとめ](https://ko-dev-jp.com/2020/08/10/git-flow-j01/)
+
+## 目標
+
+このポストでは、Git Flowの概念と必要性、作業にとって理解が必要な機能の用語と全体的な進行の流れについて説明します。
+
+## 目次
+
+1. Git Flow
+
+1. Git Flowを考慮したきっかけ
+
+1. 事前準備
+
+1. Branch
+①Branchのライフサイクル
+②Branchの命名規則（Naming Convention）
+③Branch作業に必要なコマンド
+
+1. Merge
+①Branchマージ（merge）際、mergeの方向
+②Conflict減らし方
+③Conflictが出た状況の対策
+
+1. Pull
+
+1. Pull Request
+
+1. まとめ
+
+## 1. Gitフロー
+
+Git flowとは、Gitのブランチbranchを活用して、実行する作業の流れだと言います。どのような種類のブランチを作成して、一緒にマージmergeすべきかを方法論的に提案します。
+
+■参考
+[Vincent Driessen](https://nvie.com/about/)のA successful Git branching model
+：[https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
+
+## 2. Git Flowを考慮したきっかけ
+
+複数の人とチームとして長期開発をする場合、**運用ルールを定めずにGitを使用すると、競合conflictが度々起こるし、マージmergeのミスなどのハプニングがよくあります**。Gitを使用するときに発生するミスを減らすために採用する案が「Git flow」です。
+
+## 3.事前準備
+
+1）複数の人が共有することができるリモートリポジトリremote repositoryを作成し、プロジェクトのソースコードをアップロードします。
+2）必要があれば「.gitignore」を作成します。
+3）ローカルPC上で動作するローカリポジトリlocal repositoryを作成し、リモートリポジトリのプロジェクトをcloneします。
+
+*「 .gitignore」
+：変更履歴を無視したいファイルやディレクトリをまとめておいたリストです。リスト内のファイルおよびディレクトリの変更は、git addの際スキップされます。（しかし、思ったより適用ができない場合がよくあります。）
+
+## 4.ブランチ
+
+Branchは **master、release、 develop、feature、hot-fix**で、5つの開発実行ポイントを区分して進行します。
+
+* feature
+…… 個別機能の実装とバグを解決するブランチ
+
+* **develop**
+…… リリースのための開発を進めているブランチ
+
+* release
+…… リリースの前に活用するブランチで、最小限の調整だけするブランチ
+
+* **master**
+…… 最上位のブランチで、プロジェクトを格納します。原本ソースコードを保存するため、ソースの修正をしない
+
+* hot-fix
+…… リリースが終わったプロジェクトの緊急修正対応（バグ等）をするためのブランチ
+
+Masterブランチの場合は、プロジェクトのバージョンをTagで付けてプロジェクトのバージョンを管理します。
+
+### ①Branchのライフサイクル
+
+1. 一度生成がされると、削除されないブランチ
+：master、develop
+
+1. 目的にとって使用された後に削除されるブランチ
+：feature、release、hotfix
+
+### ②Branchの命名規則Naming Convention
+
+： “[branch name] — [日付、あるいはバージョンなど]”
+（ex：realease-1.2もしくはdev01–200730）
+
+### ③Branch作業に必要なコマンド
+
+    $ git checkout master 
+     //「master」branchに切り替え
+    （check out：現在のユーザが関与しているbranchで他のbranchへの移行）
+    $ git merge --no-ff release-1.2 
+    //「merge」（branchのマージ* merge方向については、4番（Mergeについて）を参照）
+    $ git tag -a 1.2 
+    //バージョン名などのプロジェクトの説明を付ける
+
+## 5.Merge
+
+ブランチ間の変更事項を1つのブランチに結合することを言います。
+
+![](https://cdn-images-1.medium.com/max/2000/0*10syA3UdSwWAd9Za)
+
+gitチュートリアルに示されているmerge状況
+
+上記の状況を解決するプロセスは、チュートリアルを参照してください（[ブランチとMergeの基礎](https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-Merge-%EC%9D%98-%EA%B8%B0%EC%B4%88)）
+
+### ①Branchマージmerge時、マージの方向
+
+**[Case]
+**hotfixブランチを作成して、バグを正しく直したのかを確認し、
+最終的に運用環境にリリースするためにhotfixブランチをmasterブランチにマージmergeする状況
+
+git merge コマンドで次のようにします。
+
+    $ git checkout master // branchのヘッドをmasterへ置く
+    $ git merge hotfix
+
+masterのソースを元にしたhotfifxブランチのソースコードに、最新のコミットcommitを持ってくるため、マスターにヘッドを置いてhotfixとマージします。このようなマージをfast-forwardです。
+
+### ②Conflict減らし方
+
+Conflictは、mergeする際に発生するソースコード間の**衝突**です。
+
+* 開発開始前に、最新のソースをpullして取得します（pullは6番を参照）
+
+* 適正な時期にmergeをします（merge時期を遅らせるとconflictの修正が多くなるので）
+
+**masterブランチの変更を継続的に自分のローカルブランチに更新する**ことが重要で、更新した後に自分のブランチをマージすれば衝突を最小限に抑えることができます。
+
+### ③Conflictが出た状況の対策
+
+* <基本>衝突された部分を修正することができる場合には、コードを変更した後、結合を試みます。
+
+* マージする前の状態に戻します。
+
+    $ git merge --abort
+
+* コードを変更した後、マージする前に戻したい場合
+
+    $ git reset --hard HEAD
+
+以外にもrevert （コミット後の記録を残したままマージ前に戻す）、reset （コミット後の記録を残さず、マージ前に戻す）のコマンドがあります。
+
+マージが終わったら、あるブランチの中で必要ないものを削除します。
+
+## 6.Pull
+
+pullコマンドは
+1）fetch （リモートリポジトリの変更をインポートして、マージはしないこと）を実行した後、
+2）マージmergeするコマンド
+です。
+
+* pull：リモートリポジトリのコミットcommit履歴と私のローカルリポジトリのデータを結合したい時
+
+* fetch：リモートリポジトリのコミット履歴だけを確認したい時
+（このとき、リモートリポジトリから取得した最新のコミット履歴は、自分のローカルリポジトリに「FETCH_HEAD」でインポートします。）
+
+したがって、コミットされていない変更があるままでPullをしたら、マージが失敗することになりますので注意してください。
+
+## 7.Pull Request
+
+Pull Requestとは、チームプロジェクトを進める際、開発者のローカルリポジトリの変更を他のメンバーに共有することです。ソースコードの変更内容を見やすく表示し、マージ予定事実をお知らせします。また、ソースコードのマージのコミュニケーションを行うことができ、問題発生時の履歴も確認することができます。
+
+**[開発時に進行されるPull Requestプロセス]**
+
+1. [開発者]機能の追加などの開発を進めます。
+
+1. [開発者]機能追加が完了したら、pushします。
+
+1. [開発者] Pull Requestを作成します。
+
+1. [担当者] Pull Requestで変更を確認します。
+
+1. [担当者]ソースコードの問題がなければマージします。
+もし、確認の結果、ソースコードのマージが必要ない場合には、クローズします。
+
+## 8.まとめ
+
+Git Flowは、チームとして長期開発をする際に必要な効果的なプロジェクトのバージョン管理戦略です。
+
+* 開発が終わったソースコードを無理なくマージし、正しく動作するソースコードをリリース環境のブランチで管理することを目指しています。
+
+* developブランチのソースコードをrelease直前の状態で管理するのに無理がある場合は、中間検証のための**Stagingのブランチ**を作成してリリース直前のソースコードを管理する方法があります。
+（staging用ブランチを作成するのは、開発に集中ができる環境を構成するという利点があります。）
+
+* Gitの操作を開始する前に、各作業の予想順序をシートにまとめた後作業に入れば、ミスを減らすことができると思います。
+
+Please visit here too!
+[[ Korean ]
+](https://ko-dev-jp.com/2020/07/30/git-flow/)[[ Japanese ]
+](https://ko-dev-jp.com/2020/08/10/git-flow-j01/)[[ ](https://okky.kr/article/831473)[OKKY ](https://okky.kr/article/757781)[]](https://okky.kr/article/831473)
+[[ ](https://qiita.com/liten623jp/items/cd553e8dc85a60500ce2)[Qiita ](https://qiita.com/liten623jp/items/d870e13ada7718a442c0)[]](https://qiita.com/liten623jp/items/cd553e8dc85a60500ce2)

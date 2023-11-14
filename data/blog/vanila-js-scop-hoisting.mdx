@@ -1,0 +1,164 @@
+
+# [#Javascript] Scope와 Hoisting, Closure
+
+목록
+
+1. 시작
+
+1. Scope
+・개념
+・Global Scope
+・Local Scope
+・Nested Scope
+
+1. Hoisting
+・개념/유의사항
+
+1. Closure
+・개념/동작
+・필요성/유의사항
+
+1. 결론
+
+## 1. 시작
+
+Scope와 Hoisting은 도처에 다양한 설명들이 있고 평소 활용함에도 불구하고 이해에 있어 진입 장벽을 느꼈던 경험이 있다. 이들을 확실히 숙지하지 않은 채 자바스크립트를 다루는 것은 언어의 문법을 충분히 숙지하지 않은 채 대화를 하는 것과 비슷한 느낌을 받았다. 경험치가 쌓이면 어느정도 의사소통이 가능하지만서도, 세련된 의사소통으로 이어지기 위해서는 필수 처럼 다가왔다.
+> *이 질문(Closure)에 잘못 대답하면 채용되지 않을 가능성이 큽니다. 채용이 된다 하더라도 소프트웨어 개발자로 일한 기간에 관계없이 주니어 개발자로 채용 될 가능성이 높습니다. …… 클로저는 특정 함수의 범위에있는 것과 없는 것을 제어하고 동일 범위에있는 형제 함수간에 공유되는 변수를 제어하기 때문에 중요합니다. 변수와 함수가 서로 어떻게 관련되어 있는지 이해하는 것은, 함수 및 객체 지향 프로그래밍 스타일 양쪽 모두에서 코드의 동작을 이해하기 위해 매우 중요합니다. (If you answer this question wrong, there’s a good chance you won’t get hired. If you do get hired, there’s a good chance you’ll be hired as a junior developer, regardless of how long you’ve been working as a software developer. ….. Closures are important because they control what is and isn’t in scope in a particular function, along with which variables are shared between sibling functions in the same containing scope. Understanding how variables and functions relate to each other is critical to understanding what’s going on in your code, in both functional and object oriented programming styles.)*
+> [*Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36)*
+
+Closure 개념에 있어서는
+1. 외부 함수를 변수에 할당하였더니
+2. 외부 함수가 종료되어도 내부 함수의 변수에 접근이 가능하게 되었다
+가 어떻게 동작하는 건지. 또, 그렇게 동작해야하는 필요성에 대한 부분의 보충이 필요해 이를 중심으로 작성하게 되었다.
+
+## 2. Scope
+
+**・개념**
+
+스코프는 현재 어떤 범위 내의 변수까지 접근이 가능하는지를 정의한다.
+
+**・ Global Scope**
+
+함수 외부에 변수가 정의되어 있거나, 중괄호 밖에 정의되어 있을 경우 **전역 스코프Global Scope**에 정의되어 있다고 한다. 이는 프로젝트 모든 곳에서 사용할 수 있다.
+
+이전 글 중에서, [const, let, var에 대해서](https://kodevjpcom.wordpress.com/2020/07/13/javascript_const-let-var-k01/) 쓴 적이 있다. 요지는, 변수 선언에 있어 가급적이면 const, let을 쓰는 것이 좋다는 것이었는데, ‘왜 var를 사용하지 않으면 안되는가’에 대해서도 질문을 받은 적이 있었다.
+
+    var importData = 'data'
+    .
+    .
+    .
+    var importData = 'another data' 
+    console.log(importData) // 'another data'
+
+이는 프로젝트 내에서 참조가 가능한 스코프끼리 동일 이름의 변수 선언으로 인해 동작이 꼬이게 되거나 디버깅에 문제가 생기기 때문으로 예상한다. 컴포넌트가 많아질 수록 동일한 변수를 여러 곳에 선언하거나 반복해서 선언하여 사용하고 있었던 경우가 종종 있었기 때문이다.
+
+**・ Local Scope**
+
+한정된 범위 내에 사용할 수 있는 변수를 **지역 스코프**Local Scope 에 있다고 하며, 지역 스코프 내의 변수들을 지역 변수라고 한다. 지역 스코프는 **함수 레벨 스코프**와 **블록 레벨 스코프**로 나뉜다. 지역 스코프의 기본default은 함수 레벨 스코프가 이기 때문에, 변수가 함수 스코프 밖에 존재한다면 해당 변수는 전역 변수라 할 수 있다.
+
+**[함수 레벨 스코프]Function Scope**
+
+함수 내부에 변수를 선언하면, 해당 변수는 함수 내에서만 접근할 수 있다. var는 함수 레벨 스코프이기 때문에 함수 내라면 어디서든 참조가 가능하다.
+
+**[블록 레벨 스코프]Block Scope**
+
+블록 레벨 스코프 내에서 선언 된 변수는, 중괄호{} 내부에서만 참조가 가능하다. const와 let은 블록 레벨 스코프이기 때문에, 함수 내에서도 중괄호가 선언 된 블록(for문, if문 등)의 내부에서만 참조가 가능하다.
+
+**・ Nested Scope**
+
+함수내에서 다른 함수를 또 정의되는 것을 중첩된 스코프Nested Scope라 하는데, 이 때 두 함수는 각각 외부 함수와 내부 함수라고 한다. 이 때, 내부 함수에서는 내부 함수 내에 정의 된 변수 외에 외부 함수의 변수에 접근할 수 있는데, 이를 렉시컬 스코핑lexical scoping이라 한다. (기본적으로 외부 함수는 내부 함수의 변수에 접근할 수 없다.)
+
+## 3. Hoisting
+
+**・ 개념/유의사항**
+
+호이스팅이란, 모든 선언이 해당 스코프의 최상단으로 끌어 올려진 것 처럼 동작하는 특성인데,
+var로 선언 된 변수와 함수 선언식*function delcaration으로 선언 된 함수는 호이스팅이 된다.
+
+더 풀어보면, 기본적으로 코드가 실행될 때에는 반드시 '선언 > 호출 > 동작'의 순서를 거쳐야 하지만
+호이스팅이 되는 변수 및 함수들은 '호출 > 동작 > .... 어딘가 선언됨'이 가능하다.
+즉, 어딘가에 반드시 선언이 되어있겠지만, 순서상 호출에 선수적으로 위치할 필요는 없다.
+
+이처럼 변수나 함수가 호이스팅 된다면, 의도치 않은 동작을 야기할 수 있다.
+따라서, 별도로 약속을 한 경우가 아니라면 협업을 할 땐 피해 작성하는 것이 좋다.
+
+*함수 선언식function declaration /호이스팅 O
+
+    test() // I'm defined!
+
+    function test () {
+      console.log('I'm defined!')
+    }
+
+*함수 표현식function expression / 호이스팅X
+
+    test() // Unfined Error
+
+    const test = function () {
+      console.log('I'm defined!')
+    }
+
+## 4. Closure
+
+클로저의 개념 중 쉽게 납득이 안 가는 부분이 있었는데, 외부 함수가 종료됐는데 내부 함수에서는 어떻게 접근할 수 있는가에 대한 부분이었다.
+
+    function outer() {
+      const text = 'hello'
+      return function() {
+        console.log(text)
+      }
+    }
+
+    const inner = outer()
+    inner()
+
+**・동작 및 개념**
+
+1. outer() 함수를 선언한다.
+2. outer() 함수 내에서는 변수 text 선언한다.
+3. outer() 함수는 text를 찍는 내부함수를 리턴한다. 
+4. 변수 inner에 outer() 함수를 담는다.
+5. inner()를 실행
+
+여기서 outer()는 외부 함수, 외부 함수에서 리턴하는 function을 내부 함수라고 한다. 기본적으로, 내부함수는 외부함수의 로컬변수(위의 text)에 접근할 수 있지만, 외부 함수의 실행이 끝났을 때에는 접근을 할 수 없다.
+
+여기서, 8번째 라인 처럼, inner = outer()과 같은 과정을 거쳐주면 내부 함수가 외부로 빠져나오게 된다. 즉, text와 같은 로컬 변수를 참조할 수 있는 범위가 outer()를 실행하는 환경까지 확장되면서, 외부 함수가 소멸 된 이후에도 내부 함수가 외부 함수에 접근할 수 있는 형태가 된다.
+
+이러한 형태를 ‘**클로저**’라고 한다.
+
+**・필요성 및 유의사항**
+
+1. Javascript 변수를 private으로 사용
+
+객체지향 특징중 하나인 캡슐화를 위해서는, 유관한 변수와 메소드를 클래스 등으로 묶어 외부에서는 메소드를 통해 참조하는 것을 기본으로 하며, 직접 참조를 지양한다. 이렇듯 외부에서 참조할 수 없도록 할 때, 자바스크립트의 변수는 public이 디폴트이기 때문에 클로저로 대채하여 사용한다. (위를 보면, 외부에서는 text값에 접근 할 방법이 없다.)
+
+2. 사이드 이펙트 제어
+
+코드가 아닌 외부 환경에 의해 발생 할 동작, 즉 사이드 이펙트를 제어하는 부분은 면접에서도 코드와 함께 질문을 받은 적이 있다. 대표적인 예가 setTimeout()이다.
+
+    var i
+    for (i = 0; i < 10; i++) {
+      setTimeout(function() {
+        console.log(i)
+      }, 100)
+    }
+
+빠지기 쉬웠던 함정은, i가 0.1초 후에 1부터 차례로 찍힐 것 같아 보인다는 부분이다.
+하지만 콘솔이 찍히는 부분은 0.1초가 모두 지난 후인데, 그 때의 i 값은 이미 반복문을 모두 돌고 10이 되어있기 때문에
+10만 계속 찍힌다. 같은 환경에 있는 i값을 참조하게 되는 것이다.
+
+만약, 1부터 차례로 찍히게끔 동작시키려면 어떡해야 할까?
+반복문 안에 i 값을 파라미터로 넘겨주는 내부 함수를 하나 더 생성하고, 그 내부 함수 안에 넘겨받은 i값으로 만든 새 변수로 setTimeout()을 포함한 내부 함수를 만든다면, for문이 i값을 돌 때마다 새로운 환경을 생성하기 때문에 원하는 형태로 찍힐 것 같다. (하지만, 생성 후에 참조를 제거할 수 없다는 문제가 있다.)
+
+결국, 자바스크립트가 생각보다 예상했던대로 또 원했던 대로 실행되지 않았고,
+그래서 코드와 동작이 끊임없이 엉키게 되어 고민할 수 밖에 없는 부분이 되어왔지 않았을까 싶다…
+
+클로저의 무분별한 사용은 브라우저 퍼포먼스에도 영향을 미친다고 하니 반드시 필요한 경에만 선별적으로 사용하는 것을 권장한다.([참고](https://hub.appirio.com/tech-blog/avoiding-a-common-mistake-with-javascript-closures)) 또, 클로저를 동작하여 만들어진 환경에 있어서는 GC가 참조를 제거하지 못하는 경우가 있기 때문에 사용 후엔 메모리를 직접 회수 해 주는 것이 좋다.
+
+## 5. 결론
+
+아래와 같은 사항을 숙지하면 기본적으로 세련된 자바스크립트 개발에 도움이 된다.
+
+・전역 스코프, 지역 스코프, 중첩 스코프
+・호이스팅 시 발생할 수 있는 문제점
+・클로저의 동작 및 사용 시 유의점

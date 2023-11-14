@@ -1,0 +1,189 @@
+
+# [Git] Git Flow 작업 흐름 정리
+
+원문 : [Git] Git Flow 작업 흐름 정리
+
+**목표**
+
+이 포스트에서는 Git Flow의 개념과 필요성, 작업에 앞서 숙지해야 하는 기능 용어 및 전체적인 진행 흐름에 대해서 설명합니다.
+
+## 목차
+
+1. Git Flow
+
+1. Git Flow를 고려하게 된 계기
+
+1. 사전 준비
+
+1. Branch
+①Branch의 수명 주기
+②Branch의 명명 규칙(Naming Convention)
+③Branch 작업 시 수행하는 명령어
+
+1. Merge
+①Branch 병합(merge) 시, merge의 방향
+②Conflict 줄이기
+③Conflict가 났을 때의 상황 대처
+
+1. Pull
+
+1. Pull Request
+
+1. 정리
+
+## 1. Git Flow
+
+Git flow란, Git의 브랜치branch를 활용하여 수행하는 작업 절차를 의미합니다.
+어떤 종류의 브랜치를 생성하고 함께 병합merge해야 하는가를 방법론적으로 제안합니다.
+
+■참고 자료
+[Vincent Driessen](https://nvie.com/about/) 의 A successful Git branching model
+: [https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
+
+## 2. Git Flow를 고려하게 된 계기
+
+여러 사람들과 팀으로 장기 개발을 할 경우, **운영 규칙을 정하지 않고 Git을 사용하면 충돌conflict이 자주 일어나고 병합merge 실수가 발생하는 등의 일이 해프닝이 발생**할 수 있습니다. Git을 사용할 때 발생하는 실수를 줄이기 위해서 채택하는 방안이 ‘Git flow’입니다.
+
+## 3. 사전 준비
+
+1) 여러 사람이 공유할 수 있는 원격 저장소remote repository를 생성하고, 프로젝트 소스 코드를 업로드 합니다.
+2) 필요에 따라 .gitignore 파일을 생성합니다.
+3) 로컬 PC에서 작업 할 로컬 저장소local repository를 생성하고, 원격 저장소의 프로젝트를 clone 합니다.
+
+*.gitignore
+: 변경 이력을 무시하고 싶은 파일 및 디렉토리를 정리해 놓은 리스트로, 리스트 내의 파일 및 디렉토리들은 git add시 변경을 건너뛰게 됩니다. (작성 하고도 생각보다 적용이 안되는 경우가 빈번한 편입니다.)
+
+## 4. Branch
+
+Branch는 **master, release, develop, feature, hot-fix**로, 5개의 개발 수행 지점을 구분하여 진행합니다.
+
+* feature
+…… 개별 기능의 구현 및 버그를 해결할 때 활용하는 브랜치
+
+* **develop**
+…… 릴리즈를 위한 개발을 진행하는 브랜치
+
+* release
+…… 출시 전에 활용하는 브랜치로 출시 직전 최소한의 조정을 하는 브랜치
+
+* **master**
+…… 최상위 브랜치로, 프로젝트를 보관. 릴리즈가** **되었거나 릴리즈가 될 소스를 저장하기 때문에 소스의 수정을 하지 않음
+
+* hot-fix
+…… 릴리즈가 끝난 프로젝트의 긴급한 수정 대응(버그 등)을 하기 위한 브랜치
+
+Master 브랜치의 경우 프로젝트 버전을 Tag로 붙여 프로젝트의 버전을 관리합니다.
+
+### ①Branch의 수명주기
+
+1. 한 번 생성이 되면 제거되지 않는 브랜치
+: master, develop
+
+1. 목적에 따라 사용된 후 제거되는 브랜치
+: feature, release, hotfix
+
+### ②Branch의 명명규칙Naming Convention
+
+: “[branch name] — [날짜 혹은 버전 등]”
+(ex: realease-1.2 혹은 dev01–200730)
+
+### ③Branch 작업 시 수행하는 명령어
+
+    $ git checkout master
+     //'master'branch로 전환 
+    (check out : 현재 유저가 관여하고 있는 branch에서 다른 branch로의 전환)
+    $ git merge --no-ff release-1.2
+    // 'merge'(branch 병합 ＊merge 방향에 대해서는 4번(Merge에 대해서) 참고)
+    $ git tag -a 1.2
+    //버전 명 등 프로젝트에 대한 설명을 덧붙임
+
+## 5. Merge
+
+브랜치 간의 변경사항을 하나의 브랜치로 합치는 것을 의미합니다.
+
+git 튜토리얼에 제시되어있는 merge 상황
+
+위의 상황을 해결하는 과정은 튜토리얼을 참고 ([브랜치와 Merge 의 기초](https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-Merge-%EC%9D%98-%EA%B8%B0%EC%B4%88) )
+
+### ①Branch 병합merge 시, 병합방향
+
+**[Case]
+**hotfix 브랜치를 생성하여 버그를 제대로 고쳤는지 확인하고,
+최종적으로 운영 환경에 배포하기 위해 hotfix 브랜치를 master 브랜치에 병합merge하는 상황
+
+git merge 명령으로 아래와 같이 합니다.
+
+    $ git checkout master //branch의 헤드를 master에 둔다
+    $ git merge hotfix
+
+master의 소스를 기반으로 만든 hotfifx 브랜치의 소스 코드로 최신 커밋commit을 옮겨와야 하기 때문에,
+마스터에 헤드를 두고 hotfix와 병합합니다. 이러한 방식의 병합을 fast-forward 라고 합니다.
+
+### ②Conflict 줄이기
+
+Conflict는 merge시 발생하는 소스 간의 **충돌**을 의미합니다.
+
+* 개발 시작 전, 최신 소스를 pull 하여 가져옵니다 (pull은 6번을 참고)
+
+* 적정 시기에 merge를 합니다 (merge 시기를 늦출 수록 conflict 수정이 많아지기 때문)
+
+**master 브랜치의 변경 사항들을 지속적으로 자신의 로컬 브랜치로 가져와 업데이트 하는 것**이 핵심으로,
+후에 자신의 브랜치를 병합 시킬 때 충돌을 최소화 할 수 있습니다.
+
+### ③Conflict가 났을 때의 상황 대처
+
+* <기본> 충돌 된 부분을 고칠 수 있는 경우, 코드를 수정한 후 병합을 시도합니다.
+
+* 병합 하기 전 상태로 돌립니다.
+
+    $ git merge --abort
+
+* 코드를 수정한 후, 병합하기 전으로 돌리고 싶은 경우
+
+    $ git reset --hard HEAD
+
+이 외에도 revert(커밋 후 기록을 남긴 채 병합 전으로 되돌림), reset(커밋 후 기록을 남기지 않고 병합 전으로 되돌림)의 명령어가 있습니다.
+
+병합이 끝났다면, 필요 없는 기존의 브랜치는 삭제합니다.
+
+## 6. Pull
+
+pull 명령어는
+1) fetch(원격저장소의 변경사항들을 가져오되 병합은 하지 않음)를 실행 한 뒤
+2) 병합merge하는 명령어
+입니다.
+
+* pull : 원격 저장소의 커밋commit이력과 내 로컬 저장소의 데이터를 합치고 싶을 때
+
+* fetch : 원격 저장소의 커밋 이력만을 확인하고 싶을 때
+(이 때, 원격 저장소에서 가져온 최신 커밋 이력은 내 로컬 저장소에 ‘이름 없는 브랜치’ 혹은 ‘FETCH_HEAD’로 가져옵니다. )
+
+따라서 커밋 되지 않은 변경 사항이 있는 채로 Pull을 하게 되면, 병합하는 과정이 실패합니다.
+
+## 7. Pull Request
+
+팀 프로젝트를 진행할 때, 개발자의 로컬 저장소의 변경 사항을 다른 구성원들에게 공유하는 것 입니다. 소스 코드의 변경 내용을 보기 편하게 표시하고, 병합 예정 사실을 통지합니다. 또한 소스 코드 병합에 대한 커뮤니케이션을 할 수 있으며, 문제 발생 시 이력을 통해 확인이 가능합니다.
+
+**[개발 시 진행되는 Pull Request 프로세스]**
+
+1. [개발자] 기능 추가 등 개발을 진행합니다.
+
+1. [개발자] 기능 추가가 완료되면 push 합니다.
+
+1. [개발자] Pull Request를 작성합니다.
+
+1. [담당자] Pull Request에서 변경 사항을 확인합니다.
+
+1. [담당자] 소스의 문제가 없으면 병합합니다.
+만약, 확인 결과 소스의 병합이 필요 없는 경우에는 클로즈 합니다.
+
+## 8. 정리
+
+Git Flow는 팀으로 장기 개발 시에 필요한 효율적인 프로젝트 버전 관리 전략입니다.
+
+* 개발이 완료 된 소스 코드들을 무리 없이 병합하고, 올바르게 동작하는 소스 코드들을 릴리즈 환경의 브랜치에서 관리하는 것을 목적으로 합니다.
+
+* develop 브랜치의 소스 코드를 release 직전 상태로 관리하는 것에 무리가 있다면, 중간 검증을 위한** Staging용 브랜치**를 작성하여 릴리즈 직전의 소스 코드를 관리하는 방법이 있습니다.
+(staging용 브랜치를 작성하는 것은, 개발에 집중할 수 있는 환경을 구성한다는 이점이 있습니다.)
+
+* Git 작업을 시작하기 전, 각 과정에 대한 예상 순서를 시트로 정리한 뒤 작업에 들어가는 것도 실수를 줄일 수 있는 방법입니다.

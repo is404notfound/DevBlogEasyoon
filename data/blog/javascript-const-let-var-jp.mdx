@@ -1,0 +1,114 @@
+
+# [Javascript] Const、Let、Varの違い
+
+■出典： [Javascript] Const、Let、Varの違い
+
+## 目次
+
+1. Javascriptの変数
+
+1. Constについて
+
+1. Letについて
+
+1. Varについて
+
+1. まとめ
+
+## 1.Javascriptの変数
+
+Javascriptは変数を宣言するキーワードconst、let、varがあります。
+このキーワードは、以下のの違いを持っ​​ています。
+
+* 初期値
+
+* 重複した値の割り当て
+
+* 呼び出しの範囲
+
+まずconst、let、varすべての変数は、以下のように
+、（カンマ）で区切って複数の変数を定義することができます。
+
+    const category= "header",
+          key= "content-Type",
+          value= "application/json";
+
+## 2. Constについて
+
+constは、値が変わらない変数を宣言するキーワードです。 
+constは必ず初期値を設定をするべきであり、
+宣言した変数は値を再割り当てすることができません。
+
+constで宣言した変数に値を再割り当てする場合には、
+次のようなエラー（ TypeError）が発生します。
+
+    const key = "content-Type";
+    key = "appId"; 
+    // Result => TypeError: invalid assignment to const 'key'
+
+したがって、変数に値を再割り当てする必要がない場合には、 
+constキーワードの宣言をお勧めします。
+
+ループの中で特定の変数が参照している値が変わる場合もあります。 
+そのような場合には、変数に再割り当てすることができる letキーワードで宣言した方が良いです。
+
+## 3. Letについて
+
+letは、初期値を指定しなくても大丈夫です。 
+初期値を指定しない場合は、下記ようにundefinedで初期化されます。
+
+    let key;
+    // `key` is initialized `undefined`
+
+letが宣言されたkeyという変数に "content-Type"という文字列を代入しています。
+
+    let key;
+    key = "content-type";
+
+## 4. Varについて
+
+varキーワードは、初期値を宣言しなくても関係ないし、
+値を再割り当てしても大丈夫なのでlet似ています。
+しかし、 varキーワードは、同じ名前の変数を再定義することができます。
+
+letと constは同じ名前の変数を定義することができず、
+次のような構文エラー（ SyntaxError）が発生します。 
+したがって、誤って変数を二重に定義してしまうミスを防ぐことができます。
+
+    let key;
+    let key; // => SyntaxError: redeclaration of let key
+
+一方、 varの場合には、同じ名前の変数を再定義することができます。 
+これは、誤って同じ変数名で定義してもエラーが出ず、
+以前に宣言した値を上書きしてしまいます。
+
+    var x = 1;
+    var x = 2;
+    // x is 2
+
+letは変数を宣言する前に、その変数を参照すると ReferenceError例外が発生します。
+
+    var x = 1;
+    var x = 2;
+    // x is 2
+
+一方 varでは、変数を宣言する前に、その変数を参照しても undefinedになります。
+
+    console.log(x); // => undefined
+    var x = 1;
+
+## 5.まとめ
+
+JavaScriptの変数を宣言するキーワードで const、 let、 varについてまとめました。
+
+1. constは値を再割り当てすることができない変数を宣言するとき使われます。
+
+1. let、varは再割り当てすることができる変数を宣言することができ、
+初期値を宣言しなくてもされます。
+
+1. varの場合のみ、同じ値を重複宣言することができます。
+
+constは、再割り当てが不可能な変数を定義するキーワードです。 
+再割り当てを禁止することにより、誤って別の値を割り当てて発生するバグを減らすことができます。
+
+したがって、変数を宣言する場合は、まず const定義することができないかを検討した後、不可能な場合 letを使用することをお勧めします。
