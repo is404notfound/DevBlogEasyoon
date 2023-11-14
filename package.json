@@ -1,5 +1,6 @@
 {
-  "name": "tailwind-nextjs-starter-blog",
+  "name": "dev_blog_easyoon",
+  "homepage": "https://is404notfound.github.io/DevBlogEasyoon/",
   "version": "2.0.2",
   "private": true,
   "scripts": {
@@ -8,7 +9,9 @@
     "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
-    "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
+    "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "13.5.6",
