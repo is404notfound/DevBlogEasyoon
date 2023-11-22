@@ -65,10 +65,16 @@ module.exports = () => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
-    basePath: "/devblogeasyoon",
+    basePath: "/DevBlogEasyoon",
     output: 'export',
     images: {
-      domains: ['picsum.photos'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'picsum.photos',
+        },
+      ],
+      unoptimized: true,
     },
     // async headers() {
     //   return [
