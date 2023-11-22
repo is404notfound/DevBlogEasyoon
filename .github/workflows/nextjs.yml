@@ -68,10 +68,17 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build project assets
         run: ${{ steps.detect-package-manager.outputs.manager }} build
+
+      - name : Logging pwd
+        run: pwd
+
+      - name : Logging ls
+        run: ls
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./next
+          path: ./out
 
   # Deployment job
   deploy:
