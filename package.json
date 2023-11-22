@@ -1,6 +1,6 @@
 {
-  "name": "dev_blog_easyoon",
-  "homepage": "https://is404notfound.github.io/DevBlogEasyoon/",
+  "name": "is404notfound.github.io",
+  "homepage": "https://is404notfound.github.io/",
   "version": "2.0.2",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles" 
   },
   "dependencies": {
     "@next/bundle-analyzer": "13.5.6",
