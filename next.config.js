@@ -65,17 +65,25 @@ module.exports = () => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
+    basePath: "/DevBlogEasyoon",
+    output: 'export',
     images: {
-      domains: ['picsum.photos'],
-    },
-    async headers() {
-      return [
+      remotePatterns: [
         {
-          source: '/(.*)',
-          headers: securityHeaders,
+          protocol: 'https',
+          hostname: 'picsum.photos',
         },
-      ]
+      ],
+      unoptimized: true,
     },
+    // async headers() {
+    //   return [
+    //     {
+    //       source: '/(.*)',
+    //       headers: securityHeaders,
+    //     },
+    //   ]
+    // },
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
