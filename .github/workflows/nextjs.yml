@@ -73,12 +73,12 @@ jobs:
         run: pwd
 
       - name : Logging ls
-        run: ls
+        run: ls -al
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./.next
 
   # Deployment job
   deploy:
