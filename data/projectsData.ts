@@ -1,19 +1,15 @@
 const projectsData = [
   {
-    title: 'A Search Engine for Temp!',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
+    title: 'React Dev Blog!',
+    description: `This is my personal blog where I write about my experiences as a developer. I write about my experiences with React, Next.js, and other web development topics.`,
     imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    href: 'https://github.com/is404notfound/DevBlogEasyoon',
   },
   {
-    title: 'The Time Machine for Temp!',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Study for Data Structure!',
+    description: `This is my study source for Data Structure. I study about Data Structure with my team. We study about Data Structure with JS. And I describe about this source in Blog tab!`,
+    imgSrc: '/static/images/google.png',
+    href: 'https://github.com/is404notfound/03_TEAM_STUDY_DATA_STRUCTURE',
   },
 ]
 
