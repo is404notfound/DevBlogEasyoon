@@ -1,0 +1,47 @@
+---
+title: Queue (Study/Data Structure)
+date: '2022-10-03'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [#Team Study] Queue
+
+Queue
+
+선입 선출 (= FIFO, First In First Out)
+
+### 구성요소
+
+* head: 가장 먼저 들어온 값
+
+* rear: 가장 나중에 들어온 값
+
+* add()
+
+* poll() : 제일 빨리 들어온 요소를 제거하는 것
+
+* isEmpty()
+
+* peak()
+: 현재 배열 내 값이 채워져 있는 공간의 index들 중 가장 높은 index를 리턴하는 건데, 반드시 필요한 것 같지는 않다.
+
+### **특징**
+
+* Queue를 설명하는 그림과 실제 배열은, 데이터가 들어오고 나가는 방향이 달라 각각의 이해가 필요하다 !
+
+* head에 아무것도 안두고 비워두는 방식을 추천하는데, 코드에 설명
+
+### **[Code] HEAD를 비워두지 않고 구현하는 Queue 방식**
+
+* [git](https://github.com/is404notfound/03.TEAM_STUDY_DATA_STRUCTURE/blob/main/Queue/MakeQueue.js)
+
+![](https://cdn-images-1.medium.com/max/2000/1*ncnrCNTsx-NZM8BTGFbo0g.png)
+
+* [TS PlayGround](https://www.typescriptlang.org/play?filetype=js#code/PTAEAEBcGcFoDsD2BjAFgU2QawFDMfNJKALICCAGqALygDMA3HgDYCG00pAngIoCu6AaADeOUOND5CkAE59kkRDIAU0AJYAvdAEpRE-aDUAzUKs3pQAHlABGbSLEGnU6ImboAdM0QBzZQHJAHVnAGMHQQBqBwBdxwAjJwBSm21AIwEGBiMAW0cAfUdBAS1XACabAE6aPf20mJycZdEg+GXhHJwBfGoNIVDVoD1YZGVYuGlB4dAB3UDIOrrMtbQ8jNWZmZXg+GaKG-SaWj3UtHo30YpLV1oxWABMegAYGUBBQQ6PAH07QQAlR0EARPsAZscAVFtBASh7AVJ7liX2HjK7TOu3E9X0AFsuGQjidlAA3VjMAT2PQlYymZSA4EyGjUWiAm72ABkJNAAEIKYD2p0uABtHHodoAXTR-2cBFc7i8vlM-hIvEAGuPhaKAABrQIBJetAgB4ZwCtQ3kCksSgYyhUqmCDBC9s1WtCAJLQACikIADpAuMpSeTAdCAEroaDlfVHAAeVqYHNANJGDKZIIA1AGWT0kSidl7-XjCbqgcy8QBSb2x7aa7XiaEABTczFM7JVmOxsYNxrNFqt+ZVEhcbk83j8At4EueKUAEeMK3KFTUqtWVeDdiT1L0uYimxCm03oE4xta0rqM2M3FkD8Q+ukLtY3IMh2jzGYr5Ob5nTw8HY+gJOA1Ne3tVUBjidTtMNEsm83dK0OHvlPunjw3fEZ1aXFQDJSk13nIlj2XBp01Ae1HWdN1P3RJwoOOUFI1jEDaHOWCcCHEdQB4Ho+kGQV+EEdBlHICgiiAA)
+
+### **Ref
+
+[*요 코드](https://www.typescriptlang.org/play?noImplicitAny=false&filetype=js#code/MYGwhgzhAECyCeBFArgUzdA3gKGtYA9gHYQAuATssKQeQBQQCWAXqgJRa57SMBm0DFqmgAeaAEYOObt0IkCIVADoQBAOZ0A5CnTDANQOAXccARk4BSm6ACZoBwIMDBwC2jgH1HogS1XAE02ATps1sA3FxnlUUmRyIl8ZAF8-aFIAC0YIJTBycmgAXmgAQWSweEFWNiVeRhAQOiJkEp8o2PilJlY06HrUMO4ahJjUMAATRoAGVrx2pQCk-tbIrgBbeAzu7roANzAQKSi+AWHRlNTd6LiE5rWZPDkIBWVVDW00NEAAGuhASXroQB4ZwFahjy9B7gCgkKjIjJhklyABtLZdcgAXUayxA3mg1QOI0h0AA1GiJlxpvAAEqoKYERaoOjHWTEMjQOGNYHJcHIzo9KHfWlg4aM7ow9LlEoshldboYpG1Dk0-k9aAAUn2tWa0AA9PLoByHs1AD6d0EAGI12O6AAcnoIApUcAMTVRX7BIhUlZcSZ4GYABVQqAA1qTOP5AuaZR0BVicQBJCAAUSmAAdSLkyXgzSEvUpRbt0hCkgjFTwg6Hw4AR5uggAIW6CADCHoIAI8d1gBnOgA00EAFV2ABRanoAKGcAOIPQQASo4AMFrMgGCawA+4wXs0W7M2ORrACJ9gBmxwDJjV3ACLj0EAKbOAHJnrdhJmdSNAZohGkRUAB3OBIW4k8R9KpnC4qdR0TdsbDYTdKGZzBaaMBfbDnxSX66bzSVh8glUD5PvMWgAEbvp+lxXpov7-kgiTJEBCEgS+3SQRSF5XFocEbghgG+MBeIEkSJJnphX7YbBSB-nhiCIeQVRAA)는 맨 처음 짠 건데, 테스트를 하다보니 반복에 대한 고려가 부족하길래 더 추가해서 위로 나왔다. 조건이 복잡해지는데, 처음부터 HEAD에는 값을 넣지 않고 비워두는 방식으로 작성하면 코드가 단순해 진다고…*
+
+[*Stick 문제 풀이](https://www.typescriptlang.org/play?noImplicitAny=false&filetype=js#code/MYewdgzgLgBAlmADgVygQQE4ZgXhgbQDYAaGATlIFZSB2GYgFgF0BuAKDeABsBDCCGAGUocYAGsYAbzYwYoSFAzJgUENgAUANx5dkAU1IIAJnoAeASikzZMKAAs4EAHTbde3DFf72N2w+fGZh6Bpj4wAL5s4QD00TAcAGbIYCpw4DAA5npQwqJiAuoIKOhYltKy8tAw0HkCePis1glqMOpc2fAeAAwsnQA88EiomBhO7WAZ9r1wANQzZdYV4FU14h5gegDuQiLihUMlGPhwTIbmYUuQIO1jIBnqAOSrYg+kz+eL1bv5TigQdup3mFItYMNlkBgwF9auwQUkUiJ0lkciAIcB3IDvhAFpcqmCIMguLB6o1ZO1YNAeGsSewmi02h0AFbdXrMgbPZzjSZ2VlzczlGyVCkeDn4RlMT5CqSeHT6QxgEymCIi2m+OAJVqMmYARlwODwHLGegm9ksACMwTwxBc5MtrnpbvdDVz7KRGeYOL4pRtTFAAGo6EVYsUwGYwbVMFyyvSSu03Lh3R4+-06V4wZMBrgfNUa9QZwMAPhlbn5n1ksRggBAJwAtMzBACJ9gAaxwAHNTBACVDgF2FwALozBAAnjgAY6mCAYka+04yzB8YSoL9kP99ors74vlSJDSx5V7Y7HgBbOBGIztcd6AlEtMToke3yRXyU8TT2fYm3r+OJp5QZdpm9iC8RT3wXOfo0TTsHEbGaDRyRgZk8B6SCYHZN9bxdHlIL5AVfDPKc-gBT8xUjEIF1kK8f2sJ8HQTe4HmNIwHgXUjNweDDTyPScPRBOjyMeZ402RXJxAgfZihGcwPilMCtz0IwPB4rEBOGUp2HYl8xIktNlKMES4zIpSEB0AAuGBuOyQRUQwdF1DU4SWCAA)*

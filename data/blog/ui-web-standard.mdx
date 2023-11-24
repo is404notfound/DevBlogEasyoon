@@ -1,0 +1,100 @@
+---
+title: UI & Web Standard
+date: '2022-10-15'
+tags: ['UI', 'Web Standard', 'FE']
+draft: false
+---
+
+# [#UI] Web Standards
+
+*참고
+
+유명한 포털 사이트들은 일찍부터 웹 접근성 향상을 위해 꾸준히 노력 해 왔다. 웹표준을 지키는 것만으로도 웹 접근성은 향상이 되며, 브라우저, 모웹 등의 다양한 브라우징 환경에 대응할 수 있는 발판이 된다.
+
+1. SEO 친화적인 페이지를 위한 meta 정보의 표기
+: 실제 프로젝트에서 가장 간과되는 부분이기도 하다.
+
+2. 구조(html)와 표현(css)의 분리
+
+3. 유지 보수의 용이성 (재사용, 코드의 경량화)
+
+4. 호환성 확보
+
+## 구조
+
+: (X)HTML & XML
+
+HTML은 ‘HyperText Markup Language’의 약자, 하이퍼텍스트를 표현하기 위한 마크업 언어
+
+{/* <html lang="ko-KR">
+<head>
+ <title>문서 제목</title>
+ <meta http-equiv="content-type" content="text/html;charset=utf-8">
+</head>
+<body>
+ <h1>본문 제목</h1>
+ <p>본문 내용 1</p>
+ <p>본문 내용 2</p>
+</body>
+</html> */}
+
+XML(eXtensible Markup Language)은 웹에서 구조화된 문서를 전송할 수 있도록 설계된 표준화된 텍스트 형식
+
+* HTML에 담겨져 있는 형식적 요소를 완전히 배제하고 순수 데이터 포맷으로 작성
+
+* HTML과는 달리 태그의 운용 방법이나 오류에 매우 엄격
+{/* 
+    <xml version="1.0" encoding="utf-8" />
+    <일기장>
+      <작성자>김데레사</작성자>
+      <날짜>10월 4일</날짜>
+      <제목>웹표준</제목>
+      <본문>웹표준은 W3C에서 정한 기술 사양을 말합니다.</본문>
+    </일기장> */}
+
+W3C에서는 XHTML(eXtensible Hypertext Markup Language)을 ‘XML 응용으로써의 HTML4를 다시 공식화한 것’이라고 정의
+
+XHTML은 HTML과 같은 요소로 구성되었지만, 엄밀하게 말하면 XML이므로 XML과 같이 엄격하게 태그를 운용
+
+    {/* <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko-KR" lang="ko-KR">
+    <head>
+      <title>문서 제목</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+      <h1>본문 제목</h1>
+      <p>본문 내용 1</p>
+      <p>본문 내용 2</p>
+    </body>
+    </html> */}
+
+*하지만 곧 HTML5로 전환하여 진행되었고, 최근 프론트 프로젝트는 HTML5를 사용*
+
+**HTML5는 특정 플러그인에 의존하지 않고 콘텐츠를 제공하는 것이 목표**
+
+HTML5에서는 기존 div 요소 외에 다양한 구조 요소를 지원하는데, 새로운 구조 요소에는 header, footer, aside, figure, section, article 등이 있다.
+
+## 표현
+
+: CSS
+
+디자인을 문서화 하여 환경에 구애받지 않고 **일관적인** 디자인을 제공
+
+## 동적 제어 언어
+
+: Dom & ECMA Script
+
+DOM(Document Object Model)은 웹 페이지의 구성 체계, HTML을 작성하면서 생성되는 논리적 규칙. ECMA Script 등의 기술을 통하여 DOM의 구조를 변경
+
+유저의 많은 동적 요소들이 DOM을 이용하여 객체 모델에 접근한 후, 스크립트 언어를 이용하여 웹 페이지의 요소의 동작을 제어
+
+    {/* function calcRatio() {
+      const ratio = this.ratio.split(':');
+      const w = ratio[0];
+      const h = ratio[1];
+      const result = h/w * 100;
+      console.log(result);
+      return{
+        paddingTop: result + '%'
+      }
+    } */}

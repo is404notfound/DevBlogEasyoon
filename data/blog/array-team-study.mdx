@@ -1,0 +1,98 @@
+---
+title: OT ~ Array (Study/Data Structure)
+date: '2022-08-18'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [스터디/자료구조] 1. OT ~ 배열
+
+SJ 매니저님, 수고하셨어요 ! 예상했던 것 보다도 재밌어요ㄷ,ㄷ
+
+**[목표]**
+
+* 프론트엔지니어의 [자료구조 공부 필요성](https://velog.io/@teo/프론트엔드-개발자에게-알고리즘-공부가-미치는-영향)에 대해 생각을 좀 해보자;D
+
+* 알고리즘 문제를 해결할 때 간단하게 바로 쓸 수 있도록 (웬만하면 세련된 방식으로) 스스로만의 배열 작성 & 값 할당 방식을 생각 한 후, 기억해두자
+
+**[그렇게 [작성했던 예제 코드](https://www.typescriptlang.org/play?noImplicitAny=false#code/PTAEEYDpQKQZUDodpAu44ChnALY6QDD2BfR0gZzsBOWwBjrQAKAVlAA9QKBKAKEdFdBAgFopRAcCcBzZiKABcoAGYB7AE4s2oAMYSAdgGcALqAC2AQwDWAUwCCUqdoCe4UAF5y9KwD5QAb1lzQAG30btJ66CX6AO6gxqZmlPQA3MxurJJS5J4aAJZ+AAyRoKkAPKA+UpCeSgDmagAWmckA1FX0zq6x+QDayQC6fgHBoeYRkGLJ7u5kSgCug1ENbAC+MbFSXiNSSnkmkzMNHIqqEp6FEsVkOgbdFhMbYOCcAEzQAqBXIqAAonAUDVvqWnpGJuYPNmRkgAaUAAKzsjhcsVA8zUi2WJz6UgkmjIJ0B9BBZAhIV+4XBfQGQ1G4wmcnWcg+O30ewORx+YSuZzkHEuAGZboI2Y90IAdocAgBOAD3HQIBKHsAqT3vZSfeknbkAnFQuYLJagJqTWJNEnuEFanVjbX+fV6watdVsEGao2GwbGg2663uU3Q1gW+1uq3uk1ml2qz12j0Br3O0CuwP+m0O21O2KtaLk2asKm7dz7Q7fWVnRggG6q8Agq4gtkggAsIIo7SIxAT7DAV24nMlqm8eOLfnRDEJgzI4DJbAa8USXiy6UqoFy+XMxcK+hK5UqNTqisaLZa7RsE7MxdXoCqWTj0wa53u12gyEAgwP85CAH3bAAc1oEAuwOAQBrABqrgBSm0WAXaGj2JkajMV8AAdsVAVBkEeAAxX9sUAAXHsBwQARcYIQhABcuwAcQdAQAIWeIQAVNZBHQgPoWD8EAA5bQEAEbXQEAJBrEMAA1XAE+mxtPgAWUMAANAB9OAAEkAC0nj8cA0nYtIRJrUARLSQALpsAEHGkH5QAW0cAH4n30AGJrQEAaInABlxxjmzCKgbERH8UTRPEyBYjjuL4-8yHYkFkjqBxh13HtoiPJMaRTA4N2LZk2A4OsOUEgAqQSIAAP0EtJABk6wAByaPAQdJWMIADY2zxJFjPRQTrNsrIHMcVJnN7Vh+2kQcUhHYdxzxZLp1nCosgXepnQ3ZLtwM9KjNRLK0hykFwWsRxAVAIKIF6ncwQmlyGgpPywEAVAnAFxBwAHkdAQ9KSlalaTIVr6CAA) 등]**
+[**TS Playground — An online editor for exploring TypeScript and JavaScript**
+*The Playground lets you write TypeScript or JavaScript online in a safe and sharable way.*www.typescriptlang.org](https://www.typescriptlang.org/play?noImplicitAny=false#code/PTAEEYDpQKQZUDodpAu44ChnALY6QDD2BfR0gZzsBOWwBjrQAKAVlAA9QKBKAKEdFdBAgFopRAcCcBzZiKABcoAGYB7AE4s2oAMYSAdgGcALqAC2AQwDWAUwCCUqdoCe4UAF5y9KwD5QAb1lzQAG30btJ66CX6AO6gxqZmlPQA3MxurJJS5J4aAJZ+AAyRoKkAPKA+UpCeSgDmagAWmckA1FX0zq6x+QDayQC6fgHBoeYRkGLJ7u5kSgCug1ENbAC+MbFSXiNSSnkmkzMNHIqqEp6FEsVkOgbdFhMbYOCcAEzQAqBXIqAAonAUDVvqWnpGJuYPNmRkgAaUAAKzsjhcsVA8zUi2WJz6UgkmjIJ0B9BBZAhIV+4XBfQGQ1G4wmcnWcg+O30ewORx+YSuZzkHEuAGZboI2Y90IAdocAgBOAD3HQIBKHsAqT3vZSfeknbkAnFQuYLJagJqTWJNEnuEFanVjbX+fV6watdVsEGao2GwbGg2663uU3Q1gW+1uq3uk1ml2qz12j0Br3O0CuwP+m0O21O2KtaLk2asKm7dz7Q7fWVnRggG6q8Agq4gtkggAsIIo7SIxAT7DAV24nMlqm8eOLfnRDEJgzI4DJbAa8USXiy6UqoFy+XMxcK+hK5UqNTqisaLZa7RsE7MxdXoCqWTj0wa53u12gyEAgwP85CAH3bAAc1oEAuwOAQBrABqrgBSm0WAXaGj2JkajMV8AAdsVAVBkEeAAxX9sUAAXHsBwQARcYIQhABcuwAcQdAQAIWeIQAVNZBHQgPoWD8EAA5bQEAEbXQEAJBrEMAA1XAE+mxtPgAWUMAANAB9OAAEkAC0nj8cA0nYtIRJrUARLSQALpsAEHGkH5QAW0cAH4n30AGJrQEAaInABlxxjmzCKgbERH8UTRPEyBYjjuL4-8yHYkFkjqBxh13HtoiPJMaRTA4N2LZk2A4OsOUEgAqQSIAAP0EtJABk6wAByaPAQdJWMIADY2zxJFjPRQTrNsrIHMcVJnN7Vh+2kQcUhHYdxzxZLp1nCosgXepnQ3ZLtwM9KjNRLK0hykFwWsRxAVAIKIF6ncwQmlyGgpPywEAVAnAFxBwAHkdAQ9KSlalaTIVr6CAA)
+
+**[스터디 자료 원본]** [https://www.notion.so/253eosam/3ab2bb61faad46c1b327695bda349672?p=d6eb0d4689ab4ddb968909d216e0a8e3&pm=s](https://www.notion.so/253eosam/3ab2bb61faad46c1b327695bda349672?p=d6eb0d4689ab4ddb968909d216e0a8e3&pm=s)
+
+**[내용]**
+
+## 1. 자료구조
+
+### 자료구조란?
+
+데이터를 효율적으로 보관 및 관리하기 위한 설계 방법. 말 그래도 **자료의 구조를 정의**함.
+
+### 그래서 왜 사용함?
+
+**지금은 PC사양이 상향 평준화되어 스펙이 부족하지 않지만**, 예전에는 ‘낮은 스펙을 어떻게하면 더 효율적으로 사용할 수 있을까?’ 고민하게 되었고 그 결과 데이터를 효율적으로 보관하고 관리하고 사용하는 방법이 연구
+
+현재에도 IoT나 아두이노에서 낮은 메모리를 효율적으로 사용하기 위해서 사용됨.
+
+## 2. 알고리즘
+> *자료구조와 다양한 문제풀이 기법을 통해서 문제를 해결하는 것*
+
+Input 을 통해 Output을 도출하는 것으로, 테스트케이스가 주어지면 코더가 로직을 넣어서 결과값과 같은 값을 만들어내면됨.
+
+정답이 정해진것이 없기때문에 다양한 방법으로 문제를 해결해도됨.
+
+하지만 공부해야하는 이유는 고난이도로 갈수록 적은 메모리를 통해 효율적인 속도를 내기 위해서는 다양한 방법을 알아야 사고를 넓힐수 있음.
+
+## 3. 메모리와 속도
+
+알고리즘 문제를 풀다보면 메모리와 속도는 무조건 생각해야함.
+
+메모리와 속도를 신경쓰면서 코드를 짜다보면 가독성이 떨어지는 코드가 나올 수 있음. **이것은 선택이지만 약간의 속도와 메모리때문에 가독성이 떨어지는 코드를 작성하다보면 추후에 코드에 오류가 있을때 찾아내는것이 힘들기 때문에 어느정도 클린하게 짜는것을 목표로 함.**
+> ***메모리를 아끼는 방법에는 대표적으로 자료구가 있음 속도를 올리는 방법에는 캐시(메모이제이션)이 있음.***
+
+## 4. 공부하게 될 대략적인 흐름
+
+![](https://cdn-images-1.medium.com/max/2000/1*HofM10ATwd2jOGc0uIjfpw.png)
+
+## 자료구조
+
+Java 언어에 있는 ***Collection API***가 있는데 자료구조의 꽃이라 할 수 있음. 이것을 베이스로 JS방식으로 생각하고 구현하고 사용해 볼 생각.
+
+[https://www.javatpoint.com/collections-in-java](https://www.javatpoint.com/collections-in-java)
+
+## 알고리즘
+
+아래 내용을 다 할껀아니고 이런것들이 있다 이정도만 생각하면 됨.
+
+* **유클리드 호제법**
+
+* **에라토스테네스 체**
+
+* **스택**
+
+* **정렬**
+
+* **순열 & 조합**
+
+* **BFS & DFS**
+
+* **이진 탐색 & 완전 탐색**
+
+[아래서 부터는 고난도]
+
+* 유니온-파인드, Disjoint-Set
+
+* 최소신장트리
+
+* Prim & KRUSKAL 알고리즘
+
+* 다익스트라
+
+* 벨만 포드 & 플로이드 워셜
+
+* 최장 증가 부분 수열
+
+* 보이어-무어 알고리즘 & 트라이 알고리즘 & KMP
+
+* Knapsack

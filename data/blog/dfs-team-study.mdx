@@ -1,0 +1,37 @@
+---
+title: DFS (1) (Study/Data Structure)
+date: '2022-10-03'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [#Team Study] DFS (1)
+
+깊이 우선 탐색(DFS, Depth-First Search)
+
+아래의 사진처럼 트리의 아래 방향을 우선으로 노드를 방문 하면서 조건에 맞는지 탐색한다 (= 최적의 경로 탐색 (최단X))
+
+![](https://cdn-images-1.medium.com/max/2272/0*slefeGL0LFcCg0us.png)
+
+* 깊이 우선 탐색에서 핵심이 되는 개념은 재귀(Recursion)로, 원하는 타겟에 도달하는 조건을 재귀함수를 통해서 탐색
+
+* 조건에 도달하면 함수를 리턴하며서 스택에 쌓인 함수들을 수행
+
+* 재귀에서 가장 중요한 것은 ‘빠져 나오는 조건’으로, 목적지를 넘어섰을 때에는 함수를 죽여야 하기 때문에 항상 나오는 조건을 생각해야한다.
+
+* 길찾기 문제는 곧 DFS
+
+* 중복된 함수가 호출되지않도록 체크해주는 방법이 필요하다.
+
+### Practice
+
+: 어떤 말(horse)이 목적지에 도착 가능한지, 그리고 몇 번만에 가는지 구하기
+
+* [git](https://github.com/is404notfound/03_TEAM_STUDY_DATA_STRUCTURE/blob/main/DFS/makeDFS.js)
+
+* [playground](https://www.typescriptlang.org/play?noImplicitAny=false&filetype=js#code/FDBmFcDsGMBcEsD2kAEATUBnFAKAFogE6YCmANCgA6KYWwCGhA5ibBdJLCgLwoAMAShQBvFAHoxKQiWjhi8AG4lgKFPFC5q2AHwoGzVkNGqVqlNGSZEAGxIA6a4iY4UAAwAkwgsRIBfQBE9KIALnYAC4yiAI82AlDOAGquAA5MogN1dgBGrgK1DgBNNgCdNdq4CANymqtKwcqgAtACMKKa+KCTWpGoaOPosXNztVDRGBeaWNvaOzt4NANQoAOSBQRMoYxxcY+OAMWuAM52AC6MRkeN5PYWsJeac1T0YmPhEpBRasyjD5HqMreycN+U7viAQMAjIKIPw0HOPloDwMsG6pjumDsoCIAFF6NA8DgcHUBNxdMJTqjrBQ+HRHqw8XlfAJTBJgih-IAONYoUSSgBFxlCAGVaUIBwrpQqw2gBQawApTfEAD4CzaJJKAHnHAC5dKAqwA+-0BAG1yhQAEwUADMAF0KOVBLkgA)
+
+![](https://cdn-images-1.medium.com/max/3604/1*6H4GRpXN4y9FbCCuxXIDwg.png)
+> 브라우저에서 Dom트리를 찾는 데에는 DFS가 기반이 된다 ㅎㅎ
+
+![](https://cdn-images-1.medium.com/max/2448/0*ClrvafmMIjkhglDE.png)

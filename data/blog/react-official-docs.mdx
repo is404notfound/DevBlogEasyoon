@@ -1,0 +1,122 @@
+---
+title: Memo of React Official Documents
+date: '2023-01-04'
+tags: ['FE', 'Javascript', 'React', 'State']
+draft: false
+---
+
+# [React] Official Docs memo
+
+Getting Started - React
+A JavaScript library for building user interfacesreactjs.org
+
+* root => 최상위 react Dom
+
+* props = readonly
+
+* 모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야 함
+
+**Q. functional 컴포넌트와 클래스 컴포넌트는 작동 방식이 다른가?**
+
+constructor: functional 컴포넌트에서는 생성자가 필요 없음
+useState호출 에서 상태를 초기화
+초기 상태를 계산하는 데 비용이 많이 드는 경우 useState에 함수를 전달
+
+### LifeCylce 참고
+
+![class-based(not functional, 현재는 class-based를 사용하지 않음) 렌더링 관련 함수](https://cdn-images-1.medium.com/max/2310/0*So5sqctZXGLNfI5c.png)*class-based(not functional, 현재는 class-based를 사용하지 않음) 렌더링 관련 함수*
+
+* componentDidMount() 메서드는 컴포넌트 출력물이 DOM에 렌더링 된 후에 실행됩니다. 이 장소가 타이머(setInterver(), setTimeOut() 등)를 설정하기에 좋다 ( 로딩, useEffect 반복금지 참고 : [https://velog.io/@ryong9rrr/componentDidMount-%EC%99%80-useEffect](https://velog.io/@ryong9rrr/componentDidMount-%EC%99%80-useEffect))
+
+### setState()을 다룰 때 유의 사항: 직접 State를 수정하지 말 것
+
+    // Wrong, component did not rendered aga
+    this.state.comment = 'Hello';
+
+    // Correct
+    {/* this.setState({comment:'Hello'}); */}
+
+this.state를 지정할 수 있는 유일한 공간은 constructor밖에 없다.
+
+### useState는 useReducer를 기본으로 만들어졌다
+[**How to implement useState with useReducer**
+*Here's the TL;DR: Wanna dive in? Let's go. For fun 🤓 Also I think that re-implementing things is a great way to learn…*kentcdodds.com](https://kentcdodds.com/blog/how-to-implement-usestate-with-usereducer)
+
+![….?](https://cdn-images-1.medium.com/max/3084/1*QaucPzpQvznviWQrzoMP-w.png)*….?*
+
+각 state의 변화는 Object.is() 비교
+[**Object.is() - JavaScript | MDN**
+*Object.is() determines whether two values are the same value. Two values are the same if one of the following holds…*developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#description)
+
+### Event Handler
+
+* JSX를 사용하여 문자열이 아닌 함수로 이벤트 핸들러를 전달
+
+    {/* // html
+    <button onclick="activateLasers()">
+      Activate Lasers
+    </button>
+    
+    // react
+    <button onClick={activateLasers}>  Activate Lasers</button> */}
+
+React에서는 false를 반환해도 기본 동작을 방지할 수 없다. 반드시 preventDefault를 명시적으로 호출해야 한다.
+
+    //HTML
+    {/* <form onsubmit="console.log('You clicked submit.'); return false">
+      <button type="submit">Submit</button>
+    </form> */}
+    
+    // React
+    {/* function Form() {
+      function handleSubmit(e) {
+        e.preventDefault();    console.log('You clicked submit.');
+      } */}
+
+### 컴포넌트 내 인라인 표현식
+
+JSX를 사용하면 중괄호 안에 [모든 표현식을 포함](https://ko.reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx) 시킬 수 있으므로 map() 함수의 결과를 인라인으로 처리할 수 있다.
+
+    {/* function NumberList(props) {
+      const numbers = props.numbers;
+      return (
+        <ul>
+          {numbers.map((number) =>        <ListItem key={number.toString()}                  value={number} />      )}    </ul>
+      );
+    } */}
+
+이 방식을 사용하면 코드가 더 깔끔해 지지만, 이 방식을 남발하는 것은 좋지 않습니다. JavaScript와 마찬가지로 가독성을 위해 변수로 추출해야 할지 아니면 인라인으로 넣을지는 개발자가 직접 판단해야 합니다. map() 함수가 너무 중첩된다면 [컴포넌트로 추출](https://ko.reactjs.org/docs/components-and-props.html#extracting-components) 하는 것이 좋다.
+
+### 합성과 상속
+
+    {/* function SplitPane(props) {
+      return (
+        <div className="SplitPane">
+          <div className="SplitPane-left">
+            {props.left}      </div>
+          <div className="SplitPane-right">
+            {props.right}      </div>
+        </div>
+      );
+    }
+    
+    function App() {
+      return (
+        <SplitPane
+          left={
+            <Contacts />      }
+          right={
+            <Chat />      } />
+      );
+    } */}
+
+{/* <Contacts />와 <Chat />같은 React 엘리먼트는 단지 객체이기 때문에 다른 데이터처럼 prop으로 전달할 수 있다. 이러한 접근은 다른 라이브러리의 “슬롯 (slots)“과 비슷해보이지만 React에서 prop으로 전달할 수 있는 것에는 제한이 없다. */}
+
+### UI 컴포넌트의 상속은 사용하지 않는 것을 권장(import)
+> Facebook에서는 수천 개의 React 컴포넌트를 사용하지만, 컴포넌트를 상속 계층 구조로 작성을 권장할만한 사례를 아직 찾지 못했습니다.
+> props와 합성은 명시적이고 안전한 방법으로 컴포넌트의 모양과 동작을 커스터마이징하는데 필요한 모든 유연성을 제공합니다. 컴포넌트가 원시 타입의 값, React 엘리먼트 혹은 함수 등 어떠한 props도 받을 수 있다는 것을 기억하세요.
+> UI가 아닌 기능을 여러 컴포넌트에서 재사용하기를 원한다면, 별도의 JavaScript 모듈로 분리하는 것이 좋습니다. 컴포넌트에서 해당 함수, 객체, 클래스 등을 import 하여 사용할 수 있습니다. 상속받을 필요 없이 말이죠.
+
+### 조금 더 봐야함
+
+: [https://ko.reactjs.org/docs/events.html](https://ko.reactjs.org/docs/events.html)

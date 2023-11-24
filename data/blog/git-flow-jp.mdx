@@ -1,7 +1,12 @@
+---
+title: Gitで用いるGit-Flowまとめ
+date: '2022-07-31'
+tags: ['Git', 'Japanese']
+draft: false
+summary: このポストでは、Git Flowの概念と必要性、作業にとって理解が必要な機能の用語と全体的な進行の流れについて説明します。
+---
 
 # [Git] Gitで用いるGit-Flowまとめ
-
-Git,GitLab,Gitflow
 
 ■出典： [[Git] Gitで用いるGit-Flowまとめ](https://ko-dev-jp.com/2020/08/10/git-flow-j01/)
 
@@ -116,7 +121,7 @@ gitチュートリアルに示されているmerge状況
 
 git merge コマンドで次のようにします。
 
-    $ git checkout master // branchのヘッドをmasterへ置く
+    $ git checkout master
     $ git merge hotfix
 
 masterのソースを元にしたhotfifxブランチのソースコードに、最新のコミットcommitを持ってくるため、マスターにヘッドを置いてhotfixとマージします。このようなマージをfast-forwardです。
@@ -133,7 +138,7 @@ Conflictは、mergeする際に発生するソースコード間の**衝突**で
 
 ### ③Conflictが出た状況の対策
 
-* <基本>衝突された部分を修正することができる場合には、コードを変更した後、結合を試みます。
+* 衝突された部分を修正することができる場合には、コードを変更した後、結合を試みます。
 
 * マージする前の状態に戻します。
 

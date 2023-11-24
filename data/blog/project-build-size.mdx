@@ -1,0 +1,25 @@
+---
+title: Reducing Project Build Size
+date: '2023-05-15'
+tags: ['FE', 'Performance', 'React']
+draft: false
+---
+
+# [Study] 프로젝트 빌드 사이즈 줄이기
+
+1) 컴포넌트 제거 및 통합
+
+* 하나의 페이지로 통합이 가능한 경우 통합
+
+* 기존 컴포넌트들의 depth를 줄이고, 필요 없는 컴포넌트 파일을 제거
+
+### 2) Dynamic Import (동적 임포트)
+
+* 초기 로드 시, mui-icons 모듈의 크기: 4.1MB
+
+* @mui/icons-material 모듈을 빌드 타임이 아닌
+아이콘을 사용하는 컴포넌트가 렌더링될 때 동적으로 가져와 사용하도록 수정 하면, 해당 모듈이 필요하지 않은 경우에는 로드되지 않아 코드 스플리팅이 가능하다.
+
+## 결과
+
+* First Load JS 가 절반 이상으로 줄어듦

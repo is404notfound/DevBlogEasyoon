@@ -1,0 +1,84 @@
+---
+title: Measuring and improving front-end performance
+date: '2023-05-15'
+tags: ['FE', 'Javascript', 'React', 'Performance']
+draft: false
+---
+
+# [Study] Front Performance 측정 및 개선
+
+이슈 내용
+
+: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+(heap 메모리 이슈로 프론트 서버가 다운되는 현상)
+
+## 성능 측정
+
+1. 당시 운영환경 메모리 할당 상황
+
+* 4GB
+
+2. 프로젝트 메모리 사용량 측정
+
+* ⭐️ **크롬 개발자 도구 — 메모리 탭 — 총 JS 힙 크기** 확인
+
+* 프로덕션에서는 개발 환경과 달리 메모리가 부족해지는 데에는 1분도 채 걸리지 않을 수 있음
+
+* 로컬에서 올리는 웹팩 서버의 경우 변동 폭이 미미함
+
+* 개발 환경 대비 운영 환경의 힙 사용량 변동폭이 커 보임
+
+* 로그인 수행 시, 순간적으로 100MB 이상으로 크게 튀는 현상이 보임
+
+* 메모리 할당량은 제공 된 장비의 물리적 손상이 없는 정도의 수준으로 할당
+
+* 빠른 시간 연속적으로 1000건~3000건의 데이터를 불러올 때,
+순간적으로 1GB 이상으로 heap 사용량이 튀어 오르는 것을 확인 (아래 참고)
+
+## 메모리 사용량 1GB 일 때 총 사용 비율
+
+: 리엑트 프로젝트 기본 구성인 react-dom이 차지하는 비율이 높음
+
+![](https://cdn-images-1.medium.com/max/3544/1*xueqt2tXuS_kgM4r93UCTw.png)
+
+## 성능 개선
+
+### 1) (임시) Node.js에 할당 된 가상 메모리양 늘리기
+
+* 프로젝트가 구동되는 환경에서 아래 커맨드 실행
+export NODE_OPTIONS=--max-old-space-size=4096
+
+(프로젝트 환경에서 매번 설정하지 않기 위해서는 bash에 등록이 필요)
+
+* 참고: [How to Fix JavaScript Heap Out of Memory Error](https://www.makeuseof.com/javascript-heap-out-of-memory-error-fix/)
+
+### 2) useEffect hook 사용시 clean up 함수 적용
+
+### 3) SSR(서버사이드 렌더링) 관련
+
+* CSR(클라이언트 사이드 렌더링)은 각 클라이언트의 **브라우저에서 뷰**를 만들기 때문에 프론트 서버의 부하가 낮음
+
+* SSR(서버 사이드 렌더링)은** 서버에서 뷰를 모두 만들어서 던지기 때문에 서버 부하가 심함 (BD4–315)**
+
+* SSR이 많인 빨라졌다고는 하지만 여전히 느린 듯
+
+* 당연히 유저가 인터렉션하는 데에 느리다는 느낌을 받음
+
+* (참고) 그럼에도 불구하고 SSR을 사용하는 이유
+: 뷰(view)가 모두 생성 된 후에 서버로부터 받기 때문에 각 웹사이트 크롤러의 검색 결과 걸리기 쉬움
+
+* 서버 응답이 필요한 부분은 Pre-rendering 
+참고: [TIL 93 | Next.js의 Pre-rendering과 Data Fetch 방법](https://velog.io/@hyounglee/TIL-93)
+getStaticProps()를** pages 단**에서 호출하도록 작성 (components단에서 작성하면 안 됨)
+
+* 서버의 데이터를 pre-render 할 필요가 없다면 클라이언트 사이드 렌더링 사용
+
+* **Static generation** : 빌드 타임(npm run build) 때 HTML을 각 페이지별로 생성해놓고 요청왔을 때 생성된 HTML을 반환 — [Next.js — SSR이라고만 알고있었다.](https://watermelonlike.tistory.com/entry/Nextjs-%EB%82%98%EB%8A%94-%EA%B7%B8%EC%A0%80-SSR%EC%9D%B8%EC%A4%84%EB%A7%8C-%EC%95%8C%EA%B3%A0-%EC%9E%88%EC%97%88%EB%8B%A4)
+
+## 참고
+
+* 운영 환경 리엑트 프로파일러(개발자 도구 — Profiler 탭 / React DevTools)로 측정한 결과, 왼쪽 사이드바 메뉴(MuiMenuRoot)가 가장 오래 걸리고 많은 렌더링 비용이 드는 것을 확인
+
+참고 : [React Profiler를 사용하여 성능 측정하기](https://medium.com/wantedjobs/react-profiler%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%84%B1%EB%8A%A5-%EC%B8%A1%EC%A0%95%ED%95%98%EA%B8%B0-5981dfb3d934)
+
+* 한 번 그린 후 다시 그릴 필요가 없는 컴포넌트는 useMemo()를 이용하여 연산 된 값을 계속 사용할 수 있도록 개선
