@@ -1,0 +1,116 @@
+---
+title: Permutation and Swap (Study/Data Structure)
+date: '2022-09-16'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [#Team Study] Permutation and Swap
+
+순열과 Swap()
+
+[코드 참조(git)](https://github.com/is404notfound/03.TEAM_STUDY_DATA_STRUCTURE/tree/main/Permutation)
+
+### **재귀 함수 (CODE 01 참고)**
+
+* 자신을 참조하는 함수
+
+* 읽기 쉽지만, 함수를 중복 호출하기 때문에 효율이 떨어진다.
+
+* 반복문보다 읽고 쓰기 편하다.
+
+* 가장 중요한 건 ** **재귀를 빠져나가는 조건**
+
+### **참조타입 & 원시타입 (CODE 02 , 03 참고)**
+
+* 원시타입은 call by value로, 값을 참조하고자 하면 변수 내 값 자체를 던지진다. 즉, 변수를 전달 했을 때, 선언 한 변수 자체의 할당 값을 변경할 수는 없다.
+
+* string, number, bigint, boolean, undefined, symbol
+
+* Array는 참조형으로, 값을 참조하기 위해서는 해당 주소값을 찾아간다. 변수로 참조형을 전달하면, 선언 한 변수의 주소값을 찾아가 변경하기 때문에 변경 가능.
+
+* swap()을 계속 반복하다보니, heap 초과 에러가 떴는데 [도큐먼트](https://velog.io/@nomadhash/Java-Script-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%AC%EC%99%80-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%AC) 처럼 주소와 값을 메모리에 저장하기 때문인가 보다.
+
+이제 본격적으로 들어가면,
+
+## **순열**
+> [a, b, c] 를 나타낼 수 있는 경우의 수
+
+좀 더 코드 식으로 설명하면,
+> 길이가 n인 배열에서 새로운 배열을 만들었을 때, 가능한 모든 배열의 합
+
+아마 수업 시간 공식은 n!이었던 것 같은데, 새삼 까마득;
+
+## **조합**
+
+..은 이번 범위 외 지만서도.. 순열에서 뽑는 경우의수 r이 추가
+nCr 로 표현하고, n! /r 이었던 것 같다.
+
+## **순열 구현 (CODE 04 참고)**
+
+* depth : 재귀가 도는 횟수
+
+* target : 배열에서 나오는 모든 경우의 갯수
+(참고: 보통 알고리즘에서는, 전체의 조합을 찾은 후 특정 경우를 필터링)
+
+* 재귀가 빠져 나오는 조건(return condition) : depth === target
+
+* swap()
+
+* params
+1) array
+2) res
+3) target
+4) deep
+
+* getPermutationList()
+
+* initialize
+
+🌟[ 성준님 깃 참고](https://github.com/253eosam/Algorithm/blob/master/algorithm_note/permutation.md) 🌟
+
+![](https://cdn-images-1.medium.com/max/2592/0*asNnDphYLm48nkdg.png)
+
+    */**
+     *
+     * @param {array} array
+     * @param {number} deep
+     * @param {number} target
+     */
+    ***const **permutation = (array, res = [], target = array.length, deep = 0) => {
+      **if **(deep === target) {
+        res.push(array.slice(0, target)); // initialize
+        **return**;
+      }
+      **for **(**let **index = deep; index < array.length; index++) {
+        swap(array, deep, index);
+        permutation(array, res, target, deep + 1);
+        swap(array, deep, index); *// 초기화 :: 원래 배열의 모습으로 변경해줌 [A,B,C] 안그럼 원본 배열이 참조형이라 바뀌어버림.
+      *}
+    };
+    
+    **const **swap = (array, a, b) => {
+      **let **tmp = array[a];
+      array[a] = array[b];
+      array[b] = tmp;
+    };
+    
+    **const **getPermutationList = (array, target) => {
+      **let **res = [];
+      permutation(array, res, target); *// res는 참조라 바뀔 것
+      ***return **res;
+    };
+    
+    **const *array ***= ***Array***(3)
+      .fill()
+      .map((_, i) => i + 1);
+    ***console***.log(getPermutationList(***array***));
+    
+    */* --------------------------------------------------
+    [ 1, 2, 3 ]
+    [ 1, 3, 2 ]
+    [ 2, 1, 3 ]
+    [ 2, 3, 1 ]
+    [ 3, 2, 1 ]
+    [ 3, 1, 2 ]
+    */*

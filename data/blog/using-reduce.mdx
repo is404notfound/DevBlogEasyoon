@@ -1,0 +1,45 @@
+---
+title: Using Array.prototype.reduce()
+date: '2022-12-12'
+tags: ['FE', 'Javascript']
+draft: false
+---
+
+# Using Array.prototype.reduce()
+
+Array.prototype.reduce() - JavaScript | MDN
+The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order…developer.mozilla.org
+
+reduce()에는 누산기(accumulator)가 포함되어 있기 때문에, 배열의 각 요소에 대해 함수를 실행하고 누적된 값을 출력할 때 용이하다. 추가로, initialValue 인자 에는 배열이 들어갈 수도 있다.
+
+### 예제
+
+가장 기본적인 예제로는 모든 배열의 합을 구하는 경우가 있다.
+
+아래는 가져온 예제인데, 주어지는 배열에서 음수와 양수의 개수의 누적 카운트를 출력하는 경우를 생각해보자. 음수와 양수의 개수를 각각 카운트하기 위해 initialValue를 [0, 0]으로 설정한다.
+
+    const numbers = [2, -5, -123, 59, -5480, 24, 0, -69, 349, 3];
+    const result = numbers.reduce((acc, cur, idx) => { 
+      if(cur < 0){
+        // 처리할 현재 요소가 음수일 경우
+        acc[0]++;
+      }
+      else if(cur > 0){
+        // 처리할 현재 요소가 양수일 경우
+        acc[1]++;
+      }
+      return acc;
+     }, [0,0]);
+    console.log(result);  // [4, 5]
+
+### 사용시 주의점
+
+굳이 .map()이나 .filter()로 사용해도 되는 로직의 경우에는, 값의 축적을 의미하는 .reduce()보다는 더 명료한 쪽을 사용하는 것이 낫다. 예를들면, 아래와 같은 경우는 .map()을 사용해주는 쪽이 코드분석 하기에 더 용이하다.
+
+checked = checkList.**reduce**((acc, { seq })=> {
+
+acc[seq] = false;
+
+return acc;
+
+}, {});

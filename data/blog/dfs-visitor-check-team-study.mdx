@@ -1,0 +1,64 @@
+
+---
+title: DFS (2) Visitor Check (Study/Data Structure)
+date: '2022-10-06'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [#TeamStudy] DFS(2) 방문자 체크
+
+DFS 방문자 체크
+
+![재귀를 호출하다보면 가운데의 5번과 같이 동일한 조건을 순회하는 경우가 생긴다.](https://cdn-images-1.medium.com/max/2880/1*z65C9MWQDFj2HopRs8qfmA.png)*재귀를 호출하다보면 가운데의 5번과 같이 동일한 조건을 순회하는 경우가 생긴다.*
+
+### **방문자 체크**
+
+: 해당 노드의 방문 여부를따로 체크 해 두고, 재귀 함수를 호출하기 전 해당 노드의 방문 여부를 채크 하여 true 인 경우 해당 조건은 일찍 리턴한다.
+> **참고**
+> 같이 알아두면 좋을 개념 
+: 메모이제이션, 백트래킹, 캐싱
+> **메모이제이션(memoization)은 컴퓨터 프로그램이 동일한 계산을 반복해야 할 때, 이전에 계산한 값을 메모리에 저장함으로써 동일한 계산의 반복 수행을 제거하여 프로그램 실행 속도를 빠르게 함 (Google)
+> ******백트래킹 :해를 찾는 도중 해가 아니어서 막히면, 되돌아가서 다시 해를 찾아가는 기법. 최적화 문제와 결정 문제를 푸는 방법
+
+**효과
+**: 효율성 향상 및 콜스택 초과 방지
+
+**필요한 케이스
+**: 지도 길찾기에서 뒤로가는 조건이 추가되는 경우 (마이너스 조건이 들어가면, 같은 조건이 반복될 수 있기 때문에 방문자 조건이 중요해 진다.)
+
+![SJ님(!) + 우측 상단의 이차원 배열에서, 까만 점으로 막혀있어 통과할 수 없는 부분이 마이너스 조건.](https://cdn-images-1.medium.com/max/8000/1*vZRifBvx7xU29aoHEx5VHw.jpeg)*SJ님(!) + 우측 상단의 이차원 배열에서, 까만 점으로 막혀있어 통과할 수 없는 부분이 마이너스 조건.*
+> **참고 : **마이너스 조건이 추가 되는 케이스에서의 우선순위
+> - 전진 조건
+> - 마이너스 조건
+> 위와 같은 두 조건에서의우선 순위는 전진 조건이다.
+우선 순위가 마이너스 조건 > 전진 조건이 되면, 탈출 조건이 늘어나기도 하고 효율성에도 영향을 미친다. 같은 상황이 반복될 수 있기 때문.
+> [**Sample Code](https://github.com/is404notfound/03_TEAM_STUDY_DATA_STRUCTURE/blob/main/DFS/makeDFS02.js)**
+:이와 같은 케이스는 방문자조건이 없기 때문에, 콜스택 초과를 야기한다.
+
+### Practice
+
+[문제]
+사람(P)은 목적지(Target)까지 몇 번(Count)만에 갈 수 있는지 Count를 리턴하기
+- 사람(P)는 p만큼 앞으로 가거나, 한칸 뒤로 이동할 수 있다
+- 목적지에 도착을 못하면 -1 을 리턴
+
+**
+- line 1 : 방문자
+- line 20 ~ 25 : 현재위치-1
+
+![출처: SJ님 ([https://github.com/253eosam](https://github.com/253eosam))](https://cdn-images-1.medium.com/max/2000/1*h5rqLTZ1x2ldKEy94WiuTA.png)*출처: SJ님 ([https://github.com/253eosam](https://github.com/253eosam))*
+
+### 간단한 방문자 체크
+
+* [playground](https://www.typescriptlang.org/play?#code/PTAEGUEsFsAcBsCmoBqkDOkAuB7ATqAMIAWiAxgNYBQVZOAdulqALICCAGqALygCMAfQAMQgNxUkzDGzx5IAN0QATHqABmAQ3jpEo0CFCBKHsAc3YATx0IBaZwDYLgSrGaagK70yWSA1BK16ABTF8OgBpQLA08AHNELAAFHExceiC6JyxEh1lEemjY7AYASlAAbypQUEg1UG9pWQVlfLxItPpxErKK0CFQAD5QMjT6zJi49wAfYZ6+jKyh+i7g0IipnPp8opKSukYcJAA6eBww7wADABICvzwdAF9ACJ7QQAXOwAFx0EAR5sBKGcANVcABydBAbq7ACNXAK1DgAmmwAnTdtDrlmmt6lhGlDLsVSuVvCFwpFBkseNxeL10gNsvEVoiWugZHJFCpeFg8A5dMSegx0FtELt9kdTucrrc7oAXcdApySmUugA8awAy46BADOdgAXRl4fQAAY8CwRCoSUYXDEQiSp4fJzEEFUQsMfFEjhkqAANT8VJ4xbxC2gXWQxHa3z+PVzNG2hgms2WvjW-pemYAWn4ToRVEczlc7jUkHoSldF3dBvRBLyhWdXiTgQ9hvTCXaQSE4ZoGyYDrd6FUAG0AExBADMQQALABdPQGQCANV3ABrj9yewb4gEpR0CAEpbADodoB5gE3mwAGq6BABhDoEAEeOiqi69DbNT4ACiGjIxBziG43TjCePQXYHFykKAA)
+
+* [git](https://github.com/is404notfound/03_TEAM_STUDY_DATA_STRUCTURE/blob/main/DFS/makeDFS03.js)
+
+### Array 방문자 체크
+
+* [playground](https://www.typescriptlang.org/play?#code/PTAEGUEsFsAcBsCmoBqkDOkAuB7ATqAMIAWiAxgNYBQVZOAdulqALICCAGqALygCMAfQAMQgNxUkzAG4ZsPUAG0AuqNAhQgSh7AHN2AE8dCAWmcA2C4EqxmgDMArvTJZIDUABMz6ABTF86RABpQWAIZ4AOaIWAAKOJi49D50VlgxFnh4iPRhEdgMAJSgAN5UoKCQZqAuMpEKZInJqeGRDErZyViJ9OIFRSWgQqAAfKCVSSlpdfSgAD5j-VVDtRmjff5BIbNR2XkFBXSMOEgAdPA4gS4ABgAkOe54ngC+gBE9oIALnYAC46CAI82AlDOAGquAA5OggN1dgAjVwCtQ4AJpsAJ027Y6ZNobJotGHXfKFYouRbBYZzHjcXgDaoY1a5JEFMrYCrTGrpKJKeS4maUhgwzYMdA7RD7Q4nc6XG73B6AF3HQOdYqlroAPGsAMuOgQAznYAF0beX0AAGOgiFQxmgOF4VpIxHE2RYMmDCkjak48n4hlIpyubneXwBdErBgxHBxUAAan4CUN5tGHpt0MtzjcHltaOW9Oi-RdqXdnqm3sdowAtPwA4iqJZrLZ7GZIPQHMGrqH7eGRmtA9aQz4wz6fEI62maFsmKAbeh5AoAEw+ADMPgALCo1GBAIA1I8AGuOPF5JviASlHQIASlsAOh2gPmATebAAaroEAGEOgQAR4+KqG3dmZ8ABRPxkYiFzzcPq5-M323sDiZaFAA)
+
+* [git](https://github.com/is404notfound/03_TEAM_STUDY_DATA_STRUCTURE/blob/main/DFS/makeDFS04.js)
+
+주로 이차원 배열 길찾기에 자주 사용 ‘ㅅa’

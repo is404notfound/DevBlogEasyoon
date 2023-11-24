@@ -1,0 +1,60 @@
+---
+title: Stack (Study/Data Structure)
+date: '2022-08-18'
+tags: ['Study', 'Algorithm', 'Data Structure']
+draft: false
+---
+
+# [Study/DataStructure] 2. Stack
+
+알고리즘은 명령형으로 작성하는 쪽이 수정하기 편하다.
+js로 알고리즘을 풀 때에는 filter()하나로 구현하는 게 지향점이나,
+이번에는 클래스를 사용하여 객체를 인스턴스화하면서 초기화하는 식으로 작성해 보기로 한다.
+
+Code Example은 [여기](https://medium.com/r?url=https%3A%2F%2Fwww.typescriptlang.org%2Fplay%3F%23code%2FMYGwhgzhAEAKAWB7AdgU2gbwFDWsFEALgE4CuwhixAFBtAEbFjIAmANNKRAJYC20AXwCUmHLmiF43CADpGzFtAC8DJqwDc4sbknSZXPss49ebMQKwWs%2BZEWi8AnghToVaAO5wkaWmPmsALmgPaABlMF4uZABzaiEzXANeIJDLISxrcCgwiIhSGNFcGyIyCipoONFzSwzQSBgkwrwCEnJKGjpkUl56VGIOfF4AB2YHQRFscQkpWS6evqM53uJ1bWm9QZHkMZVN0dXcCwEgA)(playground) 혹은 [이 곳](https://github.com/is404notfound/03.TEAM_STUDY_DATA_STRUCTURE/blob/main/Stack/MakeStack.js)(git)
+
+## **Stack**
+
+* 구성 
+: push, pop, empty, peak
+
+* 스택은 기본적으로 자기 공간을 가지고 있어야 한다.
+> 보통 알고리즘을 풀 때에는 아래를 사용하여 구현하는 게 좋을 듯ㅎ
+*const stack = []
+push(), pop(), unShift()*
+
+### **[Solutions Ref] Practice**
+[**코딩테스트 연습 - 같은 숫자는 싫어**
+*배열 arr가 주어집니다. 배열 arr의 각 원소는 숫자 0부터 9까지로 이루어져 있습니다. 이때, 배열 arr에서 연속적으로 나타나는 숫자는 하나만 남기고 전부 제거하려고 합니다. 단, 제거된 후 남은 수들을…*school.programmers.co.kr](https://school.programmers.co.kr/learn/courses/30/lessons/12906)
+[**03.TEAM_STUDY_DATA_STRUCTURE/StackSolution01.js at main ·…**
+*This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below…*github.com](https://github.com/is404notfound/03.TEAM_STUDY_DATA_STRUCTURE/blob/main/Stack/StackSolution01.js)
+
+[2. 코딩테스트 연습 — 올바른 괄호](https://school.programmers.co.kr/learn/courses/30/lessons/12909)
+
+괄호 문제는 Stack 대표 문제라고…
+유사 유형으로는 올바른 DOM 판별이 있고,
+대학 대표 과제로는 Making Stack Calculator가 있다;
+[**03.TEAM_STUDY_DATA_STRUCTURE/StackSolution02.js at main ·…**
+*This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below…*github.com](https://github.com/is404notfound/03.TEAM_STUDY_DATA_STRUCTURE/blob/main/Stack/StackSolution02.js)
+
+리턴하는 조건을 최상단으로 빼는 게 당연히 훨씬 효율적이다.
+
+* 그럼에도 불구하고 두번째 효율성 TC는 통과하지 못했는데…. HJ님 리턴문으로 해결
+
+[3. 코딩테스트 연습 — 기능개발](https://school.programmers.co.kr/learn/courses/30/lessons/42586)
+
+[4. 코딩테스트 연습 — 프린터](https://school.programmers.co.kr/learn/courses/30/lessons/42587)
+
+[5. 코딩테스트 연습 — 다리를 지나는 트럭](https://school.programmers.co.kr/learn/courses/30/lessons/42583)
+
+[6. 코딩테스트 연습 — 주식가격](https://school.programmers.co.kr/learn/courses/30/lessons/42584)
+
+[7. 쇠막대기](https://www.acmicpc.net/problem/10799)
+
+괄호 유형과 마찬가지로, 7번과 같은 막대 유형도 스택의 대표적인 유형
+
+[*풀이](https://www.typescriptlang.org/play?noImplicitAny=false&filetype=js#code/MYewdgzgLgBAlmADgVygQQE4ZgXhgbQDYAaGATlIFZSB2GYgFgF0BuAKDeABsBDCCGAGUocYAGsYAbzYwYoSFAzJgUENgAUANx5dkAU1IIAJnoAeASikzZMKAAs4EAHTbde3DFf72N2w+fGZh6Bpj4wAL5s4QD00TAcAGbIYCpw4DAA5npQwqJiAuoIKOhYltKy8tAw0HkCePis1glqMOpc2fAeAAwsnQA88EiomBhO7WAZ9r1wANQzZdYV4FU14h5gegDuQiLihUMlGPhwTIbmYUuQIO1jIBnqAOSrYg+kz+eL1bv5TigQdup3mFItYMNlkBgwF9auwQUkUiJ0lkciAIcB3IDvhAFpcqmCIMguLB6o1ZO1YNAeGsSewmi02h0AFbdXrMgbPZzjSZ2VlzczlGyVCkeDn4RlMT5CqSeHT6QxgEymCIi2m+OAJVqMmYARlwODwHLGegm9ksACMwTwxBc5MtrnpbvdDVz7KRGeYOL4pRtTFAAGo6EVYsUwGYwbVMFyyvSSu03Lh3R4+-06V4wZMBrgfNUa9QZwMAPhlbn5n1ksRggBAJwAtMzBACJ9gAaxwAHNTBACVDgF2FwALozBAAnjgAY6mCAYka+04yzB8YSoL9kP99ors74vlSJDSx5V7Y7HgBbOBGIztcd6AlEtMToke3yRXyU8TT2fYm3r+OJp5QZdpm9iC8RT3wXOfo0TTsHEbGaDRyRgZk8B6SCYHZN9bxdHlIL5AVfDPKc-gBT8xUjEIF1kK8f2sJ8HQTe4HmNIwHgXUjNweDDTyPScPRBOjyMeZ402RXJxAgfZihGcwPilMCtz0IwPB4rEBOGUp2HYl8xIktNlKMES4zIpSEB0AAuGBuOyQRUQwdF1DU4SWCAA)*(playground)
+
+8. 괄호의값(백준 2504)
+
+9.[ 탑 (백준 2493)](https://www.acmicpc.net/problem/2493)
