@@ -53,13 +53,13 @@ FilterableProductTable : 위 두 컴포넌트를 소유한 공통 소유 컴포�
 
 * 의미상으로도 FilterableProductTable이 검색어와 체크박스의 체크 여부를 가지는 것이 타당
 
-this.state = {filterText: '', inStockOnly: false} 를 FilterableProductTable의 constructor에 추가하여 애플리케이션의 초기 상태를 반영 후, filterText와 inStockOnly를 ProductTable와 SearchBar에 prop으로 전달하는 식.
+{/* this.state = {filterText: , inStockOnly: false} 를 FilterableProductTable의 constructor에 추가하여 애플리케이션의 초기 상태를 반영 후, filterText와 inStockOnly를 ProductTable와 SearchBar에 prop으로 전달하는 식. */}
 
 ### setState()
 
 * *props를통해 콜백 함수를 전달하는 것이 일반적*
 
-    updateCount() {
+    {/* updateCount() {
       this.setState((prevState, props) => {
         return { count: prevState.count + 1 }
       });
@@ -68,7 +68,7 @@ this.state = {filterText: '', inStockOnly: false} 를 FilterableProductTable의 
     // DO NOT USE
     this.setState({
       count: this.state.count + 1
-    });
+    }); */}
 
 setState상태를 직접 업데이트하는 대신 콜백 함수를 가져와야 함. 콜백 내에서 prevState액세스 가능
 
@@ -78,10 +78,10 @@ initialState 인자는 초기 렌더링 시에 사용하는 state로, 그 이후
 
 **초기 state가 고비용 계산의 결과라면, 초기 렌더링 시에만 실행될 함수를 대신 제공**할 수 있습니다.
 
-    const [state, setState] = useState(() => {
+    {/* const [state, setState] = useState(() => {
       const initialState = someExpensiveComputation(props);
       return initialState;
-    });
+    }); */}
 
 ### Hook
 
@@ -102,7 +102,7 @@ initialState 인자는 초기 렌더링 시에 사용하는 state로, 그 이후
 ### 정리(clean-up)를 이용하는 Effects hook
 
 Effect에 정리(clean-up)가 필요한 경우에는 함수를 return
-
+{/* 
     useEffect(() => {
         function handleStatusChange(status) {
           setIsOnline(status.isOnline);
@@ -111,13 +111,13 @@ Effect에 정리(clean-up)가 필요한 경우에는 함수를 return
         return () => {
           ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
         };
-      });
+      }); */}
 
 정리(clean-up)가 필요없는 경우
-
+{/* 
     useEffect(() => {
         document.title = `You clicked ${count} times`;
-      });
+      }); */}
 
 ### Tip) Effect 내 로직이 많이 필요한 경우, 구분을 위해서 useEffect를 여러번 구분해서 호출
 
@@ -125,7 +125,7 @@ Effect에 정리(clean-up)가 필요한 경우에는 함수를 return
 
 : props.friend.id 값이 변경 될 경우에만 재렌더링
 
-    useEffect(() => {
+    {/* useEffect(() => {
       function handleStatusChange(status) {
         setIsOnline(status.isOnline);
       }
@@ -134,7 +134,7 @@ Effect에 정리(clean-up)가 필요한 경우에는 함수를 return
       return () => {
         ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
       };
-    }, [props.friend.id]); // props.friend.id가 바뀔 때만 재구독합니다.
+    }, [props.friend.id]); // props.friend.id가 바뀔 때만 재구독합니다. */}
 
 * **주의**
 
@@ -146,7 +146,7 @@ effect를 실행하고 이를 정리(clean-up)하는 과정을 (마운트와 마
 
 *아래 참고
 
-    function Example({ someProp }) {
+    {/* function Example({ someProp }) {
       function doSomething() {
         console.log(someProp);  }
     
@@ -189,7 +189,7 @@ effect를 실행하고 이를 정리(clean-up)하는 과정을 (마운트와 마
       useEffect(() => {
         // 이 함수 컴포넌트를 effect 내부로 이동하면 사용하는 값을 명확하게 볼 수 있습니다.    async function fetchProduct() {      const response = await fetch('http://myapi/product/' + productId);      const json = await response.json();      setProduct(json);    }
         fetchProduct();
-      }, [productId]); // ✅ 효과는 productId 만 사용하므로 유효합니다  // ...
+      }, [productId]); // ✅ 효과는 productId 만 사용하므로 유효합니다  // ... */}
 
 ### Tip) Hook Linter Plugin
 
@@ -200,20 +200,20 @@ Hook을 사용할 때는 두 가지 규칙을 준수해야 하기 때문에, 이
 (렌더링이 될 때마다동일한 순서로 Hook이 호출되는 것을 보장)
 
     // 🔴 조건문에 Hook을 사용함으로써 첫 번째 규칙을 깼습니다
-      if (name !== '') {
+      {/* if (name !== '') {
         useEffect(function persistForm() {
           localStorage.setItem('formData', name);
         });
-      }
+      } */}
 
 **조건부로 effect를 실행하기를 원한다면, 조건문을 Hook *내부에* 넣으면 됨**
 
-    useEffect(function persistForm() {
+    {/* useEffect(function persistForm() {
         // 👍 더 이상 첫 번째 규칙을 어기지 않습니다
         if (name !== '') {
           localStorage.setItem('formData', name);
         }
-      });
+      }); */}
 
 ## useReducer
 
@@ -229,7 +229,7 @@ Hook을 사용할 때는 두 가지 규칙을 준수해야 하기 때문에, 이
 
 아래는 [useState](https://ko.reactjs.org/docs/hooks-reference.html#usestate) 를 reducer를 사용해서 다시 작성한 예시 (모르겠음)
 
-    const initialState = {count: 0};
+    {/* const initialState = {count: 0};
     function reducer(state, action) {
       switch (action.type) {
         case 'increment':
@@ -249,7 +249,7 @@ Hook을 사용할 때는 두 가지 규칙을 준수해야 하기 때문에, 이
           <button onClick={() => dispatch({type: 'increment'})}>+</button>
         </>
       );
-    }
+    } */}
 
 ## useMemo
 

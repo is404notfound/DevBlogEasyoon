@@ -97,12 +97,11 @@ Master 브랜치의 경우 프로젝트 버전을 Tag로 붙여 프로젝트의 
 ### ③Branch 작업 시 수행하는 명령어
 
     $ git checkout master
-     //'master'branch로 전환 
-    (check out : 현재 유저가 관여하고 있는 branch에서 다른 branch로의 전환)
+     ('master'branch로 전환 , check out : 현재 유저가 관여하고 있는 branch에서 다른 branch로의 전환)
     $ git merge --no-ff release-1.2
-    // 'merge'(branch 병합 ＊merge 방향에 대해서는 4번(Merge에 대해서) 참고)
+     ('merge', branch 병합, merge 방향에 대해서는 4번 참고)
     $ git tag -a 1.2
-    //버전 명 등 프로젝트에 대한 설명을 덧붙임
+     (버전 명 등 프로젝트에 대한 설명을 덧붙임)
 
 ## 5. Merge
 
@@ -120,7 +119,7 @@ git 튜토리얼에 제시되어있는 merge 상황
 
 git merge 명령으로 아래와 같이 합니다.
 
-    $ git checkout master //branch의 헤드를 master에 둔다
+    $ git checkout master (branch의 헤드를 master에 둔다)
     $ git merge hotfix
 
 master의 소스를 기반으로 만든 hotfifx 브랜치의 소스 코드로 최신 커밋commit을 옮겨와야 하기 때문에,

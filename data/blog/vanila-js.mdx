@@ -57,7 +57,7 @@ draft: false
 ## 3. 사용
 
 ・프로토타입 정의하기
-
+{/* 
     function Person(first, last, age, gender, interests) {
 
       // property and method definitions
@@ -68,7 +68,7 @@ draft: false
       this.age = age;
       this.gender = gender;
       //...see link in summary above for full definition
-    }
+    } */}
 
 [[코드예시]](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
 
@@ -100,16 +100,14 @@ Param: 오브젝트 내 property의 key값(String)
 Output: Boolean 값
 객체 내 해당 key값이 프로퍼티가 루프로 나열이 가능한 속성인지의 여부를 리턴
 
-* ***obj.*toLocaleString(***locales: ‘en-GB’, ‘kr-KR’ , options: { timeZone: ‘UTC’*}**)
-**Param: locales, options
-Output: String 값
+{/* * ***obj.*toLocaleString(***locales: ‘en-GB’, ‘kr-KR’ , options: {timeZone: ‘UTC’}**)**Param: locales, optionsOutput: String 값
 각 국가코드에 맞는 날짜 및 시간 표현을 문자열로 리턴한다.
 
     const event = new Date(Date.UTC(2021, 03, 26, 12, 25, 0))
     console.log(event.toLocaleString('en-GB', { timeZone: 'UTC' }))
     // expected output: "26/04/2021, 12:25:00"
     console.log(event.toLocaleString('ko-KR', { timeZone: 'UTC' }))
-    // expected output: "2021. 4. 26. 오후 12:25:00"
+    // expected output: "2021. 4. 26. 오후 12:25:00" */}
 
 * ***obj*.toString()**
 Param: String으로 표현할 객체
@@ -124,17 +122,16 @@ Output: String 값
 
 위와 같이 오브젝트에 toString()을 사용하면 각 오브젝트에 맞는 스트링 형태를 제공해준다. Date 객체의 경우에는 날짜를 스트링 값으로, Integer는 숫자를 문자열로 바꾸어 리턴하는 것 처럼 말이다. 이를 사용자 정의 객체에서 사용할 경우, 우리는 toString()의 재정의를 통해 객체의 문자열 요청시, 해당오브젝트에 알맞는 혹은 원하는 형태의 문자열 값을 리턴해 줄 수 있다.
 
-    function Color (r, g, b) {
-    this.r = r
-    this.g = g
-    this.b = b
-
+    {/* function Color (r, g, b) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
     this.toString = function () { return 'rgba('+ ${this.r} + ${this.g} + ${this.b}+ ')' } 
     }
 
     color = new Color (0, 0, 0)
     console.log(color.toString())
-    // expected output : rgba(0, 0, 0)
+    // expected output : rgba(0, 0, 0) */}
 
 * ***obj*.valueOf()**:
 Param: -
@@ -146,15 +143,14 @@ Output: 해당 객체의 원시 데이터
 Param: copy target, copy source
 Output: 복사된 된 객체
 
-    const obj = { a: 1 };
+    {/* const obj = { a: 1 };
     const copy = Object.assign({}, obj);
-    console.log(copy); // { a: 1 }
+    console.log(copy); // { a: 1 } */}
 
 하지만, 기본적으로 shallow-copy를 지원하기 때문에, deep-copy를 위해서는 [아래의 방법](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)을 쓰거나, 혹은 lodash.clone()과 같은 라이브러리를 사용한다.
 
-    function test() {
-      'use strict';
-
+    {/* function test() 
+    {
       let obj1 = { a: 0 , b: { c: 0}};
       let obj2 = Object.assign({}, obj1);
       console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
@@ -178,8 +174,7 @@ Output: 복사된 된 객체
       obj1.b.c = 4;
       console.log(JSON.stringify(obj3)); // { "a": 0, "b": { "c": 0}}
     }
-
-    test();
+    test(); */}
 
 * **Object.create(***prototype***)**
 Param: 프로토타입

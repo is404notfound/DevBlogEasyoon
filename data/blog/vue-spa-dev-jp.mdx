@@ -53,7 +53,7 @@ JavaScriptフレームワークを活用すると、SPA(Single Page Application)
 
 ## 2. MPAからSPAまで
 
-既存のMPA(multiple-page application)ウェブサービスは、クライアントのリクエストrequestがある際ごとにサーバからリソースresourceとデータを受け取って、画面に新たにレンダリングrenderingをするやり方でありました。 リンク<a href="#">をクリックすると、該当ページに移動することになり、明示されている資源をサーバーに要請して回答を受けてきます。
+既存のMPA(multiple-page application)ウェブサービスは、クライアントのリクエストrequestがある際ごとにサーバからリソースresourceとデータを受け取って、画面に新たにレンダリングrenderingをするやり方でありました。 リンク<a href="#"></a>をクリックすると、該当ページに移動することになり、明示されている資源をサーバーに要請して回答を受けてきます。
 このように、MPA方式は各ページごとにサーバ側でhtml文書を要請するために重複されるデータを受け取るしかありませんでした。
 
 一方、SPAウェブサービスは、上記のような既存のウェブサービスの限界を補完します。 最初のロード時、全体ページをロードした後からは、既存のページと比較して更新が必要な特定の部分だけをjsonの形でデータを持ってきてバインディングbindingします。
@@ -68,7 +68,7 @@ JavaScriptフレームワークを活用すると、SPA(Single Page Application)
 
 リンク方式は下記の過程を含んでいます。
 
-(1) link tag(<a href="#">)のクリック
+(1) link tagのクリック
 (2) URLのpathにhref属性attribute値であるリソースの経路が追加
 (3) ブラウザのアドレスバーにpath値を表示
 (4) 該当リソースをサーバに要請
@@ -91,7 +91,7 @@ JavaScriptフレームワークを活用すると、SPA(Single Page Application)
 
 上のAJAXを補完するため、登場したクライアントルーティング方法がHashです。
 
-Hash方式は、Anchor Tagを使う方式で、link tag(<a href="#hash">など)のhref属性にhash(#)を使用します。 クリックする際に文書で#の後に付けているidを持った要素に移動します。
+Hash方式は、Anchor Tagを使う方式で、link tagのhref属性にhash(#)を使用します。 クリックする際に文書で#の後に付けているidを持った要素に移動します。
 
 同一のURLでHashが変更された場合
 ブラウザ側ではこれをURLが変わったものと認識するが、実際にクライアント側でサーバ側にリクエストを送ったりはしません。 Anchorでウェブページの内部での移動を向けたものだからです。**要請をしないため、ページの更新はありませんが、ページがそれぞれの固有のURLを持つので、ヒストリーhistoryを管理することができます**。
@@ -128,27 +128,29 @@ Vueを利用してSPAウェブを構築する際には、ルーティング制�
 
 **[ルーティングを定義する形式]**
 
-    //views/Home.vue(テンプレートの構成要素)<template>
+    //views/Home.vue(テンプレートの構成要素)
+    <template>
       <div class="home">
         <h1>Home</h1>
       </div>
     </template>
 
     //src/router.js(ルーティング定義)import  Vue  from  ' vue ' 
+    {/* 
     import  Router  from  ' vue-router ' 
     import  Home  from  ' ./views/ '
-
     Vue . use ( Router )
-
     export  default  new  Router ({ 
       mode :  ' history ' , 
       routes :  [ 
         { 
-          path :  ' / ' , 
-          name :  ' home ' , 
-          component :  Home} 
+          p: '/', 
+          name: 'home', 
+          component: Home
+        } 
       ] 
-    })
+    }) 
+    */}
 
 以後、リンクと定義する際には、テンプレートの下記のような構文を挿入して使用することができます。
 

@@ -90,33 +90,27 @@ var로 선언 된 변수와 함수 선언식*function delcaration으로 선언 �
 
 *함수 선언식function declaration /호이스팅 O
 
-    test() // I'm defined!
+    {/* test() // I'm defined!
 
-    function test () {
-      console.log('I'm defined!')
-    }
+    function test () { console.log('defined!')} */}
 
 *함수 표현식function expression / 호이스팅X
-
+{/* 
     test() // Unfined Error
 
-    const test = function () {
-      console.log('I'm defined!')
-    }
+    const test = function () { console.log(' defined!')} */}
 
 ## 4. Closure
 
 클로저의 개념 중 쉽게 납득이 안 가는 부분이 있었는데, 외부 함수가 종료됐는데 내부 함수에서는 어떻게 접근할 수 있는가에 대한 부분이었다.
-
-    function outer() {
+    {/* function outer() {
       const text = 'hello'
       return function() {
         console.log(text)
       }
     }
-
     const inner = outer()
-    inner()
+    inner() */}
 
 **・동작 및 개념**
 
@@ -142,12 +136,12 @@ var로 선언 된 변수와 함수 선언식*function delcaration으로 선언 �
 
 코드가 아닌 외부 환경에 의해 발생 할 동작, 즉 사이드 이펙트를 제어하는 부분은 면접에서도 코드와 함께 질문을 받은 적이 있다. 대표적인 예가 setTimeout()이다.
 
-    var i
+    {/* var i
     for (i = 0; i < 10; i++) {
       setTimeout(function() {
         console.log(i)
       }, 100)
-    }
+    } */}
 
 빠지기 쉬웠던 함정은, i가 0.1초 후에 1부터 차례로 찍힐 것 같아 보인다는 부분이다.
 하지만 콘솔이 찍히는 부분은 0.1초가 모두 지난 후인데, 그 때의 i 값은 이미 반복문을 모두 돌고 10이 되어있기 때문에
