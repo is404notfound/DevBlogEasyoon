@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Easy0.0n Tech Blog',
   author: 'Lee',
   headerTitle: 'Easy0.0n Tech Blog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'Hello, World! Welcome to my tech blog!',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'http://localhost:3000/DevBlogEasyoon/',
