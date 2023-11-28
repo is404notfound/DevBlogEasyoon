@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'http://localhost:3000/DevBlogEasyoon/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
   siteLogo: '/static/images/cat-logo.jpeg',
-  socialBanner: '/static/images/cat-logo.jpeg',
+  socialBanner: '/static/images/my-profile.png',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
   locale: 'en-US',
@@ -35,7 +35,7 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    // provider: 'buttondown',
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the
