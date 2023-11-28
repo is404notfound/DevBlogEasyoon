@@ -128,6 +128,7 @@ Vueを利用してSPAウェブを構築する際には、ルーティング制�
 
 **[ルーティングを定義する形式]**
 
+```javascript
     //views/Home.vue(テンプレートの構成要素)
     <template>
       <div class="home">
@@ -136,7 +137,7 @@ Vueを利用してSPAウェブを構築する際には、ルーティング制�
     </template>
 
     //src/router.js(ルーティング定義)import  Vue  from  ' vue ' 
-    {/* 
+    
     import  Router  from  ' vue-router ' 
     import  Home  from  ' ./views/ '
     Vue . use ( Router )
@@ -150,11 +151,13 @@ Vueを利用してSPAウェブを構築する際には、ルーティング制�
         } 
       ] 
     }) 
-    */}
+```
 
 以後、リンクと定義する際には、テンプレートの下記のような構文を挿入して使用することができます。
 
+```javascript
     <router-link to="/">Home</router-link>
+```
 
 ### ②VUE CLICommand Line Interface
 

@@ -1,5 +1,5 @@
 ---
-title: Memo of React Official Documents
+title: Reading React Official Documents
 date: '2023-01-04'
 tags: ['FE', 'Javascript', 'React', 'State']
 draft: false
@@ -29,13 +29,13 @@ useState호출 에서 상태를 초기화
 * componentDidMount() 메서드는 컴포넌트 출력물이 DOM에 렌더링 된 후에 실행됩니다. 이 장소가 타이머(setInterver(), setTimeOut() 등)를 설정하기에 좋다 ( 로딩, useEffect 반복금지 참고 : [https://velog.io/@ryong9rrr/componentDidMount-%EC%99%80-useEffect](https://velog.io/@ryong9rrr/componentDidMount-%EC%99%80-useEffect))
 
 ### setState()을 다룰 때 유의 사항: 직접 State를 수정하지 말 것
-
+```jsx
     // Wrong, component did not rendered aga
     this.state.comment = 'Hello';
 
     // Correct
-    {/* this.setState({comment:'Hello'}); */}
-
+    this.setState({comment:'Hello'});
+```
 this.state를 지정할 수 있는 유일한 공간은 constructor밖에 없다.
 
 ### useState는 useReducer를 기본으로 만들어졌다
@@ -51,45 +51,50 @@ this.state를 지정할 수 있는 유일한 공간은 constructor밖에 없다.
 ### Event Handler
 
 * JSX를 사용하여 문자열이 아닌 함수로 이벤트 핸들러를 전달
-
-    {/* // html
+```jsx
+    // html
     <button onclick="activateLasers()">
       Activate Lasers
     </button>
     
     // react
-    <button onClick={activateLasers}>  Activate Lasers</button> */}
+    <button onClick={activateLasers}>  Activate Lasers</button>
+```
 
 React에서는 false를 반환해도 기본 동작을 방지할 수 없다. 반드시 preventDefault를 명시적으로 호출해야 한다.
 
+```jsx
     //HTML
-    {/* <form onsubmit="console.log('You clicked submit.'); return false">
+    <form onsubmit="console.log('You clicked submit.'); return false">
       <button type="submit">Submit</button>
-    </form> */}
+    </form>
     
     // React
-    {/* function Form() {
+    function Form() {
       function handleSubmit(e) {
         e.preventDefault();    console.log('You clicked submit.');
-      } */}
+      }
+    }
+```
 
 ### 컴포넌트 내 인라인 표현식
 
 JSX를 사용하면 중괄호 안에 [모든 표현식을 포함](https://ko.reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx) 시킬 수 있으므로 map() 함수의 결과를 인라인으로 처리할 수 있다.
-
-    {/* function NumberList(props) {
+```jsx
+    function NumberList(props) {
       const numbers = props.numbers;
       return (
         <ul>
           {numbers.map((number) =>        <ListItem key={number.toString()}                  value={number} />      )}    </ul>
       );
-    } */}
-
+    }
+```
 이 방식을 사용하면 코드가 더 깔끔해 지지만, 이 방식을 남발하는 것은 좋지 않습니다. JavaScript와 마찬가지로 가독성을 위해 변수로 추출해야 할지 아니면 인라인으로 넣을지는 개발자가 직접 판단해야 합니다. map() 함수가 너무 중첩된다면 [컴포넌트로 추출](https://ko.reactjs.org/docs/components-and-props.html#extracting-components) 하는 것이 좋다.
 
 ### 합성과 상속
 
-    {/* function SplitPane(props) {
+```jsx
+    function SplitPane(props) {
       return (
         <div className="SplitPane">
           <div className="SplitPane-left">
@@ -103,14 +108,15 @@ JSX를 사용하면 중괄호 안에 [모든 표현식을 포함](https://ko.rea
     function App() {
       return (
         <SplitPane
-          left={
-            <Contacts />      }
-          right={
-            <Chat />      } />
+          left={<Contacts />} 
+          right={<Chat />}
+        /> 
+        //<Contacts />와 <Chat />같은 React 엘리먼트는 단지 객체이기 때문에 다른 데이터처럼 prop으로 전달할 수 있다.
       );
-    } */}
+    }
+```
 
-{/* <Contacts />와 <Chat />같은 React 엘리먼트는 단지 객체이기 때문에 다른 데이터처럼 prop으로 전달할 수 있다. 이러한 접근은 다른 라이브러리의 “슬롯 (slots)“과 비슷해보이지만 React에서 prop으로 전달할 수 있는 것에는 제한이 없다. */}
+ 이러한 접근은 다른 라이브러리의 “슬롯 (slots)“과 비슷해보이지만 React에서 prop으로 전달할 수 있는 것에는 제한이 없다.
 
 ### UI 컴포넌트의 상속은 사용하지 않는 것을 권장(import)
 > Facebook에서는 수천 개의 React 컴포넌트를 사용하지만, 컴포넌트를 상속 계층 구조로 작성을 권장할만한 사례를 아직 찾지 못했습니다.

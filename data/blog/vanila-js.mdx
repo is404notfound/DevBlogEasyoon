@@ -149,7 +149,8 @@ Output: 복사된 된 객체
 
 하지만, 기본적으로 shallow-copy를 지원하기 때문에, deep-copy를 위해서는 [아래의 방법](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)을 쓰거나, 혹은 lodash.clone()과 같은 라이브러리를 사용한다.
 
-    {/* function test() 
+```jsx
+    function test() 
     {
       let obj1 = { a: 0 , b: { c: 0}};
       let obj2 = Object.assign({}, obj1);
@@ -174,7 +175,8 @@ Output: 복사된 된 객체
       obj1.b.c = 4;
       console.log(JSON.stringify(obj3)); // { "a": 0, "b": { "c": 0}}
     }
-    test(); */}
+    test();
+```
 
 * **Object.create(***prototype***)**
 Param: 프로토타입
