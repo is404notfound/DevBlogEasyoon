@@ -1,7 +1,7 @@
 ---
-title: React State & Recoil
+title: React State Management Library <Recoil>
 date: '2023-01-24'
-tags: ['FE', 'React', 'Javascript', 'State']
+tags: ['FE', 'React', 'State', 'Javascript']
 draft: false
 ---
 
@@ -72,8 +72,8 @@ get을 통해 QueryDataState을 구독
 ![](https://cdn-images-1.medium.com/max/2000/1*MKw_v9l_8ieZruSI0NuxSQ.png)
 
 ## 실제 API 적용
-
-    {/* import { atom, selector } from "recoil";
+```jsx
+    import { atom, selector } from "recoil";
     import axios from 'axios';
     // page랑 등등 구독  
         export const loginAtom = atom({  
@@ -101,4 +101,5 @@ get을 통해 QueryDataState을 구독
               console.error(err);  
              })  
             }  
-        }); */}
+        });
+```

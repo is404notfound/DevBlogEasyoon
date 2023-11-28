@@ -3,13 +3,13 @@ const siteMetadata = {
   title: 'Easy0.0n Tech Blog',
   author: 'Lee',
   headerTitle: 'Easy0.0n Tech Blog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'Hello, World! Welcome to my tech blog!',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'http://localhost:3000/DevBlogEasyoon/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
   siteLogo: '/static/images/cat-logo.jpeg',
-  socialBanner: '/static/images/cat-logo.jpeg',
+  socialBanner: '/static/images/my-profile.png',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
   locale: 'en-US',
@@ -35,7 +35,7 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    // provider: 'buttondown',
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the

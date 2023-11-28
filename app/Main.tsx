@@ -3,6 +3,8 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import Image from '@/components/Image'
+import ProfileImage from 'public/static/images/my-profile.png'
 
 const MAX_DISPLAY = 5
 
@@ -31,6 +33,19 @@ export default function Home({ posts }) {
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
+                      <dt className="sr-only">Profile Image</dt>
+                      <dd>
+                        {
+                          <Image
+                            src={ProfileImage}
+                            alt={siteMetadata.socialBanner}
+                            className="rounded-full"
+                            width={70}
+                            height={70}
+                            style={{ marginTop: '1.5rem', marginLeft: '0.8rem' }}
+                          />
+                        }
+                      </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
@@ -50,7 +65,7 @@ export default function Home({ posts }) {
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
+                          {summary || 'No summary provided.'}
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">

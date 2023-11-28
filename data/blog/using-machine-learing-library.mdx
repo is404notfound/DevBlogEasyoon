@@ -9,6 +9,7 @@ draft: false
 
 프론트 스캐폴딩
 
+```bash
     /server
     /client
       /pages          # Page components
@@ -19,6 +20,8 @@ draft: false
       /styles         # CSS or SCSS files
       package.json    # Lists its dependencies and scripts
       next.config.js  # Configures Next.js
+
+```
 
 음악을 처리할 api endpoint가 필요해서 /server도 추가
 
@@ -75,11 +78,13 @@ MIDI World: [http://www.midiworld.com/](http://www.midiworld.com/)
 
 npm install concurrently -D
 
-{/* {
+```json
+{
  "scripts": {
  "start": “concurrently \”npm run start — prefix ./server\” \”npm run dev — prefix ./client\””
  }
-} */}
+}
+```
 
 클라이언트와 서버가 다른 포트에서 실행되고 있을 때, 클라이언트에서 API 요청을 보낼 때 서버의 URL을 매번 지정하는 것은 번거로울 수 있습니다. 이런 경우에는 Proxy 설정을 이용하면 편리합니다.
 
@@ -87,10 +92,12 @@ Proxy 설정은 Create React App이나 Next.js 등 많은 프론트엔드 프레
 
 Next.js에서는 next.config.js 파일을 생성하고 여기에 proxy 설정을 추가합니다
 
+```json
 // Before
 axios.post(‘[http://localhost:5000/api/upload'](http://localhost:5000/api/upload'), formData);
 
 // After
 axios.post(‘/api/upload’, formData);
+```
 
 Next.js는 서버 사이드 렌더링(SSR)을 지원하므로, 컴포넌트 코드는 클라이언트와 서버 양쪽에서 실행됩니다. 따라서 window, document, navigator와 같은 브라우저 전용 객체를 컴포넌트에서 직접 사용하면, 서버에서 코드를 실행할 때 이런 오류가 발생합니다.

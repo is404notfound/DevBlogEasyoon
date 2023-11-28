@@ -126,6 +126,7 @@ Vue을 이용하여 SPA 웹을 구축할 때, 라우팅 제어를 위한 공식 
 
 **[라우팅을 정의하는 형식]**
 
+```javascript
     **// views/Home.vue (템플릿 구성요소)
     **
     <template>
@@ -136,7 +137,7 @@ Vue을 이용하여 SPA 웹을 구축할 때, 라우팅 제어를 위한 공식 
 
     **// src/router.js (라우팅 정의)
     **
-    {/* import  Vue  from  ' vue ' 
+    import  Vue  from  ' vue ' 
     import  Router  from  ' vue-router ' 
     import  Home  from  ' ./views/ '
     Vue . use ( Router )
@@ -149,12 +150,15 @@ Vue을 이용하여 SPA 웹을 구축할 때, 라우팅 제어를 위한 공식 
           component :  **Home **
         } 
       ] 
-    }) */}
+    })
     **
+```
 
 이후 링크로 정의할 시, 템플릿의 아래와 같은 구문을 삽입하여 사용할 수 있습니다.
 
+```javascript
     <router-link to = "/"> Home </router-link>
+```
 
 ### ②VUE CLI Command Line Interface
 
