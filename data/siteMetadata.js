@@ -8,8 +8,8 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'http://localhost:3000/DevBlogEasyoon/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
-  siteLogo: '/static/images/cat-logo.png',
-  socialBanner: '/static/images/cat-logo.png',
+  siteLogo: '/static/images/cat-logo.jpeg',
+  socialBanner: '/static/images/cat-logo.jpeg',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
   locale: 'en-US',
