@@ -258,11 +258,11 @@ createSearchIndex(allBlogs)
 ## 시도 해 볼 점 (1)
 
   
-정적블로그의 특성상 Next.js의 SSG(Static Site Generation) 렌더링 방식에 최적화 되어있기에, `getStaticProps`와 `getStaticPaths` 함수를 사용하여 SSG 렌더링도 같이 구현후, 전후 비교를 해 보면 좋을 것 같다.
+1. 정적블로그의 특성상 Next.js의 SSG(Static Site Generation) 렌더링 방식에 최적화 되어있기에, `getStaticProps`와 `getStaticPaths` 함수를 사용하여 SSG 렌더링도 같이 구현후, 전후 비교를 해 보면 좋을 것 같다.
 
-> Next.js의 SSG 렌더링: **빌드 타임**에 getStaticPaths로 지정된 경로들의 html 파일을 생성하는 방식, 미리 생성된 html 파일을 다운로드하는 방식이기에 속도가 매우 빨라진다.
+    > Next.js의 SSG 렌더링: **빌드 타임**에 getStaticPaths로 지정된 경로들의 html 파일을 생성하는 방식, 미리 생성된 html 파일을 다운로드하는 방식이기에 속도가 매우 빨라진다.
 
-
+2. search.json과 tag.json을 이용한 검색 기능 추가
 
 
 
