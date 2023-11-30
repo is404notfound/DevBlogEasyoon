@@ -95,7 +95,7 @@ Next.js에서는 next.config.js 파일을 생성하고 여기에 proxy 설정을
 
 ```json
 // Before
-axios.post(‘[http://localhost:5000/api/upload'](http://localhost:5000/api/upload'), formData);
+axios.post(‘http://localhost:5000/api/upload', formData);
 
 // After
 axios.post(‘/api/upload’, formData);
