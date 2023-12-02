@@ -1,5 +1,5 @@
 ---
-title: Analyzing a Static Next.js Project (1) Scaffolding, contentlayer
+title: Analyzing a Static Next.js Blog (Scaffolding, contentlayer)
 date: '2023-11-29'
 tags: ['Next.js', 'React', 'FE']
 draft: false
@@ -21,13 +21,13 @@ draft: false
                     ├── 404.html
                     └── page1.html     # 작성한 파일이 변수 등을 사용하지 않아서 렌더링 결과가 항상 같다면, next는 정적인 페이지를 자동으로 미리 렌더링 해서 최적화한다. 그래서 html 파일로 생성된다.
    
-/app 
-/components
+/app # 라우터 path에 해당하는 페이지로의 이동을 담당하고, 하나의 레이아웃으로 렌더링 되는 페이지를 꼭 포함한다.
+/components # 공통으로 사용되는 컴포넌트를 정의한다.
 /css
-/data
-/layouts
-/public
-/scripts
+/data # 정적 데이터를 저장하는 곳
+/layouts # 각 페이지에 필요한 레이아웃을 정의한다.
+/public # 정적 파일을 저장하는 곳
+/scripts # 빌드 스크립트를 저장하는 곳
 .gitignore
 .nojekyll # gh-pages로 배포할 때 jekyll 라이브러리를 사용하지 않는다는 의미의 파일.
 contentlayer.config.ts # 정적 블로깅을 위해 사용하는 Library의 설정 파일
@@ -62,6 +62,19 @@ next/static
 ```
 
 
+## 구조적으로 눈여겨 볼 점
+
+1. 사이트의 메타 데이터들, 고정으로 사용하고 있는 데이터들을 js파일로 따로 분리하여 관리하고 있다.
+
+2. social-icon 컴포넌트를 만들어서 사용하고 있다. 해당 컴포넌트에는 social-icon의 이름을 props로 전달하면 해당 아이콘을 렌더링 해준다.
+
+3. 타입스크립트의 interface를 정의하는 공통된 파일이 존재하지 않는다. 각 컴포넌트에서 필요한 interface를 정의하여 사용하고 있다.
+
+4. SectionContainer 컴포넌트를 만들어서 포스팅을 렌더링 할 때 사용하고 있다. 해당 컴포넌트는 Layout에서 children을 props로 받아서 렌더링 해준다.
+
+5. [..slug] 라우팅을 이용해 동적 라우팅을 구현하고 있다. 해당 라우팅은 라우팅 경로에 따라서 렌더링 할 컴포넌트를 결정한다.
+
+6. MDXRouter를 이용해 MDX 파일을 라우팅하고 있다. 해당 라우팅은 라우팅 경로에 따라서 렌더링 할 컴포넌트를 결정한다.
 
 ## contentlayer
 
@@ -255,7 +268,7 @@ createSearchIndex(allBlogs)
 ```
 
 
-## 시도 해 볼 점 (1)
+## 시도 해 볼 점
 
   
 1. 정적블로그의 특성상 Next.js의 SSG(Static Site Generation) 렌더링 방식에 최적화 되어있기에, `getStaticProps`와 `getStaticPaths` 함수를 사용하여 SSG 렌더링도 같이 구현후, 전후 비교를 해 보면 좋을 것 같다.
@@ -264,6 +277,7 @@ createSearchIndex(allBlogs)
 
 2. search.json과 tag.json을 이용한 검색 기능 추가
 
+3. 다국어 지원 기능 추가
 
 
 ### 참고
