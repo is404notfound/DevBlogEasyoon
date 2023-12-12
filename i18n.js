@@ -19,8 +19,8 @@ i18n
                 translation: translationJA
         }
     },
-    lng: 'ko', // default language
-    fallbackLng: 'ko',
+    lng: '', // default language
+    fallbackLng: '',
     interpolation: {
       escapeValue: false, // not needed for React as it escapes by default
     },
