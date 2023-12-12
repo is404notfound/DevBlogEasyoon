@@ -1,3 +1,5 @@
+'use client'
+
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
@@ -5,8 +7,13 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import Image from '@/components/Image'
+import LanguageSelector from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
-const Header = () => {
+
+const Header = ({router}) => {
+  const { t } = useTranslation();
+
   return (
     <header className="flex items-center justify-between py-10">
       <div>
@@ -17,7 +24,7 @@ const Header = () => {
             </div>
             {typeof siteMetadata.headerTitle === 'string' ? (
               <div className="hidden h-6 text-3xl font-semibold sm:block">
-                {siteMetadata.headerTitle}
+                {t(`${siteMetadata.headerTitle}`)}
               </div>
             ) : (
               siteMetadata.headerTitle
@@ -34,12 +41,13 @@ const Header = () => {
               href={link.href}
               className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
             >
-              {link.title}
+              {t(`${link.title}`)}
             </Link>
           ))}
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
+        <LanguageSelector router={router} />
       </div>
     </header>
   )
