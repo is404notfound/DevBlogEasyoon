@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
 
@@ -11,12 +12,8 @@ const LanguageSelector = ({ router }) => {
     const selectedLanguage = e.target.value;
 
     i18n.changeLanguage(selectedLanguage);
-    localStorage.setItem('selectedLanguage', selectedLanguage);
-    if (router) {
-        router.push(currentPath, currentPath, { locale: selectedLanguage });
-      }
   };
-
+  
   return (
     <select onChange={changeLanguage} 
             value={i18n.language}
