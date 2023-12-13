@@ -1,12 +1,9 @@
 'use client'
 
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePathname } from 'next/navigation';
 
 const LanguageSelector = ({ router }) => {
   const { t, i18n } = useTranslation();
-  const currentPath = usePathname();
 
   const changeLanguage = (e) => {
     const selectedLanguage = e.target.value;
