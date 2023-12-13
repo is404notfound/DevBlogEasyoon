@@ -60,7 +60,7 @@ export default function Home({ posts }) {
                               href={`/blog/${slug}`}
                               className="text-gray-900 dark:text-gray-100"
                             >
-                              {title}
+                              {t(title)}
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
