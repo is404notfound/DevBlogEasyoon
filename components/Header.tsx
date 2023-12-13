@@ -11,7 +11,7 @@ import LanguageSelector from './LanguageSelector';
 import { useTranslation } from 'react-i18next';
 
 
-const Header = ({router}) => {
+const Header = ()=> {
   const { t } = useTranslation();
 
   return (
@@ -47,7 +47,7 @@ const Header = ({router}) => {
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
-        <LanguageSelector router={router} />
+        <LanguageSelector />
       </div>
     </header>
   )
