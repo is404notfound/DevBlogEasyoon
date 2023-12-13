@@ -11,7 +11,6 @@ import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
-import { useRouter } from 'next/navigation'
 import '../i18n';
 
 const space_grotesk = Space_Grotesk({
@@ -61,7 +60,6 @@ const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
 
   return (
     <html
@@ -84,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SectionContainer>
             <div className="flex h-screen flex-col justify-between font-sans">
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                <Header router={router} />
+                <Header />
                 <main className="mb-auto">{children}</main>
               </SearchProvider>
               <Footer />

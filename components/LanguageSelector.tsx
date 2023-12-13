@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 
-const LanguageSelector = ({ router }) => {
+const LanguageSelector = () => {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (e) => {
