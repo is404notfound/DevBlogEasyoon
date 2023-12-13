@@ -1,7 +1,7 @@
 ---
 title: i18n, When building statically, the original language is restored.(In progress)
 date: '2023-12-11'
-tags: ['FE', 'i18n', 'nextjs']
+tags: ['FE', 'i18n', 'nextjs', 'bugfix']
 draft: false
 ---
 
@@ -14,4 +14,13 @@ i18n을 적용하고 로컬에서 테스트를 하면, 정상적으로 동작했
 ## 원인
 찾는 중...
 왜 이런 문제가 발생하는지는 아직 모르겠다.
-우선, i18n 설정 파일 중에 기본 언어 값 설정이 있어서, 해당 설정 값을 제거해 보기로 했다.
+
+## 시도
+1. i18n 설정 파일 중에 기본 언어 값 설정이 있어서, 해당 설정 값을 제거해 보기로 했다.
+: 기본 설정 값이 'en'으로 맞춰질 뿐 차도 없음
+
+2. 언어 변경 후 페이지 이동을 제거
+: Solved
+
+3.  만약, 언어 변경 후 페이지 이동이 필요했다면 ...
+: localStorage에 저장 후 마운트 될 때마다 그 값을 읽어오도록 했을 듯 (현재 Theme에서 사용하고 있는 방식)
