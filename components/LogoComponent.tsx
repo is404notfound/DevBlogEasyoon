@@ -53,7 +53,7 @@ const OverlayText = styled.div`
   font-size: 11px;
   color: #fff;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.1);
+  background-color: pink;
 `;
 
 const LogoComponent = ({ src }) => {

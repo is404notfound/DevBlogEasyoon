@@ -35,7 +35,7 @@ const BarContainer = styled.div`
 
 const Bar = styled(animated.div)`
   height: 1vh;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: pink;
   z-index: 1;
 `;
 
@@ -55,7 +55,7 @@ z-index: 1;
 
 const InvertedBar = styled(animated.div)`
   height: 1vh;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: pink;
   z-index: 1;
 `;
 
