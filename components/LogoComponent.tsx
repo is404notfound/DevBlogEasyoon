@@ -6,7 +6,7 @@ const waveAnimation = keyframes`
     transform: translateX(0);
   }
   50% {
-    transform: translateX(100%);
+    transform: translateX(270%);
   }
   100% {
     transform: translateX(0);
@@ -19,7 +19,7 @@ const LogoContainer = styled.div`
   width: 100px;
   height: 100px;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-
+  margin-right : 10px;
   &:hover {
     transform: scale(1.1);
     opacity: 0.8;
@@ -50,9 +50,10 @@ const OverlayText = styled.div`
   left: 0;
   width: 100%;
   text-align: center;
+  font-size: 11px;
   color: #fff;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
 `;
 
 const LogoComponent = ({ src }) => {
@@ -70,7 +71,7 @@ const LogoComponent = ({ src }) => {
       {isHovered && <Wave />}
       {isHovered || (
         <OverlayText>
-          Hover over me!
+          Hover on me
         </OverlayText>
       )}
     </LogoContainer>
