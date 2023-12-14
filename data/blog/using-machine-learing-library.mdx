@@ -1,7 +1,7 @@
 ---
 title: Using Machine Learning Library on NodeJS
 date: '2023-06-29'
-tags: ['Machine Learning', 'NodeJS', 'Javascript']
+tags: ['Machine Learning', 'Node-JS', 'Javascript']
 draft: false
 ---
 
@@ -72,7 +72,8 @@ FreeMidi: [https://freemidi.org/](https://freemidi.org/)
 
 MIDI World: [http://www.midiworld.com/](http://www.midiworld.com/)
 
-# server 디렉토리에서 npm run start # client 디렉토리에서 npm run dev
+### server 디렉토리에서 npm run start 
+### client 디렉토리에서 npm run dev
 
 하지만 이렇게 매번 두 개의 터미널을 열고 각각의 서버를 실행시키는 것은 번거로울 수 있습니다. 이런 경우에는 도구를 사용하여 두 프로세스를 한 번에 실행시킬 수 있습니다. 예를 들어, concurrently 패키지를 사용하면, 두 개의 명령어를 동시에 실행시킬 수 있습니다:
 
@@ -94,7 +95,7 @@ Next.js에서는 next.config.js 파일을 생성하고 여기에 proxy 설정을
 
 ```json
 // Before
-axios.post(‘[http://localhost:5000/api/upload'](http://localhost:5000/api/upload'), formData);
+axios.post(‘http://localhost:5000/api/upload', formData);
 
 // After
 axios.post(‘/api/upload’, formData);

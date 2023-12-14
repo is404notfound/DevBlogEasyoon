@@ -1,0 +1,285 @@
+---
+title: Analyzing a Static Next.js Blogging Project
+date: '2023-12-01'
+tags: ['next js', 'React', 'FE']
+draft: false
+---
+
+# Next JS 정적프로젝트 분석하기 (1) 스캐폴딩, contentlayer
+
+
+```bash
+/.contentlayer # 정적 블로깅을 위해 사용하는 Library의 빌드된 결과물 파일
+/.github
+	├──/workflow # 특정브랜치 push시 gh-pages에서 deploy하도록 job을 설정 해 둔 yml파일 보관
+/.out # next의 번들파일(./와 동일),빌드된 정적 결과물들이 포함
+	├──/server/static
+             └── AbmKMg9BFeVUuJ7lsQ1w8
+                    ├── _app.js
+                    ├── _document.js   # 서버 측에서 HTML 요소를 추가하는 용도로 사용
+                    │   _error.js
+                    ├── 404.html
+                    └── page1.html     # 작성한 파일이 변수 등을 사용하지 않아서 렌더링 결과가 항상 같다면, next는 정적인 페이지를 자동으로 미리 렌더링 해서 최적화한다. 그래서 html 파일로 생성된다.
+   
+/app # 라우터 path에 해당하는 페이지로의 이동을 담당하고, 하나의 레이아웃으로 렌더링 되는 페이지를 꼭 포함한다.
+/components # 공통으로 사용되는 컴포넌트를 정의한다.
+/css
+/data # 정적 데이터를 저장하는 곳
+/layouts # 각 페이지에 필요한 레이아웃을 정의한다.
+/public # 정적 파일을 저장하는 곳
+/scripts # 빌드 스크립트를 저장하는 곳
+.gitignore
+.nojekyll # gh-pages로 배포할 때 jekyll 라이브러리를 사용하지 않는다는 의미의 파일.
+contentlayer.config.ts # 정적 블로깅을 위해 사용하는 Library의 설정 파일
+jsconfig.json # 자바스크립트 프로젝트를 위한 설정파일, 이 파일은 주로 VSC와 같은 편집기에서 사용되며, JS 또는 TS 프로젝트의 컴파일과 관련된 설정을 지정.
+LICENSE
+next-env.d.ts 
+next.config.js # next의 설정파일
+package-lock.json
+package.json # 프로젝트의 의존성 관리를 위한 설정파일
+postcss.consfig.js # postcss의 설정파일
+prettier.config.js # prettier의 설정파일
+tailwind.config.js # tailwind의 설정파일
+tsconfig.js # typescript의 설정파일
+tsconfig.json # typescript의 설정파일
+yarn.lock
+```
+
+
+## ./out (./next)
+
+넥스트 번들파일로 아래와 같은 항목들이 포함된다.
+-   `getStaticProps`  또는  `자동 정적 최적화`를 사용하는 페이지용  `HTML`  파일
+-   `CSS` , `JavaScript`파일
+
+```bash
+next/static
+        ├── chunks                 // 여러 페이지에서 공통으로 사용되는 번들 파일
+        │       └──  app, pages         // 각 페이지의 번들 파일
+        ├── runtime                // 웹팩과 next의 런타임과 관련된 번들 파일
+        ├── css                    // 글로벌 CSS 파일
+        └── media                  // 정적으로 가져온 이미지        
+```
+
+
+## 구조적으로 눈여겨 볼 점
+
+1. 사이트의 메타 데이터들, 고정으로 사용하고 있는 데이터들을 js파일로 따로 분리하여 관리하고 있다.
+
+2. social-icon 컴포넌트를 만들어서 사용하고 있다. 해당 컴포넌트에는 social-icon의 이름을 props로 전달하면 해당 아이콘을 렌더링 해준다.
+
+3. 타입스크립트의 interface를 정의하는 공통된 파일이 존재하지 않는다. 각 컴포넌트에서 필요한 interface를 정의하여 사용하고 있다.
+
+4. SectionContainer 컴포넌트를 만들어서 포스팅을 렌더링 할 때 사용하고 있다. 해당 컴포넌트는 Layout에서 children을 props로 받아서 렌더링 해준다.
+
+5. [..slug] 라우팅을 이용해 동적 라우팅을 구현하고 있다. 해당 라우팅은 라우팅 경로에 따라서 렌더링 할 컴포넌트를 결정한다.
+
+6. MDXRouter를 이용해 MDX 파일을 라우팅하고 있다. 해당 라우팅은 라우팅 경로에 따라서 렌더링 할 컴포넌트를 결정한다.
+
+## contentlayer
+
+contentlayer는 content의 형태를 type-safe한 JSON 데이터로 변환해 주고 content를 관리해 주는 SDK입니다.
+
+
+### contentlayer.config.ts
+정적 블로깅을 위해 사용하는 Library의 설정 파일
+
+contentlayer.config.ts 파일을 생성하고 schema를 설정한다.
+설정된 schema에 따라 content들이 개별 데이터로 변환이 되며, 우리는 이 데이터를 컴포넌트 안에서 사용할 수 있게 된다.
+개별 데이터는 json 형식으로 표현되며, 각 컴포넌트에서 json 데이터를 가져와서 사용할 수 있다.
+    
+
+
+### defineDocumentType API를 이용해 mdx 파일의 속성과 필드를 정의한다.
+mdx 파일경로 패턴을 정의하고 mdx로 작성한 글 정보에 대해 입력해야하는 필드를 정의한다.
+```jsx
+[필드명]: {
+    type: '자료형',
+    required: '필수여부',
+}
+```
+  
+``` jsx
+export  const  Blog  =  defineDocumentType(() => ({
+
+name:  'Blog',
+
+filePathPattern:  'blog/**/*.mdx',
+
+contentType:  'mdx',
+
+fields: {
+
+title: { type:  'string', required:  true },
+
+date: { type:  'date', required:  true },
+
+tags: { type:  'list', of: { type:  'string' }, default: [] },
+
+lastmod: { type:  'date' },
+
+draft: { type:  'boolean' },
+
+summary: { type:  'string' },
+
+images: { type:  'json' },
+
+authors: { type:  'list', of: { type:  'string' } },
+
+layout: { type:  'string' },
+
+bibliography: { type:  'string' },
+
+canonicalUrl: { type:  'string' },
+
+},
+
+computedFields: {
+
+...computedFields,
+
+structuredData: {
+
+type:  'json',
+
+resolve: (doc) => ({
+
+'@context':  'https://schema.org',
+
+'@type':  'BlogPosting',
+
+headline: doc.title,
+
+datePublished: doc.date,
+
+dateModified: doc.lastmod  || doc.date,
+
+description: doc.summary,
+
+image: doc.images  ? doc.images[0] : siteMetadata.socialBanner,
+
+url:  `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+
+}),
+
+},
+
+},
+
+}))
+
+  
+
+export  const  Authors  =  defineDocumentType(() => ({
+
+name:  'Authors',
+
+filePathPattern:  'authors/**/*.mdx',
+
+contentType:  'mdx',
+
+fields: {
+
+name: { type:  'string', required:  true },
+
+avatar: { type:  'string' },
+
+occupation: { type:  'string' },
+
+company: { type:  'string' },
+
+email: { type:  'string' },
+
+twitter: { type:  'string' },
+
+linkedin: { type:  'string' },
+
+github: { type:  'string' },
+
+layout: { type:  'string' },
+
+},
+
+computedFields,
+
+}))
+
+```
+
+### makeSource API를 이용해 contentlayer에 schema와 속성을 제공한다.
+contentlayer는 이 정보를 바탕으로 content를 관리하고, 필요한 곳에 데이터를 제공한다.
+
+``` jsx
+
+export  default  makeSource({
+
+contentDirPath:  'data',
+
+documentTypes: [Blog, Authors],
+
+mdx: {
+
+cwd: process.cwd(),
+
+remarkPlugins: [
+
+remarkExtractFrontmatter,
+
+remarkGfm,
+
+remarkCodeTitles,
+
+remarkMath,
+
+remarkImgToJsx,
+
+],
+
+rehypePlugins: [
+
+rehypeSlug,
+
+rehypeAutolinkHeadings,
+
+rehypeKatex,
+
+[rehypeCitation, { path: path.join(root, 'data') }],
+
+[rehypePrismPlus, { defaultLanguage:  'js', ignoreMissing:  true }],
+
+rehypePresetMinify,
+
+],
+
+},
+
+onSuccess:  async (importData) => {
+
+const { allBlogs } =  await  importData()
+
+createTagCount(allBlogs)
+
+createSearchIndex(allBlogs)
+
+},
+
+})
+
+```
+
+
+## 시도 해 볼 점
+
+  
+1. 정적블로그의 특성상 Next.js의 SSG(Static Site Generation) 렌더링 방식에 최적화 되어있기에, `getStaticProps`와 `getStaticPaths` 함수를 사용하여 SSG 렌더링도 같이 구현후, 전후 비교를 해 보면 좋을 것 같다.
+
+    > Next.js의 SSG 렌더링: **빌드 타임**에 getStaticPaths로 지정된 경로들의 html 파일을 생성하는 방식, 미리 생성된 html 파일을 다운로드하는 방식이기에 속도가 매우 빨라진다.
+
+2. search.json과 tag.json을 이용한 검색 기능 추가
+
+3. 다국어 지원 기능 추가
+
+
+### 참고
+- https://yiyb-blog.vercel.app/posts/nextjs-contentlayer-blog
+- https://www.yujiseok.blog/post/create-blog-with-nextjs

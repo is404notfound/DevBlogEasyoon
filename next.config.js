@@ -1,4 +1,6 @@
 const { withContentlayer } = require('next-contentlayer')
+// const { withTranslation } = require('next-i18next');
+
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -53,6 +55,13 @@ const securityHeaders = [
     value: 'camera=(), microphone=(), geolocation=()',
   },
 ]
+
+// module.exports = withTranslation({
+//   i18n: {
+//     defaultLocale: 'en',
+//     locales: ['en', 'ko'],
+//   },
+// });
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}

@@ -1,23 +1,27 @@
+'use client'
+
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
-import Image from '@/components/Image'
+import LanguageSelector from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
+import LogoComponent from '@/components/LogoComponent'
 
-const Header = () => {
+const Header = ()=> {
+  const { t } = useTranslation();
   return (
     <header className="flex items-center justify-between py-10">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
-            <div className="mr-3">
-              <Image src="./static/images/cat-logo.jpeg" alt="logo" width={100} height={100} className="rounded-full" />
-            </div>
+              <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
+              {/* <img src="./static/images/cat-logo.jpeg" alt="Logo" className="logo" id="animated-logo" style={logoStyle} /> */}
             {typeof siteMetadata.headerTitle === 'string' ? (
               <div className="hidden h-6 text-3xl font-semibold sm:block">
-                {siteMetadata.headerTitle}
+                {t(`${siteMetadata.headerTitle}`)}
               </div>
             ) : (
               siteMetadata.headerTitle
@@ -34,12 +38,13 @@ const Header = () => {
               href={link.href}
               className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
             >
-              {link.title}
+              {t(`${link.title}`)}
             </Link>
           ))}
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
+        <LanguageSelector />
       </div>
     </header>
   )
