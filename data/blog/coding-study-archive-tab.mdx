@@ -1,0 +1,59 @@
+---
+title: ~코드 설계 연습 일지~ 아카이브 탭 추가 (수정 중)
+date: '2024-01-10'
+tags: ['FE', 'Study', 'Pre-Coding']
+draft: true
+---
+
+## Git 이슈
+---
+[링크](https://github.com/is404notfound/DevBlogEasyoon/issues/5)
+
+
+## Archive 탭 추가
+---
+
+
+### Archive page.tsx 추가하기
+
+- [ ] JS
+- [ ] Html & Style
+
+### CardListLayout.tsx Component 추가
+
+- [ ] Pagination 컴포넌트 재사용
+- [ ] JS
+
+    ``` javascript
+    if (type === ‘video’) {<VideoCard />}
+    else { <Card />}
+    ```
+    
+- [ ] Html & Style
+
+### VideoCard.tsx Component 추가
+
+- [ ] JS 
+    ``` javasript
+    if (data.type === ‘video’) {<video />}else { (<img />}
+    ```
+
+- [ ] Html & Style
+    ``` jsx
+    <div className=‘container’ w-1/2’ h-36 border-2  border-opacity-60 dark:border-gray-700>
+        <div className=‘thumbnail’ h-1/2> <img src={}> or <video src={}>
+        <div className=‘title’ h-1/2> , <a href= {url}>, <h2>
+    ```
+
+### DTO
+/app/archiveData.tsArchiveData
+
+- ```javasript
+    interface IArchiveData {
+        type : ‘Video’ | ‘Document’
+        thumbnail: string
+        url: string
+        title: string
+        description: string
+    }
+```

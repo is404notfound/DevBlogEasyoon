@@ -151,8 +151,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     y: '100%',
   }));
   const [resultWidth, setResultWidth] = useState(0);
+  const [useMovingBar, setUseMovingBar] = useState(false);
 
   useEffect(() => {
+    if (window.innerWidth > 1300) {
+      setUseMovingBar(true);
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth > 1300) {
+        setUseMovingBar(true);
+      } else {
+        setUseMovingBar(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!useMovingBar) return;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
@@ -176,7 +199,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [textApi]);
+  }, [useMovingBar, textApi]);
   
   return (
     <html
@@ -209,25 +232,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </SectionContainer>
 
-            <BarContainer>
-            {Array.from({ length: X_LINES }).map((_, i) => (
-              <Bar key={i} style={{
-                width: scrollYProgress.to(scrollP => {
-                const percentilePosition = (i + 1) / X_LINES
-                return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-              }),}} />
-            ))}
-          </BarContainer>
-          <InvertedBarContainer>
-            {Array.from({ length: X_LINES }).map((_, i) => (
-              <InvertedBar key={i} style={{ 
-                width: scrollYProgress.to(scrollP => {
-                  const percentilePosition = (i + 1) / X_LINES
-                  return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                })
-                }} />
-            ))}
-          </InvertedBarContainer>
+            { useMovingBar && (
+              <>
+                <BarContainer>
+                {Array.from({ length: X_LINES }).map((_, i) => (
+                  <Bar key={i} style={{
+                    width: scrollYProgress.to(scrollP => {
+                    const percentilePosition = (i + 1) / X_LINES
+                    return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
+                  }),}} />
+                ))}
+              </BarContainer>
+              <InvertedBarContainer>
+                {Array.from({ length: X_LINES }).map((_, i) => (
+                  <InvertedBar key={i} style={{ 
+                    width: scrollYProgress.to(scrollP => {
+                      const percentilePosition = (i + 1) / X_LINES
+                      return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
+                    })
+                    }} />
+                ))}
+              </InvertedBarContainer>
+            </>
+          )}
+
           </ContentContainer>
         </ThemeProviders>
       </body>
