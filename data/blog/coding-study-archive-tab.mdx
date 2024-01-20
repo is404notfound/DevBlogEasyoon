@@ -25,8 +25,14 @@ draft: true
 - [ ] JS
 
     ``` javascript
-    if (type === ‘video’) {<VideoCard />}
-    else { <Card />}
+    const length = 10;
+    const [currentPage, setCurrentPage] = 0; // state
+    const currentList = videoCardList.
+    VideoCardList.map({type, ... data}: VideoCard, index: number) => 
+        {
+            if (currentPage * length - 1 > index  && index > (currentPage+1) * length - 1) 
+            return type === 'video' ? <VideoCard /> : <Card />
+        }
     ```
     
 - [ ] Html & Style
@@ -35,7 +41,7 @@ draft: true
 
 - [ ] JS 
     ``` javasript
-    if (data.type === ‘video’) {<video />}else { (<img />}
+    if (data.type === ‘video’) {<video />}else { <img />}
     ```
 
 - [ ] Html & Style
