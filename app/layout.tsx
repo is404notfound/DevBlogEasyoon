@@ -154,28 +154,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [useMovingBar, setUseMovingBar] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth > 1300) {
-      setUseMovingBar(true);
-    }
-
-    const handleResize = () => {
-      if (window.innerWidth > 1300) {
-        setUseMovingBar(true);
-      } else {
-        setUseMovingBar(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
     if (!useMovingBar) return;
-
+  
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
@@ -183,21 +163,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       const percentage = (scrollY / (totalHeight - viewportHeight)) * 100;
       const percentilePosition = percentage;
       const newWidth = calculateBarWidth(0, percentilePosition);
-
+  
       setResultWidth(newWidth);
-      
-
-      if (percentage > 0.5) {
+  
+      if (percentage > 0.7) {
         textApi.start({ y: '0' });
       } else {
         textApi.start({ y: '100%' });
       }
     };
-
+  
+    const handleResize = () => {
+      const viewportHeight = window.innerHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
+      const percentilePosition = percentage;
+      const newWidth = calculateBarWidth(0, percentilePosition);
+  
+      setResultWidth(newWidth);
+    };
+  
     window.addEventListener('scroll', handleScroll);
-
+    window.addEventListener('resize', handleResize);
+  
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, [useMovingBar, textApi]);
   
