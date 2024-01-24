@@ -36,7 +36,12 @@ export default function Home({ posts }) {
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        {/* Todo :: CSS direction & display 
+                        * https://www.w3schools.com/cssref/pr_class_display.php
+                        */}
+                        <div className="flex justify-center">
+                          <time dateTime={date} >{formatDate(date, siteMetadata.locale)} </time>
+                        </div>
                       </dd>
                       <dt className="sr-only">Profile Image</dt>
                       <dd>
@@ -44,11 +49,10 @@ export default function Home({ posts }) {
                           <Image
                             src={ProfileImage}
                             alt={siteMetadata.socialBanner}
-                            className="rounded-full"
-                            width={70}
+                            width={50}  
                             height={70}
-                            style={{ marginTop: '1.5rem', marginLeft: '0.8rem' }}
-                          />
+                            style={{ borderRadius: '50%', display: 'block', margin: '0 auto', paddingTop: '10px' }} 
+                          /> // margin 0 auto : 좌우 여백의 공간을 동일하게 가져가서 가운데로 정렬
                         }
                       </dd>
                     </dl>
