@@ -207,12 +207,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <body className="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
             <ContentContainer ref={containerRef}>
               <SectionContainer>
-                <div className="flex h-screen flex-col justify-between font-sans">
+                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
                   <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                     <Header />
                     <main className="mb-auto">
