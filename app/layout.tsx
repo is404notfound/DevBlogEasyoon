@@ -3,7 +3,7 @@
 import 'css/tailwind.css'
 import 'css/styles.css'
 import 'pliny/search/algolia.css'
-import { Space_Grotesk } from 'next/font/google'
+import { Space_Grotesk, Tsukimi_Rounded } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -16,6 +16,7 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import { useScroll, useSpring,animated } from 'react-spring'
 import styled from 'styled-components';
+import { t } from 'i18next'
 
 
 
@@ -161,8 +162,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const onMouseMove = (e) => {
     let mouseX = e.pageX - e.pageX/2; // document의 x좌표
     let mouseY = e.pageY; 
-    let cursor = document.querySelector('.cursor');
-    
+    // FIXME: cursor 타입 및 동작
+    let cursor: any = document.querySelector('.cursor'); 
     cursor.style.left = mouseX + 'px';
     cursor.style.top = mouseY + 'px';
   };
