@@ -18,7 +18,6 @@ import styled from 'styled-components';
 
 
 //CSS
-
 const BarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,8 +33,10 @@ const BarContainer = styled.div`
 `;
 
 const Bar = styled(animated.div)`
-  height: 1vh;
-  background-color: pink;
+  height: 3vh; // viewport height
+  opacity: 0.5;
+  background-color: gray;
+  box-shadow: 0 0 10px 5px #f472b6;
   z-index: 1;
 `;
 
@@ -54,9 +55,11 @@ z-index: 1;
 `;
 
 const InvertedBar = styled(animated.div)`
-  height: 1vh;
-  background-color: pink;
-  z-index: 1;
+height: 3vh;
+opacity: 0.5;
+background-color: gray;
+box-shadow: 0 0 10px 5px #f472b6;
+z-index: 1;
 `;
 
 const ContentContainer = styled.div`
@@ -154,6 +157,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [useMovingBar, setUseMovingBar] = useState(false);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1280) {
+        setUseMovingBar(true);
+      } else {
+        setUseMovingBar(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  
+  useEffect(() => {
     if (!useMovingBar) return;
   
     const handleScroll = () => {
@@ -207,6 +228,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+      <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+
       <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
@@ -246,7 +269,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </InvertedBarContainer>
             </>
           )}
-
           </ContentContainer>
         </ThemeProviders>
       </body>
