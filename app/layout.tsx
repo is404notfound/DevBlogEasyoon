@@ -1,6 +1,7 @@
 'use client'
 
 import 'css/tailwind.css'
+import 'css/styles.css'
 import 'pliny/search/algolia.css'
 import { Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
@@ -15,6 +16,7 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import { useScroll, useSpring,animated } from 'react-spring'
 import styled from 'styled-components';
+
 
 
 //CSS
@@ -156,6 +158,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [resultWidth, setResultWidth] = useState(0);
   const [useMovingBar, setUseMovingBar] = useState(false);
 
+  const onMouseMove = (e) => {
+    let mouseX = e.pageX - e.pageX/2; // document의 x좌표
+    let mouseY = e.pageY; 
+    let cursor = document.querySelector('.cursor');
+    
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousemove', onMouseMove);
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove);
+    };
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1280) {
@@ -231,6 +249,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="stylesheet" type="text/css" href="../css/styles.css" />
 
       <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
+      
       <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
             <ContentContainer ref={containerRef}>
