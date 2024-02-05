@@ -1,65 +1,75 @@
 ---
-title: ~코드 설계 연습 일지~ 아카이브 탭 추가 (수정 중)
-date: '2024-01-10'
-tags: ['FE', 'Study', 'Pre-Coding']
-draft: true
+title: 사이드 프로젝트 회고
+date: '2024-02-04'
+tags: ['FE', 'Study', 'Insight']
+draft: false
 ---
 
-## Git 이슈
+챌린지를 듣다가 고민해보면 좋은 것들에 대해 들었는데 너무 뼈를 맞았고 고민이 많아졌다.
+
+돈을 받고 하는 개발들이야 의논도 하고, 그 중의 최선의 선택을 하겠지만, 혼자하는 프로젝트는 그렇지 않았다.
+
+실무를 하면서 채울 수 없는 욕구를 채우기 위한 개발을 위주로 하고 있었던 것 같다.
+
+그래서 접할 수 없는 것들 위주로 시도해보는 것 같다.
+
+또 의무감이 없다보니 늘어질대로 늘어지기도 하고 미루기도 하고, 그러다보니 끝나지 않는다.
+
+누군가의 이해를 바라는 것들을 만드는 것이 아니기 때문에, 사이드 프로젝트에서는 발전적인 질문들을 스스로에게 덜 했던 것 같다.
+
 ---
-[링크](https://github.com/is404notfound/DevBlogEasyoon/issues/5)
 
+## 1. 개발을 할 때 단순히 러닝코드만을 작성하지 않는가?
 
-## Archive 탭 추가
+평소에 잘 하지 않는, 익숙하지 않은 코드들을 고민하고, 시도해보는 것에 중점을 뒀었다.
+
+러닝코드를 짜고 - 이해하고 - 복잡도를 줄이고 - 중복도 제거하고 - 정리해보려고 노력한다.
+
+문제는, 이전보다 공부했던 것들을 잘 까먹는 것 같다. (나이 때문인가... 흑흑)
+
+이게 뭐였지...? 라는 생각이 들 때가 많다. 그리고 그때마다 다시 공부를 해야한다.
+
 ---
 
+## 2. 내가 사용하는 도구와 방식이 왜 사용되는지 이해하고 있는가?
 
-### Archive page.tsx 추가하기
+무료 플랫폼은 너무 재미가 없고, 소스를 직접 관리할 수 없다.
 
-- [ ] JS
-- [ ] Html & Style
+유료 플랫폼은 예쁘고, 내 글이 여러사람들에게 노출 된다.
 
-### CardListLayout.tsx Component 추가
+하지만 취미로 서비스를 사용하기에는 상당히 비싸고, 직접 소스를 관리하기 위해서는 더 많은 비용을 필요로 했다.
 
-- [ ] Pagination 컴포넌트 재사용
-- [ ] JS
+하지만 지금과 같은 경우는 우선 호스팅하는 소스코드를 공개할 경우 무료고, 
 
-    ``` javascript
-    const length = 10;
-    const [currentPage, setCurrentPage] = 0; // state
-    const currentList = videoCardList.
-    VideoCardList.map({type, ... data}: VideoCard, index: number) => 
-        {
-            if (currentPage * length - 1 > index  && index > (currentPage+1) * length - 1) 
-            return type === 'video' ? <VideoCard /> : <Card />
-        }
-    ```
-    
-- [ ] Html & Style
+깃허브 리포지토리의 소스코드를 직접 호스팅하기 때문에 소스를 직접 관리하면서 이것저것 시도 해 볼 수 있는 폭이 넓다.
 
-### VideoCard.tsx Component 추가
+더 나아가 검색엔진에도 걸리게끔 서치 콘솔에도 등록 할 생각이 있어, Next를 이용한 정적 블로그 방식으로 택했었다.
 
-- [ ] JS 
-    ``` javasript
-    if (data.type === ‘video’) {<video />}else { <img />}
-    ```
+---
 
-- [ ] Html & Style
-    ``` jsx
-    <div className=‘container’ w-1/2’ h-36 border-2  border-opacity-60 dark:border-gray-700>
-        <div className=‘thumbnail’ h-1/2> <img src={}> or <video src={}>
-        <div className=‘title’ h-1/2> , <a href= {url}>, <h2>
-    ```
+## 3. 내가 사용하는 도구와 방식이 어떤 장단점을 가지고 있는가?
 
-### DTO
-/app/archiveData.tsArchiveData
+2번에 장점을 적은 장점 외에도, 따로 DB를 거치지 않고도 글을 관리 할 수 있다는 점.
 
-- ```javasript
-    interface IArchiveData {
-        type : ‘Video’ | ‘Document’
-        thumbnail: string
-        url: string
-        title: string
-        description: string
-    }
-```
+비교적 빠르게 완성된 형태에서 디벨롭 할 수 있다는 점이 있는 것 같다.
+
+단점은, 개발적으로 화려하고 멋있지 않다는 것과 성능 최적화가 반드시 필요하다는 것.
+
+따로 cdn을 사용하지 않기 때문에 파일 용량이 조금만 커도 버벅거리며, 브라우저에 로드될 때 깔끔하지 못하다.
+
+전체적으로 다 로드가 끝난 후 화면을 보여주던가, 이미지 크기를 줄이던가, 캐싱을 하던가, 임시 이미지를 추가 하던가 할 것 같다.
+
+느린 코드들이나 무거운 파일들도 컴포넌트 별로, 혹은 더 세세하게 나눌 수 있을 것 같다.
+
+---
+
+## 4. 나는 웹 표준 보안에 대해서 잘 준수하고 있는가?
+
+웹 표준에 대해서는 서치 콘솔에 등록 후 SEO 최적화를 고민하면서 같이 진행할 것 같다.
+
+---
+
+## 5. 사용자 경험을 향상시키기 위한 고민을 하고 있는가?
+
+3번에 대책에 대해서도 적다보니 내용이 중복될 것 같다.
+내가 필요한 것들을 내 손으로 만들기 때문에 내가 무엇을 원하고, 불편해 하고 있는지에 대해서 항상 기록하고 있다. 
