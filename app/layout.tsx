@@ -16,7 +16,7 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import { useScroll, useSpring,animated } from 'react-spring'
 import styled from 'styled-components';
-import { t } from 'i18next'
+import CanvasCat from '@/components/CanvasCat'
 
 
 
@@ -164,8 +164,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     let mouseY = e.pageY; 
     // FIXME: cursor 타입 및 동작
     let cursor: any = document.querySelector('.cursor'); 
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
+    cursor['style']['left'] = mouseX + 'px';
+    cursor['style']['top'] = mouseY + 'px';
   };
 
   useEffect(() => {
@@ -289,6 +289,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </InvertedBarContainer>
             </>
           )}
+          <CanvasCat />
           </ContentContainer>
         </ThemeProviders>
       </body>

@@ -77,7 +77,7 @@ export default function ListLayoutWithTags({
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
   const { t } = useTranslation();
-
+  const getCharOrder = (currentNum: number)=> String.fromCharCode(currentNum + 65);
 
   return (
     <>
@@ -101,12 +101,12 @@ export default function ListLayoutWithTags({
                 </Link>
               )}
               <ul>
-                {sortedTags.map((t) => {
+                {sortedTags.map((t, i) => {
                   return (
                     <li key={t} className="my-3">
                       {pathname.split('/tags/')[1] === slug(t) ? (
                         <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
-                          {`${t} (${tagCounts[t]})`}
+                          {`${getCharOrder(i)}... ${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
@@ -114,7 +114,7 @@ export default function ListLayoutWithTags({
                           className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
-                          {`${t} (${tagCounts[t]})`}
+                          {`${getCharOrder(i)}... ${t} (${tagCounts[t]})`}
                         </Link>
                       )}
                     </li>
