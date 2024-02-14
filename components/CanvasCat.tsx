@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import RunningCatImage from 'public/static/images/running-cats.png';
 
-
 // todo : interface cat
 const CanvasCat = ()=> {
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -17,7 +16,9 @@ const CanvasCat = ()=> {
     useEffect(() => {
         if (!img) return;
         const canvas: HTMLCanvasElement | null = canvasRef.current;
-        const ctx: CanvasRenderingContext2D = canvas?.getContext('2d'); // 2d로 그래픽을 그리고 조작하기 위한 메서드와 속성을 포함하는 렌더링이 될 context 객체를 생성
+        // 2d로 그래픽을 그리고 조작하기 위한 메서드와 속성을 포함하는 렌더링이 될 context 객체를 생성
+        if (!canvas) return;
+        const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d'); 
         const cat = {
             img,
             totalframe: 8,
