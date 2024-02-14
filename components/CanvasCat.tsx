@@ -15,9 +15,7 @@ const CanvasCat = ()=> {
     }, []);
 
     useEffect(() => {
-        if (!img) {
-            return;
-        }
+        if (!img) return;
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D = canvas?.getContext('2d'); // 2d로 그래픽을 그리고 조작하기 위한 메서드와 속성을 포함하는 렌더링이 될 context 객체를 생성
         const cat = {
@@ -42,16 +40,16 @@ const CanvasCat = ()=> {
     }, [img]);
 
     function createCat(ctx, cat) {
-            const startPostionX = 800;
-            const startPostionY = 200 + Math.random() * 1000;
+        const startPostionX = 800;
+        const startPostionY = 200 + Math.random() * 1000;
 
-            ctx.drawImage(cat.img, 0, 0, cat.imgWidth, cat.imgHeight, startPostionX, startPostionY, 100, 100);
-            moveCat(cat, ctx, startPostionX, startPostionY);
+        ctx.drawImage(cat.img, 0, 0, cat.imgWidth, cat.imgHeight, startPostionX, startPostionY, 100, 100);
+        moveCat(cat, ctx, startPostionX, startPostionY);
     }
 
     function moveCat(cat, ctx, positionX, positionY) {
-        const startFrame = 1;
-        const endFrame = 10;
+        const startFrame = 0;
+        const endFrame = 9;
         let intervalX = 10;
         let intervalY = 3;
 
@@ -60,25 +58,25 @@ const CanvasCat = ()=> {
 
             ctx.clearRect(positionX, positionY, 100, 100);
 
-            frame > endFrame ? frame = 1 : frame += 1;
+            frame >= endFrame ? frame = 0 : frame += 1;
 
-            positionX -= intervalX * frame;
-            positionY -= intervalY * frame;
+            positionX -= intervalX * (frame + 1); // 0이 아닌 1부터 시작하도록(0일 경우 위치가 고정)
+            positionY -= intervalY * (frame + 1);
 
             updateImage(ctx, cat, frame, positionX, positionY);
             
-            if (positionX < -100 || positionY < -100) {
+            if (positionX < -90 || positionY < -90) {
                 clearInterval(interval);
                 createCat(ctx, cat);
             }
-        }, 300);
+        }, 400);
     }
 
     function updateImage(ctx, cat, frame: number, destinationX: number, destinationY: number) {
         ctx.save();
         ctx.drawImage(
           cat.img,
-          cat.imgWidth * frame,
+          cat.imgWidth * frame, 
           0,
           cat.imgWidth,
           cat.imgHeight,
@@ -87,6 +85,7 @@ const CanvasCat = ()=> {
           100,
           100
         );
+
         ctx.restore();
       }
 
