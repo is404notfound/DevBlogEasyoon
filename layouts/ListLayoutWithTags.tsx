@@ -11,6 +11,9 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import { useTranslation } from 'react-i18next';
+import Image from '@/components/Image'
+import ProfileImage from 'public/static/images/my-profile.png'
+
 
 interface PaginationProps {
   totalPages: number
@@ -77,7 +80,7 @@ export default function ListLayoutWithTags({
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
   const { t } = useTranslation();
-
+  const getCharOrder = (currentNum: number)=> String.fromCharCode(currentNum + 65);
 
   return (
     <>
@@ -101,12 +104,12 @@ export default function ListLayoutWithTags({
                 </Link>
               )}
               <ul>
-                {sortedTags.map((t) => {
+                {sortedTags.map((t, i) => {
                   return (
                     <li key={t} className="my-3">
                       {pathname.split('/tags/')[1] === slug(t) ? (
                         <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
-                          {`${t} (${tagCounts[t]})`}
+                          {`${getCharOrder(i)}... ${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
@@ -114,7 +117,7 @@ export default function ListLayoutWithTags({
                           className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
-                          {`${t} (${tagCounts[t]})`}
+                          {`${getCharOrder(i)}... ${t} (${tagCounts[t]})`}
                         </Link>
                       )}
                     </li>
@@ -130,18 +133,40 @@ export default function ListLayoutWithTags({
                 return (
                   <li key={path} className="py-5">
                     <article className="flex flex-col space-y-2 xl:space-y-0">
-                      <dl>
-                        <dt className="sr-only">Published on</dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                          <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                        </dd>
-                      </dl>
-                      <div className="space-y-3">
+                    <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-12">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        {/* Todo :: CSS direction & display 
+                        * https://www.w3schools.com/cssref/pr_class_display.php
+                        */}
+                        <div className="flex justify-center">
+                          <time dateTime={date} >{formatDate(date, siteMetadata.locale)} </time>
+                        </div>
+                      </dd>
+                      <dt className="sr-only">Profile Image</dt>
+                      <dd>
+                        {
+                          <Image
+                            src={ProfileImage}
+                            alt={siteMetadata.socialBanner}
+                            width={40}  
+                            style={{ 
+                              borderRadius: '50%'
+                              , display: 'block'
+                              , margin: '0 auto'
+                              , paddingTop: '10px'
+                            }} 
+                          /> // margin 0 auto : 좌우 여백의 공간을 동일하게 가져가서 가운데로 정렬
+                        }
+                      </dd>
+                    </dl>
+                      <div className="space-y-5 xl:col-span-3">
                         <div>
                           <div className="flex flex-wrap">
                             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                           </div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight ml-0 m-3">
                             <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
                               {t(title)}
                             </Link>
@@ -150,6 +175,7 @@ export default function ListLayoutWithTags({
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
                         </div>
+                      </div>
                       </div>
                     </article>
                   </li>

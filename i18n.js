@@ -19,7 +19,7 @@ i18n
                 translation: translationJA
         }
     },
-    lng: '', // default language
+    lng: 'en', // default language
     fallbackLng: '',
     interpolation: {
       escapeValue: false, // not needed for React as it escapes by default

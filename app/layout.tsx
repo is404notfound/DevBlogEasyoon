@@ -1,8 +1,9 @@
 'use client'
 
 import 'css/tailwind.css'
+import 'css/styles.css'
 import 'pliny/search/algolia.css'
-import { Space_Grotesk } from 'next/font/google'
+import { Space_Grotesk, Tsukimi_Rounded } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -15,10 +16,12 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import { useScroll, useSpring,animated } from 'react-spring'
 import styled from 'styled-components';
+import CanvasCat from '@/components/CanvasCat'
+import Head from 'next/head'
+
 
 
 //CSS
-
 const BarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,8 +37,10 @@ const BarContainer = styled.div`
 `;
 
 const Bar = styled(animated.div)`
-  height: 1vh;
-  background-color: pink;
+  height: 3vh; // viewport height
+  opacity: 0.5;
+  background-color: gray;
+  box-shadow: 0 0 10px 5px #f472b6;
   z-index: 1;
 `;
 
@@ -54,9 +59,11 @@ z-index: 1;
 `;
 
 const InvertedBar = styled(animated.div)`
-  height: 1vh;
-  background-color: pink;
-  z-index: 1;
+height: 3vh;
+opacity: 0.5;
+background-color: gray;
+box-shadow: 0 0 10px 5px #f472b6;
+z-index: 1;
 `;
 
 const ContentContainer = styled.div`
@@ -154,12 +161,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [useMovingBar, setUseMovingBar] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth > 1300) {
-      setUseMovingBar(true);
-    }
-
     const handleResize = () => {
-      if (window.innerWidth > 1300) {
+      if (window.innerWidth > 1280) {
         setUseMovingBar(true);
       } else {
         setUseMovingBar(false);
@@ -167,15 +170,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize();
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+  
   useEffect(() => {
     if (!useMovingBar) return;
-
+  
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
@@ -183,21 +188,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       const percentage = (scrollY / (totalHeight - viewportHeight)) * 100;
       const percentilePosition = percentage;
       const newWidth = calculateBarWidth(0, percentilePosition);
-
+  
       setResultWidth(newWidth);
-      
-
-      if (percentage > 0.5) {
+  
+      if (percentage > 0.7) {
         textApi.start({ y: '0' });
       } else {
         textApi.start({ y: '100%' });
       }
     };
-
+  
+    const handleResize = () => {
+      const viewportHeight = window.innerHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
+      const percentilePosition = percentage;
+      const newWidth = calculateBarWidth(0, percentilePosition);
+  
+      setResultWidth(newWidth);
+    };
+  
     window.addEventListener('scroll', handleScroll);
-
+    window.addEventListener('resize', handleResize);
+  
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, [useMovingBar, textApi]);
   
@@ -207,21 +223,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-      <link rel="manifest" href="/static/favicons/site.webmanifest" />
-      <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <body className="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
+      <Head>
+        <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
+        <link rel="manifest" href="/static/favicons/site.webmanifest" />
+        <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+      </Head>
+      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
+      
       <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
             <ContentContainer ref={containerRef}>
               <SectionContainer>
-                <div className="flex h-screen flex-col justify-between font-sans">
+                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
                   <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                     <Header />
                     <main className="mb-auto">
@@ -255,7 +275,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </InvertedBarContainer>
             </>
           )}
-
+          <CanvasCat />
           </ContentContainer>
         </ThemeProviders>
       </body>

@@ -23,7 +23,11 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
-      },
+        mono: ['var(--font-space-grotesk)', ...fontFamily.mono],
+        DOSGothic: ['DOSGothic', ...fontFamily.serif],
+        DOSMyungjo: ['DOSMyungjo', ...fontFamily.serif],
+        /**  Tailwind CSS에서 사용자 정의한 폰트 패밀리를 정의. 배열의 이름은 font-face와 일치해야 하며, 마지막은 default fallback */
+      }, 
       colors: {
         primary: colors.pink,
         gray: colors.gray,
