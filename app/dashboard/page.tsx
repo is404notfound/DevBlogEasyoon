@@ -16,10 +16,10 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card title="세상으로 나간 코드" description="[줄]" content={latestRecord.codeCount || '??'} />
           <Card title="쓴 글" description="[편]" content="36" />
-          <Card title="인상 깊었던 글" description="[편]" content="집계 중" />
+          <Card title="인상 깊었던 글" description="[편]" content="집계 중" fontSizeLevel={'3xl'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="SEO 실적" description="[키워드 / 순위]" content=" - / -" />
+          <Card title="SEO 실적" description="[키워드 / 순위]" content="- / -" />
         </div>
       </main>
     </div>
