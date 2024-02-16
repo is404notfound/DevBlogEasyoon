@@ -1,3 +1,5 @@
+"use client";
+
 const Card = ({ title, description, content, fontSizeLevel = '5xl' }: {
     title?: string;
     description?: string;

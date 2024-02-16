@@ -1,3 +1,5 @@
+"use client";
+
 import Card from '@/components/dashboard/Card';
 import React, { useEffect } from 'react';
 import useTotalCodeRecords from 'hooks/useTotalCodeRecords'
