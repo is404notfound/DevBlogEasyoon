@@ -1,30 +1,37 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import tagData from 'app/tag-data.json'
 import totalRecordsData from 'code-records-data.json'
 
 interface TotalCodeRecords {
-    totalCodeLines: number;
-    date: Date;
+    codeCount: number;
+    date: string;
 }
+
+const initialTotalCodeRecord: TotalCodeRecords = {date: '', codeCount: 0};
 
 const useTotalCodeRecords = () => {
     const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords[]>([]);
+    const [latestRecord, setLatestRecord] = useState<TotalCodeRecords>(initialTotalCodeRecord);
 
     useEffect(() => {
-        console.log('useTotalCodeRecords: useEffect');
-        readTotalCodeRecords();
+        const result = objectToArray(totalRecordsData);
+        setTotalCodeRecords(result);
+        setLatestRecord(getLatestRecord(result));
     }
     , []);
-
-    function readTotalCodeRecords (): void {
-        // 브라우저 환경에서는 'fs' 모듈을 사용할 수 없다.
-        // 별도의 api를 사용할 수 없는 환경이기 때문에 json 파이을 사용하여 import 한다.
-        console.log(totalRecordsData);
+    
+    function objectToArray(obj: any){
+        return Object.keys(obj).map((key)=>{ 
+            return {date: key, codeCount: obj[key]};
+        }) || [];
     }
 
- 
+    function getLatestRecord(records: TotalCodeRecords[]){
+        return records[records.length - 1] || initialTotalCodeRecord;
+    }
 
-    return { totalCodeRecords, readTotalCodeRecords };
+    return { totalCodeRecords, latestRecord };
 };
 
 export default useTotalCodeRecords;

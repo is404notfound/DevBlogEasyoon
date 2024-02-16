@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import useTotalCodeRecords from 'hooks/useTotalCodeRecords'
 
 const Dashboard = () => {
-  const { totalCodeRecords } = useTotalCodeRecords();
+  const { totalCodeRecords, latestRecord } = useTotalCodeRecords();
     
   return (
     <div className="flex flex-col h-screen">
@@ -14,12 +14,12 @@ const Dashboard = () => {
         </div>
       <main className="flex-1 p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="세상으로 나간 코드" description="[2024 이후 / 개인 / 줄(line)]" content={totalCodeRecords} />
+          <Card title="세상으로 나간 코드" description="[줄]" content={latestRecord.codeCount || '??'} />
           <Card title="쓴 글" description="[편]" content="36" />
-          <Card title="인상 깊었던 글" description="[편]" content="??" />
+          <Card title="인상 깊었던 글" description="[편]" content="집계 중" />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="SEO 실적" description="[키워드 / 순위]" content="?? / ??" />
+          <Card title="SEO 실적" description="[키워드 / 순위]" content=" - / -" />
         </div>
       </main>
     </div>
