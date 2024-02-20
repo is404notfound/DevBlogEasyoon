@@ -7,7 +7,7 @@ import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
 
 const Dashboard = () => {
-  const { totalCodeRecords, latestRecord } = useTotalCodeRecords();
+  const { totalCodeRecords, latestRecord, commitHistory } = useTotalCodeRecords();
   const [codeCounts, setCodeCounts] = useState<number[]>([]);
   const [dates, setDates] = useState<string[]>([]);
   const [diff, setDiff] = useState<number>(0);
@@ -48,7 +48,7 @@ const Dashboard = () => {
               />
           </div>
           <div className="grid grid-cols-1 gap-6 pt-6 ">
-            <Card title="History" description="작업 내역 (Commit)" content="-" />
+            <Card title="LATEST HISTORY" description="[Commit / 10건]" content={commitHistory || ''} fontSizeLevel={'xl'} />
           </div>
           <div className="grid grid-cols-1 gap-6 pt-6 ">
             <Card title="SEO 실적" description="[키워드 / 순위]" content="- / -" />

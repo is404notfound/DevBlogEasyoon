@@ -10,7 +10,7 @@
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
-    "pre-build": "sh code-records-data-generator.sh"
+    "pre-build": "sh commit-history-data-generator.sh && sh code-records-data-generator.sh"
   },
   "dependencies": {
     "@next/bundle-analyzer": "13.5.6",

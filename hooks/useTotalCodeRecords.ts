@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import totalRecordsData from 'code-records-data.json'
+import commitHistoryData from 'commit-history-data.json'
 
 interface TotalCodeRecords {
     codeCount: number;
@@ -13,14 +14,15 @@ const initialTotalCodeRecord: TotalCodeRecords = {date: '', codeCount: 0};
 const useTotalCodeRecords = () => {
     const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords[]>([]);
     const [latestRecord, setLatestRecord] = useState<TotalCodeRecords>(initialTotalCodeRecord);
+    const [commitHistory, setCommitHistory] = useState<string[]>([]);
 
     useEffect(() => {
-        if (!window) { return; }
-
-        const result = objectToArray(totalRecordsData);
+        const totalRecords = objectToArray(totalRecordsData);
+        const commitHistory = Object.values(commitHistoryData);
         
-        setTotalCodeRecords(result);
-        setLatestRecord(getLatestRecord(result));
+        setTotalCodeRecords(totalRecords);
+        setLatestRecord(getLatestRecord(totalRecords));
+        setCommitHistory(commitHistory);
     }
     , []);
     
@@ -34,7 +36,7 @@ const useTotalCodeRecords = () => {
         return records[records.length - 1] || initialTotalCodeRecord;
     }
 
-    return { totalCodeRecords, latestRecord };
+    return { totalCodeRecords, latestRecord, commitHistory };
 };
 
 export default useTotalCodeRecords;
