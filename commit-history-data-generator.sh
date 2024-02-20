@@ -10,7 +10,7 @@ git log -10 --pretty=format:'"%s"' > "$output_file"
 file_contents=$(cat "$output_file")
 
 # 줄 앞에 번호를 추가
-file_contents=$(echo "$file_contents" | awk '{print NR": "$0}')
+file_contents=$(echo "$file_contents" | awk '{print "\"" NR "\": " $0 ""}')
 
 # 맨 앞과 맨 뒤에 중괄호 추가
 file_contents="{ $file_contents }"
