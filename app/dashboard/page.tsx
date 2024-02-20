@@ -39,7 +39,7 @@ const Dashboard = () => {
               xAxisData={dates}
               yAxisData={codeCounts}
               yAxisLabel='Code Count'
-              title={`${dates.length + 1}일간의 코드량 변화`}
+              title={`${dates.length}일간의 코드량 변화`}
               description={`2024-${dates[0]}부터 2024-${dates[dates.length - 1]}까지의 코드 작성량 변화 추이`}
               point={diff > 0 ? `+${diff}줄` : `${diff}줄`}
             />
