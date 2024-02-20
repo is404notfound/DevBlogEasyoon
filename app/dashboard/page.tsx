@@ -10,19 +10,23 @@ const Dashboard = () => {
   const { totalCodeRecords, latestRecord } = useTotalCodeRecords();
   const [codeCounts, setCodeCounts] = useState<number[]>([]);
   const [dates, setDates] = useState<string[]>([]);
+  const [diff, setDiff] = useState<number>(0);
 
   useEffect(() => {
     setCodeCounts(totalCodeRecords.map((record) => record.codeCount));
     setDates(totalCodeRecords.map((record) => record.date.slice(5)));
   }, [totalCodeRecords]);
 
+  useEffect(() => {
+    setDiff(codeCounts[codeCounts.length - 1] - codeCounts[0]);
+  }, [codeCounts]);
     
   return (
     <div className="flex flex-col h-screen">
       <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Dashboard \\\\\\\\\\\\\\\\
-          </h1>
+          </h1> 
         </div>
       <main className="flex-1 p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -32,12 +36,12 @@ const Dashboard = () => {
         </div>
         <div className="grid grid-cols-1 mt-6 mb-6 pt-6">
           <LineGraph
-            xAxisData={dates}
-            yAxisData={codeCounts}
-            yAxisLabel='Code Count'
-            title={`${dates.length + 1}일간의 코드량 변화`}
-            description={`2024-${dates[0]}부터 2024-${dates[dates.length - 1]}까지의 코드 작성량 변화 추이`}
-            point={`${codeCounts[codeCounts.length - 1] - codeCounts[0]}줄`}
+              xAxisData={dates}
+              yAxisData={codeCounts}
+              yAxisLabel='Code Count'
+              title={`${dates.length + 1}일간의 코드량 변화`}
+              description={`2024-${dates[0]}부터 2024-${dates[dates.length - 1]}까지의 코드 작성량 변화 추이`}
+              point={diff > 0 ? `+${diff}줄` : `${diff}줄`}
             />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">

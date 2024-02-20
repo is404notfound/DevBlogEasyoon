@@ -230,10 +230,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/static/favicons/site.webmanifest" />
         <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+        {/* <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" /> */}
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
       </Head>
       <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       

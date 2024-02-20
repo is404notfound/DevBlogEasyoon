@@ -15,7 +15,10 @@ const useTotalCodeRecords = () => {
     const [latestRecord, setLatestRecord] = useState<TotalCodeRecords>(initialTotalCodeRecord);
 
     useEffect(() => {
+        if (!window) { return; }
+
         const result = objectToArray(totalRecordsData);
+        
         setTotalCodeRecords(result);
         setLatestRecord(getLatestRecord(result));
     }

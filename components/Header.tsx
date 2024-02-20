@@ -42,7 +42,7 @@ const Header = ()=> {
             </Link>
           ))}
         <SearchButton />
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <MobileNav />
         <LanguageSelector />
       </div>
