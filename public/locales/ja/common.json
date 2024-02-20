@@ -1,15 +1,17 @@
 {
-    "Latest": "最新",
     "Hello, World! Welcome to my tech blog!": "はじめまして、こちらは私の技術ブログです。"
-    ,"About": "私について"
-    ,"Blog": "ポスト"
-    ,"Tags": "タグ"
-    ,"Projects": "プロジェクト"
-    ,"Easy0.0n Tech Blog": "Easy0.0n 技術ブログ"
+    ,"[Dashboard]": "ダッシュボード"
+    ,"[About]": "私について"
+    ,"[Blog]": "ポスト"
+    ,"[Tags]": "タグ"
+    ,"[Projects]": "プロジェクト"
+    ,"[Archive] (*)": "アーカイブ (*)"
+    ,"Easy0.0n Tech Blog*********": "Easy0.0n 技術ブログ*********"
     ,"i18n, When building statically, the original language is restored.": "i18nを適用した後、静的にビルドすると元の言語に戻る問題"
     ,"Javascript Modern Deep Dive Study (1) / 2nd Reading": "JavaScript Deep Diveの勉強会"
     ,"Analyzing a Static Next.js Blogging Project": "Next JSをお調べてみました。 scaffolding, contentlayer"
     ,"Networking Day & Team Project !": "ネットワーキングデー & チームプロジェクト"
     ,"Networking Day & GitLab !": "ネットワーキングデーとGitLabの紹介"
     ,"인상 깊었던 개발 관련 컨텐츠들을 모아두는 곳 입니다.": "印象的な開発関連のコンテンツを集めています。"
+    ,"사이드 프로젝트 회고" : "サイドプロジェクトの振り返り"
 }
