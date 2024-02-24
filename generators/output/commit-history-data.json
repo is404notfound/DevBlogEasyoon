@@ -1,0 +1,10 @@
+{ "1": "[#5]Add generator for scraping articles' metadata",
+"2": "Separate generator and output folders",
+"3": "Adjust blog list UI | Delete unused | Pre-build",
+"4": "Update Profile Image :D",
+"5": "pre-build",
+"6": "Add locale settings (translation)",
+"7": "[#29] Update commit-history-data-generator.sh",
+"8": "[#29] Add Card component's case (array)",
+"9": "[#29] Add Latest Commit History (generator.sh, hook etc)",
+"10": "Adjust dashboard page width, add language change" }
