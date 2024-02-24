@@ -13,11 +13,11 @@ const Card = ({ title, description, content, fontSizeLevel = '6xl' }: {
         <div className="bg-white bg-opacity-70 rounded-lg shadow-md p-6 border-dotted border-4 border-pink-500 shadow-lg shadow-pink-500/50">
             <h1 className="text-lg font-semibold mb-4">{ title }</h1>
             <p className="text-sm font-semibold mb-4 text-right">{ description } </p>
-            <p className={`text-${ fontSizeLevel } text-gray-600 text-${isArray ? '' : 'center'}`}>{
+            <div className={`text-${ fontSizeLevel } text-gray-600 text-${isArray ? '' : 'center'}`}>{
                 isArray ? content.map((row: string, index: number)=> {
-                    return (<p>{getCharOrder(index)}... { row }</p>)
+                    return (<p key={`${index}_${row}`}>{getCharOrder(index)}... { row }</p>)
                 }): content
-            } </p>
+            } </div>
         </div>
     )
 }
