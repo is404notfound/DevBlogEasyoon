@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import useTotalCodeRecords from 'hooks/useTotalCodeRecords'
 import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
+import archiveData from 'generators/output/archive-data.json'
 
 const Dashboard = () => {
   const { totalCodeRecords, latestRecord, commitHistory } = useTotalCodeRecords();
@@ -35,7 +36,7 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card title="세상으로 나간 코드" description="[줄/(tsx,ts,js,css,sh)]" content={latestRecord.codeCount || '??'} />
             <Card title="쓴 글" description="[편]" content={allBlogs.length} />
-            <Card title="인상 깊었던 글" description="[편]" content="집계 중" fontSizeLevel={'3xl'} />
+            <Card title="인상 깊었던 글" description="[편]" content={archiveData.length} />
           </div>
           <div className="grid grid-cols-1 mt-6 mb-6 pt-6">
             <LineGraph

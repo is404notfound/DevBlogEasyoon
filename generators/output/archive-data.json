@@ -1,5 +1,6 @@
 [
   {
+    "note": "",
     "al:ios:app_name": "Medium",
     "al:ios:app_store_id": "828256236",
     "al:android:package": "com.medium.reader",
@@ -20,6 +21,7 @@
     "twitter:description": "Solid knowledge of React is one of the most valuable skills for a front-end developer. Many companies are constantly searching for React…"
   },
   {
+    "note": "",
     "al:ios:app_name": "Medium",
     "al:ios:app_store_id": "828256236",
     "al:android:package": "com.medium.reader",
@@ -38,5 +40,47 @@
     "article:author": "https://medium.com/@pashkapag",
     "twitter:title": "5 Tips To Improve Your React Application",
     "twitter:description": "Easy and Effective Tips to Make Your App Code Better"
+  },
+  {
+    "note": "",
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2023-12-05T06:10:27.400Z",
+    "og:title": "10 Expert Performance Tips Every Senior JS React Developer Should Know",
+    "al:android:url": "medium://p/a786fc13f5c7",
+    "al:ios:url": "medium://p/a786fc13f5c7",
+    "al:android:app_name": "Medium",
+    "og:description": "As a senior Javascript React developer, consistently improving the performance of your applications is an essential skill to master. We’ve…",
+    "og:url": "https://medium.com/@khushi1399gupta/10-expert-performance-tips-every-senior-js-react-developer-should-know-a786fc13f5c7",
+    "al:web:url": "https://medium.com/@khushi1399gupta/10-expert-performance-tips-every-senior-js-react-developer-should-know-a786fc13f5c7",
+    "og:image": "https://miro.medium.com/v2/resize:fit:768/1*-0GldCPaHWo2PDsWUYEN5A.png",
+    "article:author": "https://medium.com/@khushi1399gupta",
+    "twitter:title": "10 Expert Performance Tips Every Senior JS React Developer Should Know",
+    "twitter:description": "As a senior Javascript React developer, consistently improving the performance of your applications is an essential skill to master. We’ve…"
+  },
+  {
+    "note": "",
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2024-01-18T12:29:13.074Z",
+    "og:title": "How should class naming be in HTML? — Clean Code.",
+    "al:android:url": "medium://p/8703425a1c3e",
+    "al:ios:url": "medium://p/8703425a1c3e",
+    "al:android:app_name": "Medium",
+    "og:description": "Many developers can spend a significant amount of time on naming during the development phase. In fact, for some, it can become a…",
+    "og:url": "https://medium.com/@erennaktas/how-should-class-naming-be-in-html-clean-code-8703425a1c3e",
+    "al:web:url": "https://medium.com/@erennaktas/how-should-class-naming-be-in-html-clean-code-8703425a1c3e",
+    "og:image": "https://miro.medium.com/v2/resize:fit:1200/1*Hk0clpn9W-1MYdHqtqf7ew.jpeg",
+    "article:author": "https://medium.com/@erennaktas",
+    "twitter:title": "How should class naming be in HTML? — Clean Code.",
+    "twitter:description": "Many developers can spend a significant amount of time on naming during the development phase. In fact, for some, it can become a…"
   }
 ]
