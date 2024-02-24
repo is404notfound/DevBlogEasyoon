@@ -8,7 +8,9 @@ async function scrapeMetaTags(url) {
 
     const meta = await page.evaluate(() => {
         const metaTags = document.getElementsByTagName('meta');
-        const meta = {};
+        const meta = {
+            note: ''
+        };
         for (let i = 0; i < metaTags.length; i++) {
             const property = metaTags[i].getAttribute('property');
             const content = metaTags[i].getAttribute('content');
@@ -23,8 +25,6 @@ async function scrapeMetaTags(url) {
     return meta;
 }
 
-
-
 async function saveMetaDataToJson(urls, outputPath) {
     const metaData = [];
     for (const url of urls) {
@@ -35,13 +35,14 @@ async function saveMetaDataToJson(urls, outputPath) {
 }
 
 
-
 console.log('LOG :: Start scraping');
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const URLS = 
 [
     'https://medium.com/javascript-in-plain-english/4-react-tips-to-instantly-improve-your-code-7456e028cfa3#2fce'
     , 'https://medium.com/javascript-in-plain-english/5-essential-tips-to-improve-your-react-application-a17d540c920a'
+    , 'https://medium.com/@khushi1399gupta/10-expert-performance-tips-every-senior-js-react-developer-should-know-a786fc13f5c7'
+    , 'https://medium.com/@erennaktas/how-should-class-naming-be-in-html-clean-code-8703425a1c3e'
 ];
 
 

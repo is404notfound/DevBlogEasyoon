@@ -1,9 +1,12 @@
 'use client'
 
 import { useTranslation } from 'react-i18next';
+import useArchive from 'hooks/useArchive';
+import InfiniteScrollListLayout from '@/layouts/InfiniteScrollListLayout';
 
 export default function Archive() {
   const { t } = useTranslation();
+  const { archiveData } = useArchive();
 
   return (
     <>
@@ -16,12 +19,9 @@ export default function Archive() {
             {t('인상 깊었던 개발 관련 컨텐츠들을 모아두는 곳 입니다.')}
           </p>
         </div>
-        <div className="container py-12">
-          <div className="-m-4 flex flex-wrap">ß
-            // content card
-
-          </div>
-        </div>
+        <InfiniteScrollListLayout
+          posts={archiveData}
+        />
       </div>
     </>
   )
