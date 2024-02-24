@@ -84,7 +84,7 @@
     "twitter:description": "Many developers can spend a significant amount of time on naming during the development phase. In fact, for some, it can become a…"
   },
   {
-    "note": "",
+    "note": "blog/next-js-sharp-image-optimization",
     "og:site_name": "YouTube",
     "og:url": "https://www.youtube.com/watch?v=Ino03JPppU4",
     "og:title": "Next.js의 이미지 최적화는 어떻게 동작하는가? Next.js는 왜 Sharp를 추천하는가 by 안건환님 - AWSKRUG 프론트엔드 소모임 230510",
@@ -108,7 +108,7 @@
     "fb:app_id": "87741124305"
   },
   {
-    "note": "",
+    "note": "blog/next-js-sharp-image-optimization",
     "og:type": "website",
     "og:title": "NEXT.JS의 이미지 최적화는 어떻게 동작하는가? | 올리브영 테크블로그",
     "og:description": "NEXT.JS는 왜 Sharp를 추천하는가",
@@ -117,7 +117,7 @@
     "og:site_name": "NEXT.JS의 이미지 최적화는 어떻게 동작하는가? | 올리브영 테크블로그"
   },
   {
-    "note": "",
+    "note": "blog/next-js-sharp-image-optimization",
     "og:type": "article",
     "og:url": "https://junheedot.tistory.com/entry/Next-Image-load-super-slow",
     "og.article.author": "준희닷",

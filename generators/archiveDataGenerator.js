@@ -1,3 +1,14 @@
+const URLS = 
+[
+    'https://medium.com/javascript-in-plain-english/4-react-tips-to-instantly-improve-your-code-7456e028cfa3#2fce'
+    , 'https://medium.com/javascript-in-plain-english/5-essential-tips-to-improve-your-react-application-a17d540c920a'
+    , 'https://medium.com/@khushi1399gupta/10-expert-performance-tips-every-senior-js-react-developer-should-know-a786fc13f5c7'
+    , 'https://medium.com/@erennaktas/how-should-class-naming-be-in-html-clean-code-8703425a1c3e'
+    , 'https://youtu.be/Ino03JPppU4'
+    , 'https://oliveyoung.tech/blog/2023-06-09/nextjs-image-optimization/'
+    , 'https://junheedot.tistory.com/entry/Next-Image-load-super-slow'
+];
+const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
@@ -36,15 +47,5 @@ async function saveMetaDataToJson(urls, outputPath) {
 
 
 console.log('LOG :: Start scraping');
-const OUTPUT_PATH = './generators/output/archive-data.json';
-const URLS = 
-[
-    'https://medium.com/javascript-in-plain-english/4-react-tips-to-instantly-improve-your-code-7456e028cfa3#2fce'
-    , 'https://medium.com/javascript-in-plain-english/5-essential-tips-to-improve-your-react-application-a17d540c920a'
-    , 'https://medium.com/@khushi1399gupta/10-expert-performance-tips-every-senior-js-react-developer-should-know-a786fc13f5c7'
-    , 'https://medium.com/@erennaktas/how-should-class-naming-be-in-html-clean-code-8703425a1c3e'
-];
-
-
 saveMetaDataToJson(URLS, OUTPUT_PATH);
 console.log('LOG :: Finish scraping');

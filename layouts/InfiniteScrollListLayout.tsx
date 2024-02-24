@@ -1,9 +1,11 @@
 import Card from '@/components/Card'
-
+import { useEffect } from 'react';
 
 const InfiniteScrollListLayout = ({ 
-    posts
+    posts,
 }) => {
+
+
     return (
         <div className="container py-12">
             <div className="-m-4 flex flex-wrap">

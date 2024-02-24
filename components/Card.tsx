@@ -55,7 +55,7 @@ const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '' }
             aria-label={`Link to ${title}`}
           >
             <button className="bg-white hover:bg-pink-400 text-gray-800 py-2 px-4 rounded items-center w-full ">
-              <span>★　MY NOTES</span>
+              <span>★ GO TO MY RELATED BLOG NOTE </span>
             </button>
 
           </Link>
