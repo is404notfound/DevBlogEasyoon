@@ -12,7 +12,7 @@ import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import { useTranslation } from 'react-i18next';
 import Image from '@/components/Image'
-import ProfileImage from 'public/static/images/my-profile.png'
+import ProfileImage from 'public/static/images/both-babies.jpeg'
 
 
 interface PaginationProps {
@@ -150,12 +150,12 @@ export default function ListLayoutWithTags({
                           <Image
                             src={ProfileImage}
                             alt={siteMetadata.socialBanner}
-                            width={40}  
+                            width={80}  
                             style={{ 
                               borderRadius: '50%'
-                              , display: 'block'
                               , margin: '0 auto'
                               , paddingTop: '10px'
+                              , marginBottom: '20px'
                             }} 
                           /> // margin 0 auto : 좌우 여백의 공간을 동일하게 가져가서 가운데로 정렬
                         }
@@ -173,7 +173,7 @@ export default function ListLayoutWithTags({
                           </h2>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
+                          {summary || 'No summary provided.'}
                         </div>
                       </div>
                       </div>
