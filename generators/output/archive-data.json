@@ -1,0 +1,42 @@
+[
+  {
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2024-02-04T18:33:15.941Z",
+    "og:title": "4 React Tips to Instantly Improve Your Code",
+    "al:android:url": "medium://p/7456e028cfa3",
+    "al:ios:url": "medium://p/7456e028cfa3",
+    "al:android:app_name": "Medium",
+    "og:description": "Solid knowledge of React is one of the most valuable skills for a front-end developer. Many companies are constantly searching for React…",
+    "og:url": "https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3",
+    "al:web:url": "https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3",
+    "og:image": "https://miro.medium.com/v2/resize:fit:680/1*DLTTiftRtERTsf89ODZfFw.png",
+    "article:author": "https://medium.com/@pashkapag",
+    "twitter:title": "4 React Tips to Instantly Improve Your Code",
+    "twitter:description": "Solid knowledge of React is one of the most valuable skills for a front-end developer. Many companies are constantly searching for React…"
+  },
+  {
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2024-02-04T18:31:19.135Z",
+    "og:title": "5 Tips To Improve Your React Application",
+    "al:android:url": "medium://p/a17d540c920a",
+    "al:ios:url": "medium://p/a17d540c920a",
+    "al:android:app_name": "Medium",
+    "og:description": "Easy and Effective Tips to Make Your App Code Better",
+    "og:url": "https://javascript.plainenglish.io/5-essential-tips-to-improve-your-react-application-a17d540c920a",
+    "al:web:url": "https://javascript.plainenglish.io/5-essential-tips-to-improve-your-react-application-a17d540c920a",
+    "og:image": "https://miro.medium.com/v2/resize:fit:720/1*Hd_GZB46cAytykCNje5bRg.png",
+    "article:author": "https://medium.com/@pashkapag",
+    "twitter:title": "5 Tips To Improve Your React Application",
+    "twitter:description": "Easy and Effective Tips to Make Your App Code Better"
+  }
+]
