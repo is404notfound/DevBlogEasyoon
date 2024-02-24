@@ -1,7 +1,7 @@
-#!/bin/bash
+echo "LOG :: Generating commit history data..."
 
 # 저장할 파일 경로 설정
-output_file="commit-history-data.json"
+output_file="./generators/output/commit-history-data.json"
 
 # git 커밋 이력을 파일로 저장 (최근 5개의 커밋)
 git log -10 --pretty=format:'"%s"' > "$output_file"
@@ -22,4 +22,4 @@ file_contents=${file_contents%,}
 # 파일에 새로운 내용 덮어쓰기
 echo "$file_contents" > "$output_file"
 
-echo "5 latest Git commit history saved to $output_file with braces added and commas added for separation"
+echo "LOG :: Commit history data generated."

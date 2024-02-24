@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import totalRecordsData from 'code-records-data.json'
-import commitHistoryData from 'commit-history-data.json'
+import totalRecordsData from 'generators/output/code-records-data.json'
+import commitHistoryData from 'generators/output/commit-history-data.json'
 
 interface TotalCodeRecords {
     codeCount: number;
