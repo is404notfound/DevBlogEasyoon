@@ -17,7 +17,9 @@ export default function Archive() {
           </p>
         </div>
         <div className="container py-12">
-          <div className="-m-4 flex flex-wrap">
+          <div className="-m-4 flex flex-wrap">ß
+            // content card
+
           </div>
         </div>
       </div>
