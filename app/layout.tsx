@@ -16,8 +16,9 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import { useScroll, useSpring,animated } from 'react-spring'
 import styled from 'styled-components';
-import CanvasCat from '@/components/CanvasCat'
-import Head from 'next/head'
+import CanvasCat from '@/components/CanvasCat';
+import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
 
 
 
@@ -240,47 +241,49 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </Head>
       <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       
-      <ThemeProviders>
-          <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-            <ContentContainer ref={containerRef}>
-              <SectionContainer>
-                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
-                  <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                    <Header />
-                    <main className="mb-auto">
-                      {children}
-                      </main>
-                  </SearchProvider>
-                  <Footer />
-                </div>
-              </SectionContainer>
+        <ThemeProviders>
+            <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+              <ContentContainer ref={containerRef}>
+                <SectionContainer>
+                  <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
+                    <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                      <Header />
+                      <RecoilRoot>
+                       <main className="mb-auto">
+                        {children}
+                        </main>
+                      </RecoilRoot>
+                    </SearchProvider>
+                    <Footer />
+                  </div>
+                </SectionContainer>
 
-            { useMovingBar && (
-              <>
-                <BarContainer>
-                {Array.from({ length: X_LINES }).map((_, i) => (
-                  <Bar key={i} style={{
-                    width: scrollYProgress.to(scrollP => {
-                    const percentilePosition = (i + 1) / X_LINES
-                    return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                  }),}} />
-                ))}
-              </BarContainer>
-              <InvertedBarContainer>
-                {Array.from({ length: X_LINES }).map((_, i) => (
-                  <InvertedBar key={i} style={{ 
-                    width: scrollYProgress.to(scrollP => {
+              { useMovingBar && (
+                <>
+                  <BarContainer>
+                  {Array.from({ length: X_LINES }).map((_, i) => (
+                    <Bar key={i} style={{
+                      width: scrollYProgress.to(scrollP => {
                       const percentilePosition = (i + 1) / X_LINES
                       return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                    })
-                    }} />
-                ))}
-              </InvertedBarContainer>
-            </>
-          )}
-          <CanvasCat />
-          </ContentContainer>
-        </ThemeProviders>
+                    }),}} />
+                  ))}
+                </BarContainer>
+                <InvertedBarContainer>
+                  {Array.from({ length: X_LINES }).map((_, i) => (
+                    <InvertedBar key={i} style={{ 
+                      width: scrollYProgress.to(scrollP => {
+                        const percentilePosition = (i + 1) / X_LINES
+                        return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
+                      })
+                      }} />
+                  ))}
+                </InvertedBarContainer>
+              </>
+            )}
+            <CanvasCat />
+            </ContentContainer>
+          </ThemeProviders>
       </body>
     </html>
   )

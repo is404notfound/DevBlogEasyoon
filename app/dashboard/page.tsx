@@ -2,10 +2,10 @@
 
 import Card from '@/components/dashboard/Card';
 import React, { useEffect, useState } from 'react';
-import useTotalCodeRecords from 'hooks/useTotalCodeRecords'
+import useTotalCodeRecords from '@/hooks/useTotalCodeRecords'
 import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
-import archiveData from 'generators/output/archive-data.json'
+import archiveData from '@/generators/output/archive-data.json'
 
 const Dashboard = () => {
   const { totalCodeRecords, latestRecord, commitHistory } = useTotalCodeRecords();
