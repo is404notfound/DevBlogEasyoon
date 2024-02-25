@@ -1,14 +1,14 @@
 'use client'
 
 import { useTranslation } from 'react-i18next';
-import archiveData from 'generators/output/archive-data.json'
+import archiveData from '@/generators/output/archive-data.json';
 import InfiniteScrollListLayout from '@/layouts/InfiniteScrollListLayout';
-import { useEffect, useState } from 'react';
-import useInfiniteScroll from 'hooks/useInfiniteScroll';
+import { useEffect } from 'react';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 export default function Archive() {
   const { t } = useTranslation();
-  const { posts, setPosts } = useInfiniteScroll();
+  const { setInitialItemList } = useInfiniteScroll();
     
   useEffect(() => {
       const parsedData = archiveData.map((item: any) => {
@@ -22,7 +22,7 @@ export default function Archive() {
           };
       });
 
-      setPosts(parsedData);
+      setInitialItemList(parsedData as any);
   }, []);
 
 
@@ -37,7 +37,7 @@ export default function Archive() {
             {t('인상 깊었던 개발 관련 컨텐츠들을 모아두는 곳 입니다.')}
           </p>
         </div>
-        <InfiniteScrollListLayout posts={posts} />
+        <InfiniteScrollListLayout />
       </div>
     </>
   )
