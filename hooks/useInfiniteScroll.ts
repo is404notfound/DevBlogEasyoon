@@ -2,24 +2,27 @@ import { useEffect } from 'react';
 import { itemListState, initialItemListState } from '@/recoil/atoms/atom';
 import { useRecoilState } from 'recoil';
 
-const DISPLAY_ITEM_COUNT = 2;
+const DISPLAY_ITEM_COUNT: number = 4 as const;
+const OFFSET: number = 1.1 as const;
+
 const useInfiniteScroll = () => {
     const [initialItemList, setInitialItemList] = useRecoilState(initialItemListState)
     const [itemList, setItemList] = useRecoilState(itemListState);
     const handleScroll = () => {
         const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - 20) {
-            addMoreItems();
-        }
+
+        scrollTop + clientHeight >= scrollHeight / OFFSET && addMoreItems();
     };
 
     useEffect(() => {
         const displayItems = initialItemList.slice(0, DISPLAY_ITEM_COUNT);
+
         setItemList(displayItems);
     }, [initialItemList]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -28,6 +31,7 @@ const useInfiniteScroll = () => {
     function addMoreItems () {
         const currentItemCount = itemList.length;
         const newItems = initialItemList.slice(currentItemCount, currentItemCount + DISPLAY_ITEM_COUNT);
+        
         setItemList([...itemList, ...newItems]);
     }
 

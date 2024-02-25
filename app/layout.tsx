@@ -126,7 +126,7 @@ const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const X_LINES = 80;
-  const INITIAL_HEIGHT = 985;
+  const INITIAL_HEIGHT = 2000;
   const INITIAL_WIDTH = 100;
 
   const calculateBarWidth = (i, scrollP) => {
