@@ -1,0 +1,98 @@
+---
+title: Reactive state 관련 간단 이슈 모음 (recoil, styled component)
+date: '2024-02-25'
+tags: ['FE', 'state', 'styled-component', 'recoil']
+draft: false
+---
+
+## 상태관리 관련
+- InfiniteScroll을 구현하면서 useState를 사용한 커스텀 훅으로 상태를 관리하고 있었는데, 여러 컴포넌트에서 사용하다보면 제대로 상태 추적이 되지 않는 케이스가 있어 recoil을 사용하기 시작했다.
+
+---
+
+## Styled-component 관련
+- Styled-component를 사용하면, 스타일이 코드와 한벌로 분리되어 관리가 편하고 성능적으로도 좋다고 한다.
+- Styled-component는 스타일에 반응성을 주기도 편했는데, 다만 렌더링 메소드와 함께 사용하면 아래와 같은 warning을 확인할 수 있다.
+
+The component Styled(Animated(div)) with the id of "sc-immwQm" has been created dynamically.
+You may see this warning because you've called styled inside another component.
+To resolve this only create new StyledComponents outside of any render method and function component.
+
+- 이 에러는, 렌더링 메소드 내에서 styled-component를 사용하면 발생하는 에러로, 렌더링 메소드 밖에서 사용하라는 것으로,
+Styled Components는 컴포넌트 외부에서만 생성할 것을 권장하고 있다.
+
+- 코드가 좀 길어진다는 단점이 있지만 아래와 같이 쓸 때 가장 깔끔한 것 같다.
+
+```jsx
+  //컴포넌트 외부
+  //Css initial styles
+  const INITIAL_BAR_CONTAINER_STYLE = {
+    'display': 'flex',
+    'flex-direction': 'column',
+    'align-items': 'flex-end',
+    'justify-content': 'space-between',
+    'height': '180%',
+    'position': 'absolute',
+    'top': 0,
+    'left': 0,
+    'right': 0,
+    'bottom': 0,
+    'z-index': 1,
+  } as const
+
+  const INITIAL_BAR_STYLE = {
+    'height': '3vh',
+    'opacity': 0.5,
+    'background-color': 'gray',
+    'box-shadow': '0 0 10px 5px #f472b6',
+    'z-index': 1,
+  } as const;
+
+  const INITIAL_INVERTED_BAR_CONTAINER_STYLE = {
+    'display': 'flex',
+    'flex-direction': 'column',
+    'justify-content': 'space-between',
+    'align-items': 'flex-start',
+    'position': 'absolute',
+    'height': '180%',
+    'top': 0,
+    'left': 0,
+    'right': 0,
+    'bottom': 0,
+    'z-index': 1,
+  } as const;
+
+  const INITIAL_INVERTED_BAR_STYLE = {
+    'height': '3vh',
+    'opacity': 0.5,
+    'background-color': 'gray',
+    'box-shadow': '0 0 10px 5px #f472b6',
+    'z-index': 1,
+  } as const;
+
+  //styled components 정의
+  const BarContainer = styled.div(INITIAL_BAR_CONTAINER_STYLE as any);
+  const Bar = styled(animated.div)(INITIAL_BAR_STYLE);
+  const InvertedBarContainer = styled.div(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
+  const InvertedBar = styled(animated.div)(INITIAL_INVERTED_BAR_STYLE);
+
+
+
+
+  // 컴포넌트 내부
+  // reactive style states
+  const [barContainerStyle, setBarContainerStyle] = useState(INITIAL_BAR_CONTAINER_STYLE as any);
+  const [invertedBarContainerStyle, setInvertedBarContainerStyle] = useState(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
+
+  // moving bar style
+  useEffect(() => {
+    setBarContainerStyle({
+        ...INITIAL_BAR_CONTAINER_STYLE,
+        height: `${resultHeight}px`,
+    });
+    setInvertedBarContainerStyle({
+        ...INITIAL_INVERTED_BAR_CONTAINER_STYLE,
+        height: `${resultHeight}px`,
+    });
+  }, [resultHeight]);
+```
