@@ -155,8 +155,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
   });
   const [textStyles, textApi] = useSpring(() => ({y: '100%',}));
-  const [resultWidth, setResultWidth] = useState(0);
-  const [resultHeight, setResultHeight] = useState(0);
+  const [resultWidth, setResultWidth] = useState(INITIAL_WIDTH);
+  const [resultHeight, setResultHeight] = useState(window.innerHeight);
   const [useMovingBar, setUseMovingBar] = useState(false);
 
   // reactive style states
@@ -176,6 +176,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }, [resultHeight]);
 
   useEffect(() => {
+    if (resultHeight === window.innerHeight) return;
     window.addEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
 
     return () => {
