@@ -126,6 +126,7 @@ const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const X_LINES = 80;
+  const INITIAL_HEIGHT = 985;
   const INITIAL_WIDTH = 100;
 
   const calculateBarWidth = (i, scrollP) => {
@@ -156,7 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   });
   const [textStyles, textApi] = useSpring(() => ({y: '100%',}));
   const [resultWidth, setResultWidth] = useState(INITIAL_WIDTH);
-  const [resultHeight, setResultHeight] = useState(window.innerHeight);
+  const [resultHeight, setResultHeight] = useState(INITIAL_HEIGHT);
   const [useMovingBar, setUseMovingBar] = useState(false);
 
   // reactive style states
