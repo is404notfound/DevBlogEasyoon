@@ -1,0 +1,55 @@
+---
+title: useState와 eventListner를 이용한 상태 변경이 반응하지 않는 경우
+date: '2024-02-25'
+tags: ['FE', 'state', 'useState', 'eventListner']
+draft: false
+---
+
+## 원인
+- React로 eventListner 관련 동작들 (Infinite Scroll, moving bar)을 구현하다보면, useState를 이용한 상태가 원하는대로 동작하지 않는 경우가 있었다.
+- addEventListner를 이용하여 이벤트를 등록하고, 이벤트가 발생할 때마다 상태를 변경하는 방법을 사용하였다.
+- 이때, 상태를 변경하면서, 이벤트가 발생할 때마다 상태가 변경되어야 하는데, useState를 사용하면, 상태가 변경되어도 반응하지 않고 그대로 유지 되었다.
+- 이는 이벤트 리스너를 등록할 때, mount 시점에만 등록되어, 상태가 변경되어도 반응하지 않는 것이다.
+
+## 이유
+- 이벤트 리스너를 등록할 때, 해당 context를 기억하고 있기 때문에 반응성이 없는 당시의 초기 값만을 가져온다.
+
+## 해결방법
+- 이벤트 리스너를 걸 때, 변경하려는 상태 변수의 종속성을 추가해주면 된다.
+- 또다른 방법은, useRef를 통해 current를 이용하여 현재의 값을 가져오는 방법이 있다.
+
+## 예시
+```jsx
+
+// Work (최초 mount 할 시에 eventListner를 걸면 데이터가 갱신되어도 반응이 없음)
+useEffect(() => {
+    const displayItems = initialItemList.slice(0, DISPLAY_ITEM_COUNT);
+    setItemList(displayItems);
+}, [initialItemList]);
+
+useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, [itemList]);
+
+// Don't work
+  useEffect(() => {
+    window.addEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+    return () => {
+      window.removeEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight)); // clean up
+    }
+  }, []); // resultHeight를 추가하지 않아서, 초기값만을 가져옴
+
+// Work
+useEffect(() => {
+if (resultHeight === window.innerHeight) return;
+    window.addEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+return () => {
+    window.removeEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight)); // clean up
+}
+  }, [resultHeight]);
+
+
+```

@@ -1,0 +1,10 @@
+{ "1": "Update 2 new blog posts",
+"2": "[#19] mount시 moving bar가 뭉쳐있는 현상 해결 (default값 추가)",
+"3": "[#19] Refactoring moving bars (styled-componets)",
+"4": "Create each directory in recoil (atom, selector)",
+"5": "Update dir alias setting (config)",
+"6": "[#5]Add Infinite scroll to Archive tab (+atom)",
+"7": "Pre-build",
+"8": "Add new blog posts (image optimization)",
+"9": "[#5] Remove useArchiveData, TODO:: Recoil",
+"10": "[#30] Add sharp, recoil" }

@@ -1,7 +1,14 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc, href }) => (
+const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '' }
+: {
+  title: string
+  description: string
+  imgSrc?: string
+  href?: string
+  buttonPath?: string
+}) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
       className={`${
@@ -38,14 +45,19 @@ const Card = ({ title, description, imgSrc, href }) => (
             title
           )}
         </h2>
-        <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
-        {href && (
+        <div>
+          <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+        </div>
+        { buttonPath && (
           <Link
-            href={href}
-            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            href={buttonPath}
+            className="text-base font-large leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label={`Link to ${title}`}
           >
-            Learn more &rarr;
+            <button className="bg-white hover:bg-pink-400 text-gray-800 py-2 px-4 rounded items-center w-full ">
+              <span>★ GO TO MY RELATED BLOG NOTE </span>
+            </button>
+
           </Link>
         )}
       </div>

@@ -2,16 +2,8 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
-import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
-import { t } from 'i18next'
-import Link from 'next/link'
-import { formatDate } from 'pliny/utils/formatDate'
-import Image from '@/components/Image'
-import ProfileImage from 'public/static/images/my-profile.png'
 
 const POSTS_PER_PAGE = 5
-const MAX_DISPLAY = 5
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 

@@ -1,0 +1,65 @@
+---
+title: Sharp(Next의 이미지 최적화 라이브러리)의 효과는 대단했다! (+ Next/Image)
+date: '2024-2-25'
+tags: ['FE', 'Performance', 'Next', 'Image']
+draft: false
+---
+
+## 결론
+- Next에서 지원하는 컴포넌트인 Next/Image를 기본 img 태그 대신 사용하면, 이미지를 자동으로 최적화하고 레이지 로딩을 지원한다.
+- sharp라는 이미지 처리 라이브러리를 사용하여 이미지를 최적화하면 효과가 대단하다.
+
+## 계기
+- 블로그의 기본 테마의 소스를 보고 있을 때, Image 컴포넌트를 사용하고 있길래 찾아보게 되었다.
+- 빌드 시 아래와 같은 Warning이 떴다.
+
+Warning: For production Image Optimization with Next.js,
+ the optional 'sharp' package is strongly recommended.
+ Run 'npm i sharp', and Next.js will use it automatically for Image Optimization.
+
+## 적용 법
+- `sharp` 라이브러리를 설치하고 나면 별도로 설정 할 필요 없이 Next에서 자동으로 이미지를 최적화한다.
+    
+    ```bash
+    npm install sharp
+    ```
+
+- Next/Image 컴포넌트에 우선 렌더링 할 이미지에 priority 속성을 추가하면, 우선적으로 렌더링 할 수 있다.
+    ```jsx
+    import Image from 'next/image';
+
+    <Image
+        src="/images/profile.jpg"
+        alt="Profile Picture"
+        width={500}
+        height={500}
+        priority
+    />
+    ```
+
+
+
+## 적용 결과
+- sharp 적용 전에는 최초 렌더링을 할 때 1~2초간 이미지 로드를 위해 버벅거리는 현상이 나타났는데, sharp 적용 후에는 이러한 현상이 사라졌다.  
+- 네트워크 탭에서 확인 했을 때, 이미지를 불러오는 데 걸리는 시간이
+적용 전에는 241ms 이상이었는데, sharp 적용 후에는 28ms 이하로 줄어들었다. (나의 경우, 크기는 크게 줄지 않았다.)
+- Next/Image 컴포넌트를 사용하지 않는 이미지 파일을 가져올 때에도 확연하게 차이가 났다.
+
+- 전
+![](../static/images/before-sharp.png)
+
+
+- 후
+![](../static/images/after-sharp.png)
+
+## 그 외
+
+- Next/Image 컴포넌트는 Next 서버 동작 시, /_next/image 폴더에 최적화 된 이미지를 최초에 생성하고 이후 요청들 부터는 캐싱된 이미지를 반환한다.
+- SVG와 GIF는 최적화 되지 않는다. (PNG, JPEG 등을 지원한다.)
+- sharp는 Next 공식 문서에서도 production 환경에서 반드시 사용하도록 권장하는 라이브러리이다.
+
+
+### 관련 참고 글
+- https://youtu.be/Ino03JPppU4
+- https://oliveyoung.tech/blog/2023-06-09/nextjs-image-optimization/
+- https://junheedot.tistory.com/entry/Next-Image-load-super-slow

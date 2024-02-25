@@ -18,7 +18,6 @@ const Header = ()=> {
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
               <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
-              {/* <img src="./static/images/cat-logo.jpeg" alt="Logo" className="logo" id="animated-logo" style={logoStyle} /> */}
             {typeof siteMetadata.headerTitle === 'string' ? (
               <div className="hidden h-6 text-3xl font-semibold sm:block">
                 {t(`${siteMetadata.headerTitle}`)}
@@ -42,7 +41,7 @@ const Header = ()=> {
             </Link>
           ))}
         <SearchButton />
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <MobileNav />
         <LanguageSelector />
       </div>

@@ -21,6 +21,9 @@
       "@/data/*": ["data/*"],
       "@/layouts/*": ["layouts/*"],
       "@/css/*": ["css/*"],
+      "@/recoil/*": ["recoil/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/generators/*": ["generators/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [
@@ -37,6 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.json",
+    "**/*.sh",
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
