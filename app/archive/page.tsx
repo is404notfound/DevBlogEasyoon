@@ -21,6 +21,7 @@ export default function Archive() {
               note: item.note || '',
           };
       });
+      parsedData.reverse();
 
       setInitialItemList(parsedData as any);
   }, []);
