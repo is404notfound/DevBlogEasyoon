@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { itemListState, initialItemListState } from '@/recoil/atom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { itemListState, initialItemListState } from '@/recoil/atoms/atom';
+import { useRecoilState } from 'recoil';
 
 const DISPLAY_ITEM_COUNT = 2;
 const useInfiniteScroll = () => {
