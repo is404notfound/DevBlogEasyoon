@@ -20,52 +20,55 @@ import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 
+//Css initial styles
+const INITIAL_BAR_CONTAINER_STYLE = {
+  'display': 'flex',
+  'flex-direction': 'column',
+  'align-items': 'flex-end',
+  'justify-content': 'space-between',
+  'height': '180%',
+  'position': 'absolute',
+  'top': 0,
+  'left': 0,
+  'right': 0,
+  'bottom': 0,
+  'z-index': 1,
+} as const
 
+const INITIAL_BAR_STYLE = {
+  'height': '3vh',
+  'opacity': 0.5,
+  'background-color': 'gray',
+  'box-shadow': '0 0 10px 5px #f472b6',
+  'z-index': 1,
+} as const;
 
-//CSS
-const BarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  height: 180%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-`;
+const INITIAL_INVERTED_BAR_CONTAINER_STYLE = {
+  'display': 'flex',
+  'flex-direction': 'column',
+  'justify-content': 'space-between',
+  'align-items': 'flex-start',
+  'position': 'absolute',
+  'height': '180%',
+  'top': 0,
+  'left': 0,
+  'right': 0,
+  'bottom': 0,
+  'z-index': 1,
+} as const;
 
-const Bar = styled(animated.div)`
-  height: 3vh; // viewport height
-  opacity: 0.5;
-  background-color: gray;
-  box-shadow: 0 0 10px 5px #f472b6;
-  z-index: 1;
-`;
+const INITIAL_INVERTED_BAR_STYLE = {
+  'height': '3vh',
+  'opacity': 0.5,
+  'background-color': 'gray',
+  'box-shadow': '0 0 10px 5px #f472b6',
+  'z-index': 1,
+} as const;
 
-const InvertedBarContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-position: absolute;
-height: 180%;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-z-index: 1;
-`;
-
-const InvertedBar = styled(animated.div)`
-height: 3vh;
-opacity: 0.5;
-background-color: gray;
-box-shadow: 0 0 10px 5px #f472b6;
-z-index: 1;
-`;
+const BarContainer = styled.div(INITIAL_BAR_CONTAINER_STYLE as any);
+const Bar = styled(animated.div)(INITIAL_BAR_STYLE);
+const InvertedBarContainer = styled.div(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
+const InvertedBar = styled(animated.div)(INITIAL_INVERTED_BAR_STYLE);
 
 const ContentContainer = styled.div`
   position: relative;
@@ -120,8 +123,6 @@ const metadata: Metadata = {
   },
 }
 
-
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const X_LINES = 80;
@@ -132,7 +133,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const amplitude = 20; // 조절 가능한 진폭 값
     const frequency = 1.5; // 조절 가능한 주파수 값
     const rawWidth = INITIAL_WIDTH / 4 + amplitude * Math.cos(2 * Math.PI * frequency * (percentilePosition - scrollP));
-
     return Math.abs(rawWidth)
   };
 
@@ -154,21 +154,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       immediate: true,
     },
   });
-
-  const [textStyles, textApi] = useSpring(() => ({
-    y: '100%',
-  }));
+  const [textStyles, textApi] = useSpring(() => ({y: '100%',}));
   const [resultWidth, setResultWidth] = useState(0);
+  const [resultHeight, setResultHeight] = useState(0);
   const [useMovingBar, setUseMovingBar] = useState(false);
 
+  // reactive style states
+  const [barContainerStyle, setBarContainerStyle] = useState(INITIAL_BAR_CONTAINER_STYLE as any);
+  const [invertedBarContainerStyle, setInvertedBarContainerStyle] = useState(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
+
+  // moving bar style
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1280) {
-        setUseMovingBar(true);
-      } else {
-        setUseMovingBar(false);
-      }
-    };
+    setBarContainerStyle({
+        ...INITIAL_BAR_CONTAINER_STYLE,
+        height: `${resultHeight}px`,
+    });
+    setInvertedBarContainerStyle({
+        ...INITIAL_INVERTED_BAR_CONTAINER_STYLE,
+        height: `${resultHeight}px`,
+    });
+  }, [resultHeight]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+
+    return () => {
+      window.removeEventListener('scroll',()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+    }
+  }, [resultHeight]);
+
+  // set is using moving bar
+  useEffect(() => {
+    const handleResize = () => window.innerWidth > 1280 ? setUseMovingBar(true) : setUseMovingBar(false);
 
     window.addEventListener('resize', handleResize);
     handleResize();
@@ -179,18 +196,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }, []);
 
   
+  // make moving bar
   useEffect(() => {
     if (!useMovingBar) return;
-  
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
+    
+    function getWindowSize () {
       const viewportHeight = window.innerHeight;
       const totalHeight = document.documentElement.scrollHeight;
-      const percentage = (scrollY / (totalHeight - viewportHeight)) * 100;
+      const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
       const percentilePosition = percentage;
       const newWidth = calculateBarWidth(0, percentilePosition);
   
+      setResultHeight(totalHeight);
       setResultWidth(newWidth);
+
+      return {percentage};
+    }
+  
+    const handleScroll = () => {
+      const {percentage} = getWindowSize();
   
       if (percentage > 0.7) {
         textApi.start({ y: '0' });
@@ -199,22 +223,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       }
     };
   
-    const handleResize = () => {
-      const viewportHeight = window.innerHeight;
-      const totalHeight = document.documentElement.scrollHeight;
-      const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
-      const percentilePosition = percentage;
-      const newWidth = calculateBarWidth(0, percentilePosition);
-  
-      setResultWidth(newWidth);
-    };
-  
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', ()=> getWindowSize());
   
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', ()=> getWindowSize());
     };
   }, [useMovingBar, textApi]);
   
@@ -260,7 +274,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               { useMovingBar && (
                 <>
-                  <BarContainer>
+                  <BarContainer style={barContainerStyle}>
                   {Array.from({ length: X_LINES }).map((_, i) => (
                     <Bar key={i} style={{
                       width: scrollYProgress.to(scrollP => {
@@ -269,7 +283,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     }),}} />
                   ))}
                 </BarContainer>
-                <InvertedBarContainer>
+                <InvertedBarContainer style={invertedBarContainerStyle}>
                   {Array.from({ length: X_LINES }).map((_, i) => (
                     <InvertedBar key={i} style={{ 
                       width: scrollYProgress.to(scrollP => {
