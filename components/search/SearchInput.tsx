@@ -3,7 +3,7 @@ const SearchInput = ({ value, onChange }) => {
         <div className="flex">
             <div className="flex-none pt-2">
                 <span className="text-xl text-white">
-                    Search Words Here >:
+                    Search Words Here  &gt;:
                 </span>
             </div>
             <div className="flex-auto w-full">
