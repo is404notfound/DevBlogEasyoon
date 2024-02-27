@@ -8,9 +8,6 @@
 # rss feed
 /public/feed.xml
 
-# search
-/public/search.json
-
 # production
 /build
 *.xml
