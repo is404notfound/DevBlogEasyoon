@@ -201,5 +201,30 @@
     "og:image:height": "630",
     "og:image:alt": "재그지그의 개발 블로그",
     "article:published_time": "2023-12-03T09:00:00.000Z"
+  },
+  {
+    "note": "",
+    "og:site_name": "YouTube",
+    "og:url": "https://www.youtube.com/watch?v=dLPgQRbVquo",
+    "og:title": "Generics: The most intimidating TypeScript feature",
+    "og:image": "https://i.ytimg.com/vi/dLPgQRbVquo/maxresdefault.jpg",
+    "og:image:width": "1280",
+    "og:image:height": "720",
+    "og:description": "Generics are a huge reason why TypeScript is SO DARN POWERFUL. Letting you create types from other types, pass types to functions, and even INFER those types...",
+    "al:ios:app_store_id": "544007664",
+    "al:ios:app_name": "YouTube",
+    "al:ios:url": "vnd.youtube://www.youtube.com/watch?si=Fy6cmyUPIKZ0hgnb&v=dLPgQRbVquo&feature=youtu.be&feature=applinks",
+    "al:android:url": "vnd.youtube://www.youtube.com/watch?si=Fy6cmyUPIKZ0hgnb&v=dLPgQRbVquo&feature=youtu.be&feature=applinks",
+    "al:web:url": "http://www.youtube.com/watch?si=Fy6cmyUPIKZ0hgnb&v=dLPgQRbVquo&feature=youtu.be&feature=applinks",
+    "og:type": "video.other",
+    "og:video:url": "https://www.youtube.com/embed/dLPgQRbVquo",
+    "og:video:secure_url": "https://www.youtube.com/embed/dLPgQRbVquo",
+    "og:video:type": "text/html",
+    "og:video:width": "1280",
+    "og:video:height": "720",
+    "al:android:app_name": "YouTube",
+    "al:android:package": "com.google.android.youtube",
+    "og:video:tag": "advanced typescript",
+    "fb:app_id": "87741124305"
   }
 ]

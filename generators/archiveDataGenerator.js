@@ -10,6 +10,7 @@ const URLS =
     , 'https://medium.com/@dpericich/how-to-bypass-useeffect-on-your-first-page-render-c31b7ba112a7'
     , 'https://peter-coding.tistory.com/287'
     , 'https://wormwlrm.github.io/2023/12/03/Weirdest-bug-I-solved.html'
+    , 'https://youtu.be/dLPgQRbVquo?si=Fy6cmyUPIKZ0hgnb'
 ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
