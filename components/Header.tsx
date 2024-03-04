@@ -46,9 +46,8 @@ const Header = ()=> {
           <LanguageSelector />
         </div> 
       </header>
-      {/* <SearchWrapper /> */}
+      <SearchWrapper />
      </div>
-
   )
 }
 

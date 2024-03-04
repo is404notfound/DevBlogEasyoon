@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { itemListState, initialItemListState } from '@/recoil/atoms/atom';
+import { itemListState, initialItemListState } from '@/recoil/atoms/infiniteList';
 import { useRecoilState } from 'recoil';
 
 const DISPLAY_ITEM_COUNT: number = 4 as const;
