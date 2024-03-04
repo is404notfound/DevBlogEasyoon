@@ -31,10 +31,10 @@ const PopupLayout = () => {
         setContent(null);
     }
     return (
-        <div className="fixed inset-0 bg-black/70 z-10 flex justify-center items-center">
-            <div className="w-1/2 bg-gray-700">
+        <div className="fixed inset-0 bg-teal-800/70 z-10 flex justify-center items-center">
+            <div className="w-1/2 bg-gray-500">
                 <div className="flex justify-end">
-                    <button className="text-2xl" onClick={closePopup}>[X]</button>
+                    <button className="text-2xl text-white" onClick={closePopup}>[X]</button>
                 </div>
                 {content}
             </div>
