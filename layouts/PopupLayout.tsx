@@ -12,7 +12,19 @@ const PopupLayout = () => {
         return () => {
           document.body.style.overflow = "unset";
         };
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        }
+    }, []);
 
     function closePopup() {
         setIsPopupOpenState(false);
