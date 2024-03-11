@@ -11,6 +11,7 @@ const URLS =
     , 'https://peter-coding.tistory.com/287'
     , 'https://wormwlrm.github.io/2023/12/03/Weirdest-bug-I-solved.html'
     , 'https://youtu.be/dLPgQRbVquo?si=Fy6cmyUPIKZ0hgnb'
+    , 'https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/'
 ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');

@@ -10,7 +10,7 @@ const PopupWrapper = () => {
     const isPopupOpenState = useRecoilValue(isPopupOpen);
 
     return (
-        <div >
+        <div>
             {isPopupOpenState && <PopupLayout />}
         </div>
     )

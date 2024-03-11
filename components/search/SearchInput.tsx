@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { useRecoilState } from 'recoil';
 import { searchInputValue } from '@/recoil/atoms/Common';
 
-const SearchInput = () => {
+const SearchInput = ({color = 'black', label = 'Search Keyword', placeHolder = ''}) => {
     const [value, setValue] = useRecoilState(searchInputValue);
 
     const onChange = (e) => {
@@ -13,16 +12,16 @@ const SearchInput = () => {
         <div className="flex">
             <div className="flex-none pt-2">
                 <span className="text-xl text-white">
-                    Search Posts &gt;:
+                    [ {label} ] :
                 </span>
             </div>
             <div className="flex-auto w-full">
                 <input
-                    className="bg-black text-white w-full border-black focus:border-black focus:ring-black"
+                    className={`bg-${color} text-white text-xl w-full border-${color} ring-${color} focus:border-${color} focus:ring-${color}`}
                     type="text"
                     value={value}
                     onChange={onChange}
-                    placeholder="Please enter to confirm a keyword..."
+                    placeholder={placeHolder}
                 />
             </div>
         </div>

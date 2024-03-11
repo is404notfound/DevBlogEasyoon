@@ -226,5 +226,22 @@
     "al:android:package": "com.google.android.youtube",
     "og:video:tag": "advanced typescript",
     "fb:app_id": "87741124305"
+  },
+  {
+    "note": "",
+    "og:locale": "ko_KR",
+    "og:type": "article",
+    "og:title": "[DOM] Node, NodeList, Element, HTMLElement, HTMLCollection - Javascript | UsingU",
+    "og:description": "DOM을 작업하다보면 Node, NodeList, Element, HTMLElement, HTMLCollection에 따라 사용할 수 있는 메소드와 속성 그리고 반환되는 값에서 미묘한 차이가 있어 많이 헷갈려서 정리 했습니다.",
+    "og:url": "https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/",
+    "og:site_name": "UsingU",
+    "article:published_time": "2023-04-29T02:55:40+00:00",
+    "article:modified_time": "2023-04-29T03:09:03+00:00",
+    "og:image": "https://usingu.co.kr/wp-content/uploads/2023/04/thubmnail-icon-dom.png",
+    "og:image:width": "400",
+    "og:image:height": "225",
+    "og:image:type": "image/png",
+    "position": "3",
+    "url": "https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/"
   }
 ]
