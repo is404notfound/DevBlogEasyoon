@@ -68,12 +68,6 @@ const LogoComponent = ({ src }) => {
         src={src}
         alt="Logo"
       />
-      {isHovered && <Wave />}
-      {isHovered || (
-        <OverlayText>
-          Hover on me
-        </OverlayText>
-      )}
     </LogoContainer>
   );
 };

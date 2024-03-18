@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { searchInputValue } from '@/recoil/atoms/Common';
 
-const SearchInput = ({color = 'black', label = 'Search Keyword', placeHolder = ''}) => {
+const SearchInput = ({color = 'black', label = 'Search', placeHolder = ''}) => {
     const [value, setValue] = useRecoilState(searchInputValue);
 
     const onChange = (e) => {
