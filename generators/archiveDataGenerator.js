@@ -12,6 +12,9 @@ const URLS =
     , 'https://wormwlrm.github.io/2023/12/03/Weirdest-bug-I-solved.html'
     , 'https://youtu.be/dLPgQRbVquo?si=Fy6cmyUPIKZ0hgnb'
     , 'https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/'
+    , 'https://ux.stackexchange.com/questions/90336/whats-the-difference-between-a-modal-popup-popover-and-lightbox'
+    , 'https://youtu.be/95YLHDzsg8A?si=Es3sWI61_16-e2fU'
+    , 'https://youtu.be/7BHs1BzA4fs?si=YUbtDplCi3i5TljA'
 ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
