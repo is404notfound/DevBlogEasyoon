@@ -16,8 +16,9 @@ const waveAnimation = keyframes`
 // 로고 컨테이너에 대한 스타일
 const LogoContainer = styled.div`
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+  padding-top: 20%;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   margin-right : 10px;
   &:hover {

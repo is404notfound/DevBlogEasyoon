@@ -12,14 +12,16 @@ import SearchWrapper from '@/components/search/SearchWrapper'
 const Header = ()=> {
   const { t } = useTranslation();
   return (
-    <div className=" flex flex-col justify-between">
+    <div className="flex flex-col justify-between">
       <header className="flex items-center justify-between py-10">
-        <div>
+        <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
-            <div className="flex items-center justify-between">
-                <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
+            <div className="h-full w-full flex items-center justify-between">
+                <div>
+                  <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
+                </div>
               {typeof siteMetadata.headerTitle === 'string' ? (
-                <div className="hidden h-6 text-3xl font-semibold sm:block">
+                <div className="hidden h-6 text-3xl font-semibold sm:block pb-10">
                   {t(`${siteMetadata.headerTitle}`)}
                 </div>
               ) : (
