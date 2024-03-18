@@ -3,8 +3,11 @@
 import { useState } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import { useTranslation } from 'react-i18next';
+
 
 const MobileNav = () => {
+  const { t } = useTranslation();
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {
@@ -57,14 +60,16 @@ const MobileNav = () => {
           </button>
         </div>
         <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => (
+          {headerNavLinks
+          .filter((link) => link.href !== '/')
+          .map((link) => (
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                {link.title}
+                {link.title && `[${t(link.title)}]`}
               </Link>
             </div>
           ))}
