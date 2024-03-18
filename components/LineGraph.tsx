@@ -97,7 +97,6 @@ const LineGraph = ({xAxisData = [], yAxisData = [], yAxisLabel = '', title = '',
         {
           name: yAxisLabel,
           data: yAxisData,
-          color: "pink",
         }
       ],);
 

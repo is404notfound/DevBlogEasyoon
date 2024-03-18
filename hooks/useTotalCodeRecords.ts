@@ -3,25 +3,33 @@
 import { useEffect, useState } from "react";
 import totalRecordsData from 'generators/output/code-records-data.json'
 import commitHistoryData from 'generators/output/commit-history-data.json'
+import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
 
-interface TotalCodeRecords {
+export interface CodeLineRecords {
     codeCount: number;
     date: string;
 }
 
-const initialTotalCodeRecord: TotalCodeRecords = {date: '', codeCount: 0};
+export interface TotalCodeRecords {
+    [key: string]: CodeLineRecords[];
+}
+
+const initialTotalCodeRecord: CodeLineRecords = {date: '', codeCount: 0};
 
 const useTotalCodeRecords = () => {
-    const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords[]>([]);
-    const [latestRecord, setLatestRecord] = useState<TotalCodeRecords>(initialTotalCodeRecord);
+    const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords>({DEV_BLOG_EASYOON: [], COOK_THE_FRIDGE: []});
+    const [latestRecord, setLatestRecord] = useState<CodeLineRecords>(initialTotalCodeRecord);
     const [commitHistory, setCommitHistory] = useState<string[]>([]);
 
     useEffect(() => {
-        const totalRecords = objectToArray(totalRecordsData);
+        const codeRecordsAll = {
+            DEV_BLOG_EASYOON: objectToArray(totalRecordsData),
+            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData)
+        }
         const commitHistory = Object.values(commitHistoryData);
         
-        setTotalCodeRecords(totalRecords);
-        setLatestRecord(getLatestRecord(totalRecords));
+        setTotalCodeRecords(codeRecordsAll);
+        setLatestRecord(getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON));
         setCommitHistory(commitHistory);
     }
     , []);
@@ -32,7 +40,7 @@ const useTotalCodeRecords = () => {
         }) || [];
     }
 
-    function getLatestRecord(records: TotalCodeRecords[]){
+    function getLatestRecord(records: CodeLineRecords[]){
         return records[records.length - 1] || initialTotalCodeRecord;
     }
 

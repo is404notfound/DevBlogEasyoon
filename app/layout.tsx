@@ -19,6 +19,7 @@ import styled from 'styled-components';
 import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
+import PopupWrapper from '@/components/PopupWrapper'
 
 //Css initial styles
 const INITIAL_BAR_CONTAINER_STYLE = {
@@ -126,7 +127,7 @@ const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const X_LINES = 80;
-  const INITIAL_HEIGHT = 985;
+  const INITIAL_HEIGHT = 2000;
   const INITIAL_WIDTH = 100;
 
   const calculateBarWidth = (i, scrollP) => {
@@ -255,8 +256,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
       </Head>
-      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
+      <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
+      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-500" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       
+      <RecoilRoot>
+        <PopupWrapper />
         <ThemeProviders>
             <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
               <ContentContainer ref={containerRef}>
@@ -264,11 +268,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
                     <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                       <Header />
-                      <RecoilRoot>
                        <main className="mb-auto">
                         {children}
                         </main>
-                      </RecoilRoot>
                     </SearchProvider>
                     <Footer />
                   </div>
@@ -300,6 +302,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CanvasCat />
             </ContentContainer>
           </ThemeProviders>
+          </RecoilRoot>
       </body>
     </html>
   )
