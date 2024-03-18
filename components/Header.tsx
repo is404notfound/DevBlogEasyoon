@@ -16,7 +16,7 @@ const Header = ()=> {
       <header className="flex items-center justify-between py-10">
         <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
-            <div className="h-full w-full flex items-center justify-between">
+            <div className="h-full flex items-center justify-between">
                 <div>
                   <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
                 </div>
@@ -37,9 +37,9 @@ const Header = ()=> {
               <Link
                 key={link.title}
                 href={link.href}
-                className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
+                className="hidden w-full font-medium text-gray-900 dark:text-gray-100 sm:block"
               >
-                {t(`${link.title}`)}
+                {link.title && `[${t(link.title)}]`}
               </Link>
             ))}
           <MobileNav />
