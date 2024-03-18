@@ -68,6 +68,7 @@ const LogoComponent = ({ src }) => {
         src={src}
         alt="Logo"
       />
+      {isHovered && <Wave />}
     </LogoContainer>
   );
 };

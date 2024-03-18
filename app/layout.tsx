@@ -257,7 +257,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
       </Head>
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
-      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-400" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
+      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-500" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
       
       <RecoilRoot>
         <PopupWrapper />
