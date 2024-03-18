@@ -1,7 +1,11 @@
+'use client';
+
 import { useRecoilState } from 'recoil';
 import { searchInputValue } from '@/recoil/atoms/Common';
+import { useTranslation } from 'react-i18next';
 
 const SearchInput = ({color = 'black', label = 'Search', placeHolder = ''}) => {
+    const { t } = useTranslation();
     const [value, setValue] = useRecoilState(searchInputValue);
 
     const onChange = (e) => {
@@ -12,7 +16,7 @@ const SearchInput = ({color = 'black', label = 'Search', placeHolder = ''}) => {
         <div className="flex">
             <div className="flex-none pt-2">
                 <span className="text-xl text-white">
-                    [ {label} ] :
+                    [ {t(label)} ] :
                 </span>
             </div>
             <div className="flex-auto w-full">
@@ -21,7 +25,7 @@ const SearchInput = ({color = 'black', label = 'Search', placeHolder = ''}) => {
                     type="text"
                     value={value}
                     onChange={onChange}
-                    placeholder={placeHolder}
+                    placeholder={t(placeHolder)}
                 />
             </div>
         </div>

@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { searchInputValue } from '@/recoil/atoms/Common';
 import posts from '../../public/search.json';
 import SearchInput from "./SearchInput";
+import { t } from "i18next";
 
 const SearchList = () => {
     const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -23,7 +24,7 @@ const SearchList = () => {
         <div className="h-fit bg-blue-700 flex justify-center items-center border-double border-4">
             <div className="flex flex-col w-full">
                 <div className="flex justify-center text-2xl pt-5">
-                    <span className="text-white text-2xl"> ※ Pleas "Click" the row to continue </span>
+                    <span className="text-white text-2xl"> ※ {t("Pleas 'Click' the row to continue")} </span>
                 </div>
                 <div className="flex justify-center text-2xl pt-5 pb-5">
                     <div className="border-b-[1px] pb-1">
