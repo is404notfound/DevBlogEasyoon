@@ -90,7 +90,7 @@ const Dashboard = () => {
                 xAxisData={dates[key]}
                 yAxisData={codeCounts[key]}
                 yAxisLabel='codeCounts'
-                title={`[${i + 1}] ${key} 코드 변화량`}
+                title={`[${i + 1}] ${key} ${t('코드 변화량')}`}
                 description={description}
                 point={diffCount > 0 ? `+${diffCount}줄` : `${diffCount}줄`}
               />
@@ -102,7 +102,7 @@ const Dashboard = () => {
           <Card title="LATEST HISTORY" description="[Commit / 10건]" content={commitHistory || ''} fontSizeLevel={'xl'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="SEO 실적" description="[키워드 / 순위]" content="- / -" />
+          <Card title="SEO" description="[키워드 / 순위]" content="- / -" />
         </div>
       </div>
     </div>
