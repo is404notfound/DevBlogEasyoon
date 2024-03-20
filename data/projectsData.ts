@@ -6,6 +6,12 @@ const projectsData = [
     href: 'https://github.com/is404notfound/DevBlogEasyoon',
   },
   {
+    title: 'Cook The Fridge!',
+    description: `This is my modern design recipe web application. I made this web application with my team.`,
+    imgSrc: './static/images/cook-the-fridge-demo.png',
+    href: 'https://github.com/is404notfound/CookTheFridge',
+  },
+  {
     title: 'Data Structure Team Study!',
     description: `This is my study source for Data Structure. I study about Data Structure with my team. We study about Data Structure with JS. And I describe about this source in Blog tab!`,
     imgSrc: './static/images/study-project-image.png',
