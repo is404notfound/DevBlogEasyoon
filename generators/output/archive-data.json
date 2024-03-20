@@ -301,5 +301,21 @@
     "al:android:app_name": "YouTube",
     "al:android:package": "com.google.android.youtube",
     "fb:app_id": "87741124305"
+  },
+  {
+    "note": "",
+    "og:title": "TSConfig Reference - Docs on every TSConfig option",
+    "og:description": "From allowJs to useDefineForClassFields the TSConfig reference includes information about all of the active compiler flags setting up a TypeScript project.",
+    "twitter:site": "typescriptlang"
+  },
+  {
+    "note": "",
+    "og:site_name": "ITWorld Korea",
+    "og:image": "https://files.itworld.co.kr/ITW_202402_01/layoff/GettyImages-1346150865.640x480.jpg",
+    "og:title": "AI가 촉발한 IT 예산의 중심 이동, 일자리 재편 불가피",
+    "og:type": "article",
+    "fb:app_id": "150411725035294",
+    "og:url": "https://www.itworld.co.kr/news/325527",
+    "og:description": "AI가 거의 모든 비AI 투자에서 자금을 빨아들이고 있는 상황에서 기업은 불필요한 일자리를 줄이고 AI에 숙련된 인력으로 대체하고 있다.구글"
   }
 ]

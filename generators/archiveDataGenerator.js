@@ -15,6 +15,8 @@ const URLS =
     , 'https://ux.stackexchange.com/questions/90336/whats-the-difference-between-a-modal-popup-popover-and-lightbox'
     , 'https://youtu.be/95YLHDzsg8A?si=Es3sWI61_16-e2fU'
     , 'https://youtu.be/7BHs1BzA4fs?si=YUbtDplCi3i5TljA'
+    , 'https://www.typescriptlang.org/tsconfig#moduleResolution'
+    , 'https://www.itworld.co.kr/tags/22353/%EC%A0%95%EB%A6%AC%ED%95%B4%EA%B3%A0/325527'
 ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
