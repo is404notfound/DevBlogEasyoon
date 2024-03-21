@@ -1,15 +1,15 @@
 const projectsData = [
   {
-    title: 'My Tech Blog!',
-    description: `This is my personal blog where I write about my experiences as a developer. I write about my experiences with React, Next.js, and other web development topics.`,
-    imgSrc: './static/images/blog-project-image.png',
-    href: 'https://github.com/is404notfound/DevBlogEasyoon',
-  },
-  {
     title: 'Cook The Fridge!',
     description: `This is my modern design recipe web application. I made this web application with my team.`,
     imgSrc: './static/images/cook-the-fridge-demo.png',
     href: 'https://github.com/is404notfound/CookTheFridge',
+  },
+  {
+    title: 'Dev Blog Easyoon!',
+    description: `This is my personal blog where I write about my experiences as a developer. I write about my experiences with React, Next.js, and other web development topics.`,
+    imgSrc: './static/images/read-me-image.png',
+    href: 'https://github.com/is404notfound/DevBlogEasyoon',
   },
   {
     title: 'Data Structure Team Study!',

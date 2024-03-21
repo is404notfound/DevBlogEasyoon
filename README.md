@@ -3,11 +3,11 @@
 # Easyoon Dev Blog
 Hello, World!
 
-Visit 'Easy0.0n Tech Blog!'
+Visit 'Dev Blog Easy0.0n !'
 
 [[Link] https://is404notfound.github.io/DevBlogEasyoon/](https://is404notfound.github.io/DevBlogEasyoon/)
 
-This is Easyoon's dev blog, for technical writing skills.
+This is Easyoon's frontend dev blog, for technical writing skills.
 (Using React, Next.js)
 
 ![](./public/static/images/read-me-image.png)
