@@ -15,6 +15,18 @@ const Dashboard = () => {
   const [codeCounts, setCodeCounts] = useState<{}>();
   const [dates, setDates] = useState<{}>({});
   const [diff, setDiff] = useState<{}>(0);
+  const SearchBlogLinkComponent = ()=> {
+    const searchURL = 'https://www.google.com/search?q=DevBlogEasyoon';
+    return (
+      <div className="">
+        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+          <a href={searchURL} target="_blank" rel="noreferrer"> {t('검색하러 가기')} </a>
+        </button>
+      </div>
+    );
+  }
+
+
 
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
@@ -102,11 +114,11 @@ const Dashboard = () => {
           <Card title="LATEST HISTORY" description="[Commit / 10건]" content={commitHistory || ''} fontSizeLevel={'xl'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="SEO" description="[키워드 / 순위]" content="- / -" />
+          <Card title="Google Search Console" description="[적용 완료]" fontSizeLevel={'md'} content={SearchBlogLinkComponent()} />
         </div>
       </div>
     </div>
   );
-}
+  } 
 
 export default Dashboard;
