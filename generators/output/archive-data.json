@@ -317,5 +317,22 @@
     "fb:app_id": "150411725035294",
     "og:url": "https://www.itworld.co.kr/news/325527",
     "og:description": "AI가 거의 모든 비AI 투자에서 자금을 빨아들이고 있는 상황에서 기업은 불필요한 일자리를 줄이고 AI에 숙련된 인력으로 대체하고 있다.구글"
+  },
+  {
+    "note": "blog/debugging-bootstrap",
+    "og:site_name": "Reddit",
+    "og:title": "How important is being an expert in CSS to frontend devs?",
+    "og:type": "article",
+    "og:url": "https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/",
+    "og:description": "If you're having trouble debugging css you're gonna have trouble debugging bootstrap. (...) Ultimately, front-end application engineering and UI design are entirely different skill sets. Being an expert at either one is worthwhile."
+  },
+  {
+    "note": "",
+    "og:site_name": "Medium",
+    "og:image": "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*xovKaUlsE9xIA_k7p2GKpA.jpeg",
+    "og:title": "53 JavaScript Frontend Interview Questions",
+    "og:type": "article",
+    "og:url": "https://medium.com/@adarshrai3011/53-javascript-frontend-interview-questions-e6013116eaa0",
+    "og:description": ""
   }
 ]

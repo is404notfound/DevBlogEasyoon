@@ -17,6 +17,9 @@ const URLS =
     , 'https://youtu.be/7BHs1BzA4fs?si=YUbtDplCi3i5TljA'
     , 'https://www.typescriptlang.org/tsconfig#moduleResolution'
     , 'https://www.itworld.co.kr/tags/22353/%EC%A0%95%EB%A6%AC%ED%95%B4%EA%B3%A0/325527'
+    , 'https://studiomeal.com/archives/197'
+    , 'https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/'
+    , 'https://medium.com/@adarshrai3011/53-javascript-frontend-interview-questions-e6013116eaa0'
 ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
