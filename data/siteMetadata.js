@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'DevBlogEasyoon',
   author: 'Lee',
-  headerTitle: 'Dev Blog Easy0.0n *****************',
+  headerTitle: 'I ♡ Visualization ******************',
   description: 'Hello, World ...! ₩elcome to my tech blog !',
   language: 'en-us',
   theme: 'dark', // system, dark or light
