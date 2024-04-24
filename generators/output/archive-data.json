@@ -319,20 +319,70 @@
     "og:description": "AI가 거의 모든 비AI 투자에서 자금을 빨아들이고 있는 상황에서 기업은 불필요한 일자리를 줄이고 AI에 숙련된 인력으로 대체하고 있다.구글"
   },
   {
-    "note": "blog/debugging-bootstrap",
-    "og:site_name": "Reddit",
-    "og:title": "How important is being an expert in CSS to frontend devs?",
-    "og:type": "article",
-    "og:url": "https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/",
-    "og:description": "If you're having trouble debugging css you're gonna have trouble debugging bootstrap. (...) Ultimately, front-end application engineering and UI design are entirely different skill sets. Being an expert at either one is worthwhile."
+    "note": "",
+    "fb:pages": "659677207551945",
+    "fb:app_id": "601760870383429",
+    "og:image": "https://studiomeal.com/wp-content/uploads/2020/02/flex-og.jpg",
+    "og:image:width": "600",
+    "og:image:height": "315",
+    "og:url": "https://studiomeal.com/archives/197",
+    "og:type": "website",
+    "og:title": "이번에야말로 CSS Flex를 익혀보자"
+  },
+  {
+    "note": ""
   },
   {
     "note": "",
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
     "og:site_name": "Medium",
-    "og:image": "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*xovKaUlsE9xIA_k7p2GKpA.jpeg",
-    "og:title": "53 JavaScript Frontend Interview Questions",
     "og:type": "article",
+    "article:published_time": "2024-01-14T05:34:35.042Z",
+    "og:title": "53 JavaScript Frontend Interview Questions",
+    "al:android:url": "medium://p/e6013116eaa0",
+    "al:ios:url": "medium://p/e6013116eaa0",
+    "al:android:app_name": "Medium",
+    "og:description": "Introduction",
     "og:url": "https://medium.com/@adarshrai3011/53-javascript-frontend-interview-questions-e6013116eaa0",
-    "og:description": ""
+    "al:web:url": "https://medium.com/@adarshrai3011/53-javascript-frontend-interview-questions-e6013116eaa0",
+    "og:image": "https://miro.medium.com/v2/resize:fit:1200/1*xovKaUlsE9xIA_k7p2GKpA.jpeg",
+    "article:author": "https://medium.com/@adarshrai3011",
+    "twitter:title": "53 JavaScript Frontend Interview Questions",
+    "twitter:description": "Introduction"
+  },
+  {
+    "note": "",
+    "og:locale": "ko_KR",
+    "og:type": "article",
+    "og:title": "리멤버에서 Pull Request 편리하게 사용하는 법 - DRAMA&COMPANY",
+    "og:description": "여러 사람이 협업을 하다 보면 코드에 변경 사항에 대한 코드 리뷰를 받기 위하여 Pull Request를 생성하곤 합니다. 리멤버에서는 리뷰어가 좀 더 쉽게 리뷰를 진행할 수 있도록 Pull Request에 작업 내용, 고민됐던 부분, 희망 리뷰 완료일 등 다양한 정보를 적고 있습니다. 이런 코드 리뷰 프로세스를 더 잘 정착시키고 효율적으로 진행할 수 있도록 리멤버의 서버 개발자들이 고민하고 […]",
+    "og:url": "https://blog.dramancompany.com/2021/11/드라마앤컴퍼니에서-pull-request-편리하게-사용하는-법/",
+    "og:site_name": "DRAMA&COMPANY",
+    "article:publisher": "https://www.facebook.com/Rememberapp/",
+    "article:published_time": "2021-11-17T01:24:10+00:00",
+    "article:modified_time": "2021-11-17T17:06:08+00:00",
+    "og:image": "https://i0.wp.com/blog.dramancompany.com/wp-content/uploads/2021/11/스크린샷-2021-11-17-오전-10.28.11.png?fit=692%2C330&ssl=1",
+    "og:image:width": "692",
+    "og:image:height": "330",
+    "og:image:type": "image/png"
+  },
+  {
+    "note": "",
+    "og:locale": "ko_KR",
+    "og:type": "article",
+    "og:title": "리멤버 서버/웹 팀은 어떻게 일을 하는가? - DRAMA&COMPANY",
+    "og:description": "안녕하세요 리멤버를 서비스하고 있는 드라마앤컴퍼니의 개발실 리더 김담형입니다. 이번 글에서는 리멤버 서비스들의 웹 사이트와 API, 인프라를 담당하고 있는 서버/웹 팀이 일하는 모든 방식을 다루고 있습니다. 추상적인 글을 넘어서 실제 스크릿샷 등을 포함하여 저희가 어떻게 일을 하고 있는지 낱낱이 보여 드리고자 합니다.",
+    "og:url": "https://blog.dramancompany.com/2020/12/리멤버-서버-웹-팀은-어떻게-일을-하는가/",
+    "og:site_name": "DRAMA&COMPANY",
+    "article:publisher": "https://www.facebook.com/Rememberapp/",
+    "article:published_time": "2020-12-21T01:00:41+00:00",
+    "article:modified_time": "2021-11-04T06:12:51+00:00",
+    "og:image": "https://i0.wp.com/blog.dramancompany.com/wp-content/uploads/2020/12/Screen-Shot-2020-12-23-at-16.55.08.png?fit=1067%2C803&ssl=1",
+    "og:image:width": "1067",
+    "og:image:height": "803",
+    "og:image:type": "image/png"
   }
 ]
