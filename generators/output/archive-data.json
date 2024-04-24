@@ -330,7 +330,13 @@
     "og:title": "이번에야말로 CSS Flex를 익혀보자"
   },
   {
-    "note": ""
+    "note": "blog/debugging-bootstrap",
+    "og:site_name": "Reddit",
+    "og:title": "How important is being an expert in CSS to frontend devs?",
+    "og:type": "article",
+    "og:url": "https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/",
+    "og:description": "If you're having trouble debugging css you're gonna have trouble debugging bootstrap. (...) Ultimately, front-end application engineering and UI design are entirely different skill sets. Being an expert at either one is worthwhile."
+
   },
   {
     "note": "",
