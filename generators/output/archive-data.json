@@ -390,5 +390,25 @@
     "og:image:width": "1067",
     "og:image:height": "803",
     "og:image:type": "image/png"
+  },
+  {
+    "note": "blog/japan-also-use-jquery",
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2023-12-02T22:16:24.206Z",
+    "og:title": "jQuery vs React: In-Depth Comparison",
+    "al:android:url": "medium://p/6cc60cabd837",
+    "al:ios:url": "medium://p/6cc60cabd837",
+    "al:android:app_name": "Medium",
+    "og:description": "Introduction",
+    "og:url": "https://medium.com/@lbq999/jquery-vs-react-in-depth-comparison-with-examples-6cc60cabd837",
+    "al:web:url": "https://medium.com/@lbq999/jquery-vs-react-in-depth-comparison-with-examples-6cc60cabd837",
+    "article:author": "https://medium.com/@lbq999",
+    "twitter:title": "jQuery vs React: In-Depth Comparison",
+    "twitter:description": "Introduction"
   }
 ]
