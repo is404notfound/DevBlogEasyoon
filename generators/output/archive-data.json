@@ -336,7 +336,6 @@
     "og:type": "article",
     "og:url": "https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/",
     "og:description": "If you're having trouble debugging css you're gonna have trouble debugging bootstrap. (...) Ultimately, front-end application engineering and UI design are entirely different skill sets. Being an expert at either one is worthwhile."
-
   },
   {
     "note": "",
@@ -410,5 +409,34 @@
     "article:author": "https://medium.com/@lbq999",
     "twitter:title": "jQuery vs React: In-Depth Comparison",
     "twitter:description": "Introduction"
+  },
+  {
+    "note": "",
+    "og:type": "article",
+    "og:url": "https://burkui-developer.tistory.com/20",
+    "og.article.author": "버퀴",
+    "og:site_name": "아하!",
+    "og:title": "React-Native 와 React의 차이",
+    "og:description": "그러면 일단 React.js 와 React-Native가 무엇인지 알아야겠죠? React? 페이스북에서 만든 프론트엔드 JavaScript 라이브러리입니다. React-Native? React의 방식으로 네이티브 앱을 개발할 수 있는 페이스북의 오픈 소스 프레임워크입니다. React와 React-Native의 동작 React React는 Dom이 생성이 되고 난 뒤에 Virtual Dom 을 이용하여 변화된 곳을 캐치하여 변화된 Dom으로 변경합니다. 여기에 Dom의 작동 방식과 함께 Virtual Dom을 사용한 이용하는 이유를 친절하게 설명되어 있는 글입니다. -> https://velopert.com/3236 React-Native React Native 코드를 실행하게 되면 Bridge를 이용하여..",
+    "og:image": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNcQ9s%2FbtqD6P0q2e0%2FF16AntILWVGjz71PJ0G6wK%2Fimg.png",
+    "twitter:image": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNcQ9s%2FbtqD6P0q2e0%2FF16AntILWVGjz71PJ0G6wK%2Fimg.png",
+    "dg:plink": "https://burkui-developer.tistory.com/20",
+    "article:mobile_url": "https://burkui-developer.tistory.com/m/20",
+    "article:pc_url": "https://burkui-developer.tistory.com/20",
+    "article:mobile_view_url": "https://burkui-developer.tistory.com/m/20",
+    "article:pc_view_url": "https://burkui-developer.tistory.com/20",
+    "article:talk_channel_view_url": "https://burkui-developer.tistory.com/m/20",
+    "article:pc_service_home": "https://www.tistory.com",
+    "article:mobile_service_home": "https://www.tistory.com/m",
+    "article:txid": "3681799_20",
+    "article:published_time": "2020-05-12T17:44:23+09:00",
+    "og:regDate": "20200512054423",
+    "article:modified_time": "2020-05-12T17:46:00+09:00"
+  },
+  {
+    "note": "",
+    "og:title": "토스가 꿈꾸는 React Native 기술의 미래",
+    "og:description": "토스 프론트엔드 챕터는 어떻게 React Native 기술을 발전시켜 나갈 예정일까요?",
+    "og:image": "https://static.toss.im/illusts-common/react-native-og-2.png"
   }
 ]
