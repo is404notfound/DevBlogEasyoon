@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://is404notfound.github.io/DevBlogEasyoon/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
   siteLogo: '/static/images/cat-logo.jpeg',
-  socialBanner: '/static/images/both-babies.jpeg',
+  socialBanner: '/static/images/with-my-byul.png',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
   locale: 'en-US',
