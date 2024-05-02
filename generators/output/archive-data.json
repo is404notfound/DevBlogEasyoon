@@ -411,7 +411,7 @@
     "twitter:description": "Introduction"
   },
   {
-    "note": "",
+    "note": "blog/react-native-threejs-makes-me-angry",
     "og:title": "토스가 꿈꾸는 React Native 기술의 미래",
     "og:description": "토스 프론트엔드 챕터는 어떻게 React Native 기술을 발전시켜 나갈 예정일까요?",
     "og:image": "https://static.toss.im/illusts-common/react-native-og-2.png"
