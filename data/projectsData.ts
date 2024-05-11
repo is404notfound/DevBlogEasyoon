@@ -1,6 +1,12 @@
 const projectsData = [
   {
-    title: 'Cook The Fridge!',
+    title: '[On-Going] 666-find-anomalies!',
+    description: `This is 3d game project with Three.js, React and RN.`,
+    imgSrc: './static/images/666-find-anomalies-demo.png',
+    href: 'https://github.com/is404notfound/666-find-anomalies',
+  },
+  {
+    title: '[On-Going] Cook The Fridge!',
     description: `This is my modern design recipe web application. I made this web application with my team.`,
     imgSrc: './static/images/cook-the-fridge-demo.png',
     href: 'https://github.com/is404notfound/CookTheFridge',
