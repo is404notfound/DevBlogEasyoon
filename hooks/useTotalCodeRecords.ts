@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import totalRecordsData from 'generators/output/code-records-data.json'
 import commitHistoryData from 'generators/output/commit-history-data.json'
 import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
+import findAnomaliesData from 'generators/output/666-find-anomalies.json'
 
 export interface CodeLineRecords {
     codeCount: number;
@@ -24,12 +25,14 @@ const useTotalCodeRecords = () => {
     useEffect(() => {
         const codeRecordsAll = {
             DEV_BLOG_EASYOON: objectToArray(totalRecordsData),
-            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData)
+            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData),
+            FIND_ANOMALIES: objectToArray(findAnomaliesData)
         }
         const commitHistory = Object.values(commitHistoryData);
         const latestRecord = [
             getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON)
             , getLatestRecord(codeRecordsAll.COOK_THE_FRIDGE)
+            , getLatestRecord(codeRecordsAll.FIND_ANOMALIES)
         ];
 
         setTotalCodeRecords(codeRecordsAll);
