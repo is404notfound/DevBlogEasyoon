@@ -2,7 +2,7 @@
 
 import Card from '@/components/dashboard/Card';
 import React, { useEffect, useState } from 'react';
-import useTotalCodeRecords, { CodeLineRecords } from '@/hooks/useTotalCodeRecords'
+import useTotalCodeRecords, { CodeLineRecords, TotalCodeRecords } from '@/hooks/useTotalCodeRecords'
 import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
 import archiveData from '@/generators/output/archive-data.json'
@@ -25,8 +25,6 @@ const Dashboard = () => {
       </div>
     );
   }
-
-
 
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
@@ -56,6 +54,10 @@ const Dashboard = () => {
 
 
   useEffect(() => {
+    const values = Object.values(totalCodeRecords);
+    const last = values.length - 1;
+    if (!values[last].length) return;
+    
     setCodeCounts(getCounts());
     setDates(getDate());
   }, [totalCodeRecords]);
