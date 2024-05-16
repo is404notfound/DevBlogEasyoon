@@ -3,7 +3,7 @@ const projectsData = [
     title: '[On-Going] Aws Certified Developer-Associate Study!',
     description: 'Preparing for exams to qualify for AWS Certified Developer-Associate.',
     imgSrc: './static/images/aws-certificate-project.png',
-    href: 'https://github.com/is404notfound/aws-certified-developer-associate/blob/main/0_README.md',
+    href: 'https://github.com/is404notfound/aws-certified-developer-associate',
   },
   {
     title: '[On-Going] 666-find-anomalies!',
