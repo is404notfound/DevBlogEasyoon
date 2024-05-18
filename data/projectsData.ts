@@ -1,25 +1,25 @@
 const projectsData = [
   {
-    title: '[On-Going] Aws Certified Developer-Associate Study!',
+    title: '[* On-Going] Aws Certified Developer-Associate Study!',
     description: 'Preparing for exams to qualify for AWS Certified Developer-Associate.',
     imgSrc: './static/images/aws-certificate-project.png',
     href: 'https://github.com/is404notfound/aws-certified-developer-associate',
   },
   {
-    title: '[On-Going] 666-find-anomalies!',
-    description: 'This is 3d game project with Three.js, React and RN.',
+    title: '[* On-Going] 666-find-anomalies!',
+    description: '[React + Three.js (R3F) + React Native + Expo] This is 3d game project. ',
     imgSrc: './static/images/666-find-anomalies-demo.png',
-    href: 'https://github.com/is404notfound/666-find-anomalies',
+    href: 'https://is404notfound.github.io/666-find-anomalies',
   },
   {
-    title: '[On-Going] Cook The Fridge!',
-    description: 'This is my modern design recipe web application. I made this web application with my team.',
+    title: '[* On-Going] Cook The Fridge!',
+    description: '[React + Recoil + NextJS + NextUI + GraphQL + NodeJS + Express + Apollo + MySql] The cooking application demo for web.',
     imgSrc: './static/images/cook-the-fridge-demo.png',
-    href: 'https://github.com/is404notfound/CookTheFridge',
+    href: 'https://github.com/is404notfound/CookTheFridge/issues/17',
   },
   {
     title: 'Dev Blog Easyoon!',
-    description: 'This is my personal blog where I write about my experiences as a developer. I write about my experiences with React, Next.js, and other web development topics.',
+    description: '[React + Next + Recoil + Tailwind] This is my personal blog where I archive and write about my experiences as a developer. (Moved from my medium blog.)',
     imgSrc: './static/images/read-me-image.png',
     href: 'https://github.com/is404notfound/DevBlogEasyoon',
   },
