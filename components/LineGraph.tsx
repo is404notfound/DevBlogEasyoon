@@ -26,7 +26,7 @@ const LineGraph = ({xAxisData = [], yAxisData = [], yAxisLabel = '', title = '',
             enabled: false,
           },
           toolbar: {
-            show: false,
+            show: true,
           },
         },
         tooltip: {

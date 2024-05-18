@@ -1,0 +1,54 @@
+---
+title: 'Algorithm - Making Hamberger'
+date: '2024-04-16'
+tags: ['Algorithm']
+draft: false
+---
+# 1. 문제
+[링크]
+https://school.programmers.co.kr/learn/courses/30/lessons/133502
+
+
+# 2. 아이디어
+
+## 기본 접근
+
+받은 배열을 string으로 join 후 '1231'이라는 문자열이 포함되어 있는지 확인한다.
+
+## (1 - 1) while 문만 사용하기
+
+'1231' 문자열이 포함되어 있을 때마다, 해당 문자열을 제거하고 카운트를 1 증가시킨다.
+
+=> 퍼포먼스 측면에서 통과하지 못했다.
+
+## (1 - 2) replaceAll 사용하기
+
+string 값에서 한 번에 '1231'을 제거할 수 있는 replaceAll을 사용한다.
+
+=> 정확도 측면에서 통과하지 못했다. 근데 정확히 어떤 테스트케이스에서 fail이 나는지 가늠이 안갔다.
+
+=> 반례 찾음 (사진)
+
+![](../static/images/algorithm-hamberger-2.jpeg)
+
+
+## (1 - 3) indexOf로 처음 '1231'을 제거 후 다시 while문 사용하기
+
+[목적]
+처음 hamberger를 찾은 후, 이미 검색했던 부분은 다시 검색하지 않도록 날려버린 후 그 뒤 문자열부터 검색한다.
+
+=> 통과!
+
+
+# 3. 결과
+![](../static/images/algorithm-hamberger-1.png)
+
+# 4. 그 외
+## search 메소드와 indexOf, findIndex에 대해
+
+- search와 IndexOf의 return 값은 같지만, search는 정규표현식을 사용한다.
+- indexOf가 search 메소드보다 퍼포먼스 면에서 빠르다.
+- 이유는 정규 표현식 때문인데, 정규 표현식은 "백트래킹"을 하기 때문.
+정규식은 왼쪽에서 오른쪽으로 탐색을 하는데 100% 매칭 되지 않으면 다시 뒤로 되돌아가면서 매칭을 시도한다.
+이를 백트래킹이라고 한다. 이 때문에 퍼포먼스가 떨어진다.
+- findIndex는 배열에서만 사용할 수 있다. indexOf는 배열, 문자열에서 사용할 수 있다.

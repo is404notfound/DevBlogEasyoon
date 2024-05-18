@@ -6,7 +6,6 @@
     ,"Tags": "タグ"
     ,"Projects": "プロジェクト"
     ,"Archive": "アーカイブ"
-    ,"Easy0.0n Tech Blog*********": "Easy0.0n 技術ブログ*********"
     ,"i18n, When building statically, the original language is restored.": "i18nを適用した後、静的にビルドすると元の言語に戻る問題"
     ,"Javascript Modern Deep Dive Study (1) / 2nd Reading": "JavaScript Deep Diveの勉強会"
     ,"Analyzing a Static Next.js Blogging Project": "Next JSをお調べてみました。 scaffolding, contentlayer"
@@ -19,4 +18,10 @@
     ,"Please press 'Enter Key' to confirm a keyword...": "キーワードを確認するには、Enterキーを押してください..."
     ,"Pleas 'Click' the row to continue": "続けるには行をクリックしてください"
     ,"Current Keyword:": "現在のキーワード:"
+    , "세상으로 나간 코드": "世に出たコード"
+    , "쓴 글": "書いた  ポスト"
+    , "저장한 글": "セーブしたポスト"
+    , "코드 변화량": "コードの変化量"
+    , "검색하러 가기": "検索に行く"
+    , "[적용 완료]": "[適用完了]"
 }

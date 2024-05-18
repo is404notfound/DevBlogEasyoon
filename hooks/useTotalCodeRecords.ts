@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import totalRecordsData from 'generators/output/code-records-data.json'
 import commitHistoryData from 'generators/output/commit-history-data.json'
 import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
+import findAnomaliesData from 'generators/output/666-find-anomalies.json'
 
 export interface CodeLineRecords {
     codeCount: number;
@@ -18,18 +19,24 @@ const initialTotalCodeRecord: CodeLineRecords = {date: '', codeCount: 0};
 
 const useTotalCodeRecords = () => {
     const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords>({DEV_BLOG_EASYOON: [], COOK_THE_FRIDGE: []});
-    const [latestRecord, setLatestRecord] = useState<CodeLineRecords>(initialTotalCodeRecord);
+    const [latestRecords, setLatestRecords] = useState<CodeLineRecords[]>([]);
     const [commitHistory, setCommitHistory] = useState<string[]>([]);
 
     useEffect(() => {
         const codeRecordsAll = {
             DEV_BLOG_EASYOON: objectToArray(totalRecordsData),
-            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData)
+            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData),
+            FIND_ANOMALIES: objectToArray(findAnomaliesData)
         }
         const commitHistory = Object.values(commitHistoryData);
-        
+        const latestRecord = [
+            getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON)
+            , getLatestRecord(codeRecordsAll.COOK_THE_FRIDGE)
+            , getLatestRecord(codeRecordsAll.FIND_ANOMALIES)
+        ];
+
         setTotalCodeRecords(codeRecordsAll);
-        setLatestRecord(getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON));
+        setLatestRecords(latestRecord);
         setCommitHistory(commitHistory);
     }
     , []);
@@ -44,7 +51,7 @@ const useTotalCodeRecords = () => {
         return records[records.length - 1] || initialTotalCodeRecord;
     }
 
-    return { totalCodeRecords, latestRecord, commitHistory };
+    return { totalCodeRecords, latestRecords, commitHistory };
 };
 
 export default useTotalCodeRecords;

@@ -35,10 +35,9 @@ const LogoImage = styled.img`
 
 const Wave = styled.div`
   position: absolute;
+  width: 70px;
+  height: 70px;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: url(https://i.pinimg.com/originals/9a/45/d9/9a45d9cfc41af280fa36ae0d4b834e65.gif) repeat-x bottom;
   background-size: 100% 100%;  /* 배경 이미지 크기 조절 */
   animation: ${waveAnimation} 2s linear infinite;
@@ -69,7 +68,7 @@ const LogoComponent = ({ src }) => {
         src={src}
         alt="Logo"
       />
-      {isHovered && <Wave />}
+      {/* {isHovered && <Wave />} */}
     </LogoContainer>
   );
 };

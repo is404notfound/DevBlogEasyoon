@@ -1,0 +1,221 @@
+---
+title: I'm not ui publisher, but can make or debug bootstrap & css.
+date: '2024-03-28'
+tags: ['FE', 'CSS', 'Bootstrap']
+draft: false
+---
+
+# [태그들의 기본 display 요소]
+- block 요소
+``` html
+<address>, <article>, <canvas>, <dd>, <div>, <dl>, <hr>, <header>, <form>,<h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <table>, <pre>, <ul>, <p>, <ol>, <video>
+```
+
+- inline 요소
+``` html
+<a>, <i>, <span>, <img>, <strong>, <b>, <input>, <br>, <code>, <em>, <small>, <textarea>, <label>, <button>
+```
+
+- inline-block 요소
+
+inline과 block의 특성을 모두 가지고 있는 요소. 기본적으로 inline처럼 한 줄에 표시되지만, block처럼 width, height, margin, padding 속성을 지정할 수 있다.
+
+- display: none
+
+UI화면 상에 안보이도록 숨기는 것
+
+---
+
+# [레이아웃을 잡는 display Flex와 Grid]
+
+Flex는 한 방향 레이아웃 시스템이고 (1차원)
+Grid는 두 방향(가로-세로) 레이아웃 시스템 (2차원)
+기존의 float나 absolute, inline-block 등의 속성들을 조합하여 사용하는 방법보다 훨씬 간편하고 직관적으로 레이아웃을 구성할 수 있다.
+
+
+## [ Flex ]
+
+``` css
+{ display : flex; }
+```
+
+Flex 레이아웃을 만들기 위한 기본적인 HTML 구조는 다음과 같습니다.
+``` html
+<div class="container">
+	<div class="item">1st item</div>
+	<div class="item">2nd item</div>
+	<div class="item">3rd item</div>
+</div>
+```
+부모 요소인 div.container를 Flex Container(플렉스 컨테이너)라 하고,
+자식 요소인 div.item들을 Flex Item(플렉스 아이템)이라 한다.
+
+Flex 아이템들은 가로 방향으로 배치되고, 자신이 가진 내용물의 width 만큼만 차지하게 된다.
+마치 inline 요소와 비슷하게 자리를 차지하고, height는 컨테이너의 높이만큼 늘어난다.
+
+### 주축(main axis)과 교차축(cross axis)
+Flex Container(플렉스 컨테이너)는 아이템들을 배치하는 주축(main axis)과 교차축(cross axis)를 가진다.
+- 주축(main axis) : 아이템들이 배치되는 방향
+- 교차축(cross axis) : 주축과 수직으로 교차하는 방향
+
+### * flex-direction
+아이템들이 배치되는 주축 방향을 결정하는 속성입니다. 즉 “주축의 방향을 가로로 할거냐 세로로 할거냐”를 정해주는 것.
+``` css
+{ flex-direction: row | row-reverse | column | column-reverse; }
+```
+
+- row (기본값): 아이템들이 행(가로) 방향으로 배치.
+
+- row-reverse: 아이템들이 역순으로 가로 배치.
+
+- column: 아이템들이 열(세로) 방향으로 배치.
+
+- column-reverse: 아이템들이 역순으로 세로 배치.
+
+<u>[!참고] 반응형 웹에서 크기가 작은 모바일 기기에서 column으로 배치하다가 일정 폭 이상이 되면 row로 바꿔주는 식으로 반응형 레이아웃을 구현.</u>
+
+### * flex-wrap
+컨테이너가 더 이상 아이템들을 한 줄에 담을 여유 공간이 없을 때
+아이템 줄바꿈을 어떻게 할지 결정하는 속성.
+``` css
+{ flex-wrap: nowrap | wrap | wrap-reverse; }
+```
+
+- nowrap (기본값) : 줄바꿈을 하지 않고, 넘어가는 아이템들은 삐져나감.
+
+- wrap : 줄바꿈을 하고, 아이템들이 여러 줄로 배치.
+
+- wrap-reverse : 줄바꿈을 하고, 아이템들이 여러 줄로 배치되지만 역순으로 배치.
+
+### 아이템 방향 정렬
+“justify”는 주축 방향의 정렬을 맞출 때 사용하고,
+“align”은 교차축 방향의 정렬을 맞출 때 사용한다.
+
+### * justify-content
+``` css
+{ justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly; }
+```
+
+- flex-start (기본값) : 아이템들을 시작점으로부터 정렬.
+flex-direction이 row(가로 배치)일 때는 왼쪽부터, column(세로 배치)일 때는 위.
+
+- flex-end : 아이템들을 끝점으로부터 정렬.
+flex-direction이 row(가로 배치)일 때는 오른쪽부터, column(세로 배치)일 때는 아래.
+
+- center: 아이템들을 가운데로 정렬.
+
+- space-between : 아이템들의 “사이(between)”에 균일한 간격을 만들어 정렬.
+
+- space-around : 아이템들의 “둘레(around)”에 균일한 간격을 만들어 정렬.
+
+- space-evenly : 아이템들의 사이와 양 끝에 균일한 간격을 만들어 정렬. (IE와 엣지(Edge)에서는 지원되지 않는다)
+
+
+### * align-items
+``` css
+{ align-items: stretch | flex-start | flex-end | center | baseline; }
+```
+아이템의 수직 방향을 가지런하게 정렬하는 속성.
+
+- stretch (기본값): 아이템들이 수직축 방향으로 컨테이너의 끝까지 늘어남.
+
+- flex-start: 아이템들을 시작점으로 정렬.
+flex-direction이 row(가로 배치)일 때는 위, column(세로 배치)일 때는 왼쪽.
+
+- flex-end: 아이템들을 끝으로 정렬.
+flex-direction이 row(가로 배치)일 때는 아래, column(세로 배치)일 때는 오른쪽.
+
+- center: 아이템들을 가운데로 정렬.
+
+- baseline: 아이템들을 텍스트 베이스라인 기준으로 정렬.
+
+---
+
+# [ rem , em ]
+상대적으로 폰틑 사이즈를 지정하는 단위
+- EM: 부모요소의 폰트 사이즈에 의해 자식요소의 폰트 사이즈가 결정
+- REM: Root + em = Root의 폰트 사이즈에 의해 결정
+
+<u>[!참고] padding에 em 을 사용하는 경우: 폰트 크기와 비례하는 여백을 만들 때</u>
+
+---
+
+# [ positon 속성 ]
+```css
+{ position: static | relative | absolute | fixed | sticky; }
+```
+position 속성은 요소의 위치를 지정하는 속성.
+
+- static (기본값) : 요소가 기본적인 문서 흐름에 따라 배치. 
+- relative : 요소가 자기 자신을 기준으로 배치.
+- absolute : 부모를 기준으로 배치. 부모 중에 position이 relative, fixed, absolute 하나라도 있으면 그 부모를 기준으로 절대적으로 움직이게 됨.
+<ul>[!참고] 일반적으로 기준이 되는 자식 태그에 absolute를 써야하는 경우, 기준이 될 부모에게 position: relative; 를 부여하고 원하는 위치를 지정.</ul>
+- sticky: 스크롤 영역 기준으로 배치. 스크롤링시 스크롤링 방향에 따라 지정된 포지션에서 유지되는 속성.
+- fixed : viewport(window 기준)를 기준으로 배치.
+
+---
+
+# [ z-Index ]
+현재 쌓임 맥락에서 자신의 위치.
+position 속성에 z-index까지 있다면 z-index가 큰 태그가 위에 쌓인다.
+하지만 z-index가 아무리 크더라도 부모 태그의 z-index가 더 우선이다.
+```css
+{ z-index: number; }
+```
+
+- z-index 특징 (position값과의 연관성)
+z-index 속성이 적용되기 위해서는 z-index를 적용한 영역이 position:static 값이 아니어야 한다.
+
+- z-index 특징 (같은 형제 요소와의 비교)
+z-index는 같은 형제 요소에 선언된 z-index끼리 비교를 한다.
+만약 같은 형제 요소끼리에서 z-index가 선언된 내용이 없으면
+자식 요소의 z-index값을 가지고 확인한다.
+
+---
+
+# [ ios 키보드 이슈 관련 ] 
+1. 환경
+: 해당현상은 IOS 14 이상의 경우에 개선 된 것으로 보이며, 그 미만 버전 즉 OS 12, 13 등의 버전에서 보이는 현상.
+ 
+2. 내용
+ 
+- input 영역을 클릭하여 focus가 되었을때 키보드가 올라 온다.
+- 다음과 같은 화면이 있다고 하였을때 A 하단의 input 영역을 클릭 한다고 가정.
+- 키보드가 내려갔음에도 키보드가 내려간 만큼 화면이 내려가지 않는 현상이 발생.
+
+3. 해결방법
+App쪽과 협업이 가능하다면 협업을 하는 게 제일 좋겠지만, 아래와 같은 코드로 테스트 해봐도 좋을 것 같다.
+
+- blur 이벤트에서 e.preventDefault()를 사용하여 기본 동작을 막고, 이전 스크롤 위치로 다시 스크롤을 이동
+``` javascript
+inputElement.addEventListener("focus", function(e) {
+    previousScrollPosition = window.scrollY; // 포커스를 받기 전에 스크롤 위치를 저장.
+});
+
+inputElement.addEventListener("blur", function(e) {
+    e.preventDefault();
+    // 이전 스크롤 위치로 스크롤을 이동.
+    window.scrollTo(0, previousScrollPosition);
+});
+```
+
+- 포커스 이벤트가 끝났을 때 스크롤 이벤트를 통해 스크롤을 0으로 이동시키는 방법
+``` javascript
+window.scrollTo(0,0);
+document.body.scrollTop = 0;
+```
+- 리사이즈 핸들러 이벤트를 통해 높이를 재조정하는 방법 (키보드가 내려갔을 때 높이가 재조정되어야 하는 경우)
+``` javascript
+window.addEventListener('resize', function() {
+    ...
+});
+```    
+
+---
+
+참고
+- https://usage.tistory.com/134
+- https://firstlife-note.tistory.com/25
+- https://velog.io/@remon/position-%EC%9D%B4%EB%9E%80
+- https://studiomeal.com/archives/197
+- https://studiomeal.com/archives/533

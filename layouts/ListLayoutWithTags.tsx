@@ -12,7 +12,7 @@ import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import { useTranslation } from 'react-i18next';
 import Image from '@/components/Image'
-import ProfileImage from 'public/static/images/both-babies.jpeg'
+import ProfileImage from 'public/static/images/with-my-byul.png'
 
 
 interface PaginationProps {
@@ -137,9 +137,6 @@ export default function ListLayoutWithTags({
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        {/* Todo :: CSS direction & display 
-                        * https://www.w3schools.com/cssref/pr_class_display.php
-                        */}
                         <div className="flex justify-center">
                           <time dateTime={date} >{formatDate(date, siteMetadata.locale)} </time>
                         </div>
@@ -154,10 +151,10 @@ export default function ListLayoutWithTags({
                             style={{ 
                               borderRadius: '50%'
                               , margin: '0 auto'
-                              , paddingTop: '10px'
+                              , paddingTop: '20px'
                               , marginBottom: '20px'
                             }} 
-                          /> // margin 0 auto : 좌우 여백의 공간을 동일하게 가져가서 가운데로 정렬
+                          />
                         }
                       </dd>
                     </dl>
@@ -166,7 +163,7 @@ export default function ListLayoutWithTags({
                           <div className="flex flex-wrap">
                             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                           </div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight ml-0 m-3">
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight ml-0 m-3 xl:truncate">
                             <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
                               {t(title)}
                             </Link>

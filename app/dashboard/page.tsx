@@ -2,7 +2,7 @@
 
 import Card from '@/components/dashboard/Card';
 import React, { useEffect, useState } from 'react';
-import useTotalCodeRecords, { CodeLineRecords } from '@/hooks/useTotalCodeRecords'
+import useTotalCodeRecords, { CodeLineRecords, TotalCodeRecords } from '@/hooks/useTotalCodeRecords'
 import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
 import archiveData from '@/generators/output/archive-data.json'
@@ -11,10 +11,20 @@ import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { t } = useTranslation();
-  const { totalCodeRecords, latestRecord, commitHistory } = useTotalCodeRecords();
+  const { totalCodeRecords, latestRecords, commitHistory } = useTotalCodeRecords();
   const [codeCounts, setCodeCounts] = useState<{}>();
   const [dates, setDates] = useState<{}>({});
   const [diff, setDiff] = useState<{}>(0);
+  const SearchBlogLinkComponent = ()=> {
+    const searchURL = 'https://www.google.com/search?q=DevBlogEasyoon';
+    return (
+      <div className="">
+        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+          <a href={searchURL} target="_blank" rel="noreferrer"> {t('검색하러 가기')} </a>
+        </button>
+      </div>
+    );
+  }
 
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
@@ -44,6 +54,10 @@ const Dashboard = () => {
 
 
   useEffect(() => {
+    const values = Object.values(totalCodeRecords);
+    const last = values.length - 1;
+    if (!values[last].length) return;
+    
     setCodeCounts(getCounts());
     setDates(getDate());
   }, [totalCodeRecords]);
@@ -74,7 +88,7 @@ const Dashboard = () => {
       </div>
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="세상으로 나간 코드" description="[줄/(tsx,ts,js,css,sh)]" content={latestRecord.codeCount || '??'} />
+          <Card title="세상으로 나간 코드" description="[줄/(tsx,ts,js,css,sh)]" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
           <Card title="쓴 글" description="[편]" content={allBlogs.length} />
           <Card title="저장한 글" description="[편]" content={archiveData.length} />
         </div>
@@ -90,7 +104,7 @@ const Dashboard = () => {
                 xAxisData={dates[key]}
                 yAxisData={codeCounts[key]}
                 yAxisLabel='codeCounts'
-                title={`[${i + 1}] ${key} 코드 변화량`}
+                title={`[${i + 1}] ${key} ${t('코드 변화량')}`}
                 description={description}
                 point={diffCount > 0 ? `+${diffCount}줄` : `${diffCount}줄`}
               />
@@ -102,11 +116,11 @@ const Dashboard = () => {
           <Card title="LATEST HISTORY" description="[Commit / 10건]" content={commitHistory || ''} fontSizeLevel={'xl'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="SEO 실적" description="[키워드 / 순위]" content="- / -" />
+          <Card title="Google Search Console" description="[적용 완료]" fontSizeLevel={'md'} content={SearchBlogLinkComponent()} />
         </div>
       </div>
     </div>
   );
-}
+  } 
 
 export default Dashboard;

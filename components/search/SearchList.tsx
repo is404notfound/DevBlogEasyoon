@@ -10,9 +10,17 @@ const SearchList = () => {
     const [searchValue, setSearchValue] = useRecoilState(searchInputValue);
 
     useEffect(()=> {
-        const searchList = posts.filter(({title})=>{
+        const searchList = posts.
+        filter(({title})=>{
             return title.includes(searchValue);
         })
+        .map(({ path, ...item })=>{
+            return {
+                ...item,
+                path: `${location.origin}/DevBlogEasyoon/${path}`
+            }
+        });
+            
         setSearchResults(searchList);
     }, [searchValue]);
 

@@ -1,15 +1,15 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Easy0.0n Tech Blog',
+  title: 'DevBlogEasyoon',
   author: 'Lee',
-  headerTitle: 'Easy0.0n Tech Blog*********',
+  headerTitle: 'I ♡ Visualization ******************',
   description: 'Hello, World ...! ₩elcome to my tech blog !',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://is404notfound.github.io/DevBlogEasyoon/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
   siteLogo: '/static/images/cat-logo.jpeg',
-  socialBanner: '/static/images/both-babies.jpeg',
+  socialBanner: '/static/images/with-my-byul.png',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
   locale: 'en-US',
