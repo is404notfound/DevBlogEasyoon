@@ -8,8 +8,10 @@ import LanguageSelector from './LanguageSelector';
 import { useTranslation } from 'react-i18next';
 import LogoComponent from '@/components/LogoComponent'
 import SearchWrapper from '@/components/search/SearchWrapper'
+import { useTheme } from 'next-themes'
 
-const Header = ()=> {
+
+const Header = () => {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col justify-between">
@@ -17,9 +19,9 @@ const Header = ()=> {
         <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
             <div className="h-full flex items-center justify-between">
-                <div>
-                  <LogoComponent src={'./static/images/cat-logo.jpeg'}></LogoComponent>
-                </div>
+              <div>
+                <LogoComponent src={'./static/images/dog-logo.png'} />
+              </div>
               {typeof siteMetadata.headerTitle === 'string' ? (
                 <div className="hidden h-6 text-3xl font-semibold sm:block pb-10">
                   {t(`${siteMetadata.headerTitle}`)}
@@ -44,10 +46,10 @@ const Header = ()=> {
             ))}
           <MobileNav />
           <LanguageSelector />
-        </div> 
+        </div>
       </header>
       <SearchWrapper />
-     </div>
+    </div>
   )
 }
 

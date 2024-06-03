@@ -1,0 +1,123 @@
+---
+title: Memo of typescript (1)
+date: '2024-05-22'
+tags: ['FE', 'Typescript']
+draft: false
+---
+
+## 1. 필요성
+
+자바스크립트와 타입스크립트의 차이를 보여주는 좋은 예시는 함수의 매개변수 타입을 명시하는 것입니다.
+
+자바스크립트에서는 타입을 지정하지 않기 때문에 예상치 못한 타입의 값이 들어올 경우 버그가 발생할 수 있습니다.
+
+반면, 타입스크립트는 타입을 지정해줌으로써 이러한 버그를 사전에 방지할 수 있습니다.
+
+아래 예시를 보면, 프론트 단에서는 age에 number가 들어오던, string이 들어오던 상관없이 동작할 수 있습니다.
+
+하지만, DB 단에서는 타입을 Int나 Number로 명확히 명시하고 있을 것이기 때문에, 프론트에서 통과한다 하더라도 서버단에서 반드시 에러가 날 것 입니다.
+
+만약, 프론트 단에서도 타입을 명시한다면 이러한 에러를 개발 시에 미리 방지할 수 있습니다.
+
+```javascript
+const user = { name: "Alice", age: 25 };
+
+// 올바른 사용
+updateUser(user, { name: "Bob", age: 30 });
+// 잘못 된 사용
+updateUser(user, { name: "Charlie", age: "not a number" });
+
+console.log(user); // { name: "Charlie", age: "not a number" } -> 예상치 못한 결과
+
+```
+
+``` typescript
+interface User {
+  name: string;
+  age: number;
+}
+
+interface UserUpdate {
+  name?: string;
+  age?: number;
+}
+
+const user: User = { name: "Alice", age: 25 };
+
+// 올바른 사용
+updateUser(user, { name: "Bob", age: 30 });
+
+// 잘못된 사용 (컴파일 오류 발생)
+updateUser(user, { name: "Charlie", age: "not a number" });
+
+console.log(user); // 컴파일 오류로 인해 실행되지 않음
+
+```
+
+## 2. 인터페이스와 타입의 차이
+
+Interface: 주로 객체의 구조를 정의하는 데 사용됩니다.
+
+Type: 객체뿐만 아니라, 함수, 유니언, 튜플 등 다양한 타입을 정의할 수 있습니다.
+
+### 2-1. 확장(상속)에 대해서
+
+Interface: 다른 인터페이스를 확장할 수 있으며, 여러 인터페이스를 결합할 수 있습니다.
+
+Type: 다른 타입을 확장할 수 있지만, 인터페이스처럼 결합할 수는 없습니다. 대신 유니언 타입이나 인터섹션 타입을 사용하여 결합할 수 있습니다.
+
+실무에서는 보통 인터페이스를 더 많이 사용하는 경향이 있습니다. 
+
+객체 타입을 정의할 때도 사용할 수 있지만, 객체 타입을 정의할 때는 interface를 사용하는게 좋고,
+
+단순한 원시값(Primitive Type)이나 튜플(Tuple), 유니언(Union) 타입을 선언할 때 type을 사용하는 경우가 많았습니다.
+
+아무래도 인터페이스는 객체의 구조를 정의하는 데 더 직관적이며 가독성이 좋으며,
+
+인터페이스는 같은 이름의 인터페이스를 여러 곳에서 선언하여 병합할 수 있습니다.
+
+이는 코드를 모듈화하고 유연성을 높이는 데 도움이 됩니다.
+
+``` typescript
+// Interface 상속
+interface Name {
+    name: string;
+}
+
+interface User extends Name {
+    age: number;
+    isAdult?: boolean;
+}
+
+// Type 확장
+type Name = {
+    name: string;
+};
+
+type User = Named & {
+    age: number;
+};
+```
+
+
+---
+
+
+<details>
+  <summary> 다음에 정리 해 둘 것들 ! </summary>
+
+> 고급 타입
+
+> 유틸리티 타입에 대해서 
+
+> 모듈과 네임스페이스
+
+> d.ts에 대해서 (최근 면접에서 타입 정의 파일을 쓴 적이 있냐는 질문을 받았었다. 
+> 개인적으로는 주로 글로벌 타입을 선언할 때 많이 썼었던 기억이 나지만,
+> 팀적으로는 저 파일을 사용한 적이 없었던 것 같은데 이는 주변에 다시 한 번 확인을 봐야 할 것 같다.)
+
+> 고도의 타입화는 필요한가? 
+> 같이 일하는 팀원 중 하나가 스토어의 모든 인터페이스를 정의하는 것을 본 적이 있었는데 .... 결과적으로는 존경은 했으나 팀 내에서는 사용하지 않았던 일화.
+> (가독성, 확장의 용이성, 버그 발생 가능성 등의 고려)
+
+</details>
