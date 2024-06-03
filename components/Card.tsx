@@ -1,20 +1,24 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '' }
-: {
-  title: string
-  description: string
-  imgSrc?: string
-  href?: string
-  buttonPath?: string
-}) => (
+const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '', status = '' }
+  : {
+    title: string
+    description: string
+    imgSrc?: string
+    href?: string
+    buttonPath?: string
+    status?: string
+  }) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
-      className={`${
-        imgSrc && 'h-full'
-      }  overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
+      className={`${imgSrc && 'h-full'} relative overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
     >
+      {status && (
+        <div className="absolute top-0 left-0 bg-blue-500 text-white px-2 py-1 text-m font-bold">
+          on-going
+        </div>
+      )}
       {imgSrc &&
         (href ? (
           <Link href={href} aria-label={`Link to ${title}`}>
@@ -48,7 +52,7 @@ const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '' }
         <div>
           <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
         </div>
-        { buttonPath && (
+        {buttonPath && (
           <Link
             href={buttonPath}
             className="text-base font-large leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
