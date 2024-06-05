@@ -88,14 +88,14 @@ const Dashboard = () => {
       </div>
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="세상으로 나간 코드" description="[줄/(tsx,ts,js,css,sh)]" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
-          <Card title="쓴 글" description="[편]" content={allBlogs.length} />
-          <Card title="저장한 글" description="[편]" content={archiveData.length} />
+          <Card title="세상으로 나간 코드 수" description="[tsx,ts,js,css,sh]" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
+          <Card title="쓴 글" description="[-]" content={allBlogs.length} />
+          <Card title="저장한 글" description="[-]" content={archiveData.length} />
         </div>
         { codeCounts && Object.keys(totalCodeRecords).map((key: string, i) => {
           const start = dates[key][0];
           const end = dates[key][dates[key].length - 1];
-          const description = `2024-${start}부터 2024-${end}까지`;
+          const description = `2024-${start} ~ 2024-${end}`;
           const diffCount = diff[key];
 
           return (
@@ -106,14 +106,14 @@ const Dashboard = () => {
                 yAxisLabel='codeCounts'
                 title={`[${i + 1}] ${key} ${t('코드 변화량')}`}
                 description={description}
-                point={diffCount > 0 ? `+${diffCount}줄` : `${diffCount}줄`}
+                point={diffCount > 0 ? `+${diffCount}` : `${diffCount}줄`}
               />
             </div>
           )
         })
         }
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="LATEST HISTORY" description="[Commit / 10건]" content={commitHistory || ''} fontSizeLevel={'xl'} />
+          <Card title="Latest Commit" description="" content={commitHistory || ''} fontSizeLevel={'xl'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
           <Card title="Google Search Console" description="[적용 완료]" fontSizeLevel={'md'} content={SearchBlogLinkComponent()} />
