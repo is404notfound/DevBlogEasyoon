@@ -12,6 +12,8 @@ const siteMetadata = {
   socialBanner: '/static/images/with-my-byul.png',
   email: 'liten623jp@gmail.com',
   github: 'https://github.com/is404notfound',
+  youtube1: 'https://www.youtube.com/channel/UC5E25waPvd4wutm5HefFegA',
+  youtube2: 'https://www.youtube.com/channel/UC1xhAONOLlsCUYHSTa0VZ-g',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
