@@ -3,7 +3,7 @@
 import 'css/tailwind.css'
 import 'css/styles.css'
 import 'pliny/search/algolia.css'
-import { Space_Grotesk, Tsukimi_Rounded } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -14,7 +14,7 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import '../i18n';
 import { useEffect, useRef, useState } from 'react'
-import { useScroll, useSpring,animated } from 'react-spring'
+import { useScroll, useSpring, animated } from 'react-spring'
 import styled from 'styled-components';
 import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
@@ -156,7 +156,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       immediate: true,
     },
   });
-  const [textStyles, textApi] = useSpring(() => ({y: '100%',}));
+  const [textStyles, textApi] = useSpring(() => ({ y: '100%', }));
   const [resultWidth, setResultWidth] = useState(INITIAL_WIDTH);
   const [resultHeight, setResultHeight] = useState(INITIAL_HEIGHT);
   const [useMovingBar, setUseMovingBar] = useState(false);
@@ -168,21 +168,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // moving bar style
   useEffect(() => {
     setBarContainerStyle({
-        ...INITIAL_BAR_CONTAINER_STYLE,
-        height: `${resultHeight}px`,
+      ...INITIAL_BAR_CONTAINER_STYLE,
+      height: `${resultHeight}px`,
     });
     setInvertedBarContainerStyle({
-        ...INITIAL_INVERTED_BAR_CONTAINER_STYLE,
-        height: `${resultHeight}px`,
+      ...INITIAL_INVERTED_BAR_CONTAINER_STYLE,
+      height: `${resultHeight}px`,
     });
   }, [resultHeight]);
 
   useEffect(() => {
     if (resultHeight === window.innerHeight) return;
-    window.addEventListener('scroll', ()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+    window.addEventListener('scroll', () => window.scrollY === 0 && setResultHeight(window.innerHeight));
 
     return () => {
-      window.removeEventListener('scroll',()=> window.scrollY === 0 && setResultHeight(window.innerHeight));
+      window.removeEventListener('scroll', () => window.scrollY === 0 && setResultHeight(window.innerHeight));
     }
   }, [resultHeight]);
 
@@ -198,43 +198,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     };
   }, []);
 
-  
+
   // make moving bar
   useEffect(() => {
     if (!useMovingBar) return;
-    
-    function getWindowSize () {
+
+    function getWindowSize() {
       const viewportHeight = window.innerHeight;
       const totalHeight = document.documentElement.scrollHeight;
       const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
       const percentilePosition = percentage;
       const newWidth = calculateBarWidth(0, percentilePosition);
-  
+
       setResultHeight(totalHeight);
       setResultWidth(newWidth);
 
-      return {percentage};
+      return { percentage };
     }
-  
+
     const handleScroll = () => {
-      const {percentage} = getWindowSize();
-  
+      const { percentage } = getWindowSize();
+
       if (percentage > 0.7) {
         textApi.start({ y: '0' });
       } else {
         textApi.start({ y: '100%' });
       }
     };
-  
+
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', ()=> getWindowSize());
-  
+    window.addEventListener('resize', () => getWindowSize());
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', ()=> getWindowSize());
+      window.removeEventListener('resize', () => getWindowSize());
     };
   }, [useMovingBar, textApi]);
-  
+
   return (
     <html
       lang={siteMetadata.language}
@@ -248,8 +248,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/static/favicons/site.webmanifest" />
         <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#000000" />
-        {/* <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" /> */}
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+        <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         <link rel="stylesheet" type="text/css" href="../css/styles.css" />
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
@@ -257,52 +258,53 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
       </Head>
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
-      <body className="bg-white text-black antialiased dark:bg-gray-800 dark:text-pink-500" style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
-      
-      <RecoilRoot>
-        <PopupWrapper />
-        <ThemeProviders>
-            <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-              <ContentContainer ref={containerRef}>
-                <SectionContainer>
-                  <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
-                    <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                      <Header />
-                       <main className="mb-auto">
-                        {children}
-                        </main>
-                    </SearchProvider>
-                    <Footer />
-                  </div>
-                </SectionContainer>
+      <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100 " style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
 
-              { useMovingBar && (
+        <RecoilRoot>
+          <PopupWrapper />
+          <ThemeProviders>
+            <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+            <ContentContainer ref={containerRef}>
+              <SectionContainer>
+                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
+                  <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                    <Header />
+                    <main className="mb-auto">
+                      {children}
+                    </main>
+                  </SearchProvider>
+                  <Footer />
+                </div>
+              </SectionContainer>
+
+              {useMovingBar && (
                 <>
                   <BarContainer style={barContainerStyle}>
-                  {Array.from({ length: X_LINES }).map((_, i) => (
-                    <Bar key={i} style={{
-                      width: scrollYProgress.to(scrollP => {
-                      const percentilePosition = (i + 1) / X_LINES
-                      return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                    }),}} />
-                  ))}
-                </BarContainer>
-                <InvertedBarContainer style={invertedBarContainerStyle}>
-                  {Array.from({ length: X_LINES }).map((_, i) => (
-                    <InvertedBar key={i} style={{ 
-                      width: scrollYProgress.to(scrollP => {
-                        const percentilePosition = (i + 1) / X_LINES
-                        return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                      })
+                    {Array.from({ length: X_LINES }).map((_, i) => (
+                      <Bar key={i} style={{
+                        width: scrollYProgress.to(scrollP => {
+                          const percentilePosition = (i + 1) / X_LINES
+                          return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
+                        }),
                       }} />
-                  ))}
-                </InvertedBarContainer>
-              </>
-            )}
-            <CanvasCat />
+                    ))}
+                  </BarContainer>
+                  <InvertedBarContainer style={invertedBarContainerStyle}>
+                    {Array.from({ length: X_LINES }).map((_, i) => (
+                      <InvertedBar key={i} style={{
+                        width: scrollYProgress.to(scrollP => {
+                          const percentilePosition = (i + 1) / X_LINES
+                          return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
+                        })
+                      }} />
+                    ))}
+                  </InvertedBarContainer>
+                </>
+              )}
+              <CanvasCat />
             </ContentContainer>
           </ThemeProviders>
-          </RecoilRoot>
+        </RecoilRoot>
       </body>
     </html>
   )
