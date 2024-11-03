@@ -17,7 +17,7 @@ const SearchList = () => {
         .map(({ path, ...item })=>{
             return {
                 ...item,
-                path: `${location.origin}/DevBlogEasyoon/${path}`
+                path: `${location.origin}/${path}`
             }
         });
             
