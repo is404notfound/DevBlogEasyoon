@@ -255,6 +255,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6978995302170972"
+          crossorigin="anonymous"></script>
       </Head>
       <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
