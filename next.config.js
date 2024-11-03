@@ -75,7 +75,6 @@ module.exports = () => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts', 'recoil', 'hooks', 'generators'],
     },
-    basePath: "/DevBlogEasyoon",
     output: 'export',
     images: {
       remotePatterns: [
