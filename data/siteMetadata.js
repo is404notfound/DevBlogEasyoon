@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'Hello, World ...! ₩elcome to my tech blog !',
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://is404notfound.github.io/DevBlogEasyoon/',
+  siteUrl: 'https://devblogeasyoon.xyz/',
   siteRepo: 'https://github.com/is404notfound/DevBlogEasyoon',
   siteLogo: '/static/images/cat-logo.jpeg',
   socialBanner: '/static/images/with-my-byul.png',
