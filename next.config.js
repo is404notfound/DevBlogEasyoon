@@ -69,12 +69,12 @@ const securityHeaders = [
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
+    assetPrefix: 'https://devblogeasyoon.xyz/',
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'sh'],
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts', 'recoil', 'hooks', 'generators'],
     },
-    basePath: "/DevBlogEasyoon",
     output: 'export',
     images: {
       remotePatterns: [
