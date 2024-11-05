@@ -1,0 +1,136 @@
+/* For Styled Component Design System */
+:root {
+  --Color-Retro-Pink-01: #f8e1e9;
+  --Color-Retro-Pink-02: #f1c3d3;
+  --Color-Retro-Pink-03: #eaa5bd;
+  --Color-Retro-Pink-04: #e387a7;
+  --Color-Retro-Pink-05: #dc6991;
+  --Color-Retro-Pink-06: #ec4899;
+  --Color-Retro-Pink-07: #d42f8b;
+  --Color-Retro-Pink-08: #b71f7d;
+  --Color-Retro-Blue-01: rgb(59 130 246);
+  --Color-Retro-Blue-02: rgb(59 130 246 / 80%);
+  --Color-Retro-Blue-03: rgb(59 130 246 / 60%);
+  --Color-Retro-Blue-04: rgb(59 130 246 / 40%);
+  --Color-Retro-Blue-05: rgb(59 130 246 / 20%);
+  --Color-Grayscale-00: #ffffff;
+  --Color-Grayscale-01: #f6f7f8;
+  --Color-Grayscale-02: #e6e8eb;
+  --Color-Grayscale-03: #bdc1c7;
+  --Color-Grayscale-04: #898f95;
+  --Color-Grayscale-05: #565d63;
+  --Color-Grayscale-06: #353d43;
+  --Color-Grayscale-07: #282d32;
+  --Color-Grayscale-08: #181c20;
+  --Color-Grayscale-09: #0f1215;
+  --Color-Grayscale-10: #05070e;
+  --Color-Grayscale-dim-white-10: rgba(255, 255, 255, 0.1);
+  --Color-Grayscale-dim-white-20: rgba(255, 255, 255, 0.2);
+  --Color-Grayscale-dim-black-05: rgba(0, 0, 0, 0.05);
+  --Color-Grayscale-dim-black-10: rgba(0, 0, 0, 0.1);
+  --Color-Grayscale-dim-black-20: rgba(0, 0, 0, 0.2);
+  --Color-Grayscale-dim-black-30: rgba(0, 0, 0, 0.3);
+  --Color-Grayscale-dim-black-35: rgba(0, 0, 0, 0.35);
+  --Color-Grayscale-dim-black-50: rgba(0, 0, 0, 0.5);
+}
+
+:root {
+  --Background-dim: var(--Color-Grayscale-dim-black-50);
+}
+
+:root {
+  --Shadow-box: 0px 4px 8px var(--Color-Grayscale-dim-black-05);
+}
+
+:root {
+  --Border-default: var(--Color-Grayscale-02);
+  --Border-Retro-Dotted: var(--Color-Retro-Pink-05);
+}
+
+:root {
+  --Button-Retro-default: var(--Color-Brand-blue03);
+  --Button-Retro-hover: var(--Color-Brand-blue04);
+  --Button-Retro-pressed: var(--Color-Brand-blue05);
+  --Button-Retro-disabled: var(--Color-Brand-blueLight02);
+}
+
+:root {
+  --Text-primary: var(--Color-Grayscale-06);
+  --Text-strong: var(--Color-Grayscale-10);
+  --Text-body: var(--Color-Grayscale-05);
+  --Text-label: var(--Color-Grayscale-04);
+  --Text-pressed: var(--Color-Grayscale-04);
+  --Text-disabled: var(--Color-Grayscale-03);
+  --Text-description: var(--Color-Grayscale-00);
+}
+
+:root {
+  --Radius-default: 4px;
+  --Radius-S: 4px;
+  --Radius-M: 8px;
+  --Radius-L: 16px;
+  --Radius-Circular: 100px;
+}
+
+:root {
+  --Spacing-0: 0px;
+  --Spacing-1: 4px;
+  --Spacing-2: 8px;
+  --Spacing-3: 12px;
+  --Spacing-4: 16px;
+  --Spacing-5: 20px;
+  --Spacing-6: 24px;
+  --Spacing-7: 28px;
+  --Spacing-8: 32px;
+  --Spacing-9: 36px;
+  --Spacing-10: 40px;
+  --Spacing-11: 44px;
+  --Spacing-12: 48px;
+  --Spacing-13: 52px;
+  --Spacing-14: 56px;
+  --Spacing-15: 60px;
+  --Spacing-16: 64px;
+  --Spacing-17: 68px;
+  --Spacing-18: 72px;
+  --Spacing-19: 76px;
+  --Spacing-20: 80px;
+  --Spacing-21: 84px;
+  --Spacing-22: 88px;
+  --Spacing-23: 92px;
+  --Spacing-24: 96px;
+  --Spacing-25: 100px;
+  --Spacing-26: 104px;
+  --Spacing-27: 108px;
+  --Spacing-28: 112px;
+  --Spacing-29: 116px;
+  --Spacing-30: 120px;
+  --Spacing-31: 124px;
+  --Spacing-32: 128px;
+  --Spacing-33: 132px;
+  --Spacing-34: 136px;
+  --Spacing-35: 140px;
+  --Spacing-36: 144px;
+  --Spacing-37: 148px;
+  --Spacing-38: 152px;
+  --Spacing-39: 156px;
+  --Spacing-40: 160px;
+  --Spacing-41: 164px;
+  --Spacing-42: 168px;
+  --Spacing-43: 172px;
+  --Spacing-44: 176px;
+  --Spacing-45: 180px;
+  --Spacing-46: 184px;
+  --Spacing-47: 188px;
+  --Spacing-48: 192px;
+  --Spacing-49: 196px;
+  --Spacing-50: 200px;
+}
+
+:root {
+  cursor: url(../public/static/images/cursor.cur), auto;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
