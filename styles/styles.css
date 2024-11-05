@@ -26,6 +26,9 @@
   --Color-Grayscale-10: #05070e;
   --Color-Grayscale-dim-white-10: rgba(255, 255, 255, 0.1);
   --Color-Grayscale-dim-white-20: rgba(255, 255, 255, 0.2);
+  --Color-Grayscale-dim-white-30: rgba(255, 255, 255, 0.3);
+  --Color-Grayscale-dim-white-35: rgba(255, 255, 255, 0.35);
+  --Color-Grayscale-dim-white-50: rgba(255, 255, 255, 0.5);
   --Color-Grayscale-dim-black-05: rgba(0, 0, 0, 0.05);
   --Color-Grayscale-dim-black-10: rgba(0, 0, 0, 0.1);
   --Color-Grayscale-dim-black-20: rgba(0, 0, 0, 0.2);
@@ -48,10 +51,10 @@
 }
 
 :root {
-  --Button-Retro-default: var(--Color-Brand-blue03);
-  --Button-Retro-hover: var(--Color-Brand-blue04);
-  --Button-Retro-pressed: var(--Color-Brand-blue05);
-  --Button-Retro-disabled: var(--Color-Brand-blueLight02);
+  --Button-Retro-default: var(--Color-Retro-blue03);
+  --Button-Retro-hover: var(--Color-Retro-blue04);
+  --Button-Retro-pressed: var(--Color-Retro-blue05);
+  --Button-Retro-disabled: var(--Color-Retro-blue02);
 }
 
 :root {
