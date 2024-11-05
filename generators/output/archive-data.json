@@ -415,5 +415,23 @@
     "og:title": "토스가 꿈꾸는 React Native 기술의 미래",
     "og:description": "토스 프론트엔드 챕터는 어떻게 React Native 기술을 발전시켜 나갈 예정일까요?",
     "og:image": "https://static.toss.im/illusts-common/react-native-og-2.png"
+  },
+  {
+    "note": "blog/nextjs-window-undefined",
+    "og:title": "[NextJS] window is not defined",
+    "og:url": "https://velog.io/@nookcoder2/NextJS-window-is-not-defined",
+    "al:web:url": "https://velog.io/@nookcoder2/NextJS-window-is-not-defined"
+  },
+  {
+    "note": "blog/nextjs-window-undefined",
+    "og:title": "[TIL] NextJS는 window를 바로 접근할 수 없다. (window is not defined)",
+    "og:url": "https://dev-russel.tistory.com/97",
+    "al:web:url": "https://dev-russel.tistory.com/97"
+  },
+  {
+    "note": "",
+    "og:title": "삽질하기 싫으면 꼭 읽어봐야 할 Canvas 트러블 슈팅",
+    "og:url": "https://ui.toast.com/posts/ko_20210526",
+    "al:web:url": "https://ui.toast.com/posts/ko_20210526"
   }
 ]
