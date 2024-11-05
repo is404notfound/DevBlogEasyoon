@@ -6,5 +6,6 @@
     , "저장한 글": "Saved Posts"
     , "코드 변화량": "Code Change"
     , "검색하러 가기": "Go to search"
-    , "[적용 완료]": "[Applied]"
+    , "[적용 완료]": "[Applied]",
+    "calendar.title" : "Tech Conferences"
 }
