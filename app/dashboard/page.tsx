@@ -113,10 +113,10 @@ const Dashboard = () => {
         })
         }
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Latest Commit" description="" content={commitHistory || ''} fontSizeLevel={'xl'} />
+          <Card title="Latest Commit" description="" content={commitHistory || ''} size={'small'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Google Search Console" description="[적용 완료]" fontSizeLevel={'md'} content={SearchBlogLinkComponent()} />
+          <Card title="Google Search Console" description="[적용 완료]" size={'small'} content={SearchBlogLinkComponent()} />
         </div>
       </div>
     </div>

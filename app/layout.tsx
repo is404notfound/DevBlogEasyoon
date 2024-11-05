@@ -1,7 +1,7 @@
 'use client'
 
-import 'css/tailwind.css'
-import 'css/styles.css'
+import 'styles/tailwind.css'
+import 'styles/styles.css'
 import 'pliny/search/algolia.css'
 import { Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
@@ -259,7 +259,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </Head>
       <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
-      <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100 " style={{ textShadow: '0 0 30px rgba(255, 0, 255, 0.5)' }}>
+      <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100 ">
 
         <RecoilRoot>
           <PopupWrapper />
@@ -278,7 +278,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </SectionContainer>
 
-              {useMovingBar && (
+              {/* {useMovingBar && (
                 <>
                   <BarContainer style={barContainerStyle}>
                     {Array.from({ length: X_LINES }).map((_, i) => (
@@ -301,7 +301,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     ))}
                   </InvertedBarContainer>
                 </>
-              )}
+              )} */}
               <CanvasCat />
             </ContentContainer>
           </ThemeProviders>
