@@ -62,4 +62,9 @@ const HeaderTextWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+
+  a:hover {
+    border-bottom: 4px solid var(--Color-Retro-Pink-05);
+    transition: border-bottom 0.5s;
+  }
 `;
