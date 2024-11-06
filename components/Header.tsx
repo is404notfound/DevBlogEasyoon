@@ -62,6 +62,7 @@ const HeaderTextWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  white-space: nowrap;
 
   a:hover {
     border-bottom: 4px solid var(--Color-Retro-Pink-05);
