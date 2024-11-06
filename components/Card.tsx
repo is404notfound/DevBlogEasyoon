@@ -1,10 +1,10 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc = '', href = '#', buttonPath = '', status = '' }
+const Card = ({ title, description='', imgSrc = '', href = '#', buttonPath = '', status = '' }
   : {
     title: string
-    description: string
+    description?: string
     imgSrc?: string
     href?: string
     buttonPath?: string
