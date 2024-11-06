@@ -13,7 +13,6 @@ import styled from 'styled-components'
 const Header = () => {
   const { t } = useTranslation()
   return (
-    <div className="flex flex-col justify-between">
       <HeaderWrapper>
         <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
@@ -40,7 +39,6 @@ const Header = () => {
           <LanguageSelector />
         </HeaderTextWrapper>
       </HeaderWrapper>
-    </div>
   )
 }
 
@@ -51,7 +49,7 @@ const HeaderWrapper = styled.header`
   background-color: rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 49;
   display: flex;
   justify-content: space-between;
   align-items: center;

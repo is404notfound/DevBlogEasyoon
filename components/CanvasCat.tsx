@@ -92,7 +92,7 @@ const CanvasCat = ()=> {
 
     return (
         <div style={{ position: 'fixed', bottom: 0, width: '100%', height: '100%', zIndex: 1 }}>
-            <canvas ref={canvasRef} width='1000' height={'985'} color={'yellow'} ></canvas> /** HTML5내에 그림을 그리기 위한 영역 */
+            <canvas ref={canvasRef} width='1000' height={'985'} ></canvas>
         </div>
     )
 }
