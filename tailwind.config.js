@@ -11,6 +11,7 @@ module.exports = {
     './components/**/*.{js,ts,tsx}',
     './layouts/**/*.{js,ts,tsx}',
     './data/**/*.mdx',
+    ,'./public/**/*.{svg,png,jpg,jpeg}'
   ],
   // darkMode: 'class',
   lightMode: 'class',

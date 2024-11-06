@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'DevBlogEasyoon',
-  author: 'Lee',
-  headerTitle: 'DevBlogEasyo.on ***************',
+  author: 'Easyoon',
+  headerTitle: 'DevBlogEasy0.0n',
   description: 'Hello, World ...! ₩elcome to my tech blog !',
   language: 'en-us',
   theme: 'dark', // system, dark or light

@@ -79,17 +79,14 @@ const Dashboard = () => {
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pb-8 pt-6 md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          {t('calendar.title')} \\\\\\\\\\\\\\\\
+          {t('Dashboard')}
         </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Hello, World!
-        </p>
       </div>
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="세상으로 나간 코드 수" description="[tsx,ts,js,css,sh]" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
-          <Card title="쓴 글" description="[-]" content={allBlogs.length} />
-          <Card title="저장한 글" description="[-]" content={archiveData.length} />
+          <Card title="세상으로 나간 코드 수" description="tsx | ts | js | css | sh" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
+          <Card title="쓴 글" description="-" content={allBlogs.length} />
+          <Card title="저장한 글" description="-" content={archiveData.length} />
         </div>
         { codeCounts && Object.keys(totalCodeRecords).map((key: string, i) => {
           const start = dates[key][0];
@@ -103,7 +100,7 @@ const Dashboard = () => {
                 xAxisData={dates[key]}
                 yAxisData={codeCounts[key]}
                 yAxisLabel='codeCounts'
-                title={`[${i + 1}] ${key} ${t('코드 변화량')}`}
+                title={`${key}`}
                 description={description}
                 point={diffCount > 0 ? `+${diffCount}` : `${diffCount}줄`}
               />
@@ -115,7 +112,7 @@ const Dashboard = () => {
           <Card title="Latest Commit" description="" content={commitHistory || ''} size={'small'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Google Search Console" description="[적용 완료]" size={'small'} content={SearchBlogLinkComponent()} />
+          <Card title="Google Search Console" description="적용 완료" size={'small'} content={SearchBlogLinkComponent()} />
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@
       "@/recoil/*": ["recoil/*"],
       "@/hooks/*": ["hooks/*"],
       "@/generators/*": ["generators/*"],
+      "@/public/*": ["public/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   }

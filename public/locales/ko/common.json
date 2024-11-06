@@ -5,7 +5,7 @@
     ,"Blog": "포스트"
     ,"Tags": "태그"
     ,"Projects": "프로젝트"
-    ,"Archive": "아카이브"
+    ,"Archives": "아카이브"
     ,"i18n, When building statically, the original language is restored.": "i18n 적용 후, 정적으로 빌드 시 원래 언어로 돌아가는 문제"
     ,"Javascript Modern Deep Dive Study (1) / 2nd Reading": "자바스크립트 모던 딥 다이브 스터디"
     ,"Analyzing a Static Next.js Blogging Project": "Next JS 정적프로젝트 분석하기 (1) 스캐폴딩, contentlayer"

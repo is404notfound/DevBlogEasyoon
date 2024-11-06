@@ -20,6 +20,7 @@ import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import PopupWrapper from '@/components/PopupWrapper'
+import SearchWrapper from '@/components/search/SearchWrapper'
 
 //Css initial styles
 const INITIAL_BAR_CONTAINER_STYLE = {
@@ -265,11 +266,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PopupWrapper />
           <ThemeProviders>
             <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+            <Header />
             <ContentContainer ref={containerRef}>
               <SectionContainer>
-                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
+              <SearchWrapper />
+                <div className="flex h-screen flex-col justify-between font-PretendardVariable">
                   <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                    <Header />
                     <main className="mb-auto">
                       {children}
                     </main>
