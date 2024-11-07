@@ -31,7 +31,7 @@ export default Card;
 
 
 const CardContainer = styled.div`
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--Color-Grayscale-dim-black-50);
   border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: var(--Shadow-box);
@@ -49,11 +49,11 @@ const Description = styled.p`
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: right;
-  color: var(--Text-primary);
+  color: var(--Color-Grayscale-04);
 `;
 
 const Content = styled.div<{ isArray: boolean, size: string }>`
-  color: var(--Text-primary);
+  color: var(--Color-Grayscale-03);
   text-align: ${({ isArray }) => (isArray ? 'left' : 'center')};
   font-size: ${({ size }) => (
     {large: '3rem', medium: '2rem', small: '1rem' }[size]

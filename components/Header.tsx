@@ -4,53 +4,68 @@ import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import MobileNav from './MobileNav'
-import LanguageSelector from './LanguageSelector';
-import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector'
+import { useTranslation } from 'react-i18next'
 import LogoComponent from '@/components/LogoComponent'
-import SearchWrapper from '@/components/search/SearchWrapper'
 import { useTheme } from 'next-themes'
-
+import styled from 'styled-components'
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
-    <div className="flex flex-col justify-between">
-      <header className="flex items-center justify-between py-10">
+      <HeaderWrapper>
         <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
             <div className="h-full flex items-center justify-between">
               <div>
                 <LogoComponent src={'./static/images/dog-logo.png'} />
               </div>
-              {typeof siteMetadata.headerTitle === 'string' ? (
-                <div className="hidden h-6 text-3xl font-semibold sm:block pb-10">
-                  {t(`${siteMetadata.headerTitle}`)}
-                </div>
-              ) : (
-                siteMetadata.headerTitle
-              )}
             </div>
           </Link>
         </div>
-        <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
+        <HeaderTextWrapper>
           {headerNavLinks
             .filter((link) => link.href !== '/')
             .map((link) => (
               <Link
                 key={link.title}
                 href={link.href}
-                className="hidden w-full font-medium text-gray-900 dark:text-gray-100 sm:block"
+                className="hidden w-full font-extrabold text-gray-900 dark:text-gray-100 sm:block"
               >
-                {link.title && `[${t(link.title)}]`}
+                {link.title && `${t(link.title)}`}
               </Link>
             ))}
           <MobileNav />
           <LanguageSelector />
-        </div>
-      </header>
-      <SearchWrapper />
-    </div>
+        </HeaderTextWrapper>
+      </HeaderWrapper>
   )
 }
 
 export default Header
+
+const HeaderWrapper = styled.header`
+  height: 72px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 49;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+`;
+
+const HeaderTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  white-space: nowrap;
+
+  a:hover {
+    border-bottom: 4px solid var(--Color-Retro-Pink-05);
+    transition: border-bottom 0.5s;
+  }
+`;

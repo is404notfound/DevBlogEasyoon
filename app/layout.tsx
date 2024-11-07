@@ -20,60 +20,12 @@ import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import PopupWrapper from '@/components/PopupWrapper'
-
-//Css initial styles
-const INITIAL_BAR_CONTAINER_STYLE = {
-  'display': 'flex',
-  'flex-direction': 'column',
-  'align-items': 'flex-end',
-  'justify-content': 'space-between',
-  'height': '180%',
-  'position': 'absolute',
-  'top': 0,
-  'left': 0,
-  'right': 0,
-  'bottom': 0,
-  'z-index': 1,
-} as const
-
-const INITIAL_BAR_STYLE = {
-  'height': '3vh',
-  'opacity': 0.5,
-  'background-color': 'gray',
-  'box-shadow': '0 0 10px 5px #f472b6',
-  'z-index': 1,
-} as const;
-
-const INITIAL_INVERTED_BAR_CONTAINER_STYLE = {
-  'display': 'flex',
-  'flex-direction': 'column',
-  'justify-content': 'space-between',
-  'align-items': 'flex-start',
-  'position': 'absolute',
-  'height': '180%',
-  'top': 0,
-  'left': 0,
-  'right': 0,
-  'bottom': 0,
-  'z-index': 1,
-} as const;
-
-const INITIAL_INVERTED_BAR_STYLE = {
-  'height': '3vh',
-  'opacity': 0.5,
-  'background-color': 'gray',
-  'box-shadow': '0 0 10px 5px #f472b6',
-  'z-index': 1,
-} as const;
-
-const BarContainer = styled.div(INITIAL_BAR_CONTAINER_STYLE as any);
-const Bar = styled(animated.div)(INITIAL_BAR_STYLE);
-const InvertedBarContainer = styled.div(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
-const InvertedBar = styled(animated.div)(INITIAL_INVERTED_BAR_STYLE);
+import SearchWrapper from '@/components/search/SearchWrapper'
 
 const ContentContainer = styled.div`
   position: relative;
-  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
 `;
 
 const space_grotesk = Space_Grotesk({
@@ -126,114 +78,6 @@ const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
-  const X_LINES = 80;
-  const INITIAL_HEIGHT = 2000;
-  const INITIAL_WIDTH = 100;
-
-  const calculateBarWidth = (i, scrollP) => {
-    const percentilePosition = (i + 1) / X_LINES;
-    const amplitude = 20; // 조절 가능한 진폭 값
-    const frequency = 1.5; // 조절 가능한 주파수 값
-    const rawWidth = INITIAL_WIDTH / 4 + amplitude * Math.cos(2 * Math.PI * frequency * (percentilePosition - scrollP));
-    return Math.abs(rawWidth)
-  };
-
-  const { scrollYProgress } = useScroll({
-    container: containerRef,
-    onChange: ({ value: { scrollYProgress } }) => {
-      const percentage = scrollYProgress * 100;
-      const percentilePosition = (percentage as number).toFixed(2) as unknown as number;
-      const newWidth = INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - percentage) * Math.PI) / 1.5) ** 32;
-      setResultWidth(newWidth);
-
-      if (percentage > 0.7) {
-        textApi.start({ y: '0' });
-      } else {
-        textApi.start({ y: '100%' });
-      }
-    },
-    default: {
-      immediate: true,
-    },
-  });
-  const [textStyles, textApi] = useSpring(() => ({ y: '100%', }));
-  const [resultWidth, setResultWidth] = useState(INITIAL_WIDTH);
-  const [resultHeight, setResultHeight] = useState(INITIAL_HEIGHT);
-  const [useMovingBar, setUseMovingBar] = useState(false);
-
-  // reactive style states
-  const [barContainerStyle, setBarContainerStyle] = useState(INITIAL_BAR_CONTAINER_STYLE as any);
-  const [invertedBarContainerStyle, setInvertedBarContainerStyle] = useState(INITIAL_INVERTED_BAR_CONTAINER_STYLE as any);
-
-  // moving bar style
-  useEffect(() => {
-    setBarContainerStyle({
-      ...INITIAL_BAR_CONTAINER_STYLE,
-      height: `${resultHeight}px`,
-    });
-    setInvertedBarContainerStyle({
-      ...INITIAL_INVERTED_BAR_CONTAINER_STYLE,
-      height: `${resultHeight}px`,
-    });
-  }, [resultHeight]);
-
-  useEffect(() => {
-    if (resultHeight === window.innerHeight) return;
-    window.addEventListener('scroll', () => window.scrollY === 0 && setResultHeight(window.innerHeight));
-
-    return () => {
-      window.removeEventListener('scroll', () => window.scrollY === 0 && setResultHeight(window.innerHeight));
-    }
-  }, [resultHeight]);
-
-  // set is using moving bar
-  useEffect(() => {
-    const handleResize = () => window.innerWidth > 1280 ? setUseMovingBar(true) : setUseMovingBar(false);
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-
-  // make moving bar
-  useEffect(() => {
-    if (!useMovingBar) return;
-
-    function getWindowSize() {
-      const viewportHeight = window.innerHeight;
-      const totalHeight = document.documentElement.scrollHeight;
-      const percentage = (window.scrollY / (totalHeight - viewportHeight)) * 100;
-      const percentilePosition = percentage;
-      const newWidth = calculateBarWidth(0, percentilePosition);
-
-      setResultHeight(totalHeight);
-      setResultWidth(newWidth);
-
-      return { percentage };
-    }
-
-    const handleScroll = () => {
-      const { percentage } = getWindowSize();
-
-      if (percentage > 0.7) {
-        textApi.start({ y: '0' });
-      } else {
-        textApi.start({ y: '100%' });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', () => getWindowSize());
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', () => getWindowSize());
-    };
-  }, [useMovingBar, textApi]);
 
   return (
     <html
@@ -266,10 +110,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProviders>
             <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
             <ContentContainer ref={containerRef}>
+              <Header />
               <SectionContainer>
-                <div className="flex h-screen flex-col justify-between font-DOSMyungjo">
+                <SearchWrapper />
+                <div className="flex flex-col justify-between font-PretendardVariable">
                   <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                    <Header />
                     <main className="mb-auto">
                       {children}
                     </main>
@@ -277,31 +122,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Footer />
                 </div>
               </SectionContainer>
-
-              {/* {useMovingBar && (
-                <>
-                  <BarContainer style={barContainerStyle}>
-                    {Array.from({ length: X_LINES }).map((_, i) => (
-                      <Bar key={i} style={{
-                        width: scrollYProgress.to(scrollP => {
-                          const percentilePosition = (i + 1) / X_LINES
-                          return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                        }),
-                      }} />
-                    ))}
-                  </BarContainer>
-                  <InvertedBarContainer style={invertedBarContainerStyle}>
-                    {Array.from({ length: X_LINES }).map((_, i) => (
-                      <InvertedBar key={i} style={{
-                        width: scrollYProgress.to(scrollP => {
-                          const percentilePosition = (i + 1) / X_LINES
-                          return INITIAL_WIDTH / 4 + 40 * Math.cos(((percentilePosition - resultWidth) * Math.PI) / 1.5) ** 32
-                        })
-                      }} />
-                    ))}
-                  </InvertedBarContainer>
-                </>
-              )} */}
               <CanvasCat />
             </ContentContainer>
           </ThemeProviders>

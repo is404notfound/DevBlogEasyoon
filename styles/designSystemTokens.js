@@ -122,7 +122,7 @@ const fontFamily = {
   sans: ['var(--font-space-grotesk)', ...fontFamilies.sans],
   mono: ['var(--font-space-grotesk)', ...fontFamilies.mono],
   DOSGothic: ['DOSGothic', ...fontFamilies.serif],
-  DOSMyungjo: ['DOSMyungjo', ...fontFamilies.serif],
+  DOSMyungjo: ['DOSMyungjo', ...fontFamilies.serif]
 }
 
 const typography = ({ theme }) => ({

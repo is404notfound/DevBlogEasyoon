@@ -14,11 +14,11 @@ const LanguageSelector = () => {
   return (
     <select onChange={changeLanguage} 
             value={i18n.language}
-            className="bg-transparent text-gray-900 dark:text-gray-100 sm:block"
+            className="font-extrabold bg-transparent text-gray-900 dark:text-gray-100 sm:block border-none"
     >
-      <option value="en">English</option>
-      <option value="ko">한국어</option>
-      <option value="ja">日本語</option>
+      <option value="en">ENG</option>
+      <option value="ko">KOR</option>
+      <option value="ja">JAP</option>
     </select>
   );
 };

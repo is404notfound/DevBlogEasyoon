@@ -73,7 +73,7 @@ module.exports = () => {
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'sh'],
     eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts', 'recoil', 'hooks', 'generators'],
+      dirs: ['app', 'components', 'layouts', 'scripts', 'recoil', 'hooks', 'generators','public'],
     },
     output: 'export',
     images: {

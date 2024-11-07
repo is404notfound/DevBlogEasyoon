@@ -36,7 +36,7 @@ const SearchList = () => {
                 </div>
                 <div className="flex justify-center text-2xl pt-5 pb-5">
                     <div className="border-b-[1px] pb-1">
-                        <SearchInput label="Current Keyword" color="blue-700" placeHolder="Please enter keyword" />
+                        <SearchInput label="Search" color="blue-700" placeHolder="Please enter keyword" />
                     </div>
                 </div>
                 <div className="h-fit text-white text-2xl p-10">

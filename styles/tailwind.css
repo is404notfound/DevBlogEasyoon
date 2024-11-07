@@ -30,20 +30,20 @@ input:-webkit-autofill:focus {
     color 600000s 0s;
 }
 
-/* 웹페이지 제작자가 원하는 폰트를 사용할 수 있게함 */
 
 @font-face {
-  font-family: 'DOSMyungjo';
-  src: url('../public/fonts/ttf/DOSMyungjo.ttf') format('truetype');
+  font-family: 'PretendardVariable';
+  src: url('../public/fonts/ttf/PretendardVariable.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'DOSGothic';
-  src: url('../public/fonts/ttf/DOSGothic.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'PretendardJPVariable';
+  src: url('../public/fonts/ttf/PretendardJPVariable.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
+
 body {
-  font-family: 'DOSMyungjo', 'DOSGothic', sans-serif;
+  font-family: 'PretendardVariable', 'PretendardJPVariable', sans-serif;
 }
