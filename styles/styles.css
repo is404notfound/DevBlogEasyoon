@@ -35,6 +35,9 @@
   --Color-Grayscale-dim-black-30: rgba(0, 0, 0, 0.3);
   --Color-Grayscale-dim-black-35: rgba(0, 0, 0, 0.35);
   --Color-Grayscale-dim-black-50: rgba(0, 0, 0, 0.5);
+  --Color-Grayscale-dim-black-60: rgba(0, 0, 0, 0.6);
+  --Color-Grayscale-dim-black-70: rgba(0, 0, 0, 0.7);
+  --Color-Grayscale-dim-black-80: rgba(0, 0, 0, 0.8);
 }
 
 :root {
