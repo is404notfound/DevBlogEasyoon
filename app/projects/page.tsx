@@ -16,7 +16,7 @@ export default function Projects() {
     dots: true, 
     infinite: true,
     autoplay: true,
-    speed: 1000, 
+    speed: 500, 
     slidesToShow: 2, 
     slidesToScroll: 1, 
     responsive: [
@@ -64,7 +64,7 @@ export default function Projects() {
 }
 
 const Container = styled.div`
-
+  padding-top: var(--Spacing-9, 36px);
 `;
 
 const StyledSlider = styled(Slider)`
@@ -75,7 +75,7 @@ const StyledSlider = styled(Slider)`
     @media (min-width: 1024px) {
     transform: translateX(-25%);
     }
-}
+  }
 
   .slick-slide > div {
     display: flex;

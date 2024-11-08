@@ -32,7 +32,7 @@ const CalendarPage = () => {
   };
   const calendars = [{
     id: '1',
-    name:'Reservations',
+    name: 'Reservations',
     color: 'var(--Color-Grayscale-02)',
     backgroundColor: 'var(--Color-Grayscale-dim-black-50)',
     borderColor: 'var(--Color-Retro-Pink-05)',
@@ -48,12 +48,9 @@ const CalendarPage = () => {
     <MainContainer>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {t('calendar.title')}
+          <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            {t('calendar.title')} | {currentYear}-{currentMonth}
           </h1>
-          <p className="text-xl leading-7 text-gray-500 dark:text-gray-400">
-            * {currentYear}-{currentMonth}-01 ~ {currentYear}-{currentMonth}-{currentLastDate}
-          </p>
         </div>
       </div>
       <Calendar
