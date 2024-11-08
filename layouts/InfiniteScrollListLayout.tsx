@@ -11,11 +11,13 @@ const InfiniteScrollListLayout = () => {
                 { itemList.map(({title, description, image, url, note}, index) => (
                     <Card
                         key={`${index}_${title}`}
-                        title={title}
+                        title={`#${index + 1}. ${title}`}
                         description={description}
                         imgSrc={image}
                         href={url}
                         buttonPath={note}
+                        isBadge={true}
+                        badge={`#${index + 1}`}
                     />
                 ))}
             </div>

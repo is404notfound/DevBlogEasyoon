@@ -7,6 +7,9 @@ import { allBlogs } from 'contentlayer/generated'
 import LineGraph from '@/components/LineGraph';
 import archiveData from '@/generators/output/archive-data.json'
 import { useTranslation } from 'react-i18next';
+import Button from '@/components/Button';
+import SearchIcon from '../../public/static/icons/search.svg';
+import NextIcon from '../../public/static/icons/next.svg';
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -14,16 +17,7 @@ const Dashboard = () => {
   const [codeCounts, setCodeCounts] = useState<{}>();
   const [dates, setDates] = useState<{}>({});
   const [diff, setDiff] = useState<{}>(0);
-  const SearchBlogLinkComponent = ()=> {
-    const searchURL = 'https://www.google.com/search?q=DevBlogEasyoon';
-    return (
-      <div className="">
-        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-          <a href={searchURL} target="_blank" rel="noreferrer"> {t('검색하러 가기')} </a>
-        </button>
-      </div>
-    );
-  }
+  const searchURL = 'https://www.google.com/search?q=DevBlogEasyoon';
 
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
@@ -56,7 +50,7 @@ const Dashboard = () => {
     const values = Object.values(totalCodeRecords);
     const last = values.length - 1;
     if (!values[last].length) return;
-    
+
     setCodeCounts(getCounts());
     setDates(getDate());
   }, [totalCodeRecords]);
@@ -88,7 +82,7 @@ const Dashboard = () => {
           <Card title="쓴 글" description="-" content={allBlogs.length} />
           <Card title="저장한 글" description="-" content={archiveData.length} />
         </div>
-        { codeCounts && Object.keys(totalCodeRecords).map((key: string, i) => {
+        {codeCounts && Object.keys(totalCodeRecords).map((key: string, i) => {
           const start = dates[key][0];
           const end = dates[key][dates[key].length - 1];
           const description = `2024-${start} ~ 2024-${end}`;
@@ -112,11 +106,15 @@ const Dashboard = () => {
           <Card title="Latest Commit" description="" content={commitHistory || ''} size={'small'} />
         </div>
         <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Google Search Console" description="적용 완료" size={'small'} content={SearchBlogLinkComponent()} />
+          <Card title="Google Search Console" description="적용 완료" size={'small'} content={(
+            <div className='flex flex-row justify-center'>
+              <Button text="검색해보기" type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
+            </div>)
+          } />
         </div>
       </div>
     </div>
   );
-  } 
+}
 
 export default Dashboard;

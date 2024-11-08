@@ -13,17 +13,17 @@ export default function Projects() {
   const { t } = useTranslation();
 
   const settings = {
-    dots: true, 
+    dots: true,
     infinite: true,
     autoplay: true,
-    speed: 500, 
-    slidesToShow: 2, 
-    slidesToScroll: 1, 
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2, 
+          slidesToShow: 2,
         }
       },
       {
@@ -37,54 +37,106 @@ export default function Projects() {
 
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {t('Projects')}
-          </h1>
-        </div>
-        <Container>
-          <StyledSlider {...settings}>
-            {projectsData.map((d) => (
-              <div key={d.title} className="px-4">
-                <Card
-                  title={d.title}
-                  description={d.description}
-                  imgSrc={d.imgSrc}
-                  href={d.href}
-                  status={d.status}
-                />
-              </div>
-            ))}
-          </StyledSlider>
-        </Container>
-      </div>
+      <Container>
+        <StyledSlider {...settings}>
+          {projectsData.map((d) => (
+            <div key={d.title} className="px-4">
+              <ImageCard
+                bgSrc={d.imgSrc}
+                onClick={() => window.open(d.href, '_blank')}
+              >
+                <Dimmed />
+                <Title> {d.title} </Title>
+              </ImageCard>
+            </div>
+          ))}
+        </StyledSlider>
+      </Container>
     </>
   );
 }
 
 const Container = styled.div`
   padding-top: var(--Spacing-9, 36px);
+  padding-bottom: var(--Spacing-9, 36px);
+  height: auto;
+  border-radius: var(--Border-radius-2, 8px);
 `;
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
     display: flex;
     justify-content: center; 
-
-    @media (min-width: 1024px) {
-    transform: translateX(-25%);
-    }
   }
 
   .slick-slide > div {
     display: flex;
     width: 100%;
     justify-content: center;
+
 }
 
   .slick-track {
     display: flex;
     align-items: center;
+  }
+`;
+
+const ImageCard = styled.div<{ bgSrc }>`
+  position: relative;
+  background-image: url(${(props) => props.bgSrc});
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--Border-radius-2, 8px);
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.5s;
+  }
+
+`;
+
+const Dimmed = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  background: var(--Color-Grayscale-dim-black-30);
+  border-radius: var(--Border-radius-2, 8px);
+
+`;
+
+const Title = styled.h2`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px; 
+  transition: all 0.5s;
+  -webkit-text-stroke: 4px var(--Color-Grayscale-00);
+  font-size: 4rem;
+  text-align: center;
+  color: transparent;
+  font-family: "Meta", sans-serif;
+  text-shadow: 10px 10px 0px #07bccc,
+    15px 15px 0px #e601c0,
+    20px 20px 0px #e9019a,
+    25px 25px 0px #f40468,
+    45px 45px 10px #482896;
+  cursor: pointer;
+
+  &:hover {
+    text-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    text-shadow: 10px 10px 0px #07bccc,
+    15px 15px 0px #e601c0,
+    20px 20px 0px #e9019a,
+    25px 25px 0px #f40468,
+    45px 45px 10px #482896;
+    white-space: normal;
   }
 `;
