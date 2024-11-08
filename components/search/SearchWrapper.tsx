@@ -24,7 +24,7 @@ const SearchWrapper = () => {
     return (
         <>
             <div className="mt-10 bg-black p-2 mb-10 rounded-lg">
-                <SearchInput placeHolder={"Please press 'Enter Key' to confirm a keyword..."} />
+                <SearchInput placeHolder={"Please press 'Enter Key' to confirm a keyword"} />
             </div>
         </>
     )

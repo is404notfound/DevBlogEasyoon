@@ -29,7 +29,7 @@ const SearchInput = ({ color = 'black', label = 'Search', placeHolder = '' }) =>
             </SearchTitleContainer>
             <div className="flex-auto w-full">
                 <input
-                    className={`bg-${color} text-white text-xl w-full border-none ring-none focus:border-none focus:ring-none}`}
+                    className={`bg-${color} text-white text-lg w-full border-none ring-none focus:border-none focus:ring-none}`}
                     type="text"
                     value={value}
                     onChange={onChange}
