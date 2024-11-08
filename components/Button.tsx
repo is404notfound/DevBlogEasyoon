@@ -1,7 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ text, type = 'primary', size = 'M', disabled = false, startIcon = null, endIcon = null, onClick = () => {} }) => (
+const Button = ({
+    text
+    , type = 'primary'
+    , size = 'M'
+    , disabled = false
+    , startIcon = null
+    , endIcon = null
+    , onClick = () => {} 
+}: {
+    text: string
+    type?: 'primary' | 'secondary' | 'tertiary'
+    size?: 'S' | 'M' | 'L'
+    disabled?: boolean
+    startIcon?: React.ReactNode 
+    endIcon?: React.ReactNode
+    onClick?: () => void
+}) => (
   //@ts-ignore
   <StyledButton type={type} size={size} disabled={disabled} onClick={onClick}>
     {startIcon && <span className="icon">{startIcon}</span>}
