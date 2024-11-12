@@ -71,6 +71,12 @@ module.exports = () => {
   return plugins.reduce((acc, next) => next(acc), {
     assetPrefix: 'https://devblogeasyoon.xyz/',
     reactStrictMode: true,
+    compiler: {
+      styledComponents: {
+        displayName: true,
+        ssr: true,
+      },
+    },
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'sh'],
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts', 'recoil', 'hooks', 'generators','public'],

@@ -14,13 +14,13 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import '../i18n';
 import { useEffect, useRef, useState } from 'react'
-import { useScroll, useSpring, animated } from 'react-spring'
 import styled from 'styled-components';
-import CanvasCat from '@/components/CanvasCat';
+// import CanvasCat from '@/components/CanvasCat';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import PopupWrapper from '@/components/PopupWrapper'
 import SearchWrapper from '@/components/search/SearchWrapper'
+import { useStyledComponentsRegistry } from "../lib/StyledComponentsRegistry";
 
 const ContentContainer = styled.div`
   position: relative;
@@ -78,6 +78,12 @@ const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null!);
+  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
+  const [styleTags, setStyleTags] = useState<string>('');
+
+  useEffect(() => {
+    setStyleTags(getStyleTags());
+  }, [getStyleTags]);
 
   return (
     <html
@@ -104,28 +110,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
       <meta name="google-site-verification" content="yRvR1PpfIXBPplOYqxtKFy9exK_FuOsG8mMEDQYeRrs" />
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
-      <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100 ">
-
+      <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100" >
+      <div dangerouslySetInnerHTML={{ __html: styleTags }} />
         <RecoilRoot>
-          <PopupWrapper />
-          <ThemeProviders>
-            <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-            <ContentContainer ref={containerRef}>
-              <Header />
-              <SectionContainer>
-                <SearchWrapper />
-                <div className="flex flex-col justify-between font-PretendardVariable">
-                  <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                    <main className="mb-auto">
-                      {children}
-                    </main>
-                  </SearchProvider>
-                  <Footer />
-                </div>
-              </SectionContainer>
-              {/* <CanvasCat /> */}
-            </ContentContainer>
-          </ThemeProviders>
+          <StyledComponentsRegistry>
+            <PopupWrapper />
+            <ThemeProviders>
+              <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+              <ContentContainer ref={containerRef}>
+                <Header />
+                <SectionContainer>
+                  <SearchWrapper />
+                  <div className="flex flex-col justify-between font-PretendardVariable">
+                    <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                      <main className="mb-auto">
+                        {children}
+                      </main>
+                    </SearchProvider>
+                    <Footer />
+                  </div>
+                </SectionContainer>
+                {/* <CanvasCat /> */}
+              </ContentContainer>
+            </ThemeProviders>
+          </StyledComponentsRegistry>
         </RecoilRoot>
       </body>
     </html>
