@@ -7,7 +7,6 @@ import MobileNav from './MobileNav'
 import LanguageSelector from './LanguageSelector'
 import { useTranslation } from 'react-i18next'
 import LogoComponent from '@/components/LogoComponent'
-import { useTheme } from 'next-themes'
 import styled from 'styled-components'
 
 const Header = () => {

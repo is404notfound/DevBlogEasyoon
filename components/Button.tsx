@@ -46,7 +46,6 @@ const StyledButton = styled.button<{ type: 'primary' | 'secondary' | 'tertiary',
     type === 'tertiary' ? 'transparent' : 'var(--Color-Retro-Blue-01)'};
   border: ${({ type }) => type === 'tertiary' ? '1px solid var(--Color-Grayscale-04)' : 'none'};
   border-radius: 4px;
-  cursor: pointer;
   transition: background-color 0.3s;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};

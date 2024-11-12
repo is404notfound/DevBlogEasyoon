@@ -92,7 +92,6 @@ const ImageCard = styled.div<{ bgSrc }>`
   border-radius: var(--Border-radius-2, 8px);
 
   &:hover {
-    cursor: pointer;
     transform: scale(1.1);
     transition: transform 0.5s;
   }
@@ -125,7 +124,6 @@ const Title = styled.h2`
     20px 20px 0px #e9019a,
     25px 25px 0px #f40468,
     45px 45px 10px #482896;
-  cursor: pointer;
 
   &:hover {
     text-shadow: none;

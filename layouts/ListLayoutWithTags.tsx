@@ -112,12 +112,12 @@ export default function ListLayoutWithTags({
                               <Image
                                 src={ProfileImage}
                                 alt={siteMetadata.socialBanner}
-                                width={80}
+                                width={90}
                                 style={{
-                                  borderRadius: '50%'
+                                  borderRadius: '10 0%'
                                   , margin: '0 auto'
-                                  , paddingTop: '20px'
-                                  , marginBottom: '20px'
+                                  , marginTop: '10px',
+                                  marginBottom: '10px'
                                 }}
                               />
                             }
