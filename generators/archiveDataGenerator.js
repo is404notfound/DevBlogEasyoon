@@ -13,19 +13,14 @@ const URLS =
         , 'https://youtu.be/dLPgQRbVquo?si=Fy6cmyUPIKZ0hgnb'
         , 'https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/'
         , 'https://ux.stackexchange.com/questions/90336/whats-the-difference-between-a-modal-popup-popover-and-lightbox'
-        , 'https://youtu.be/95YLHDzsg8A?si=Es3sWI61_16-e2fU'
         , 'https://youtu.be/7BHs1BzA4fs?si=YUbtDplCi3i5TljA'
-        , 'https://www.typescriptlang.org/tsconfig#moduleResolution'
-        , 'https://www.itworld.co.kr/tags/22353/%EC%A0%95%EB%A6%AC%ED%95%B4%EA%B3%A0/325527'
-        , 'https://studiomeal.com/archives/197'
         , 'https://www.reddit.com/r/javascript/comments/83gpwm/how_important_is_being_an_expert_in_css_to/'
-        , 'https://medium.com/@adarshrai3011/53-javascript-frontend-interview-questions-e6013116eaa0'
         , 'https://blog.dramancompany.com/2021/11/%eb%93%9c%eb%9d%bc%eb%a7%88%ec%95%a4%ec%bb%b4%ed%8d%bc%eb%8b%88%ec%97%90%ec%84%9c-pull-request-%ed%8e%b8%eb%a6%ac%ed%95%98%ea%b2%8c-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%eb%b2%95/'
-        , 'https://blog.dramancompany.com/2020/12/%eb%a6%ac%eb%a9%a4%eb%b2%84-%ec%84%9c%eb%b2%84-%ec%9b%b9-%ed%8c%80%ec%9d%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%9d%bc%ec%9d%84-%ed%95%98%eb%8a%94%ea%b0%80/'
         , 'https://toss.tech/article/react-native-2024'
         , 'https://velog.io/@nookcoder2/NextJS-window-is-not-defined'
         , 'https://dev-russel.tistory.com/97'
         , 'https://ui.toast.com/posts/ko_20210526'
+        , 'https://velog.io/@dlehddnr99/NextJS-%EB%B2%84%EC%A0%84-%EB%B3%84-%EC%B0%A8%EC%9D%B4%EC%A0%90-13-%EC%9D%B4%EC%A0%84-13-14'
     ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
@@ -67,13 +62,13 @@ async function saveMetaDataToJson(urls, outputPath) {
     const metaData = [];
     for (const url of urls) {
         const meta = await scrapeMetaTags(url);
-        console.log('LOG :: Finish scraping');
+        console.log('LOG :: Finish scraping:' + url);
         metaData.push(meta);
     }
     console.log('LOG :: Make json file');
     fs.writeFileSync(outputPath, JSON.stringify(metaData, null, 2));
-    console.log('LOG :: Finish');
+    console.log('LOG :: Job Finish');
 }
 
-console.log('LOG :: Start scraping');
+console.log('LOG :: Start scraping job');
 saveMetaDataToJson(URLS, OUTPUT_PATH);
