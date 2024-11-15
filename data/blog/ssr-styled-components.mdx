@@ -1,0 +1,95 @@
+---
+title: Using styled-components with SSR in Next.js 13 (if refresh, styles are not applied in the first time)
+date: '2024-11-13'
+tags: ['FE', 'SSR', 'NextJS', 'Styled Components']
+draft: false
+---
+# Styled-Components SSR 디버깅 과정
+
+Next.js 13에서 styled-components를 SSR(Server-Side Rendering)로 사용하기 위한 설정과 문제 발생, 그리고 디버깅 과정입니다.
+
+1. 첫번째 문제 발생
+문제: 페이지 진입 혹은 새로고침 시 styled-components로 작성한 스타일이 적용되지 않음.
+(tailwindCSS나 일반 CSS는 잘 적용되지만, styled-components로 작성한 스타일만 적용되지 않음)
+
+2. Next.js 13에서 styled-components SSR을 사용하기 위한 설정
+(1) Babel 설정 제외
+문제: babel.config.js를 설정하려 했으나, SWC와 충돌이 발생하는 문제
+
+- SWC란?
+: SWC는 Next.js에서 사용하는 최신 JavaScript/TypeScript 컴파일러로, 이는 Babel을 대체하는 도구로, 컴파일 성능이 더 빠르다는 장점이 있지만 Babel과 일부 설정이 충돌할 수 있다.
+
+왜 충돌이 발생했는가?
+SWC는 Next.js에서 기본적으로 사용되고 있기 때문에 Babel 설정과 중복되어 문제가 발생한다. 이를 해결하려면 Babel 설정을 추가하지 않고 next.config.js에서만 설정을 해야했다.
+
+(2) next.config.js 설정
+설정 방법: next.config.js 파일에 styled-components의 SSR을 활성화하는 설정을 추가
+styledComponents: true 설정을 활성화하면, Next.js는 SSR에서 styled-components를 사용할 때 필요한 설정을 자동으로 처리한다.
+
+```js
+// next.config.js
+module.exports = {
+  experimental: {
+    styledComponents: true,
+  },
+  reactStrictMode: true,
+}
+```
+
+(3) app 기반 설정
+
+문제: Next.js 13에서는 pages 대신 app 디렉토리를 사용하는 방식으로 개발해야 하며, 이를 위해 별도의 lib 디렉토리와 설정이 필요했다.
+설정 방법: /lib 디렉토리를 만들고, 아래와 같은 파일을 생성해준다. 이를 통해 컴포넌트들이 서버에서 렌더링될 때 스타일을 포함할 수 있었다.
+
+```js
+// lib/styled-components.js
+import { ServerStyleSheet } from 'styled-components';
+
+export function getStyleTags() {
+  const sheet = new ServerStyleSheet();
+  try {
+    return sheet.getStyleTags(); // 스타일 태그를 반환
+  } finally {
+    sheet.seal();
+  }
+}
+```
+3. 설정 적용 후 속도가 빨라졌다.
+SSR을 사용할 때 styled-components의 스타일을 서버에서 렌더링하고 클라이언트에 보내는 방식이기 때문에, 페이지가 초기 로딩할 때 모든 스타일이 미리 적용된 상태로 렌더링이 된다.
+클라이언트 사이드에서 스타일을 재처리하는 시간이 생략이 돼서, 초기 렌더링 속도가 조금 더 빨라졌다.
+
+(추가 의문) 원래대로라면, 초기 렌더링은 CSR이 빠르지 않을까 생각했었다.
+하지만, Next.js에서는 use Client를 사용해서인지 서버에서 렌더링된 스타일을 클라이언트에서 다시 렌더링하는 과정이 필요했고
+이를 해결하기 위해 styled-components의 SSR을 사용하는 게 아닐까 조심스럽게 추측해본다.
+
+4. 문제 발생 2: getStyleTags()로 받아온 스타일들이 `<head>`나 `<body>` 태그에서 빈 태그만 받아옴
+문제: getStyleTags()로 받아온 스타일 태그는 `<head>`나 `<body>`에 존재하지만, 태그의 내용이 비어 있었다.
+원인: 서버에서 렌더링될 때 styled-components 스타일 태그가 올바르게 삽입되지 않거나, 초기 렌더링이 제대로 처리되지 않은 경우 발생하는 문제
+해결 방법
+: getStyleTags()의 반환값을 useState와 useEffect를 사용하여 상태로 저장하고, 스타일 태그의 초기 값을 넣어주는 것이 아닌 상태로 관리하고 업데이트하는 방식으로 변경하였더니 해결됐다.
+getStyleTags()로 가져온 스타일 태그를 React에서 상태로 관리하고, 이를 dangerouslySetInnerHTML을 통해 삽입하였다.
+
+``` tsx
+import React, { useEffect, useState } from 'react';
+import { getStyleTags } from '../lib/styled-components';
+
+const MyComponent = () => {
+  const [styleTags, setStyleTags] = useState<string>('');
+
+  useEffect(() => {
+    setStyleTags(getStyleTags());
+  }, [getStyleTags]);
+
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: styleTags }} />
+    </>
+  );
+};
+
+export default MyComponent;
+
+```
+
+위의 과정으로 styled-components를 SSR로 설정하고, 스타일이 제대로 적용되지 않던 문제를 해결했다.
+useState와 useEffect를 사용하여 서버에서 렌더링된 스타일을 클라이언트에서 안전하게 삽입하고, 초기 렌더링 속도를 개선할 수 있었다.
