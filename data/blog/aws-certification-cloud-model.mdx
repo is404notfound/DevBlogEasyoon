@@ -1,0 +1,65 @@
+---
+title: [AWS Certification] Cloud Concepts | Models of Cloud Computing (IaaS, PaaS, SaaS)
+date: '2024-11-18'
+tags: ['AWS', 'Certification', 'Cloud', 'CI/CD']
+draft: false
+---
+# [AWS 자격증] 클라우드 기초 개념: 클라우드 컴퓨팅의 모델 (IaaS, PaaS, SaaS, AWS 강의실 기초)
+
+### 📎 [강의 링크](https://www.youtube.com/watch?v=s75iONF6XFw&list=PLfth0bK2MgIan-SzGpHIbfnCnjj583K2m&index=3&t=15s)
+
+---
+
+## 클라우드 컴퓨팅의 유형?
+
+- 클라우드 컴퓨팅 모델과 클라우드 컴퓨팅 배포 모델로 구분
+  - **클라우드 컴퓨팅 모델**: 클라우드 컴퓨팅이 제공하는 서비스의 종류에 따라 구분
+  - **클라우드 컴퓨팅 배포 모델**: 클라우드 컴퓨팅을 제공하는 방식에 따라 구분
+
+---
+
+## 클라우드 컴퓨팅 모델
+
+- **기본적인 어플리케이션 구성 요소 5가지**:
+  - **Network**: 랜카드/랜선
+  - **Storage**: SSD / HDD
+  - **Computing**: CPU / RAM
+  - **OS**: Windows / Linux
+  - **어플리케이션**
+
+- 제공하는 구성요소에 따른 분류
+  - **IaaS**
+    - Infrastructure as a Service로, 인프라만 제공
+    - Network + Storage + Computing으로 OS와 Application은 직접 설치
+    - 가상의 컴퓨터 한대를 빌리는 것과 동일
+    - 예시) AWS EC2
+
+  - **PaaS**
+    - Platform as a Service로, 어플리케이션 코드를 제외한 나머지 구성요소를 제공
+    - 바로 코드만 올려서 실행할 수 있도록 인프라, 서버 등의 어플리케이션 개발에 필요한 구성요소들을 제공
+    - 예시) Firebase, Supabase
+
+  - **SaaS**
+    - Software as a Service: 인프라 + OS + 필요한 소프트웨어가 제공
+    - 서비스 자체를 제공받을 수 있으며, 별다른 셋팅 없이 서비스를 이용
+    - 예시) Gmail, Slack, Dropbox 등
+    
+---
+
+## 클라우드 컴퓨팅 배포 모델
+
+- **공개형(클라우드) 모델**
+  - 어플리케이션의 모든 사항들이 클라우드 내에서 실행
+  - 낮은 리소스 비용 
+  - 높은 확장성
+ 
+- **폐쇄형 모델**
+  - 가장 높은 수준의 커스터마이징이 가능
+  - 초기 리소스에 드는 비용이 비쌈
+  - 유지보수 리소스 비용이 비쌈
+  - 높은 보안
+
+- **혼합형(하이브리드) 모델**
+  - 폐쇄형 모델과 공개형 모델의 혼합
+  - 폐쇄형에서 공개형으로 전환하는 고도기에서 많이 사용
+  - 폐쇄형의 백업으로 많이 사용
