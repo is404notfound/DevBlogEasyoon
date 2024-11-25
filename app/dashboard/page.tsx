@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [codeCounts, setCodeCounts] = useState<{}>();
   const [dates, setDates] = useState<{}>({});
   const [diff, setDiff] = useState<{}>(0);
-  const searchURL = 'https://www.google.com/search?q=DevBlogEasyoon';
+  const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz';
 
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
