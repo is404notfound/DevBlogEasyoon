@@ -5,8 +5,11 @@ import BookIcon from '../public/static/icons/book.svg';
 import NextIcon from '../public/static/icons/next.svg';
 import styled from 'styled-components';
 import NoImageSrc from '../public/static/images/no-image-book.avif';
+import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry';
+import { useEffect, useState } from 'react';
 
-const Card = ({ title, description = '', imgSrc = '', href = '#', buttonPath = '', isBadge=false, badge='' }
+
+const Card = ({ title, description = '', imgSrc = '', href = '#', buttonPath = '', isBadge = false, badge = '' }
   : {
     title: string
     description?: string
@@ -15,76 +18,94 @@ const Card = ({ title, description = '', imgSrc = '', href = '#', buttonPath = '
     buttonPath?: string
     isBadge?: boolean
     badge?: string
-  }) => (
-  <div className="relative md max-w-[544px] p-4 md:w-1/2">
-    <div
-      className={`${imgSrc && 'h-full'} relative overflow-hidden rounded-xl bg-gray-700/80`}
-    >
-      {isBadge && (
-        <Badge>
-          {badge}
-        </Badge>
-      )}
-      {!imgSrc ? (
-        <NoImageContainer>
-          <NoImageText> \(o_o)/ No Images for here </NoImageText>
-          <Dimmed />
-          <Image
-            alt={title}
-            src={NoImageSrc}
-            className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
-            width={544}
-            height={306}
-          />
-        </NoImageContainer>
-      ) :
-        href ? (
-          <Link href={href} aria-label={`Link to ${title}`}>
-            <Image
-              alt={title}
-              src={imgSrc}
-              className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
-              width={544}
-              height={306}
-            />
-          </Link>
-        ) : (
-          <Image
-            alt={title}
-            src={imgSrc}
-            className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
-            width={544}
-            height={306}
-          />
-        )}
-      <div className="p-6">
-        <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
-          {href ? (
-            <Link href={href} aria-label={`Link to ${title}`}>
-              {title}
-            </Link>
-          ) : (
-            title
-          )}
-        </h2>
-        <div>
-          <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
-        </div>
-        {buttonPath && (
-          <div className="mt-8 flex flex-row justify-center">
-            <Button
-              type="tertiary"
-              text="SEE MY RELATED POSTING"
-              startIcon={<BookIcon />}
-              endIcon={<NextIcon />}
-              onClick={() => window.open(buttonPath, '_blank')}
-            />
+  }) => {
+  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
+  const [styleTags, setStyleTags] = useState<string>('');
+
+  useEffect(() => {
+    const initialStyleTags = getStyleTags();
+    
+    if (!initialStyleTags) return;
+
+    setStyleTags(initialStyleTags);
+  }, [styleTags]);
+
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: styleTags }} />
+      <StyledComponentsRegistry>
+        <div className="relative md max-w-[544px] p-4 md:w-1/2">
+          <div
+            className={`${imgSrc && 'h-full'} relative overflow-hidden rounded-xl bg-gray-700/80`}
+          >
+            {isBadge && (
+              <Badge>
+                {badge}
+              </Badge>
+            )}
+            {!imgSrc ? (
+              <NoImageContainer>
+                <NoImageText> \(o_o)/ No Images for here </NoImageText>
+                <Dimmed />
+                <Image
+                  alt={title}
+                  src={NoImageSrc}
+                  className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
+                  width={544}
+                  height={306}
+                />
+              </NoImageContainer>
+            ) :
+              href ? (
+                <Link href={href} aria-label={`Link to ${title}`}>
+                  <Image
+                    alt={title}
+                    src={imgSrc}
+                    className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
+                    width={544}
+                    height={306}
+                  />
+                </Link>
+              ) : (
+                <Image
+                  alt={title}
+                  src={imgSrc}
+                  className="object-cover object-center md:h-36 lg:h-48 transition-transform duration-300 transform hover:scale-110"
+                  width={544}
+                  height={306}
+                />
+              )}
+            <div className="p-6">
+              <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
+                {href ? (
+                  <Link href={href} aria-label={`Link to ${title}`}>
+                    {title}
+                  </Link>
+                ) : (
+                  title
+                )}
+              </h2>
+              <div>
+                <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+              </div>
+              {buttonPath && (
+                <div className="mt-8 flex flex-row justify-center">
+                  <Button
+                    type="tertiary"
+                    text="SEE MY RELATED POSTING"
+                    startIcon={<BookIcon />}
+                    endIcon={<NextIcon />}
+                    onClick={() => window.open(buttonPath, '_blank')}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </div>
-    </div>
-  </div>
-)
+        </div>
+      </StyledComponentsRegistry>
+    </>
+  )
+}
 
 export default Card
 
@@ -118,7 +139,7 @@ const NoImageText = styled.div`
     white-space: nowrap;
   `;
 
-  const Badge = styled.div`
+const Badge = styled.div`
   position: absolute;
   top: 0;
   left: 0;

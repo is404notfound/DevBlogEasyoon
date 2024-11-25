@@ -1,16 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import projectsData from '@/data/projectsData'
-import Card from '@/components/Card'
-import { useTranslation } from 'react-i18next';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
+import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry';
 
 export default function Projects() {
-  const { t } = useTranslation();
+  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
+  const [styleTags, setStyleTags] = useState<string>('');
 
   const settings = {
     dots: true,
@@ -35,23 +35,34 @@ export default function Projects() {
     ],
   };
 
+  useEffect(() => {
+    const initialStyleTags = getStyleTags();
+
+    if (!initialStyleTags) return;
+
+    setStyleTags(initialStyleTags);
+  }, [styleTags]);
+
   return (
     <>
-      <Container>
-        <StyledSlider {...settings}>
-          {projectsData.map((d) => (
-            <div key={d.title} className="px-4">
-              <ImageCard
-                bgSrc={d.imgSrc}
-                onClick={() => window.open(d.href, '_blank')}
-              >
-                <Dimmed />
-                <Title> {d.title} </Title>
-              </ImageCard>
-            </div>
-          ))}
-        </StyledSlider>
-      </Container>
+      <div dangerouslySetInnerHTML={{ __html: styleTags }} />
+      <StyledComponentsRegistry>
+        <Container>
+          <StyledSlider {...settings}>
+            {projectsData.map((d) => (
+              <div key={d.title} className="px-4">
+                <ImageCard
+                  bgSrc={d.imgSrc}
+                  onClick={() => window.open(d.href, '_blank')}
+                >
+                  <Dimmed />
+                  <Title> {d.title} </Title>
+                </ImageCard>
+              </div>
+            ))}
+          </StyledSlider>
+        </Container>
+      </StyledComponentsRegistry>
     </>
   );
 }

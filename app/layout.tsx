@@ -82,7 +82,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [styleTags, setStyleTags] = useState<string>('');
 
   useEffect(() => {
-    setStyleTags(getStyleTags());
+    const initialStyleTags = getStyleTags();
+    
+    if (!initialStyleTags) return;
+
+    setStyleTags(initialStyleTags);
+
   }, [getStyleTags]);
 
   return (
