@@ -87,7 +87,7 @@
     "note": "blog/next-js-sharp-image-optimization",
     "og:site_name": "YouTube",
     "og:url": "https://www.youtube.com/watch?v=Ino03JPppU4",
-    "og:title": "Next.js의 이미지 최적화는 어떻게 동작하는가? Next.js는 왜 Sharp를 추천하는가 by 안건환님",
+    "og:title": "Next.js의 이미지 최적화는 어떻게 동작하는가? Next.js는 왜 Sharp를 추천하는가 by 안건환님 - AWSKRUG 프론트엔드 소모임 230510",
     "og:image": "https://i.ytimg.com/vi/Ino03JPppU4/maxresdefault.jpg",
     "og:image:width": "1280",
     "og:image:height": "720",
@@ -357,5 +357,19 @@
     "og:type": "article",
     "og:title": "[ NextJS ] 버전 별 특징(13 이전, 13, 14)",
     "og:description": "before-next-13 / next-13 / next-14"
+  },
+  {
+    "note": "",
+    "og:title": "모든 개발자가 알아야 할 SOLID의 진실 혹은 거짓",
+    "og:type": "article",
+    "og:url": "https://tech.kakaobank.com/posts/2411-solid-truth-or-myths-for-developers/",
+    "og:description": "기술 면접 자리에서 SOLID 5대 원칙에 대한 질문을 받아보신 분이라면 주목! 이 글에서는 SOLID 원칙의 역사와 장점, 그리고 각각의 원칙에서 중요한 점을 면접 상황 예시를 통해 가볍게 풀어보았습니다. SOLID에 대해 평소 궁금했던 점이나 오해하셨던 부분들을 바로잡는 데 도움이 되기를 바랍니다. 그럼 SOLID의 진정한 의미와 활용법을 함께 알아보세요!",
+    "og:image": "https://tech.kakaobank.com/img/og_gray.png",
+    "og:image:width": "400",
+    "og:image:height": "210",
+    "twitter:image:width": "400",
+    "twitter:image:height": "210",
+    "article:published_time": "2024-11-01T20:24:29+09:00",
+    "article:modified_time": "2024-11-01T20:24:29+09:00"
   }
 ]
