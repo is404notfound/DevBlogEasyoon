@@ -1,11 +1,15 @@
 import Card from '@/components/Card'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+
 
 const InfiniteScrollListLayout = () => {
     const { itemList } = useInfiniteScroll();
+  
     useEffect(() => {}, [itemList]);
+
     return (
+        <>
         <div className="container py-12">
             <div className="-m-4 flex flex-wrap">
                 { itemList.map(({title, description, image, url, note}, index) => (
@@ -22,6 +26,7 @@ const InfiniteScrollListLayout = () => {
                 ))}
             </div>
         </div>
+        </>
     )
 }
 

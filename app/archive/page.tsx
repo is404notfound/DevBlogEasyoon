@@ -9,21 +9,21 @@ import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 export default function Archive() {
   const { t } = useTranslation();
   const { setInitialItemList } = useInfiniteScroll();
-    
-  useEffect(() => {
-      const parsedData = archiveData.map((item: any) => {
-          return {
-              image: item['og:image'] || '',
-              title: item['og:title'] || '',
-              description: item['og:description'] || '',
-              url: item['og:url'] || '',
-              date: item['article:published_time'] || '',
-              note: item.note || '',
-          };
-      });
-      parsedData.reverse();
 
-      setInitialItemList(parsedData as any);
+  useEffect(() => {
+    const parsedData = archiveData.map((item: any) => {
+      return {
+        image: item['og:image'] || '',
+        title: item['og:title'] || '',
+        description: item['og:description'] || '',
+        url: item['og:url'] || '',
+        date: item['article:published_time'] || '',
+        note: item.note || '',
+      };
+    });
+
+    parsedData.reverse();
+    setInitialItemList(parsedData as any);
   }, []);
 
 

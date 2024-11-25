@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import Button from '@/components/Button';
 import SearchIcon from '../../public/static/icons/search.svg';
 import NextIcon from '../../public/static/icons/next.svg';
+import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry';
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -18,7 +19,9 @@ const Dashboard = () => {
   const [dates, setDates] = useState<{}>({});
   const [diff, setDiff] = useState<{}>(0);
   const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz';
-
+  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
+  const [styleTags, setStyleTags] = useState<string>('');
+  
   function getCounts(): { [key: string]: number[] } {
     const keys: string[] = Object.keys(totalCodeRecords);
     const values: CodeLineRecords[][] = Object.values(totalCodeRecords);
@@ -45,6 +48,13 @@ const Dashboard = () => {
     return result;
   };
 
+  useEffect(() => {
+    const initialStyleTags = getStyleTags();
+    
+    if (!initialStyleTags) return;
+
+    setStyleTags(initialStyleTags);
+  }, [styleTags]);
 
   useEffect(() => {
     const values = Object.values(totalCodeRecords);
@@ -70,6 +80,9 @@ const Dashboard = () => {
   }, [codeCounts]);
 
   return (
+    <>
+    <div dangerouslySetInnerHTML={{ __html: styleTags }} />
+    <StyledComponentsRegistry>
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pb-8 pt-6 md:space-y-5">
         <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -114,6 +127,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </StyledComponentsRegistry>
+    </>
   );
 }
 
