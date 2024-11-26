@@ -16,7 +16,7 @@ const Header = () => {
         <div className="pr-4">
           <Link href="/" aria-label={siteMetadata.headerTitle}>
             <div className="h-full flex items-center justify-between gap-4">
-                <LogoComponent src={'./static/images/dog-logo.png'} />
+                <LogoComponent src={'/static/images/dog-logo.png'} />
                 {/* {siteMetadata.headerTitle} */}
             </div>
           </Link>
