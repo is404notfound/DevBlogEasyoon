@@ -22,6 +22,7 @@ const URLS =
         , 'https://ui.toast.com/posts/ko_20210526'
         , 'https://velog.io/@dlehddnr99/NextJS-%EB%B2%84%EC%A0%84-%EB%B3%84-%EC%B0%A8%EC%9D%B4%EC%A0%90-13-%EC%9D%B4%EC%A0%84-13-14'
         , 'https://tech.kakaobank.com/posts/2411-solid-truth-or-myths-for-developers/'
+        , 'https://medium.com/@all.technology.stories/9ae18ef06ab2'
     ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');
