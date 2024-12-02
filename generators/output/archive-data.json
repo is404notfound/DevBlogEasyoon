@@ -113,7 +113,7 @@
     "og:title": "NEXT.JS의 이미지 최적화는 어떻게 동작하는가? | 올리브영 테크블로그",
     "og:description": "NEXT.JS는 왜 Sharp를 추천하는가",
     "og:image": "https://oliveyoung.tech/static/352057cdcc9c1b70731dbf1dc28bc518/9c90f/title.png",
-    "og:url": "https://oliveyoung.tech/blog/2023-06-09/nextjs-image-optimization/",
+    "og:url": "https://oliveyoung.tech/2023-06-09/nextjs-image-optimization/",
     "og:site_name": "NEXT.JS의 이미지 최적화는 어떻게 동작하는가? | 올리브영 테크블로그"
   },
   {
@@ -371,5 +371,26 @@
     "twitter:image:height": "210",
     "article:published_time": "2024-11-01T20:24:29+09:00",
     "article:modified_time": "2024-11-01T20:24:29+09:00"
+  },
+  {
+    "note": "blog/the-future-of-front-end-development-trends-to-watch-in-2025",
+    "al:ios:app_name": "Medium",
+    "al:ios:app_store_id": "828256236",
+    "al:android:package": "com.medium.reader",
+    "fb:app_id": "542599432471018",
+    "og:site_name": "Medium",
+    "og:type": "article",
+    "article:published_time": "2024-11-30T16:02:22.572Z",
+    "og:title": "The Future of Front-End Development: Trends to Watch in 2025",
+    "al:android:url": "medium://p/9ae18ef06ab2",
+    "al:ios:url": "medium://p/9ae18ef06ab2",
+    "al:android:app_name": "Medium",
+    "og:description": "Future-proof your dev skills: AI, Wasm, and trends you can’t ignore in 2025.",
+    "og:url": "https://medium.com/@all.technology.stories/the-future-of-front-end-development-trends-to-watch-in-2025-9ae18ef06ab2",
+    "al:web:url": "https://medium.com/@all.technology.stories/the-future-of-front-end-development-trends-to-watch-in-2025-9ae18ef06ab2",
+    "og:image": "https://miro.medium.com/v2/resize:fit:1200/1*PNsdwcPubCIZv2ZFhFWf_g.jpeg",
+    "article:author": "https://medium.com/@all.technology.stories",
+    "twitter:title": "The Future of Front-End Development: Trends to Watch in 2025",
+    "twitter:description": "Future-proof your dev skills: AI, Wasm, and trends you can’t ignore in 2025."
   }
 ]
