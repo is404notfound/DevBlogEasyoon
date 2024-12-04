@@ -21,6 +21,7 @@ import { RecoilRoot } from 'recoil';
 import PopupWrapper from '@/components/PopupWrapper'
 import SearchWrapper from '@/components/search/SearchWrapper'
 import { useStyledComponentsRegistry } from "../lib/StyledComponentsRegistry";
+import Script from 'next/script'
 
 const ContentContainer = styled.div`
   position: relative;
@@ -83,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     const initialStyleTags = getStyleTags();
-    
+
     if (!initialStyleTags) return;
 
     setStyleTags(initialStyleTags);
@@ -112,6 +113,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
       </Head>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6978995302170972" crossOrigin="anonymous"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLG953S5XG"></script>
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LLG953S5XG');
+      `}
+      </Script>
       <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
       <meta name="google-site-verification" content="yRvR1PpfIXBPplOYqxtKFy9exK_FuOsG8mMEDQYeRrs" />
       <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
