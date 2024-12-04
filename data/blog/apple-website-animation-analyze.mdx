@@ -1,0 +1,138 @@
+---
+title: 'Analyzing Apple Website Animation (1_Scrolling Synchronization)'
+date: '2024-12-4'
+tags: ['FE', 'Animation']
+draft: false
+---
+# 애플의 애니메이션 분석해보기 (첫번째, 스크롤 동기화)
+
+애플 공식 홈페이지에서는 스크롤에 반응하는 매끄러운 애니메이션을 활용하여 콘텐츠를 강조하고 있습니다. 이번 글에서는 비슷한 애니메이션을 구현하는 방법을 분석하고 재현해보겠습니다.
+
+---
+
+## 🎥 원본 애플 홈페이지 (영상)
+
+![Apple Website Animation](../static/videos/apple-website-animation.mov)
+
+## 📜 수정된 구현 방식
+
+### 1. 스크롤 동기화
+- 스크롤 위치(`scrollY`)를 기준으로 애니메이션 상태를 실시간으로 계산합니다.
+
+### 2. 양방향 애니메이션
+- **스크롤을 내릴 때**: 텍스트가 위로 올라가면서 사라지고, 동영상은 축소됩니다.
+- **스크롤을 올릴 때**: 텍스트가 다시 내려오고, 동영상은 확대됩니다.
+
+### 3. CSS 속성 활용
+- `transform: translateY`와 `scale` 값을 스크롤 위치에 비례하도록 계산합니다.
+- 애니메이션이 부드럽게 동작하도록 `requestAnimationFrame`을 사용합니다.
+
+---
+
+## 🔧 HTML 구조
+
+HTML은 간단히 텍스트와 배경 비디오로 구성합니다.
+
+```html
+<div class="container">
+  <div class="text-section">
+    <h1 class="text">혁신적인 디자인</h1>
+    <p class="subtext">애플의 새로운 차원을 경험하세요.</p>
+  </div>
+  <div class="video-section">
+    <video class="background-video" autoplay muted loop>
+      <source src="example-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+```
+
+---
+
+## 🎨 CSS 스타일링
+
+스크롤 위치에 따라 부드러운 애니메이션이 동작하도록 CSS를 설정합니다.
+
+```css
+/* 텍스트 섹션 */
+.text-section {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.video-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.background-video {
+  width: 100vw;
+  height: auto;
+}
+```
+
+---
+
+## 🎬 JavaScript (스크롤 비례 애니메이션)
+
+스크롤 위치에 따라 텍스트와 동영상의 상태를 계산하여 스타일을 실시간으로 업데이트합니다.
+
+``` javascript
+const textSection = document.querySelector(".text-section");
+const videoSection = document.querySelector(".video-section");
+
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const windowHeight = window.innerHeight;
+
+  const textOpacity = Math.max(0, 1 - scrollY / (windowHeight / 2));
+  const textTranslateY = Math.min(scrollY / 2, 100);
+
+  textSection.style.transform = `translateY(-${textTranslateY}px)`;
+  textSection.style.opacity = textOpacity;
+
+  const videoScale = Math.max(0.5, 1 - scrollY / (windowHeight * 2));
+  videoSection.style.transform = `scale(${videoScale})`;
+}
+
+window.addEventListener("scroll", () => {
+  requestAnimationFrame(handleScroll);
+});
+
+```
+
+
+---
+
+## 🖥️ 주요 동작 설명
+
+1. `scrollY`에 따른 계산
+
+`textOpacity`: 텍스트의 투명도를 스크롤 위치에 따라 점점 줄어들도록 설정합니다.
+
+`textTranslateY`: 텍스트가 위로 이동하는 정도를 스크롤 비율에 따라 계산합니다.
+
+`videoScale`: 동영상의 축소 크기를 스크롤 위치에 따라 조정합니다.
+
+2. `requestAnimationFrame` 
+
+브라우저에서 애니메이션 성능을 개선하여 부드러운 동작 제공을 하는 비동기 함수입니다.
+
+
+3. 양방향 동작
+
+스크롤 아래로: 텍스트는 위로 이동하며 사라지고, 동영상은 축소합니다.
+
+스크롤 위로: 텍스트는 아래로 이동하며 다시 나타나고, 동영상은 확대합니다
