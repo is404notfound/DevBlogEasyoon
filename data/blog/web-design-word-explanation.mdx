@@ -1,0 +1,320 @@
+---
+title: '[번역] 웹 디자인의 대표적인 UI 요소 완전 가이드【용어 해설＋구현 예제】'
+date: '2024-12-5'
+tags: ['FE', 'UI/UX', 'Translation']
+draft: false
+---
+
+- 원본글 : [Webデザインの代表的なUI要素完全ガイド【用語解説＋実装例】](https://qiita.com/qstsqiir-the-builder/items/49c3f9805d9c7e1f5c11)
+
+- 작성자 : nucoyuyu in 株式会社Nuco
+
+---
+
+[](#소개)소개
+-------------
+
+웹사이트와 앱의 디자인은 사용자에게 첫인상을 결정짓는 중요한 요소입니다.  
+그중에서도 UI(사용자 인터페이스) 요소의 선정과 디자인은 사용자의 경험과 편리성을 좌우하는 핵심적인 부분입니다. 클릭하고 싶어지는 버튼, 스트레스 없이 정보를 얻을 수 있는 내비게이션, 직관적으로 사용할 수 있는 폼(form) 등, 이 모든 것은 UI 요소에 의해 구현됩니다.
+
+이번 글에서는 사용자 경험(UX)을 향상시키는 데 필수적인 **"대표적인" UI 요소**를 소개하며, 최신 디자인 트렌드와 함께 이들의 매력과 구현 포인트를 설명합니다.  
+웹 디자인 초보자나 웹사이트의 퀄리티를 한 단계 끌어올리고 싶은 분들께 유익한 내용을 제공할 것입니다.
+
+저희 Nuco에서는 다양한 유용한 글도 공개하고 있으니, **Organization 페이지**를 방문해 보세요.  
+또한 Nuco는 함께 일할 동료를 모집 중입니다! 관심 있는 분은 [여기](https://www.recruit.nuco.co.jp/?qiita_item_id=49c3f9805d9c7e1f5c11)를 확인해 주세요.
+
+[](#입력-ui-요소)【입력】 UI 요소
+==============================
+
+[](#1-버튼)1. 버튼
+-------------------
+
+### [](#용어-해설)용어 해설
+
+버튼은 사용자에게 특정 동작을 유도하기 위한 기본적인 UI 요소로, 제출, 취소, 세부 정보 보기 등 다양한 목적에 사용됩니다.  
+버튼은 **누구나 명확히 인지할 수 있어야 하며**, **시각적으로 두드러져야 하고**, 동작 및 상태가 **명확하게 구분**되어야 합니다.
+
+### [](#구현-예제)구현 예제
+
+[CodePen 구현 예제](https://codepen.io/qstsqiir-the-builder/pen/RwXzbJV)에서 확인하세요.
+
+### [](#최신-디자인-사례)최신 디자인 사례
+
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F11be5986-afe4-fd8b-a27e-f9da37daff4e.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=a217ee22308fe94699c569787b3be66a)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F11be5986-afe4-fd8b-a27e-f9da37daff4e.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=a217ee22308fe94699c569787b3be66a)
+
+*   **플랫 디자인**이나 **뉴모피즘** 스타일이 여전히 인기. 특히 단순한 그림자와 미세한 그라데이션을 사용한 모던한 버튼이 트렌드입니다.
+*   **호버 상태**에 애니메이션을 추가하여 버튼에 마이크로 인터랙션을 더하는 디자인도 증가하고 있습니다.
+
+**마이크로 인터랙션(Micro Interaction)**  
+작은 애니메이션이나 시각적인 변화를 통해 사용자 경험을 개선하는 세심한 디자인 요소입니다.  
+예) X(Twitter)에서 하트 아이콘 클릭 시 하트가 터지는 애니메이션.
+
+[](#2-드롭다운)2. 드롭다운
+---------------------------
+
+### [](#용어-해설-1)용어 해설
+
+드롭다운은 클릭 또는 호버(마우스 오버) 시 항목이 표시되고, 리스트 중에서 하나를 선택할 수 있는 UI 요소입니다.  
+드롭다운은 **비활성 옵션을 회색 처리**해 삭제하지 않고 유지하거나, **선택 항목의 개수를 스크롤 없이 확인 가능하도록** 제한하는 것이 중요합니다.  
+
+비슷한 요소로 **콤보박스(Combo Box)**가 있는데, 콤보박스는 선택뿐만 아니라 새로운 값을 입력할 수도 있다는 점에서 차이가 있습니다. 상황에 따라 적절히 구분해 사용하세요.
+
+### [](#구현-예제-1)구현 예제
+
+[CodePen 구현 예제](https://codepen.io/qstsqiir-the-builder/pen/dyxByYR)에서 확인하세요.
+
+### [](#최신-디자인-사례-1)최신 디자인 사례
+
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F07eee6af-b0fc-7f7f-16d3-df01bf22de89.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=2275e3b27b1a6e0db5fa4dbd0882a048)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F07eee6af-b0fc-7f7f-16d3-df01bf22de89.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=2275e3b27b1a6e0db5fa4dbd0882a048)
+
+*   현재 트렌드는 **심플하고 미니멀한 디자인**에 **아이콘 추가**로 시각적 정보를 보완하는 스타일.
+*   드롭다운 메뉴에 **부드러운 애니메이션**과 **둥근 모서리 디자인**을 적용한 사례가 주목받고 있습니다.
+
+[](#3-토글)3. 토글
+------------------
+
+### [](#용어-해설-2)용어 해설
+
+토글 스위치는 설정의 켜짐/꺼짐 상태를 시각적으로 전환하는 UI 요소입니다.  
+**기본값을 명확히 설정**하고, **라벨로 상태를 직관적으로 표시**하며, **설정 변경 반영 속도를 최소화**하는 것이 중요합니다.
+
+### [](#구현-예제-2)구현 예제
+
+[CodePen 구현 예제](https://codepen.io/qstsqiir-the-builder/pen/GRVbRZd)에서 확인하세요.
+
+[](#출력-ui-요소)【출력】UI 요소
+===============================
+
+[](#1-토스트)1. 토스트
+-----------------------
+
+### [](#용어-해설-3)용어 해설
+
+토스트는 화면 상단 또는 하단에 일시적으로 표시되는 알림 메시지입니다. 몇 초 후 자동으로 사라지며, 사용자에게 결과나 정보를 전달하기 적합합니다.  
+메시지는 간결해야 하며, **표시 위치와 내용**을 신중히 설계하세요.
+
+### [](#구현-예제-3)구현 예제
+
+[CodePen 구현 예제](https://codepen.io/qstsqiir-the-builder/pen/zYgVYZB)에서 확인하세요.
+
+[](#2-배지)2. 배지
+---
+
+### [](#%EC%9A%A9%EC%96%B4-%ED%95%B4%EC%84%9D-4)용어 해설
+
+배지는 숫자나 상태를 표시하기 위한 작은 라벨입니다. 알림 개수, 새로운 메시지 유무 등 사용자가 주목해야 할 정보를 시각적으로 강조하는 데 유용합니다.  
+배지는 **간결하고 직관적**이어야 하며, 화면 디자인에서 **사용자를 방해하지 않는 위치**에 배치해야 합니다.
+
+배지의 주요 사용 사례:
+- 알림 또는 메시지 수를 나타내는 숫자 배지
+- 성공, 오류, 경고와 같은 상태를 나타내는 색상 기반의 상태 배지
+
+### [](#%EC%8B%A4%EC%8A%B5-%EC%98%88-4)실습 예제
+
+See the Pen [Qiita\_badge](https://codepen.io/qstsqiir-the-builder/pen/bGBvNpL) by 渡邉結々 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+---
+
+# 3. 팝업 윈도우
+
+---
+
+### 용어 설명
+
+팝업 윈도우는 화면 위에 작은 창을 겹쳐서 표시하는 형식의 UI입니다. 주로 중요한 정보를 전달하기 위해 사용되며, 사용자가 작업을 완료하기 전까지는 창을 닫을 수 없는 경우가 많습니다.  
+실제로 사용할 때는 **배경을 어둡게** 처리하거나, **닫는 방법을 명확히 제시**하는 것이 효과적입니다.
+
+비슷한 예로 **모달 윈도우**가 있는데, 모달 윈도우는 일반적으로 배경이 반투명해지고, 원래 화면에서의 사용자 작업이 제한됩니다. 반면 팝업 윈도우는 작업 제한이 없는 경우가 많습니다.
+
+---
+
+### 구현 예시
+
+[Qiita\_popupwindow](https://codepen.io/qstsqiir-the-builder/pen/wvVLBEz) by 와타나베 유유 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+---
+
+### 최신 디자인 예시
+
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fc76112bd-91b3-1aa9-3c62-c63df977ca62.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=f1fc5d2911676e88139d7a8ebbe8d2ad)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fc76112bd-91b3-1aa9-3c62-c63df977ca62.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=f1fc5d2911676e88139d7a8ebbe8d2ad)
+
+이미지 출처: [【2024】 팝업 디자인 최신 트렌드 10선](https://promolayer.io/%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%8E%87%E3%82%A2%E3%83%83%E3%83%97/2024%E3%83%9D%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E6%9C%80%E6%96%B0%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89/)
+
+- **모달 윈도우와의 차이점**을 명확히 한 **심플한 팝업**이 인기를 끌고 있습니다. 특히, 모서리를 둥글게 하거나 그림자를 활용한 모던한 디자인이 주목받고 있습니다.
+- 화면 크기에 맞게 적절한 형태로 팝업을 표시하는 **반응형 디자인**이 주요 트렌드입니다.
+
+---
+
+# [정석] 내비게이션 UI 구성 요소
+
+---
+
+## 1. 브레드크럼(breadcrumb)
+
+---
+
+### 용어 설명
+
+브레드크럼은 사용자가 현재 페이지의 위치를 파악할 수 있도록 돕는 내비게이션입니다. 계층 구조가 깊은 웹사이트에서 주로 사용되며, 계층을 시각적으로 확인할 수 있어 사용자가 상위 페이지로 쉽게 이동할 수 있습니다.  
+이름은 동화 *헨젤과 그레텔*에서 유래했으며, 형제가 길을 잃지 않기 위해 빵가루를 남긴 이야기가 기반입니다.  
+브레드크럼은 내부 링크로 사용되므로 **키워드를 포함**하고, **단순한 디자인**으로 콘텐츠 열람을 방해하지 않도록 해야 합니다.
+
+---
+
+### 구현 예시
+
+[Qiita\_breadcrumbtrail](https://codepen.io/qstsqiir-the-builder/pen/oNKrWBg) by 와타나베 유유 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+---
+
+## 2. 페이지네이션(pagenation)
+
+---
+
+### 용어 설명
+
+페이지네이션은 많은 양의 콘텐츠를 여러 페이지로 나누어 표시하는 UI 구성 요소입니다. 일반적으로 페이지 번호나 "다음", "이전" 등의 링크를 포함합니다.  
+사용자 편의성을 높이기 위해 **현재 열람 중인 페이지를 강조**하거나, **클릭 가능한 영역을 크게 설정**하는 것이 중요합니다.  
+또한, 한 페이지에 너무 많은 콘텐츠를 표시하면 로딩 속도가 느려지고, 반대로 너무 적으면 페이지 이동 횟수가 많아지므로 **적절한 페이지 분량**으로 나누는 것이 좋습니다.
+
+---
+
+### 구현 예시
+
+[Qiita\_pagenation](https://codepen.io/qstsqiir-the-builder/pen/KKOjmZB) by 와타나베 유유 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+---
+
+### 디자인 예시
+
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F3e5d76b3-9b73-e0c5-81d6-e7a55d039caf.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=d4e3fdaf4079aaf3306501dfc291d6da)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F3e5d76b3-9b73-e0c5-81d6-e7a55d039caf.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=d4e3fdaf4079aaf3306501dfc291d6da)
+
+이미지 출처: [CA4LA](https://www.ca4la.com/shop/)
+
+- 플랫 디자인의 **단순한 페이지네이션**이 주를 이루며, 페이지가 많을 경우 **중앙에 생략 기호(…)**를 사용하는 디자인이 일반적입니다.
+- **이전/다음 화살표**(`<`, `>`)와 **처음/끝으로 이동하는 화살표**(`<<`, `>>`)를 적절히 사용해 사용자 경험을 향상시킬 수 있습니다.
+
+---
+
+### 3. 햄버거 메뉴
+---
+
+#### 용어 해설
+
+햄버거 메뉴는 화면 상단에 표시되는 세 줄로 이루어진 아이콘으로, 클릭 시 메뉴가 펼쳐지는 구조입니다. 주로 모바일 디바이스에서 사용되지만, 최근에는 데스크톱에서도 활용되고 있습니다.  
+구현 시, 세 줄만으로는 이를 클릭하면 메뉴가 펼쳐진다는 것을 알기 어려운 사용자를 위해 **"메뉴"라는 문구를 함께 표시**하거나, **버튼처럼 보이도록 테두리를 추가**하는 것이 중요합니다.  
+
+햄버거 메뉴와 비슷한 메뉴로는 케밥 메뉴, 미트볼 메뉴 등이 있습니다(아래에서 설명).
+
+#### 구현 예시
+
+[CodePen에서 Qiita_humbergermenu 보기](https://codepen.io/qstsqiir-the-builder/pen/poMXPqq)
+
+#### 최신 디자인 예시
+
+**케밥 메뉴**  
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F7023e8c8-911e-68ec-d571-10dc950ad0bc.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=6b535489c73084648036c7a515f24d69)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F7023e8c8-911e-68ec-d571-10dc950ad0bc.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=6b535489c73084648036c7a515f24d69)  
+세 개의 점이 세로로 배열된 아이콘으로, 햄버거 메뉴의 막대가 점으로 바뀐 형태입니다.  
+주로 모바일 앱이나 웹사이트에서 많이 사용됩니다.
+
+**도시락 메뉴**  
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fd952fa5b-e3ff-5ff8-3a70-3b635fea6e19.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=84af8d9654d8fd89fcc17935157efdda)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fd952fa5b-e3ff-5ff8-3a70-3b635fea6e19.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=84af8d9654d8fd89fcc17935157efdda)  
+네 개의 사각형이 균등하게 배치된 형태입니다.  
+사각형 대신 둥근 점이 배치된 경우, "캔디 박스 메뉴"라고도 불립니다.
+
+**미트볼 메뉴**  
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F8091f280-5c4e-2eab-74aa-71b937e561db.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=a94a3b2226b310249cfafe603cd60892)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F8091f280-5c4e-2eab-74aa-71b937e561db.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=a94a3b2226b310249cfafe603cd60892)  
+세 개의 점이 가로로 배열된 형태입니다.  
+주로 X(Twitter)나 Instagram 등에서 게시물의 오른쪽 상단에 사용됩니다.
+
+**도너 케밥 메뉴**  
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fcf393a3a-095b-c7ed-b813-fdc351f7dab5.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=6826ef727cb6610e7ff494f4139ded2c)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2Fcf393a3a-095b-c7ed-b813-fdc351f7dab5.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=6826ef727cb6610e7ff494f4139ded2c)  
+별칭: "딸기 메뉴".  
+가로로 배열된 길이가 다른 세 개의 선으로 구성됩니다.  
+일부 웹사이트에서는 이 아이콘을 좌측 정렬해 엘리베이터 버튼으로 사용하기도 합니다.
+
+---
+
+### 1. 진행 바 (Progress Bar)
+---
+
+#### 용어 해설
+
+진행 바는 작업의 진행 상황을 시각적으로 나타내는 바입니다. 파일 업로드, 양식 작성 진행 등을 표시할 때 자주 사용됩니다.  
+진행 바는 단순한 막대형뿐만 아니라 **원형** 또는 **숫자로 카운트**하는 형식도 있습니다. 사용 사례에 따라 적절한 형태를 선택하세요.
+
+#### 구현 예시
+
+[CodePen에서 Untitled 보기](https://codepen.io/qstsqiir-the-builder/pen/KKOjqPJ)
+
+#### 최신 디자인 예시
+
+[![](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F3222b5c5-3261-d8c1-e010-bf6d198bbb8c.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=c8dc123e2e8fe29af82d297e79c2d1ec)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F3222b5c5-3261-d8c1-e010-bf6d198bbb8c.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=c8dc123e2e8fe29af82d297e79c2d1ec)
+
+- 단순하면서도 애니메이션 효과를 가미한 진행 바가 인기를 끌고 있습니다.  
+  **색상 변화**나 **페이드 효과**로 진행 상황을 직관적으로 전달합니다.
+- **예상 남은 시간**을 구체적으로 표시해 사용자 스트레스를 줄이는 디자인도 많이 사용됩니다.
+## 2. 스텝 인디케이터
+
+---
+
+### 용어 설명
+
+스텝 인디케이터는 여러 단계를 시각적으로 나타내어 사용자가 현재 어느 단계에 있는지 이해할 수 있도록 돕는 UI 요소입니다. 주로 여러 단계로 구성된 양식 등에서 활용됩니다.  
+구현 시에는 사용자가 진행 상황을 쉽게 파악할 수 있도록 **직관적이고 시각적으로 설계**하는 것이 중요합니다. 현재 어느 단계에 있으며, 어떤 작업을 해야 하는지, 남은 단계는 몇 개인지 등의 **필요한 정보를 한눈에 파악할 수 있는 디자인**을 선택하세요.
+
+### 구현 예시
+
+See the Pen [Qiita_stepindicator](https://codepen.io/qstsqiir-the-builder/pen/vYoqZPz) by 渡邉結々 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+### 디자인 예시
+
+[![스텝 인디케이터 디자인 예시](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F66e3a220-69bc-c72c-7f98-2d5092b41d1d.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=f1ba9cdd26eaa0b411e0e92c126e8879)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F66e3a220-69bc-c72c-7f98-2d5092b41d1d.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=f1ba9cdd26eaa0b411e0e92c126e8879)  
+
+위 이미지처럼, 스텝 인디케이터에는 크게 두 가지 디자인이 있습니다.  
+이미지 왼쪽처럼 현재 해야 할 작업만 표시된 디자인과 오른쪽처럼 전체 단계를 한눈에 볼 수 있는 디자인입니다.
+
+디자인 선택 시에는 다음의 기준을 고려하세요:
+
+- 사용자가 고민할 필요를 줄이는 것  
+- 스텝이 늘어나거나 줄어들어도 가독성을 유지할 수 있는 디자인  
+
+이 기준에 따르면, 문자 정보 등 요소를 줄이고 스텝이 증가해도 가로 폭에 영향을 받지 않는 왼쪽 디자인이 더 적합합니다.  
+특별한 이유가 없다면, 왼쪽 디자인을 채택하는 것이 바람직합니다.
+
+---
+
+## 3. 툴팁
+
+---
+
+### 용어 설명
+
+툴팁은 아이콘이나 버튼 위에 커서를 올렸을 때 나타나는 설명 문구를 말합니다. 간결하게 추가 정보를 제공하여 사용자가 작업을 이해하기 쉽게 만듭니다.  
+툴팁은 화면을 단순화할 수 있지만, 사용자가 눈치채기 어려운 단점도 있습니다. 따라서 구현 시 **툴팁이 존재한다는 힌트를 제공**하는 것이 중요합니다. 또한, 다른 콘텐츠를 가리지 않도록 **배치 위치**에 주의해야 합니다.
+
+### 구현 예시
+
+See the Pen [Qiita_tooltip](https://codepen.io/qstsqiir-the-builder/pen/ZEgdJGL) by 渡邉結々 ([@qstsqiir-the-builder](https://codepen.io/qstsqiir-the-builder)) on [CodePen](https://codepen.io).
+
+### 최신 디자인 예시
+
+[![툴팁 디자인 예시](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F9914d8a8-899b-7b05-a07a-21c7276775d2.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=e8484fbc7c5612723b949478b0b34be5)](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3571096%2F9914d8a8-899b-7b05-a07a-21c7276775d2.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=e8484fbc7c5612723b949478b0b34be5)
+
+최근 트렌드는 다음과 같습니다:
+
+- 작은 애니메이션 추가로 **툴팁이 자연스럽게 나타나도록 구현**  
+  (예: 페이드 인/아웃 애니메이션)  
+- 직관적인 인터페이스 요구 증가로, 각 요소의 목적을 명확히 하고 다음 단계로 안내하는 정보를 제공하는 데 툴팁을 활용  
+
+---
+
+## 요약
+
+UI 디자인의 품질은 세세한 요소의 집합으로 결정됩니다. 버튼 하나, 아이콘 하나에 신경 쓰는 것만으로도 사용자가 사이트를 어떻게 느끼고 사용하는지가 크게 달라질 수 있습니다.  
+
+이번에 소개한 기본적인 UI 요소들은 모든 웹 디자이너가 알아야 할 필수 항목입니다.  
+또한, 트렌드를 반영한 디자인으로 이를 업데이트하면 사이트의 인상이 훨씬 더 향상될 것입니다.  
+
+여러분의 디자인을 한 단계 더 발전시키기 위해, 본 문서를 참고하여 최신 UI 요소 디자인을 프로젝트에 반영해 보세요.  
+앞으로의 디자인 프로젝트 성공을 기원합니다!
