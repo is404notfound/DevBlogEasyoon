@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import totalRecordsData from 'generators/output/code-records-data.json'
-import commitHistoryData from 'generators/output/commit-history-data.json'
-import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
-import findAnomaliesData from 'generators/output/666-find-anomalies.json'
+// import totalRecordsData from 'generators/output/code-records-data.json'
+// import commitHistoryData from 'generators/output/commit-history-data.json'
+// import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
+// import findAnomaliesData from 'generators/output/666-find-anomalies.json'
 import postsRankingData from 'generators/output/posts-ranking-data.json'
 
 export interface CodeLineRecords {
@@ -40,21 +40,20 @@ const useTotalCodeRecords = () => {
 
 
     useEffect(() => {
-        const codeRecordsAll = {
-            DEV_BLOG_EASYOON: objectToArray(totalRecordsData),
-            COOK_THE_FRIDGE: objectToArray(cookTheFridgeData),
-            FIND_ANOMALIES: objectToArray(findAnomaliesData)
-        }
-        const commitHistory = Object.values(commitHistoryData);
-        const postsRanking = Object.values(postsRankingData);
-        const latestRecord = [
-            getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON)
-            , getLatestRecord(codeRecordsAll.COOK_THE_FRIDGE)
-            , getLatestRecord(codeRecordsAll.FIND_ANOMALIES)
-        ];
+        // const codeRecordsAll = {
+        //     DEV_BLOG_EASYOON: objectToArray(totalRecordsData),
+        //     COOK_THE_FRIDGE: objectToArray(cookTheFridgeData),
+        //     FIND_ANOMALIES: objectToArray(findAnomaliesData)
+        // }
+        // const commitHistory = Object.values(commitHistoryData);
+        // const latestRecord = [
+        //     getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON)
+        //     , getLatestRecord(codeRecordsAll.COOK_THE_FRIDGE)
+        //     , getLatestRecord(codeRecordsAll.FIND_ANOMALIES)
+        // ];
 
-        setTotalCodeRecords(codeRecordsAll);
-        setLatestRecords(latestRecord);
+        // setTotalCodeRecords(codeRecordsAll);
+        // setLatestRecords(latestRecord);
         setCommitHistory(commitHistory);
         setPostsRanking(postsRankingData.rankingPosts as any);
         setTotalPostCounts(postsRankingData.totalPostCounts);
@@ -71,7 +70,13 @@ const useTotalCodeRecords = () => {
         return records[records.length - 1] || initialTotalCodeRecord;
     }
 
-    return { totalCodeRecords, latestRecords, commitHistory, postsRanking, totalPostCounts };
+    return {
+        // totalCodeRecords
+        // , latestRecords
+        // , commitHistory
+        postsRanking
+        , totalPostCounts
+    };
 };
 
 export default useTotalCodeRecords;
