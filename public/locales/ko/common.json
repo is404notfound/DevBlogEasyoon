@@ -1,5 +1,11 @@
 {
-    "Hello, World! Welcome to my tech blog!" : "안녕하세요! 이 블로그는 제가 기술적으로 공부한 것들을 정리하는 곳 입니다."
+    "calendar.title" : "개발 컨퍼런스"
+    ,"dashboard.pageviews" : "조회수"
+    ,"dashboard.visitors" : "방문자 수"
+    ,"dashboard.monthlyVisitors" : "월간 방문자 수"
+    ,"dashboard.postsRanking": "인기 글"
+    ,"dashboard.search": "검색하러 가기"
+    ,"dashboard.search.description": "적용 중"
     ,"Dashboard": "대시보드"
     ,"About": "소개"
     ,"Blogs": "포스트"
@@ -17,5 +23,4 @@
     ,"Please press 'Enter Key' to confirm a keyword": "키워드를 확인하려면 '엔터키'를 누르세요"
     ,"Pleas 'Click' the row to continue": "계속하려면 클릭하세요"
     ,"Current Keyword": "현재 키워드"
-    ,"calendar.title" : "개발 컨퍼런스"
 }

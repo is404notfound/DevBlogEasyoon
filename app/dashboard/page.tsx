@@ -3,9 +3,8 @@
 import Card from '@/components/dashboard/Card';
 import React, { useEffect, useState } from 'react';
 import useTotalCodeRecords, { CodeLineRecords, TotalCodeRecords } from '@/hooks/useTotalCodeRecords'
-import { allBlogs } from 'contentlayer/generated'
-import LineGraph from '@/components/LineGraph';
-import archiveData from '@/generators/output/archive-data.json'
+// import { allBlogs } from 'contentlayer/generated'
+// import LineGraph from '@/components/LineGraph';
 import { useTranslation } from 'react-i18next';
 import Button from '@/components/Button';
 import SearchIcon from '../../public/static/icons/search.svg';
@@ -20,9 +19,9 @@ const Dashboard = () => {
     postsRanking
     , totalPostCounts
   } = useTotalCodeRecords();
-  const [codeCounts, setCodeCounts] = useState<{}>();
-  const [dates, setDates] = useState<{}>({});
-  const [diff, setDiff] = useState<{}>(0);
+  // const [codeCounts, setCodeCounts] = useState<{}>();
+  // const [dates, setDates] = useState<{}>({});
+  // const [diff, setDiff] = useState<{}>(0);
   const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz';
   const { setInitialItemList } = useInfiniteScroll();
   const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
@@ -107,25 +106,25 @@ const Dashboard = () => {
           </div>
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card title="총 페이지 뷰" description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalPageViews} />
-              <Card title="총 방문자 수" description="2023년 12월 9일 ~ 2024년 12월 9일" content={totalPostCounts.totalVisitors} />
-              <Card title="이달의 방문자 수" description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalMonthlyVisitors} />
+              <Card title={t('dashboard.pageviews')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalPageViews} />
+              <Card title={t('dashboard.visitors')} description="2023년 12월 9일 ~ 2024년 12월 9일" content={totalPostCounts.totalVisitors} />
+              <Card title={t('dashboard.monthlyVisitors')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalMonthlyVisitors} />
             </div>
           </div>
         </StyledComponentsRegistry>
 
         <div className='grid grid-cols-1 gap-6 pt-6 pb-6'>
           <Card
-            title="인기 글"
+            title={t('dashboard.postsRanking')}
             description="2024년 11월 10일 ~ 2024년 12월 9일"
             content={<InfiniteScrollListLayout />}
           />
         </div>
         <StyledComponentsRegistry>
           <div className="grid grid-cols-1 gap-6 pt-6">
-            <Card title="Google SEO" description="적용 중" size={'small'} content={(
+            <Card title="Google SEO" description={t('dashboard.search.description')} size={'small'} content={(
               <div className='flex flex-row justify-center'>
-                <Button text="검색해보기" type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
+                <Button text={t('dashboard.search')} type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
               </div>)
             } />
           </div>
