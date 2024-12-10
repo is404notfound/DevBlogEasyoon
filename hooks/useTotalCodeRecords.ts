@@ -5,6 +5,7 @@ import totalRecordsData from 'generators/output/code-records-data.json'
 import commitHistoryData from 'generators/output/commit-history-data.json'
 import cookTheFridgeData from 'generators/output/cook-the-fridge-data.json'
 import findAnomaliesData from 'generators/output/666-find-anomalies.json'
+import postsRankingData from 'generators/output/posts-ranking-data.json'
 
 export interface CodeLineRecords {
     codeCount: number;
@@ -15,12 +16,28 @@ export interface TotalCodeRecords {
     [key: string]: CodeLineRecords[];
 }
 
-const initialTotalCodeRecord: CodeLineRecords = {date: '', codeCount: 0};
+export interface TotalPostCounts {
+    totalPageViews: number;
+    totalVisitors: number;
+    totalMonthlyVisitors: number;
+    [key: string]: number;
+}
+
+const initialTotalCodeRecord: CodeLineRecords = { date: '', codeCount: 0 };
 
 const useTotalCodeRecords = () => {
-    const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords>({DEV_BLOG_EASYOON: [], COOK_THE_FRIDGE: []});
+    const [totalCodeRecords, setTotalCodeRecords] = useState<TotalCodeRecords>({ DEV_BLOG_EASYOON: [], COOK_THE_FRIDGE: [] });
     const [latestRecords, setLatestRecords] = useState<CodeLineRecords[]>([]);
     const [commitHistory, setCommitHistory] = useState<string[]>([]);
+    const [postsRanking, setPostsRanking] = useState([]);
+    const [totalPostCounts, setTotalPostCounts] = useState<TotalPostCounts>(
+        {
+            totalPageViews: 0,
+            totalVisitors: 0,
+            totalMonthlyVisitors: 0
+        }
+    );
+
 
     useEffect(() => {
         const codeRecordsAll = {
@@ -29,6 +46,7 @@ const useTotalCodeRecords = () => {
             FIND_ANOMALIES: objectToArray(findAnomaliesData)
         }
         const commitHistory = Object.values(commitHistoryData);
+        const postsRanking = Object.values(postsRankingData);
         const latestRecord = [
             getLatestRecord(codeRecordsAll.DEV_BLOG_EASYOON)
             , getLatestRecord(codeRecordsAll.COOK_THE_FRIDGE)
@@ -38,20 +56,22 @@ const useTotalCodeRecords = () => {
         setTotalCodeRecords(codeRecordsAll);
         setLatestRecords(latestRecord);
         setCommitHistory(commitHistory);
+        setPostsRanking(postsRankingData.rankingPosts as any);
+        setTotalPostCounts(postsRankingData.totalPostCounts);
     }
-    , []);
-    
-    function objectToArray(obj: any){
-        return Object.keys(obj).map((key)=>{ 
-            return {date: key, codeCount: obj[key]};
+        , []);
+
+    function objectToArray(obj: any) {
+        return Object.keys(obj).map((key) => {
+            return { date: key, codeCount: obj[key] };
         }) || [];
     }
 
-    function getLatestRecord(records: CodeLineRecords[]){
+    function getLatestRecord(records: CodeLineRecords[]) {
         return records[records.length - 1] || initialTotalCodeRecord;
     }
 
-    return { totalCodeRecords, latestRecords, commitHistory };
+    return { totalCodeRecords, latestRecords, commitHistory, postsRanking, totalPostCounts };
 };
 
 export default useTotalCodeRecords;

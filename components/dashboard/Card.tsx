@@ -3,28 +3,31 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 const Card = ({ title, description, content, size = 'large' }: {
-    title?: string;
-    description?: string;
-    content?: any;
-    size?: string;
+  title?: string;
+  description?: string;
+  content?: any;
+  size?: string;
 }) => {
-    const { t } = useTranslation();
-    const getCharOrder = (currentNum: number) => String.fromCharCode(currentNum + 65);
-    const isArray = Array.isArray(content);
+  const { t } = useTranslation();
+  const getCharOrder = (currentNum: number) => String.fromCharCode(currentNum + 65);
+  const isArray = Array.isArray(content);
 
-    return (
-        <CardContainer>
-            <Title>{t(title || '')}</Title>
-            <Description>{t(description || '')}</Description>
-            <Content isArray={isArray} size={size}>
-                {isArray
-                    ? content.map((row: string, index: number) => (
-                        <p key={`${index}_${row}`}>{getCharOrder(index)}... {row}</p>
-                      ))
-                    : content}
-            </Content>
-        </CardContainer>
-    );
+  return (
+    <CardContainer>
+      <Title>{t(title || '')}</Title>
+      <Description>{t(description || '')}</Description>
+      <Content isArray={isArray} size={size}>
+        {isArray
+          ? content.map((row: string, index: number) => (
+            <p key={`${index}_${row}`}>
+              {index + 1}...  
+              <a href='#'> {row} </a>
+            </p>
+          ))
+          : content}
+      </Content>
+    </CardContainer>
+  );
 };
 
 export default Card;
@@ -56,7 +59,7 @@ const Content = styled.div<{ isArray: boolean, size: string }>`
   color: var(--Color-Grayscale-03);
   text-align: ${({ isArray }) => (isArray ? 'left' : 'center')};
   font-size: ${({ size }) => (
-    {large: '3rem', medium: '2rem', small: '1rem' }[size]
+    { large: '3rem', medium: '2rem', small: '1rem' }[size]
   )};
   font-weight: ${({ size }) => (size === 'large' ? '500' : '400')};
 `;
