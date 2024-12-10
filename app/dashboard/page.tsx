@@ -3,131 +3,133 @@
 import Card from '@/components/dashboard/Card';
 import React, { useEffect, useState } from 'react';
 import useTotalCodeRecords, { CodeLineRecords, TotalCodeRecords } from '@/hooks/useTotalCodeRecords'
-import { allBlogs } from 'contentlayer/generated'
-import LineGraph from '@/components/LineGraph';
-import archiveData from '@/generators/output/archive-data.json'
+// import { allBlogs } from 'contentlayer/generated'
+// import LineGraph from '@/components/LineGraph';
 import { useTranslation } from 'react-i18next';
 import Button from '@/components/Button';
 import SearchIcon from '../../public/static/icons/search.svg';
 import NextIcon from '../../public/static/icons/next.svg';
 import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry';
+import InfiniteScrollListLayout from '@/layouts/InfiniteScrollListLayout';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 const Dashboard = () => {
   const { t } = useTranslation();
-  const { totalCodeRecords, latestRecords, commitHistory } = useTotalCodeRecords();
-  const [codeCounts, setCodeCounts] = useState<{}>();
-  const [dates, setDates] = useState<{}>({});
-  const [diff, setDiff] = useState<{}>(0);
+  const {
+    postsRanking
+    , totalPostCounts
+  } = useTotalCodeRecords();
+  // const [codeCounts, setCodeCounts] = useState<{}>();
+  // const [dates, setDates] = useState<{}>({});
+  // const [diff, setDiff] = useState<{}>(0);
   const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz';
+  const { setInitialItemList } = useInfiniteScroll();
   const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
   const [styleTags, setStyleTags] = useState<string>('');
-  
-  function getCounts(): { [key: string]: number[] } {
-    const keys: string[] = Object.keys(totalCodeRecords);
-    const values: CodeLineRecords[][] = Object.values(totalCodeRecords);
-    const counts = values.map((record) => record.map(({ codeCount }) => codeCount));
-    const result = {};
 
-    for (let i = 0; i < keys.length; i++) {
-      result[keys[i]] = counts[i];
-    }
 
-    return result;
-  }
+  // function getCounts(): { [key: string]: number[] } {
+  //   const keys: string[] = Object.keys(totalCodeRecords);
+  //   const values: CodeLineRecords[][] = Object.values(totalCodeRecords);
+  //   const counts = values.map((record) => record.map(({ codeCount }) => codeCount));
+  //   const result = {};
 
-  function getDate() {
-    const keys: string[] = Object.keys(totalCodeRecords);
-    const values: CodeLineRecords[][] = Object.values(totalCodeRecords);
-    const dates = values.map((record) => record.map(({ date }) => date.slice(5)));
-    const result = {};
+  //   for (let i = 0; i < keys.length; i++) {
+  //     result[keys[i]] = counts[i];
+  //   }
 
-    for (let i = 0; i < keys.length; i++) {
-      result[keys[i]] = dates[i];
-    }
+  //   return result;
+  // }
 
-    return result;
-  };
+  // function getDate() {
+  //   const keys: string[] = Object.keys(totalCodeRecords);
+  //   const values: CodeLineRecords[][] = Object.values(totalCodeRecords);
+  //   const dates = values.map((record) => record.map(({ date }) => date.slice(5)));
+  //   const result = {};
+
+  //   for (let i = 0; i < keys.length; i++) {
+  //     result[keys[i]] = dates[i];
+  //   }
+
+  //   return result;
+  // };
+
+  // useEffect(() => {
+  //   const values = Object.values(totalCodeRecords);
+  //   const last = values.length - 1;
+  //   if (!values[last].length) return;
+
+  //   setCodeCounts(getCounts());
+  //   setDates(getDate());
+  // }, [totalCodeRecords]);
+
+  // useEffect(() => {
+  //   if (!codeCounts) return;
+
+  //   const keys: string[] = Object.keys(totalCodeRecords);
+  //   const result = {};
+
+  //   for (let i = 0; i < keys.length; i++) {
+  //     const counts = codeCounts[keys[i]];
+  //     result[keys[i]] = counts[counts.length - 1] - counts[0];
+  //   }
+
+  //   setDiff(result);
+  // }, [codeCounts]);
+
+  useEffect(() => {
+    if (!postsRanking.length) return;
+
+    setInitialItemList(postsRanking as any);
+
+  }, [postsRanking]);
+
 
   useEffect(() => {
     const initialStyleTags = getStyleTags();
-    
+
     if (!initialStyleTags) return;
 
     setStyleTags(initialStyleTags);
   }, [styleTags]);
 
-  useEffect(() => {
-    const values = Object.values(totalCodeRecords);
-    const last = values.length - 1;
-    if (!values[last].length) return;
-
-    setCodeCounts(getCounts());
-    setDates(getDate());
-  }, [totalCodeRecords]);
-
-  useEffect(() => {
-    if (!codeCounts) return;
-
-    const keys: string[] = Object.keys(totalCodeRecords);
-    const result = {};
-
-    for (let i = 0; i < keys.length; i++) {
-      const counts = codeCounts[keys[i]];
-      result[keys[i]] = counts[counts.length - 1] - counts[0];
-    }
-
-    setDiff(result);
-  }, [codeCounts]);
-
   return (
     <>
-    <div dangerouslySetInnerHTML={{ __html: styleTags }} />
-    <StyledComponentsRegistry>
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-        <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          {t('Dashboard')}
-        </h1>
-      </div>
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="세상으로 나간 코드 수" description="tsx | ts | js | css | sh" content={latestRecords.reduce((acc, cur) => acc + cur.codeCount, 0) || '??'} />
-          <Card title="쓴 글" description="-" content={allBlogs.length} />
-          <Card title="저장한 글" description="-" content={archiveData.length} />
-        </div>
-        {codeCounts && Object.keys(totalCodeRecords).map((key: string, i) => {
-          const start = dates[key][0];
-          const end = dates[key][dates[key].length - 1];
-          const description = `2024-${start} ~ 2024-${end}`;
-          const diffCount = diff[key];
+      <div dangerouslySetInnerHTML={{ __html: styleTags }} />
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
 
-          return (
-            <div className="grid grid-cols-1 mt-6 mb-6 pt-6">
-              <LineGraph
-                xAxisData={dates[key]}
-                yAxisData={codeCounts[key]}
-                yAxisLabel='codeCounts'
-                title={`${key}`}
-                description={description}
-                point={diffCount > 0 ? `+${diffCount}` : `${diffCount}줄`}
-              />
+        <StyledComponentsRegistry>
+          <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+            <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+              {t('Dashboard')}
+            </h1>
+          </div>
+          <div className="container py-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card title={t('dashboard.pageviews')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalPageViews} />
+              <Card title={t('dashboard.visitors')} description="2023년 12월 9일 ~ 2024년 12월 9일" content={totalPostCounts.totalVisitors} />
+              <Card title={t('dashboard.monthlyVisitors')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalMonthlyVisitors} />
             </div>
-          )
-        })
-        }
-        <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Latest Commit" description="" content={commitHistory || ''} size={'small'} />
+          </div>
+        </StyledComponentsRegistry>
+
+        <div className='grid grid-cols-1 gap-6 pt-6 pb-6'>
+          <Card
+            title={t('dashboard.postsRanking')}
+            description="2024년 11월 10일 ~ 2024년 12월 9일"
+            content={<InfiniteScrollListLayout />}
+          />
         </div>
-        <div className="grid grid-cols-1 gap-6 pt-6 ">
-          <Card title="Google Search Console" description="적용 완료" size={'small'} content={(
-            <div className='flex flex-row justify-center'>
-              <Button text="검색해보기" type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
-            </div>)
-          } />
-        </div>
+        <StyledComponentsRegistry>
+          <div className="grid grid-cols-1 gap-6 pt-6">
+            <Card title="Google SEO" description={t('dashboard.search.description')} size={'small'} content={(
+              <div className='flex flex-row justify-center'>
+                <Button text={t('dashboard.search')} type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
+              </div>)
+            } />
+          </div>
+        </StyledComponentsRegistry>
       </div>
-    </div>
-    </StyledComponentsRegistry>
     </>
   );
 }

@@ -15,6 +15,8 @@ const useInfiniteScroll = () => {
     };
 
     useEffect(() => {
+        if (!initialItemList.length) return;
+
         const displayItems = initialItemList.slice(0, DISPLAY_ITEM_COUNT);
 
         setItemList(displayItems);

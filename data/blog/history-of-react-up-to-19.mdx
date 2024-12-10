@@ -1,0 +1,229 @@
+---
+title: 'Update history of react up to react 19'
+date: '2024-12-6'
+tags: ['FE', 'React']
+draft: false
+---
+
+# React 19까지의 업데이트 히스토리
+
+React는 2013년에 첫 번째 버전을 발표한 이후, 지속적으로 업데이트되면서 새로운 기능과 최적화를 통해 더 나은 개발 경험을 제공해왔습니다.  
+여기서는 React 1부터 19(최근 버전)까지 주요 변경 사항과 개발 방식의 변화를 정리하겠습니다.
+
+---
+
+## 1. 초기 React (2013-2016)
+
+### React 0.x ~ 15
+
+React는 Virtual DOM과 컴포넌트 기반 아키텍처를 도입하며 등장했습니다.
+
+#### React의 초기 특징:
+- Virtual DOM을 활용한 효율적인 렌더링
+- JSX(JavaScript XML)로 직관적인 UI 작성
+- 컴포넌트 단위 개발로 재사용성 증가
+
+### 주요 변경 사항
+
+#### 1. React 0.x~14 (2013-2015)
+- `React.createClass` 방식 도입 (클래스 컴포넌트의 초기 형태)
+- Refs와 상태(state)를 사용한 동적 UI 관리
+- Flux 아키텍처 유행  
+  *(Flux는 Facebook에서 설계한 단방향 데이터 흐름을 기반으로 하는 애플리케이션 아키텍처)*
+
+#### 2. React 15 (2016)
+- DOM 렌더링 성능 최적화
+- HTML 문자열 출력 지원 (`dangerouslySetInnerHTML` 개선)
+  - **사용 이유**: React는 XSS(Cross-Site Scripting) 공격을 방지하기 위해 기본적으로 HTML 문자열 렌더링을 제한.  
+    하지만 외부 HTML 문자열 렌더링이 필요한 경우 사용.
+
+- 서버 사이드 렌더링(SSR) 안정화  
+  *(Next.js와 같은 프레임워크로 쉽게 구현 가능)*
+
+---
+
+## 2. React 16.x (2017-2018)
+
+### 주요 변경 사항
+
+#### 1. Fiber 재구현 (React 16)
+- 렌더링 엔진을 기존 Stack에서 Fiber로 재구현
+- 비동기 렌더링 처리로 더 유연한 업데이트 가능
+- 대규모 UI에서 성능 개선
+
+#### 2. 에러 경계(Error Boundaries)
+- 컴포넌트 내 발생한 에러를 처리할 수 있는 Error Boundary 도입
+- 컴포넌트 렌더링 중 에러 발생 시 대체 UI 표시 가능
+- **제약**: 클래스 컴포넌트에서만 사용 가능.  
+  *(React 18 이상에서는 `useEffect`와 ErrorBoundary 라이브러리로 함수형 컴포넌트에서 처리 가능)*
+
+```jsx
+// 처리 가능한 에러
+function BrokenComponent() {
+  throw new Error("This component crashed!");
+}
+
+// 처리 불가능한 에러
+useEffect(() => {
+  setTimeout(() => {
+    throw new Error("Async error");
+  }, 1000);
+}, []);
+```
+
+### 3. Fragment 지원
+- `<Fragment>`로 불필요한 DOM 노드 없이 여러 요소를 그룹화할 수 있습니다.
+
+### 4. Portals 도입
+- DOM의 특정 위치에 컴포넌트를 렌더링할 수 있는 기능을 제공합니다.
+
+---
+
+### 3. React 17.x (2020)
+React 17은 새로운 기능보다는 기존 React와의 호환성에 초점을 맞췄습니다.
+
+#### 주요 변경 사항
+- **점진적 마이그레이션 지원**: 다중 React 버전 공존 가능
+- **새로운 이벤트 시스템 도입**:
+  - 이벤트 핸들러가 루트 DOM 노드에 연결
+  - 더 나은 이벤트 우선순위와 성능 제공
+
+---
+
+### 4. React 18.x (2022)
+React 18은 **Concurrent Rendering(동시성 렌더링)**과 관련된 혁신적 업데이트로 큰 변화를 가져왔습니다.
+
+#### 주요 변경 사항
+1. **동시성 모드 (Concurrency)**  
+   - UI 업데이트를 여러 단계로 나누어 부드럽고 응답성 높은 렌더링 가능
+
+2. **Automatic Batching**  
+   - 상태 업데이트를 자동으로 묶어 렌더링을 최소화
+
+3. **React Server Components (RSC)**  
+   - 서버에서 React 컴포넌트를 렌더링하고 클라이언트에 전달
+
+4. **useId Hook 추가**  
+   - 클라이언트와 서버에서 일관된 고유 ID 생성  
+   - 부분 Hydration 지원 (Hydration: 서버에서 렌더링된 콘텐츠를 클라이언트에서 React와 연결하는 과정)
+
+5. **useTransition Hook 추가**  
+   - UI 렌더링 업데이트를 중단하지 않으면서 부드러운 상태 전환 가능
+---
+
+### 5. React 19(2024)
+
+React 19는 현재 최신 버전으로, 성능 최적화와 개발 경험 향상을 위한 새로운 기능을 제공합니다.
+
+### 주요 변경 사항
+1. **Hook의 변화**
+   - `useTransition` Hook 개선: 비동기 함수와도 함께 사용 가능(pending state 추가)
+   ``` jsx
+        function Update({}) {
+        const [name, setName] = useState("");
+        const [error, setError] = useState(null);
+        const [isPending, startTransition] = useTransition();
+
+        const handleSubmit = () => {
+            startTransition(async () => { // 비동기 함수 전달 가능
+            const error = await updateName(name);
+            if (error) {
+                setError(error);
+                return;
+            } 
+            redirect("/main");
+            })
+        }
+
+        return (
+            <div>
+            <input value={name} onChange={(event) => setName(event.target.value)} />
+            <button onClick={handleSubmit} disabled={isPending}>
+                Change Name
+            </button>
+            {error && <span>{error}</span>}
+            </div>
+        );
+        }
+        ```
+
+   - `useActionState` Hook 개선: 상태 업데이트를 자동으로 묶어 최적화
+   - `useOptimistic` Hook 추가: API 요청 후 실제 응답 대기가 오기 전에 미리 UI 업데이트 가능
+     ``` jsx
+        function ChangeName({currentName, onUpdateName}) {
+        const [optimisticName, setOptimisticName] = useOptimistic(currentName);
+
+        const submitAction = async formData => {
+            const newName = formData.get("name");
+            setOptimisticName(newName);
+            const updatedName = await updateName(newName);
+            onUpdateName(updatedName);
+        };
+
+        return (
+            <form action={submitAction}>
+            <p>Your name is: {optimisticName}</p>
+            <p>
+                <label>Change Name:</label>
+                <input
+                type="text"
+                name="name"
+                disabled={currentName !== optimisticName}
+                />
+            </p>
+            </form>
+        );
+        }
+    ```
+   - `use` Hook 추가: Promise나 Context 값을 읽어올 수 있는 훅
+
+2. **개발 편의성 향상**
+    - 하위 컴포넌트에 `ref`를 전달할 수 있음 (`forwardRef`를 사용하지 않아도 됨)
+    - `<Context.provider>`대신 `<Context>` 사용 가능
+    - SSR 사용 시 Hydration 에러 디버깅이 개선됨
+
+3. **Server Actions**
+    - Server Actions는 클라이언트 컴포넌트가 서버에서 실행되는 비동기 함수를 호출할 수 있도록 해줍니다.
+    - `"use server"` 지시어로 정의된 Server Action이 있을 경우, 프레임워크는 자동으로 서버 함수에 대한 참조를 생성하고 이를 클라이언트 컴포넌트에 전달합니다. 클라이언트에서 해당 함수가 호출되면, React는 서버에 요청을 보내 함수를 실행하고 결과를 반환합니다.
+
+4. **리소스 사전 로딩 지원**
+    초기 문서 로드 및 클라이언트 측 업데이트 중, 브라우저에게 필요한 리소스를 가능한 빨리 로드할 것이라고 알려주는 것은 페이지 성능에 큰 영향을 미칠 수 있습니다.
+    React 19는 리소스를 로드하고 사전 로딩하는 새로운 API를 다수 포함하고 있어, 비효율적인 리소스 로딩에 의해 제한되지 않는 뛰어난 사용자 경험을 구축하는 것을 쉽게 만들어줍니다.
+
+
+### React 개발 방식의 변화
+
+1. **클래스에서 함수형 컴포넌트로 전환**
+   - React 16.8 이후, Hooks 도입으로 함수형 컴포넌트가 표준으로 자리잡음.
+   - `useState`, `useEffect` 등으로 상태 관리와 생명주기 제어 가능.
+
+2. **CSR에서 SSR 및 하이브리드로 전환**
+   - 초기 React는 클라이언트 렌더링(CSR)이 중심이었으나, Next.js를 통해 SSR(Server-Side Rendering)과 하이브리드 렌더링 방식이 표준화됨.
+   - **Next.js**: 서버사이드 렌더링을 쉽게 지원하는 프레임워크.
+   - React에서 SSR을 구현할 때는 `ReactDOMServer` 모듈을 사용:
+     - `renderToString()`: React 컴포넌트를 문자열로 렌더링.
+     - `renderToStaticMarkup()`: 정적 HTML을 생성하며, React의 데이터 속성(`data-reactroot` 등)은 포함되지 않음.
+   - **Hydration 설정**: 서버에서 렌더링된 HTML은 클라이언트에서 React와 연결(hydration)되어야 합니다. 클라이언트에서 `ReactDOM.hydrate`를 사용해 연결합니다.
+   - **React SSR의 작동 원리**:
+     1. 서버에서 `renderToString()`을 통해 React 컴포넌트를 HTML로 렌더링.
+     2. 서버는 렌더링된 HTML을 클라이언트로 전송.
+     3. 클라이언트는 전송받은 HTML을 화면에 표시하고, 클라이언트의 React는 서버에서 제공된 HTML과 연결(hydrate)되어 상호작용이 가능해집니다.
+
+   - **React SSR의 한계**:
+     - **복잡한 설정**: Next.js와 달리 React에서 SSR을 구현하려면 서버(Express 등)와 추가 설정이 필요.
+     - **서버 비용 증가**: 클라이언트 렌더링보다 서버의 처리 부하가 늘어날 수 있음.
+     - **복잡한 데이터 페칭**: 데이터를 서버에서 가져오고 컴포넌트에 주입하는 작업이 번거로울 수 있음.
+
+3. **Context API와 상태 관리 변화**
+   - Context API의 개선으로 Redux 등 외부 상태 관리 라이브러리 의존이 일부 감소.
+
+4. **TypeScript 도입 증가**
+   - 안정적인 코드 작성과 타입 검사를 위해 TypeScript 사용 확대.
+
+5. **React Native 확장**
+   - React 철학을 모바일 애플리케이션 개발로 확장.
+
+---
+
+### 결론
+React는 초기에 간단한 UI 라이브러리로 시작했지만, 현재는 동시성 렌더링, 서버 컴포넌트, 최적화된 생태계로 웹과 모바일 개발의 중심 도구로 자리 잡았습니다. React 19 이후에도 서버 컴포넌트 최적화와 성능 중심 발전이 지속될 것으로 예상됩니다.

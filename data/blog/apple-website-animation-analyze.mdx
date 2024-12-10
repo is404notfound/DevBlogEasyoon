@@ -1,7 +1,7 @@
 ---
 title: 'Analyzing Apple Website Animation (1_Scrolling Synchronization)'
 date: '2024-12-4'
-tags: ['FE', 'Animation']
+tags: ['FE', 'Animation', 'UI/UX']
 draft: false
 ---
 # 애플의 애니메이션 분석해보기 (첫번째, 스크롤 동기화)
@@ -35,7 +35,7 @@ HTML은 간단히 텍스트와 배경 비디오로 구성합니다.
 ```html
 <div class="container">
   <div class="text-section">
-    <h1 class="text">혁신적인 디자인</h1>
+    <h1 class="text">혁신적인 디자인</h1> <!-- 텍스트는 임의로 지정 -->
     <p class="subtext">애플의 새로운 차원을 경험하세요.</p>
   </div>
   <div class="video-section">
@@ -132,6 +132,6 @@ window.addEventListener("scroll", () => {
 
 3. 양방향 동작
 
-스크롤 아래로: 텍스트는 위로 이동하며 사라지고, 동영상은 축소합니다.
+- 하강 스크롤: 텍스트는 위로 이동하며 사라지고, 동영상은 축소합니다.
 
-스크롤 위로: 텍스트는 아래로 이동하며 다시 나타나고, 동영상은 확대합니다
+- 상승 스크롤: 텍스트는 아래로 이동하며 다시 나타나고, 동영상은 확대합니다.
