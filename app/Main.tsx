@@ -1,12 +1,12 @@
 'use client'
 
 import { useTranslation } from 'react-i18next';
-import CalendarPage from './calendar/page';
+import DashboardPage from './dashboard/page';
 
 export default function Home({ posts }) {
   const { t } = useTranslation();
 
   return (
-    <CalendarPage />
+    <DashboardPage />
   )
 }
