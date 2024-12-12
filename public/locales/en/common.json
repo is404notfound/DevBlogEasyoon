@@ -1,8 +1,9 @@
 {
-    "calendar.title" : "Dev Conferences"
+    "calendar.title" : "Dev Calendar"
     , "dashboard.pageviews" : "Page Views"
-    , "dashboard.visitors" : "Visitors"
+    , "dashboard.visitors" : "Total Visitors"
     , "dashboard.monthlyVisitors" : "Monthly Visitors"
+    , "dashboard.notice.date": "Updated weekly"
     , "dashboard.postsRanking": "Posts Ranking"
     , "dashboard.search": "Go to search"
     , "dashboard.search.description": "Applied"
