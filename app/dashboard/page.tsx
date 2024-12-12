@@ -106,9 +106,9 @@ const Dashboard = () => {
           </div>
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card title={t('dashboard.pageviews')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalPageViews} />
-              <Card title={t('dashboard.visitors')} description="2023년 12월 9일 ~ 2024년 12월 9일" content={totalPostCounts.totalVisitors} />
-              <Card title={t('dashboard.monthlyVisitors')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalMonthlyVisitors} />
+              <Card title={t('dashboard.pageviews')} description="2024년 11월 12일 ~ 2024년 12월 11일" content={totalPostCounts.totalPageViews} />
+              <Card title={t('dashboard.visitors')} description="2023년 12월 11일 ~ 2024년 12월 11일" content={totalPostCounts.totalVisitors} />
+              <Card title={t('dashboard.monthlyVisitors')} description="2024년 11월 12일 ~ 2024년 12월 11일" content={totalPostCounts.totalMonthlyVisitors} />
             </div>
           </div>
         </StyledComponentsRegistry>
