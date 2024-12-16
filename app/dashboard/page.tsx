@@ -101,14 +101,14 @@ const Dashboard = () => {
         <StyledComponentsRegistry>
           <div className="space-y-2 pb-8 pt-6 md:space-y-5">
             <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-              {t('Dashboard')}
+              {t('Analytics')}
             </h1>
           </div>
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card title={t('dashboard.pageviews')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalPageViews} />
-              <Card title={t('dashboard.visitors')} description="2023년 12월 9일 ~ 2024년 12월 9일" content={totalPostCounts.totalVisitors} />
-              <Card title={t('dashboard.monthlyVisitors')} description="2024년 11월 10일 ~ 2024년 12월 9일" content={totalPostCounts.totalMonthlyVisitors} />
+              <Card title={t('dashboard.monthlyVisitors')} description={t('dashboard.notice.date')} content={totalPostCounts.totalMonthlyVisitors} />
+              <Card title={t('dashboard.pageviews')} description={t('dashboard.notice.date')} content={totalPostCounts.totalPageViews} />
+              <Card title={t('dashboard.visitors')} description={t('dashboard.notice.date')} content={totalPostCounts.totalVisitors} />
             </div>
           </div>
         </StyledComponentsRegistry>
@@ -116,7 +116,7 @@ const Dashboard = () => {
         <div className='grid grid-cols-1 gap-6 pt-6 pb-6'>
           <Card
             title={t('dashboard.postsRanking')}
-            description="2024년 11월 10일 ~ 2024년 12월 9일"
+            description={t('dashboard.notice.date')}
             content={<InfiniteScrollListLayout />}
           />
         </div>
