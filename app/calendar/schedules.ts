@@ -1,34 +1,34 @@
 import { ISchedule } from "tui-calendar";
 
-export const currentYear = 2024;
-export const currentMonth = 12;
+export const currentYear = 2025;
+export const currentMonth = 1;
 export const currentLastDate = 31;
 export const schedules: ISchedule[] = [
     {
       id: '1',
       calendarId: '1',
-      title: 'AWS re:Invent 2024',
-      start: '2024-12-02T00:00:00',
-      end: '2024-12-06T23:59:59',
-      body: 'https://reinvent.awsevents.com/',
-      state: '온라인 라이브 스트리밍 가능',
-      attendees: ['AWS'],
+      title: '.NET Conf 2025 x Seoul',
+      start: '2025-01-09T09:30:00',
+      end: '2025-01-09T18:00:00',
+      body: 'https://dotnetconf.kr/2025?ref=codenary',
+      state: '서울시 강남구 영동대로96길 20 대화빌딩 지하 1층, 스페이스쉐어 삼성역센터',
+      attendees: [''],
     },
-    {
-      id: '2',
-      calendarId: '2',
-      title: 'Notion Innovators Summit Seoul 2024',
-      start: '2024-12-07T10:00:00',
-      end: '2024-12-07T18:00:00',
-      state: '장소: 경희대학교 오비스홀 151 그랜드볼룸',
-      body: 'https://summit.makenotion.us/',
-      attendees: ['Notion'],
-      //@ts-ignore
-      customStyle: {
-        backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
-        borderRadius: '100px',
-      },
-    },
+    // {
+    //   id: '2',
+    //   calendarId: '2',
+    //   title: 'Notion Innovators Summit Seoul 2024',
+    //   start: '2024-12-07T10:00:00',
+    //   end: '2024-12-07T18:00:00',
+    //   state: '장소: 경희대학교 오비스홀 151 그랜드볼룸',
+    //   body: 'https://summit.makenotion.us/',
+    //   attendees: ['Notion'],
+    //   //@ts-ignore
+    //   customStyle: {
+    //     backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+    //     borderRadius: '100px',
+    //   },
+    // },
     // {
     //   id: '3',
     //   calendarId: '2',
