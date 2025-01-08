@@ -1,0 +1,109 @@
+---
+title: 'JavaScript에서 Throttle을 사용한 애니메이션 구현'
+date: '2025-01-08'
+tags: ['FE', 'animation']
+draft: false
+---
+# JavaScript에서 Throttle을 사용한 애니메이션 구현
+
+JavaScript에서 throttle을 사용하여 애니메이션 성능을 개선하는 방법에 대해 설명하고, 스크롤 애니메이션이 끊기는 문제를 해결하기 위해 throttle을 적용합니다. 또, 적용 전후의 차이를 비교합니다.
+
+## Throttle이란?
+
+Throttle은 함수가 '일정 시간 간격'으로 '최대 한 번만' 호출되도록 제한하는 기술입니다. 즉, 짧은 시간 동안 이벤트가 여러 번 발생하더라도, throttle에 설정된 시간 간격 내에서는 함수가 한 번만 실행됩니다. 예를 들어, 100ms의 throttle을 가진 함수가 있다면, 이벤트가 1초 동안 10번 발생하더라도 함수는 최대 10번만 실행됩니다 (각 100ms 간격).
+
+## Throttle은 어디에 사용할까?
+
+Throttle은 다음과 같은 상황에서 사용할 수 있습니다.
+
+*   **과도한 이벤트 발생으로 인한 성능 저하 방지:** 스크롤, 마우스 이동, 창 크기 조절 등 이벤트가 짧은 시간에 빈번하게 발생할 때, 이벤트 핸들러가 과도하게 실행되어 성능 문제가 발생할 수 있으며, 이를 개선하는 데 사용합니다.
+*   **애니메이션 부드럽게 만들기:** 스크롤 애니메이션과 같이 연속적인 변화를 표현해야 하는 경우, 이벤트 발생 빈도에 따라 애니메이션이 끊기거나 버벅거릴 수 있습니다. Throttle을 사용하면 애니메이션을 부드럽게 만들 수 있습니다.
+
+## 문제 상황: 버벅임 및 끊기는 스크롤 애니메이션
+
+스크롤 휠 이벤트에 따라 부드러운 스크롤 애니메이션을 구현하려고 시도했지만, throttle을 적용하기 전에는 애니메이션이 끊기는 문제가 발생했습니다. 
+
+원인 : 이는 휠 이벤트가 매우 빠른 속도로 발생하기 때문에, `window.scrollBy` 함수가 과도하게 호출되어 브라우저가 모든 요청을 처리하지 못하기 때문입니다.
+
+## 비교
+
+### 1. Throttle 적용 전 코드
+
+<video src="https://github.com/user-attachments/assets/2bf9238c-109a-4fc5-8f99-d3587b7ad4a3" width="100%" controls></video>
+
+```javascript
+useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleWheel = (event) => {
+        event.preventDefault();
+
+        window.scrollBy({
+            left: event.deltaY,
+            behavior: 'smooth'
+        });
+    };
+
+    container.addEventListener('wheel', handleWheel);
+
+    return () => {
+        container.removeEventListener('wheel', handleWheel);
+    };
+}, []);
+
+```
+
+이 코드에서는 휠 이벤트가 발생할 때마다 handleWheel 함수가 실행됩니다.
+이 함수는 이벤트의 deltaY 값을 사용하여 스크롤 양을 계산하고 window.scrollBy 함수를 호출하여 스크롤합니다.
+문제는 휠 이벤트가 매우 짧은 시간에 여러 번 발생할 수 있어, 이로 인해 window.scrollBy가 과도하게 호출되어 애니메이션이 끊기는 현상이 발생합니다.
+
+
+### 2. Throttle 적용 후 코드
+
+<video src="https://github.com/user-attachments/assets/ae1eb90f-3363-4cc4-9db2-5595c3928882" width="100%" controls></video>
+
+``` javascript
+useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    let throttleTimer;
+
+    const handleWheel = (event) => {
+        if (throttleTimer) return;
+
+        event.preventDefault();
+
+        throttleTimer = setTimeout(() => {
+            window.scrollBy({
+                left: event.deltaY,
+                behavior: 'smooth'
+            });
+            throttleTimer = null;
+        }, 16);
+    };
+
+    container.addEventListener('wheel', handleWheel);
+
+    return () => {
+        container.removeEventListener('wheel', handleWheel);
+    };
+}, []);
+```
+
+Throttle을 적용한 코드에서는 `throttleTimer` 변수를 사용하여 함수 실행을 제어합니다.
+
+*   `handleWheel` 함수가 호출되면, `throttleTimer`가 존재하는지 확인합니다.
+*   `throttleTimer`가 존재할 경우 (즉, 이전에 설정된 타이머가 아직 만료되지 않은 경우), 함수는 즉시 반환됩니다. 이는 이전에 시작된 스크롤 애니메이션이 완료되기 전에 새로운 스크롤 요청이 들어오더라도 이를 무시하기 위함입니다.
+*   `throttleTimer`가 존재하지 않을 경우, `event.preventDefault()`를 호출하여 기본 스크롤 동작을 막고, `setTimeout`을 사용하여 16ms 후에 `window.scrollBy` 함수를 실행합니다.
+*   `setTimeout` 콜백 함수 내에서 `throttleTimer`를 `null`로 설정하여 다음 휠 이벤트에 대비합니다.
+
+### 3. 개선 될 여지
+
+* setTimeout의 초기 지연
+
+throttle을 구현하기 위해 setTimeout을 사용하고 있습니다. 
+setTimeout은 지정된 시간(여기서는 16ms) 이후에 콜백 함수를 실행합니다.
+즉, 첫 번째 휠 이벤트가 발생하면 16ms의 지연 후에 window.scrollBy가 호출됩니다.
+이 초기 지연 시간 때문에 초반에 즉각적인 반응이 없다고 느낄 수 있으며, 특히 빠른 휠 동작을 하는 경우 버벅거림으로 인지될 수 있습니다.
+(이 부분에 대해서는 추후 더 개선...)
