@@ -30,11 +30,12 @@ const useTotalCodeRecords = () => {
     const [latestRecords, setLatestRecords] = useState<CodeLineRecords[]>([]);
     const [commitHistory, setCommitHistory] = useState<string[]>([]);
     const [postsRanking, setPostsRanking] = useState([]);
+    const [updateDate, setUpdateDate] = useState('');
     const [totalPostCounts, setTotalPostCounts] = useState<TotalPostCounts>(
         {
             totalPageViews: 0,
             totalVisitors: 0,
-            totalMonthlyVisitors: 0
+            totalMonthlyVisitors: 0,
         }
     );
 
@@ -56,6 +57,7 @@ const useTotalCodeRecords = () => {
         // setLatestRecords(latestRecord);
         setCommitHistory(commitHistory);
         setPostsRanking(postsRankingData.rankingPosts as any);
+        setUpdateDate(postsRankingData.updateDate as string);
         setTotalPostCounts(postsRankingData.totalPostCounts);
     }
         , []);
@@ -76,6 +78,7 @@ const useTotalCodeRecords = () => {
         // , commitHistory
         postsRanking
         , totalPostCounts
+        , updateDate
     };
 };
 

@@ -18,6 +18,7 @@ const Dashboard = () => {
   const {
     postsRanking
     , totalPostCounts
+    , updateDate
   } = useTotalCodeRecords();
   // const [codeCounts, setCodeCounts] = useState<{}>();
   // const [dates, setDates] = useState<{}>({});
@@ -106,9 +107,9 @@ const Dashboard = () => {
           </div>
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card title={t('dashboard.monthlyVisitors')} description={t('dashboard.notice.date')} content={totalPostCounts.totalMonthlyVisitors} />
-              <Card title={t('dashboard.pageviews')} description={t('dashboard.notice.date')} content={totalPostCounts.totalPageViews} />
-              <Card title={t('dashboard.visitors')} description={t('dashboard.notice.date')} content={totalPostCounts.totalVisitors} />
+              <Card title={t('dashboard.monthlyVisitors')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.totalMonthlyVisitors} />
+              <Card title={t('dashboard.pageviews')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.totalPageViews} />
+              <Card title={t('dashboard.visitors')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.totalVisitors} />
             </div>
           </div>
         </StyledComponentsRegistry>
@@ -116,7 +117,7 @@ const Dashboard = () => {
         <div className='grid grid-cols-1 gap-6 pt-6 pb-6'>
           <Card
             title={t('dashboard.postsRanking')}
-            description={t('dashboard.notice.date')}
+            description={updateDate + t('dashboard.notice.date')}
             content={<InfiniteScrollListLayout />}
           />
         </div>

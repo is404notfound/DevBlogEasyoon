@@ -1,8 +1,8 @@
 {
     "totalPostCounts": {
-        "totalPageViews": 951,
-        "totalVisitors": 319,
-        "totalMonthlyVisitors": 291
+        "totalPageViews": 750,
+        "totalVisitors": 351,
+        "totalMonthlyVisitors": 264
     },
     "rankingPosts": [
         {
@@ -47,5 +47,6 @@
             "url": "https://devblogeasyoon.xyz/blog/",
             "title": "i18n, When building statically, the original language is restored."
         }
-    ]
+    ],
+    "updateDate": "1/9 "
 }
