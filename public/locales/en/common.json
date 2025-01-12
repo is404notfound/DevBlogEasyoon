@@ -1,9 +1,9 @@
 {
     "calendar.title" : "Dev Calendar"
-    , "dashboard.pageviews" : "Page Views"
+    , "dashboard.pageviews" : "Monthly Page Views"
     , "dashboard.visitors" : "Total Visitors"
     , "dashboard.monthlyVisitors" : "Monthly Visitors"
-    , "dashboard.notice.date": "Updated weekly"
+    , "dashboard.notice.date": "updated"
     , "dashboard.postsRanking": "Posts Ranking"
     , "dashboard.search": "Go to search"
     , "dashboard.search.description": "Applied"

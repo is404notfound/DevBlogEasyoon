@@ -1,8 +1,8 @@
 {
     "calendar.title" : "開発カンファレンス"
-    , "dashboard.pageviews" : "ページビュー"
+    , "dashboard.pageviews" : "月間ページビュー"
     , "dashboard.visitors" : "総訪問者"
-    , "dashboard.notice.date": "毎週更新"
+    , "dashboard.notice.date": "更新"
     , "dashboard.monthlyVisitors" : "月間訪問者"
     , "dashboard.postsRanking": "ポストランキング"
     , "dashboard.search": "検索に行く"
