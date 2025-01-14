@@ -1,7 +1,7 @@
 ---
-title: '[Solving] CSR(react)을 이용해서 gh-pages 배포를 할 때 생기는 라우팅 문제(새로고침, 404 등)'
+title: '[Solved] CSR(react)을 이용해서 gh-pages 배포를 할 때 생기는 라우팅 문제(새로고침, 404 등)'
 date: '2025-01-09'
-tags: ['FE', 'animation']
+tags: ['FE']
 draft: false
 ---
 # CSR(react)을 이용해서 gh-pages 배포를 할 때 생기는 라우팅 문제(새로고침, 404 등)
@@ -48,87 +48,18 @@ CRA 문서에서는 이 문제를 해결하기 위한 두 가지 방법을 제�
 
 두 번째 방법은 `BrowserRouter`를 유지하면서 404 에러 발생 시 리디렉션을 통해 문제를 해결하는 것입니다. 이 방법은 CRA 문서에서 제공하는 MIT 라이선스의 스크립트를 활용합니다.
 
-**구현 단계:**
-
-1.  **`public` 폴더에 `404.html` 파일 생성:** 다음 내용을 `404.html` 파일에 복사합니다.
-
-    ```html
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Single Page Apps for GitHub Pages</title>
-        <script type="text/javascript">
-          (function(l) {
-            if (l.search) {
-              var q = {};
-              l.search.slice(1).split('&').forEach(function(v) {
-                var a = v.split('=');
-                q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-              });
-              if (q.p !== undefined) {
-                window.history.replaceState(null, null,
-                  l.pathname.slice(0, -1) + (q.p || '') +
-                  (q.q ? ('?' + q.q) : '') +
-                  l.hash
-                );
-              }
-            }
-          }(window.location))
-        </script>
-      </head>
-      <body></body>
-    </html>
-    ```
-
-2.  **`index.html`에 스크립트 추가:** `index.html`의 `<head>` 태그 안에 다음 스크립트를 추가합니다. 이 스크립트는 `404.html`에서 쿼리 문자열로 전달된 원래 URL을 복원하는 역할을 합니다.
+ **`index.html`에 스크립트 추가:** `index.html`의 `<head>` 태그 안에 다음 스크립트를 추가합니다. 이 스크립트는 `404.html`에서 리다이렉트를 하는 구문입니다.
 
     ```html
     <head>
       <script type="text/javascript">
-        (function(l) {
-          if (l.search) {
-            var q = {};
-            l.search.slice(1).split('&').forEach(function(v) {
-              var a = v.split('=');
-              q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-            });
-            if (q.p !== undefined) {
-              window.history.replaceState(null, null,
-                l.pathname.slice(0, -1) + (q.p || '') +
-                (q.q ? ('?' + q.q) : '') +
-                l.hash
-              );
-            }
-          }
+        (function(l) { 
+          window.location.href = 'process.env.PUBLIC_URL에 등록되어있는 URL';
         }(window.location))
       </script>
     </head>
     ```
 
-3.  **`package.json`에 `homepage` 속성 추가:** `package.json` 파일에 `homepage` 속성을 추가합니다. `repo-name` 부분을 실제 저장소 이름으로 바꿔야 합니다.
-
-    ```json
-    {
-      "homepage": "[https://user.github.io/repo-name](https://user.github.io/repo-name)",
-      // ... other properties
-    }
-    ```
-
-4.  **`BrowserRouter`에 `basename` 속성 추가:** `BrowserRouter`를 사용하는 곳에 `basename` 속성을 추가합니다.
-
-    ```javascript
-    import { BrowserRouter } from 'react-router-dom';
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <App />
-      </BrowserRouter>
-    );
-    ```
-
-이 방법을 사용하면 URL이 깔끔하게 유지되고 SEO에도 유리합니다.
 
 ## 대안 : Next JS SSG
 
