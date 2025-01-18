@@ -392,5 +392,29 @@
     "article:author": "https://medium.com/@all.technology.stories",
     "twitter:title": "The Future of Front-End Development: Trends to Watch in 2025",
     "twitter:description": "Future-proof your dev skills: AI, Wasm, and trends you can’t ignore in 2025."
+  },
+  {
+    "note": "",
+    "og:site_name": "YouTube",
+    "og:url": "https://www.youtube.com/watch?v=JyzVn3iBbHc",
+    "og:title": "Docker를 활용한 손쉬운 ECS 활용기 - 김민태 (AUSG) :: AWS Community Day Online 2021",
+    "og:image": "https://i.ytimg.com/vi/JyzVn3iBbHc/maxresdefault.jpg",
+    "og:image:width": "1280",
+    "og:image:height": "720",
+    "og:description": "Docker 컨테이너를 기반으로 하여 AWS의 ECS 활용기를 소개합니다.(컨테이너 서버리스 컴퓨팅 Fargate를 사용해보자)발표자료 : https://www.slideshare.net/awskr/docker-ecs-ausg-aws-community-day-online-2021행...",
+    "al:ios:app_store_id": "544007664",
+    "al:ios:app_name": "YouTube",
+    "al:ios:url": "vnd.youtube://www.youtube.com/watch?si=f4MRcMU0fQpJSp8h&v=JyzVn3iBbHc&feature=youtu.be&feature=applinks",
+    "al:android:url": "vnd.youtube://www.youtube.com/watch?si=f4MRcMU0fQpJSp8h&v=JyzVn3iBbHc&feature=youtu.be&feature=applinks",
+    "al:web:url": "http://www.youtube.com/watch?si=f4MRcMU0fQpJSp8h&v=JyzVn3iBbHc&feature=youtu.be&feature=applinks",
+    "og:type": "video.other",
+    "og:video:url": "https://www.youtube.com/embed/JyzVn3iBbHc",
+    "og:video:secure_url": "https://www.youtube.com/embed/JyzVn3iBbHc",
+    "og:video:type": "text/html",
+    "og:video:width": "1280",
+    "og:video:height": "720",
+    "al:android:app_name": "YouTube",
+    "al:android:package": "com.google.android.youtube",
+    "fb:app_id": "87741124305"
   }
 ]
