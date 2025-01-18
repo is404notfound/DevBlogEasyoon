@@ -1,8 +1,8 @@
 {
     "totalPostCounts": {
-        "totalPageViews": 750,
-        "totalVisitors": 351,
-        "totalMonthlyVisitors": 264
+        "totalPageViews": 1375,
+        "totalVisitors": 374,
+        "totalMonthlyVisitors": 136
     },
     "rankingPosts": [
         {
@@ -48,5 +48,5 @@
             "title": "i18n, When building statically, the original language is restored."
         }
     ],
-    "updateDate": "1/9 "
+    "updateDate": "1/19 "
 }
