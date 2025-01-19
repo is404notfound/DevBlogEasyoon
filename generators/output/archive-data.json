@@ -419,6 +419,9 @@
   },
   {
     "note": "blog/frontend-performance-pattern-korean",
+    "og:title": "Frontend performance pattern",
+    "og:url": "https://thanhle.blog/blog/frontend-performance-pattern-en",
+    "og:type": "article",
     "og:image": "https://thanhle.blog/api/og?title=Frontend%20performance%20pattern&description=Pattern%20to%20optimize%20frontend%20performance&publishedDate=Feb%2015,%202022",
     "og:description": "Pattern to optimize frontend performance"
   }
