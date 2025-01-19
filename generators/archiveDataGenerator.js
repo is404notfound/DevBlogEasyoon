@@ -24,6 +24,7 @@ const URLS =
         , 'https://tech.kakaobank.com/posts/2411-solid-truth-or-myths-for-developers/'
         , 'https://medium.com/@all.technology.stories/9ae18ef06ab2'
         , 'https://youtu.be/JyzVn3iBbHc?si=f4MRcMU0fQpJSp8h'
+        , 'https://thanhle.blog/blog/frontend-performance-pattern-en'
     ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');

@@ -416,5 +416,10 @@
     "al:android:app_name": "YouTube",
     "al:android:package": "com.google.android.youtube",
     "fb:app_id": "87741124305"
+  },
+  {
+    "note": "blog/frontend-performance-pattern-korean",
+    "og:image": "https://thanhle.blog/api/og?title=Frontend%20performance%20pattern&description=Pattern%20to%20optimize%20frontend%20performance&publishedDate=Feb%2015,%202022",
+    "og:description": "Pattern to optimize frontend performance"
   }
 ]
