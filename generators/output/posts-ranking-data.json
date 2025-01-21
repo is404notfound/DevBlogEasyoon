@@ -1,8 +1,8 @@
 {
     "totalPostCounts": {
-        "totalPageViews": 1375,
-        "totalVisitors": 374,
-        "totalMonthlyVisitors": 136
+        "totalPageViews": 612,
+        "totalVisitors": 391,
+        "totalMonthlyVisitors": 201
     },
     "rankingPosts": [
         {
@@ -10,43 +10,41 @@
             "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/apple-website-animation-analyze",
-            "title": "Analyzing Apple Website Animation (1_Scrolling Synchronization)",
-            "note": "https://qiita.com/DevBlogEasy/items/ce9675b32eaf9c475979"
+            "url": "https://devblogeasyoon.xyz/blog/frontend-performance-pattern-korean",
+            "title": "[번역] 프론트엔드 성능 패턴"
+        },
+        {
+            "url": "https://devblogeasyoon.xyz/blog/throttle-in-animation",
+            "title": "JavaScript에서 Throttle을 사용한 애니메이션 구현"
+        },
+        {
+            "url": "https://devblogeasyoon.xyz/blog/block-chain-words-dictionary",
+            "title": "Blockchain Vocabulary for Review"
+        },
+        {
+            "url": "https://devblogeasyoon.xyz/blog/summary-of-dapp-js-development-web3-ethers-js",
+            "title": "Comparing ethers.js and web3.js as Web3 Regains Popularity"
         },
         {
             "url": "https://devblogeasyoon.xyz/blog/mui-vs-tailwind",
             "title": "Tailwind VS MUI (CSS Framework)"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/history-of-react-up-to-19",
-            "title": "Update history of react up to react 19"
+            "url": "https://devblogeasyoon.xyz/blog/csr-routing-error-in-ghpages",
+            "title": "[Solved] CSR(react)을 이용해서 gh-pages 배포를 할 때 생기는 라우팅 문제(새로고침, 404 등)"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/next-js-sharp-image-optimization",
-            "title": "Sharp(Next의 이미지 최적화 라이브러리)의 효과는 대단했다 (+ Next/Image)",
-            "note": "https://qiita.com/DevBlogEasy/items/195e118f6cc190c99de4"
+            "url": "https://devblogeasyoon.xyz/blog/naver-interview-review",
+            "title": "[회고] 프론트엔드 기술 면접 후기 - 네이버 파이낸셜"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/web-design-word-explanation",
-            "title": "[번역] 웹 디자인의 대표적인 UI 요소 완전 가이드【용어 해설＋구현 예제】"
+            "url": "https://devblogeasyoon.xyz/blog/summary-of-dapp-js-development-web3-ethers-js",
+            "title": "[Part 1]Comparing ethers.js and web3.js as Web3 Regains Popularity"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/",
-            "title": "Analyzing Apple Website Animation (1, Scrolling Synchronization)"
-        },
-        {
-            "url": "https://devblogeasyoon.xyz/blog/",
-            "title": "[AWS Beginner] Region, Availability Zone, Edge Location"
-        },
-        {
-            "url": "https://devblogeasyoon.xyz/blog/",
-            "title": "[Solved] Ads.txt is not found in NextJS (Google AdSense)"
-        },
-        {
-            "url": "https://devblogeasyoon.xyz/blog/",
-            "title": "i18n, When building statically, the original language is restored."
+            "url": "https://devblogeasyoon.xyz/blog/beyond-code-finding-joy-in-global-tech-communites",
+            "title": "해외 기술 커뮤니티에 포스팅하면서 얻는 소소한 즐거움과 깨달음"
         }
     ],
-    "updateDate": "1/19 "
+    "updateDate": "1/22 "
 }
