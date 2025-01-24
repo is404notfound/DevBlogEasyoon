@@ -1,17 +1,17 @@
 {
     "totalPostCounts": {
-        "totalPageViews": 612,
-        "totalVisitors": 391,
-        "totalMonthlyVisitors": 201
+        "monthlyPageViews": 737,
+        "totalVisitors": 570,
+        "totalMonthlyVisitors": 296
     },
     "rankingPosts": [
         {
-            "url": "https://devblogeasyoon.xyz/blog/the-future-of-front-end-development-trends-to-watch-in-2025",
-            "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
-        },
-        {
             "url": "https://devblogeasyoon.xyz/blog/frontend-performance-pattern-korean",
             "title": "[번역] 프론트엔드 성능 패턴"
+        },
+        {
+            "url": "https://devblogeasyoon.xyz/blog/the-future-of-front-end-development-trends-to-watch-in-2025",
+            "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
         },
         {
             "url": "https://devblogeasyoon.xyz/blog/throttle-in-animation",
@@ -22,20 +22,20 @@
             "title": "Blockchain Vocabulary for Review"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/summary-of-dapp-js-development-web3-ethers-js",
-            "title": "Comparing ethers.js and web3.js as Web3 Regains Popularity"
+            "url": "https://devblogeasyoon.xyz/blog/naver-interview-review",
+            "title": "[회고] 프론트엔드 기술 면접 후기 - 네이버 파이낸셜"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/mui-vs-tailwind",
-            "title": "Tailwind VS MUI (CSS Framework)"
+            "url": "https://devblogeasyoon.xyz/blog/summary-of-dapp-js-development-web3-ethers-js",
+            "title": "Comparing ethers.js and web3.js as Web3 Regains Popularity"
         },
         {
             "url": "https://devblogeasyoon.xyz/blog/csr-routing-error-in-ghpages",
             "title": "[Solved] CSR(react)을 이용해서 gh-pages 배포를 할 때 생기는 라우팅 문제(새로고침, 404 등)"
         },
         {
-            "url": "https://devblogeasyoon.xyz/blog/naver-interview-review",
-            "title": "[회고] 프론트엔드 기술 면접 후기 - 네이버 파이낸셜"
+            "url": "https://devblogeasyoon.xyz/blog/mui-vs-tailwind",
+            "title": "Tailwind VS MUI (CSS Framework)"
         },
         {
             "url": "https://devblogeasyoon.xyz/blog/summary-of-dapp-js-development-web3-ethers-js",
