@@ -17,7 +17,7 @@ export interface TotalCodeRecords {
 }
 
 export interface TotalPostCounts {
-    totalPageViews: number;
+    monthlyPageViews: number;
     totalVisitors: number;
     totalMonthlyVisitors: number;
     [key: string]: number;
@@ -33,7 +33,7 @@ const useTotalCodeRecords = () => {
     const [updateDate, setUpdateDate] = useState('');
     const [totalPostCounts, setTotalPostCounts] = useState<TotalPostCounts>(
         {
-            totalPageViews: 0,
+            monthlyPageViews: 0,
             totalVisitors: 0,
             totalMonthlyVisitors: 0,
         }
