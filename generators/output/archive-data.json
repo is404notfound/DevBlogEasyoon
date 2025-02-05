@@ -424,5 +424,29 @@
     "og:type": "article",
     "og:image": "https://thanhle.blog/api/og?title=Frontend%20performance%20pattern&description=Pattern%20to%20optimize%20frontend%20performance&publishedDate=Feb%2015,%202022",
     "og:description": "Pattern to optimize frontend performance"
+  },
+  {
+    "note": "",
+    "og:title": "Tips and Tricks for Debugging React Applications",
+    "og:description": "Effortlessly debug React apps with our top tips and tricks for efficient troubleshooting and enhanced performance.",
+    "og:image": "https://s3.amazonaws.com/angularminds.com/blog/cover/tips-and-tricks-for-debugging-react-applications-20241014114342173.jpg"
+  },
+  {
+    "note": "",
+    "og:title": "React Server Components: A Comprehensive Guide",
+    "og:description": "React Server Components is a new experimental feature introduced in React that allows you to render components on the server without sending their code to the client.",
+    "og:image": "https://s3.amazonaws.com/angularminds.com/blog/cover/React%20Server%20Components_%20A%20Comprehensive%20Guide-20240926091742980.jpg"
+  },
+  {
+    "note": "",
+    "og:title": "Protected Routes in React Router",
+    "og:description": "Routes in React router are a crucial aspect of React. Learn about its basics, strategies, and implementation for optimum user authentication.",
+    "og:image": "https://s3.amazonaws.com/angularminds.com/blog/cover/protected%20routes%20in%20react%20router_%20implementing%20authentication%20and%20authorization-20240404095110705.jpg"
+  },
+  {
+    "note": "https://devblogeasyoon.xyz/blog/advanced-react-19",
+    "og:title": "What's New in React v19?",
+    "og:description": "Explore the latest features and improvements in React v19, including enhanced performance and developer tools.",
+    "og:image": "https://s3.amazonaws.com/angularminds.com/blog/cover/whats-new-in-react-v19-20241212071651838.jpg"
   }
 ]
