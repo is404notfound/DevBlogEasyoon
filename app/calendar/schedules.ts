@@ -13,6 +13,11 @@ export const schedules: ISchedule[] = [
       body: 'https://spartaswiftrise.oopy.io/?ref=devblogeasyoon',
       state: '서울시 강남구 역삼로 180',
       attendees: ['애플 생태계에 관심이 있는 누구나'],
+      //@ts-ignore
+      customStyle: {
+        backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+        borderRadius: '100px',
+      },
     },
     {
       id: '2',
@@ -20,9 +25,9 @@ export const schedules: ISchedule[] = [
       title: 'Udemy 2025 Success Roadmap',
       start: '2025-01-22T09:30:00',
       end: '2025-02-28T18:00:00',
-      body: 'https://udemy.wjtb.co.kr/event/2025_roadmap?utm_medium=udemyads&utm_source=wj-krweb&utm_campaign=WJ_2025roadmap_codenary_viral_250124&utm_content=codenary_notice&utm_term=2025roadmap_250124',
+      body: 'https://udemy.wjtb.co.kr/event/2025_roadmap',
       state: '',
-      attendees: [''],
+      attendees: ['Udemy로 Unity를 학습하고 싶은 누구나'],
     },
     // {
     //   id: '2',
