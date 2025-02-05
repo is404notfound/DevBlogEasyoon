@@ -1,8 +1,8 @@
 {
     "totalPostCounts": {
-        "monthlyPageViews": 783,
-        "totalVisitors": 640,
-        "totalMonthlyVisitors": 304
+        "monthlyPageViews": 939,
+        "totalVisitors": 678,
+        "totalMonthlyVisitors": 342
     },
     "rankingPosts": [
         {
@@ -12,6 +12,10 @@
         {
             "url": "https://devblogeasyoon.xyz/blog/the-future-of-front-end-development-trends-to-watch-in-2025",
             "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
+        },
+        {
+            "url": "https://devblogeasyoon.xyz/blog/advanced-react-19",
+            "title": "[번역] 예제 코드와 함께 보는 새로운 리엑트 v19 심화편" 
         },
         {
             "url": "https://devblogeasyoon.xyz/blog/next-js-sharp-image-optimization",
@@ -50,5 +54,5 @@
             "title": "해외 기술 커뮤니티에 포스팅하면서 얻는 소소한 즐거움과 깨달음"
         }
     ],
-    "updateDate": "2/3"
+    "updateDate": "2/5 "
 }

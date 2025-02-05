@@ -25,6 +25,11 @@ const URLS =
         , 'https://medium.com/@all.technology.stories/9ae18ef06ab2'
         , 'https://youtu.be/JyzVn3iBbHc?si=f4MRcMU0fQpJSp8h'
         , 'https://thanhle.blog/blog/frontend-performance-pattern-en'
+        , 'https://www.angularminds.com/blog/tips-and-tricks-for-debugging-react-applications'
+        , 'https://www.angularminds.com/blog/react-server-components'
+        , 'https://www.angularminds.com/blog/protected-routes-in-react-router-authentication-and-authorization'
+        , 'https://www.angularminds.com/blog/whats-new-in-react-v19'
+
     ];
 const OUTPUT_PATH = './generators/output/archive-data.json';
 const puppeteer = require('puppeteer');

@@ -7,12 +7,27 @@ export const schedules: ISchedule[] = [
     {
       id: '1',
       calendarId: '1',
-      title: '.NET Conf 2025 x Seoul',
-      start: '2025-01-09T09:30:00',
-      end: '2025-01-09T18:00:00',
-      body: 'https://dotnetconf.kr/2025?ref=codenary',
-      state: '서울시 강남구 영동대로96길 20 대화빌딩 지하 1층, 스페이스쉐어 삼성역센터',
-      attendees: [''],
+      title: 'SwiftRise 2025',
+      start: '2025-02-10T09:30:00',
+      end: '2025-02-10T18:00:00',
+      body: 'https://spartaswiftrise.oopy.io/?ref=devblogeasyoon',
+      state: '서울시 강남구 역삼로 180',
+      attendees: ['애플 생태계에 관심이 있는 누구나'],
+      //@ts-ignore
+      customStyle: {
+        backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+        borderRadius: '100px',
+      },
+    },
+    {
+      id: '2',
+      calendarId: '1',
+      title: 'Udemy 2025 Success Roadmap',
+      start: '2025-01-22T09:30:00',
+      end: '2025-02-28T18:00:00',
+      body: 'https://udemy.wjtb.co.kr/event/2025_roadmap',
+      state: '',
+      attendees: ['Udemy로 Unity를 학습하고 싶은 누구나'],
     },
     // {
     //   id: '2',
