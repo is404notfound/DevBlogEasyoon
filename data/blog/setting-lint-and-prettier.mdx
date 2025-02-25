@@ -1,0 +1,132 @@
+---
+title: 'How to Set Up Prettier and ESLint (feat. VS Code)'
+date: '2025-02-25'
+tags: ['FE', 'Prettier', 'ESLint']
+draft: false
+---
+
+# Prettier와 ESLint 설정하기 (feat. VS Code)
+
+Prettier와 ESLint의 설정을 통해 프로젝트의 코드 품질을 향상시키고 일관된 스타일을 유지할 수 있습니다.
+
+## 1. Prettier와 ESLint
+
+- **Prettier**: 코드 스타일(들여쓰기, 괄호, 따옴표 등)을 자동으로 통일해주는 도구입니다.
+
+  - 장점
+
+    - 코드 스타일을 일관되게 유지하여 가독성을 높입니다.
+    - 코드 리뷰 시간을 단축시켜 생산성을 향상시킵니다.
+    - 코드 스타일로 인한 논쟁을 줄여 팀워크를 향상시킵니다.
+
+  - 단점
+
+    - 코드를 자동으로 수정해버리기 때문에, 선호하지 않을 수 있습니다.
+    - 원치 않는 스타일로 변경될 수 있습니다.
+
+- **ESLint**: 코드의 문법적 오류나 잠재적인 문제점을 찾아 코드의 안정성을 높이는 도구입니다.
+
+  - 장점
+
+    - 코드 오류를 사전에 발견하여 예외 발생 가능성을 줄입니다.
+    - 코드 스타일 규칙을 정의하여 팀원 간의 협업을 용이하게 합니다.
+    - 코드 품질을 향상시켜 유지 보수를 쉽게 만듭니다.
+
+  - 단점
+    - 당장 고쳐야 할 에러가 많이 나올 수 있습니다.
+    - 엄격한 규칙으로 인해 개발 속도가 느려질 수 있습니다.
+
+## 2. Prettier 설정
+
+```javascript
+// .prettierrc.js
+module.exports = {
+  semi: true, // 세미콜론 사용 여부
+  trailingComma: 'es5', // 후행 쉼표 사용 방식 (es5, none, all)
+  singleQuote: true, // 작은 따옴표 사용 여부
+  printWidth: 80, // 한 줄 최대 문자 수
+  tabWidth: 2, // 들여쓰기 간격
+  useTabs: false, // 탭 대신 스페이스 사용 여부
+  bracketSpacing: true, // 객체 리터럴의 괄호 안에 공백 추가 여부
+}
+```
+
+### VS Code 확장 프로그램 설치
+
+VS Code에서 Prettier를 사용하려면 "Prettier - Code formatter" 확장 프로그램을 설치합니다.
+
+### VS Code 설정
+
+VS Code 설정(settings.json)에서 다음 설정을 추가하여 파일을 저장할 때마다 Prettier가 자동으로 실행되도록 설정합니다.
+
+```json
+// settings.json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+## 3. ESLint 설정
+
+```javascript
+// .eslintrc.js
+module.exports = {
+  extends: ['eslint:recommended', 'react-app', 'airbnb'], // eslint 권장 규칙, react-app 규칙, airbnb 스타일 가이드 사용
+  plugins: ['react', 'react-hooks', 'jsx-a11y'], // react, react-hooks, jsx-a11y 플러그인 사용
+  rules: {
+    semi: ['error', 'always'], // 세미콜론 필수
+    quotes: ['error', 'single'], // 작은 따옴표 사용
+    indent: ['error', 2], // 들여쓰기 2칸
+    'no-unused-vars': 'warn', // 사용하지 않는 변수 경고
+    'no-console': 'warn', // console.log 경고
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // .js, .jsx 파일에서 JSX 사용 가능
+  },
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: 'module',
+  },
+}
+```
+
+## 4. ESLint와 Prettier 연동
+
+```bash
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+yarn add --dev eslint-config-prettier eslint-plugin-prettier
+pnpm add --save-dev eslint-config-prettier eslint-plugin-prettier
+```
+
+```javascript
+// .eslintrc.js
+module.exports = {
+  // ... other settings
+  extends: ['airbnb', 'prettier'], // 'prettier'를 추가합니다.
+  plugins: ['prettier'], // 'prettier' 플러그인을 추가합니다.
+  rules: {
+    'prettier/prettier': 'error', // Prettier 규칙을 ESLint에 적용합니다.
+  },
+}
+```
+
+5. 테스트 하는 방법
+
+- VS Code: 파일을 저장(Ctrl + S 또는 Cmd + S)하면 Prettier와 ESLint가 자동으로 코드를 포맷팅하고 오류를 검사합니다.
+
+- 터미널: 다음 명령어를 사용하여 Prettier와 ESLint를 실행할 수 있습니다.
+
+```bash
+npx prettier --write . --ext .js,.jsx # Prettier 실행
+
+npx eslint . --ext .js,.jsx # ESLint 실행
+
+```
+
+<video
+  src="https://github.com/user-attachments/assets/9cb36cca-9abc-4078-9b0d-218c8f7803c2"
+  width="100%"
+  controls
+></video>
+
+6. 고려할 점
+   Prettier는 코드를 자동으로 수정하므로, 코드 변경 사항을 확인하고 커밋해야 한다는 부담이 있습니다.
