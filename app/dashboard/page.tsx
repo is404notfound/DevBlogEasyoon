@@ -1,33 +1,28 @@
-"use client";
+'use client'
 
-import Card from '@/components/dashboard/Card';
-import React, { useEffect, useState } from 'react';
+import Card from '@/components/dashboard/Card'
+import React, { useEffect, useState } from 'react'
 import useTotalCodeRecords, { CodeLineRecords, TotalCodeRecords } from '@/hooks/useTotalCodeRecords'
 // import { allBlogs } from 'contentlayer/generated'
 // import LineGraph from '@/components/LineGraph';
-import { useTranslation } from 'react-i18next';
-import Button from '@/components/Button';
-import SearchIcon from '../../public/static/icons/search.svg';
-import NextIcon from '../../public/static/icons/next.svg';
-import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry';
-import InfiniteScrollListLayout from '@/layouts/InfiniteScrollListLayout';
-import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import { useTranslation } from 'react-i18next'
+import Button from '@/components/Button'
+import SearchIcon from '../../public/static/icons/search.svg'
+import NextIcon from '../../public/static/icons/next.svg'
+import { useStyledComponentsRegistry } from 'lib/StyledComponentsRegistry'
+import InfiniteScrollListLayout from '@/layouts/InfiniteScrollListLayout'
+import useInfiniteScroll from '@/hooks/useInfiniteScroll'
 
 const Dashboard = () => {
-  const { t } = useTranslation();
-  const {
-    postsRanking
-    , totalPostCounts
-    , updateDate
-  } = useTotalCodeRecords();
+  const { t } = useTranslation()
+  const { postsRanking, totalPostCounts, updateDate } = useTotalCodeRecords()
   // const [codeCounts, setCodeCounts] = useState<{}>();
   // const [dates, setDates] = useState<{}>({});
   // const [diff, setDiff] = useState<{}>(0);
-  const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz';
-  const { setInitialItemList } = useInfiniteScroll();
-  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry();
-  const [styleTags, setStyleTags] = useState<string>('');
-
+  const searchURL = 'https://www.google.com/search?q=devblogeasyoon.xyz'
+  const { setInitialItemList } = useInfiniteScroll()
+  const { StyledComponentsRegistry, getStyleTags } = useStyledComponentsRegistry()
+  const [styleTags, setStyleTags] = useState<string>('')
 
   // function getCounts(): { [key: string]: number[] } {
   //   const keys: string[] = Object.keys(totalCodeRecords);
@@ -79,42 +74,39 @@ const Dashboard = () => {
   // }, [codeCounts]);
 
   useEffect(() => {
-    if (!postsRanking.length) return;
+    if (!postsRanking.length) return
 
-    setInitialItemList(postsRanking as any);
-
-  }, [postsRanking]);
-
+    setInitialItemList(postsRanking as any)
+  }, [postsRanking])
 
   useEffect(() => {
-    const initialStyleTags = getStyleTags();
+    const initialStyleTags = getStyleTags()
 
-    if (!initialStyleTags) return;
+    if (!initialStyleTags) return
 
-    setStyleTags(initialStyleTags);
-  }, [styleTags]);
+    setStyleTags(initialStyleTags)
+  }, [styleTags])
 
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: styleTags }} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-
         <StyledComponentsRegistry>
           <div className="space-y-2 pb-8 pt-6 md:space-y-5">
             <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               {t('Analytics')}
             </h1>
           </div>
-          <div className="container py-6">
+          {/* <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card title={t('dashboard.monthlyVisitors')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.totalMonthlyVisitors} />
               <Card title={t('dashboard.pageviews')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.monthlyPageViews} />
               <Card title={t('dashboard.visitors')} description={updateDate + t('dashboard.notice.date')} content={totalPostCounts.totalVisitors} />
             </div>
-          </div>
+          </div> */}
         </StyledComponentsRegistry>
 
-        <div className='grid grid-cols-1 gap-6 pt-6 pb-6'>
+        <div className="grid grid-cols-1 gap-6 pb-6 pt-6">
           <Card
             title={t('dashboard.postsRanking')}
             description={updateDate + t('dashboard.notice.date')}
@@ -123,16 +115,27 @@ const Dashboard = () => {
         </div>
         <StyledComponentsRegistry>
           <div className="grid grid-cols-1 gap-6 pt-6">
-            <Card title="Google SEO" description={t('dashboard.search.description')} size={'small'} content={(
-              <div className='flex flex-row justify-center'>
-                <Button text={t('dashboard.search')} type={'secondary'} onClick={() => window.open(searchURL, '_blank')} startIcon={<SearchIcon />} endIcon={<NextIcon />} />
-              </div>)
-            } />
+            <Card
+              title="Google SEO"
+              description={t('dashboard.search.description')}
+              size={'small'}
+              content={
+                <div className="flex flex-row justify-center">
+                  <Button
+                    text={t('dashboard.search')}
+                    type={'secondary'}
+                    onClick={() => window.open(searchURL, '_blank')}
+                    startIcon={<SearchIcon />}
+                    endIcon={<NextIcon />}
+                  />
+                </div>
+              }
+            />
           </div>
         </StyledComponentsRegistry>
       </div>
     </>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard
