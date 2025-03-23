@@ -445,8 +445,19 @@
   },
   {
     "note": "https://devblogeasyoon.xyz/blog/advanced-react-19",
-    "og:title": "What's New in React v19?",
-    "og:description": "Explore the latest features and improvements in React v19, including enhanced performance and developer tools.",
+    "og:title": "React 19: What are the new features and updates?",
+    "og:description": "Explore React 19's latest features and updates, enhancing performance and developer experience in your projects.",
     "og:image": "https://s3.amazonaws.com/angularminds.com/blog/cover/whats-new-in-react-v19-20241212071651838.jpg"
+  },
+  {
+    "note": "",
+    "fb:app_id": "1401488693436528",
+    "og:image": "https://repository-images.githubusercontent.com/238851101/fc8fa113-3856-4312-80ac-f1ac10ee4d48",
+    "og:image:alt": "FE 기술 소식 큐레이션 뉴스레터. Contribute to naver/fe-news development by creating an account on GitHub.",
+    "og:site_name": "GitHub",
+    "og:type": "object",
+    "og:title": "fe-news/issues/2025-03.md at master · naver/fe-news",
+    "og:url": "https://github.com/naver/fe-news/blob/master/issues/2025-03.md",
+    "og:description": "FE 기술 소식 큐레이션 뉴스레터. Contribute to naver/fe-news development by creating an account on GitHub."
   }
 ]

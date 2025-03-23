@@ -10,20 +10,12 @@
       "title": "[번역] 프론트엔드 성능 패턴"
     },
     {
-      "url": "https://devblogeasyoon.xyz/blog/the-future-of-front-end-development-trends-to-watch-in-2025",
-      "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
-    },
-    {
       "url": "https://devblogeasyoon.xyz/blog/advanced-react-19",
       "title": "[번역] 예제 코드와 함께 보는 새로운 리엑트 v19 심화편"
     },
     {
-      "url": "https://devblogeasyoon.xyz/blog/next-js-sharp-image-optimization",
-      "title": "Sharp(Next의 이미지 최적화 라이브러리)의 효과는 대단했다 (+ Next/Image)"
-    },
-    {
-      "url": "https://devblogeasyoon.xyz/blog/mui-vs-tailwind",
-      "title": "Tailwind VS MUI (CSS Framework)"
+      "url": "https://devblogeasyoon.xyz/blog/the-future-of-front-end-development-trends-to-watch-in-2025",
+      "title": "[번역] 2025년 프론트엔드 개발의 미래: 주목해야 할 트렌드"
     },
     {
       "url": "https://devblogeasyoon.xyz/blog/naver-interview-review",
@@ -32,6 +24,14 @@
     {
       "url": "https://devblogeasyoon.xyz/blog/throttle-in-animation",
       "title": "JavaScript에서 Throttle을 사용한 애니메이션 구현"
+    },
+    {
+      "url": "https://devblogeasyoon.xyz/blog/next-js-sharp-image-optimization",
+      "title": "Sharp(Next의 이미지 최적화 라이브러리)의 효과는 대단했다 (+ Next/Image)"
+    },
+    {
+      "url": "https://devblogeasyoon.xyz/blog/mui-vs-tailwind",
+      "title": "Tailwind VS MUI (CSS Framework)"
     },
     {
       "url": "https://devblogeasyoon.xyz/blog/block-chain-words-dictionary",
@@ -54,5 +54,5 @@
       "title": "해외 기술 커뮤니티에 포스팅하면서 얻는 소소한 즐거움과 깨달음"
     }
   ],
-  "updateDate": "3/3 "
+  "updateDate": "3/15 "
 }

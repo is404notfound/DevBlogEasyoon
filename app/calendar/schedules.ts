@@ -4,46 +4,36 @@ export const currentYear = 2025
 export const currentMonth = 3
 export const currentLastDate = 31
 export const schedules: ISchedule[] = [
-  // {
-  //   id: '1',
-  //   calendarId: '1',
-  //   title: 'SwiftRise 2025',
-  //   start: '2025-02-10T09:30:00',
-  //   end: '2025-02-10T18:00:00',
-  //   body: 'https://spartaswiftrise.oopy.io/?ref=devblogeasyoon',
-  //   state: '서울시 강남구 역삼로 180',
-  //   attendees: ['애플 생태계에 관심이 있는 누구나'],
-  //   //@ts-ignore
-  //   customStyle: {
-  //     backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
-  //     borderRadius: '100px',
-  //   },
-  // },
-  // {
-  //   id: '2',
-  //   calendarId: '1',
-  //   title: 'Udemy 2025 Success Roadmap',
-  //   start: '2025-01-22T09:30:00',
-  //   end: '2025-02-28T18:00:00',
-  //   body: 'https://udemy.wjtb.co.kr/event/2025_roadmap',
-  //   state: '',
-  //   attendees: ['Udemy로 Unity를 학습하고 싶은 누구나'],
-  // },
-  // {
-  //   id: '2',
-  //   calendarId: '2',
-  //   title: 'Notion Innovators Summit Seoul 2024',
-  //   start: '2024-12-07T10:00:00',
-  //   end: '2024-12-07T18:00:00',
-  //   state: '장소: 경희대학교 오비스홀 151 그랜드볼룸',
-  //   body: 'https://summit.makenotion.us/',
-  //   attendees: ['Notion'],
-  //   //@ts-ignore
-  //   customStyle: {
-  //     backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
-  //     borderRadius: '100px',
-  //   },
-  // },
+  {
+    id: '1',
+    calendarId: '1',
+    title: 'Please 25',
+    start: '2025-03-28T09:30:00',
+    end: '2025-03-28T18:00:00',
+    body: 'https://devcon.hyundaimotorgroup.com/2025',
+    state: '서울시 강남구 봉은사로 524 코엑스 컨벤션 3F 오디토리움, 전시 D홀',
+    attendees: ['현대자동차그룹'],
+    //@ts-ignore
+    customStyle: {
+      backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+      borderRadius: '100px',
+    },
+  },
+  {
+    id: '2',
+    calendarId: '1',
+    title: '[유튜브 라이브] 야근탈출! 개발자를 위한 파이썬 업무자동화',
+    start: '2025-03-21T19:30:00',
+    end: '2025-03-21T21:00:00',
+    state: '장소: 온라인(한빛미디어 유튜브)',
+    body: 'https://event-us.kr/hanbitn/event/100007?utm_source=codenary&utm_campaign=axallqzqyx',
+    attendees: ['한빛미디어'],
+    //@ts-ignore
+    customStyle: {
+      backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+      borderRadius: '100px',
+    },
+  },
   // {
   //   id: '3',
   //   calendarId: '2',
