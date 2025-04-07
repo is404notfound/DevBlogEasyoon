@@ -1,39 +1,39 @@
 import { ISchedule } from 'tui-calendar'
 
 export const currentYear = 2025
-export const currentMonth = 3
-export const currentLastDate = 31
+export const currentMonth = 4
+export const currentLastDate = 30
 export const schedules: ISchedule[] = [
-  {
-    id: '1',
-    calendarId: '1',
-    title: 'Please 25',
-    start: '2025-03-28T09:30:00',
-    end: '2025-03-28T18:00:00',
-    body: 'https://devcon.hyundaimotorgroup.com/2025',
-    state: '서울시 강남구 봉은사로 524 코엑스 컨벤션 3F 오디토리움, 전시 D홀',
-    attendees: ['현대자동차그룹'],
-    //@ts-ignore
-    customStyle: {
-      backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
-      borderRadius: '100px',
-    },
-  },
-  {
-    id: '2',
-    calendarId: '1',
-    title: '[유튜브 라이브] 야근탈출! 개발자를 위한 파이썬 업무자동화',
-    start: '2025-03-21T19:30:00',
-    end: '2025-03-21T21:00:00',
-    state: '장소: 온라인(한빛미디어 유튜브)',
-    body: 'https://event-us.kr/hanbitn/event/100007?utm_source=codenary&utm_campaign=axallqzqyx',
-    attendees: ['한빛미디어'],
-    //@ts-ignore
-    customStyle: {
-      backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
-      borderRadius: '100px',
-    },
-  },
+  // {
+  //   id: '1',
+  //   calendarId: '1',
+  //   title: 'Please 25',
+  //   start: '2025-03-28T09:30:00',
+  //   end: '2025-03-28T18:00:00',
+  //   body: 'https://devcon.hyundaimotorgroup.com/2025',
+  //   state: '서울시 강남구 봉은사로 524 코엑스 컨벤션 3F 오디토리움, 전시 D홀',
+  //   attendees: ['현대자동차그룹'],
+  //   //@ts-ignore
+  //   customStyle: {
+  //     backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+  //     borderRadius: '100px',
+  //   },
+  // },
+  // {
+  //   id: '2',
+  //   calendarId: '1',
+  //   title: '[유튜브 라이브] 야근탈출! 개발자를 위한 파이썬 업무자동화',
+  //   start: '2025-03-21T19:30:00',
+  //   end: '2025-03-21T21:00:00',
+  //   state: '장소: 온라인(한빛미디어 유튜브)',
+  //   body: 'https://event-us.kr/hanbitn/event/100007?utm_source=codenary&utm_campaign=axallqzqyx',
+  //   attendees: ['한빛미디어'],
+  //   //@ts-ignore
+  //   customStyle: {
+  //     backgroundColor: 'var(--Color-Grayscale-dim-white-50)',
+  //     borderRadius: '100px',
+  //   },
+  // },
   // {
   //   id: '3',
   //   calendarId: '2',
