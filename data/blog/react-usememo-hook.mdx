@@ -1,0 +1,196 @@
+---
+title: 'Memoization in React: useMemo Hook'
+date: '2025-04-07'
+tags: ['React', 'useMemo', 'Hook', 'Performance', 'FE']
+draft: false
+---
+
+## React useMemo Hook에 대한 정리
+
+React의 `useMemo` 훅은 불필요한 렌더링을 방지하여 애플리케이션의 성능을 향상시키는 데 활용된다.
+
+### useMemo의 필요성
+
+`useMemo` 훅은 특정 값을 계산하는 함수가 컴포넌트가 재렌더링될 때마다 매번 새롭게 실행되는 비효율성을 개선하기 위해 도입되었다.
+만약 계산 결과가 이전 렌더링과 동일하다면, `useMemo`는 이전에 계산된 값을 재사용하여 불필요한 연산을 줄인다.
+
+### useMemo 미사용 시 코드 예시
+
+다음은 `useMemo`를 사용하지 않았을 때의 코드 예시다.
+
+```jsx
+import React, { useState } from 'react'
+
+function ExpensiveCalculation({ count }) {
+  const calculatedValue = calculateComplexValue(count)
+  console.log('ExpensiveCalculation 컴포넌트 렌더링')
+
+  return <div>계산된 값: {calculatedValue}</div>
+}
+
+function App() {
+  const [count, setCount] = useState(0)
+  const [otherState, setOtherState] = useState('')
+
+  const handleCountIncrease = () => {
+    setCount(count + 1)
+  }
+
+  const handleOtherStateChange = (event) => {
+    setOtherState(event.target.value)
+  }
+
+  return (
+    <div>
+      <button onClick={handleCountIncrease}>Count 증가 ({count})</button>
+      <input type="text" value={otherState} onChange={handleOtherStateChange} />
+      <ExpensiveCalculation count={count} />
+    </div>
+  )
+}
+
+function calculateComplexValue(num) {
+  console.log('복잡한 계산 실행')
+  let result = 0
+  for (let i = 0; i < 100000000; i++) {
+    result += num * i
+  }
+  return result
+}
+
+export default App
+```
+
+위 코드에서 App 컴포넌트의 `otherState`가 변경되어 리렌더링이 발생하더라도, `ExpensiveCalculation` 컴포넌트는 전달받은 `count` 값은 변경되지 않았음에도 불구하고 매번 `calculateComplexValue` 함수를 다시 실행하게 된다.
+이는 불필요한 연산을 초래하고 성능 저하를 일으킬 수 있다.
+
+### useMemo 사용 방법
+
+`useMemo`는 두 개의 인자를 받는다. 첫 번째 인자는 계산할 값을 반환하는 함수이고, 두 번째 인자는 의존성 배열이다.
+의존성 배열에 포함된 값이 변경될 때만 첫 번째 인자로 전달된 함수가 실행된다.
+
+```jsx
+const memoizedValue = useMemo(() => {
+  return calculateComplexValue(count)
+}, [count])
+```
+
+### useMemo 사용 시 코드 예시
+
+다음은 `useMemo를` 적용하여 불필요한 재계산을 방지한 코드 예시다.
+
+```jsx
+import React, { useState, useMemo } from 'react'
+
+function ExpensiveCalculation({ count, calculatedValue }) {
+  console.log('ExpensiveCalculation 컴포넌트 렌더링')
+
+  return <div>계산된 값: {calculatedValue}</div>
+}
+
+function App() {
+  const [count, setCount] = useState(0)
+  const [otherState, setOtherState] = useState('')
+
+  const calculatedValue = useMemo(() => {
+    return calculateComplexValue(count)
+  }, [count])
+
+  const handleCountIncrease = () => {
+    setCount(count + 1)
+  }
+
+  const handleOtherStateChange = (event) => {
+    setOtherState(event.target.value)
+  }
+
+  return (
+    <div>
+      <button onClick={handleCountIncrease}>Count 증가 ({count})</button>
+      <input type="text" value={otherState} onChange={handleOtherStateChange} />
+      <ExpensiveCalculation count={count} calculatedValue={calculatedValue} />
+    </div>
+  )
+}
+
+function calculateComplexValue(num) {
+  console.log('복잡한 계산 실행')
+  let result = 0
+  for (let i = 0; i < 100000000; i++) {
+    result += num * i
+  }
+  return result
+}
+
+export default App
+```
+
+### 프론트엔드 환경에서 복잡한 연산 (useMemo 사용하면 좋은 경우)
+
+- 대규모 데이터 처리: 수천, 수만 건 이상의 배열 또는 객체 데이터를 필터링, 매핑, 정렬하는 작업
+
+```javascript
+const filteredData = useMemo(() => {
+  return data.filter((item) => item.active)
+}, [data])
+```
+
+- 복잡한 알고리즘 실행: 그래프 탐색, 최적화 알고리즘, 이미지 처리 등 시간 복잡도가 높은 알고리즘의 실행
+
+```javascript
+const imageProcessingResult = useMemo(() => {
+  return processImage(imageData)
+}, [imageData])
+```
+
+- 캔버스 API를 이용한 복잡한 그래픽 렌더링: 실시간으로 다수의 객체를 그리거나 복잡한 애니메이션을 처리하는 작업
+
+```javascript
+const canvasDrawing = useMemo(() => {
+  const ctx = canvasRef.current.getContext('2d')
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+  drawShapes(ctx, shapes)
+}, [shapes])
+```
+
+- 정규 표현식의 과도한 사용: 성능에 부정적인 영향을 줄 수 있는 복잡하거나 비효율적인 정규 표현식의 반복적인 사용.
+  (정규 표현식은 성능에 영향을 줄 수 있으므로, 자주 사용되는 정규 표현식은 `useMemo`를 사용하여 캐싱하는 것이 좋다.)
+
+```javascript
+const regexResult = useMemo(() => {
+  return data.match(/complex-regex-pattern/g)
+}, [data])
+```
+
+### 실제 렌더링 시간 비교에 대한 예시
+
+아래 글에서 useMemo를 사용한 경우와 사용하지 않은 경우의 렌더링 시간을 비교한 예시를 잘 볼 수 있다.
+
+[정말 리액트에서 useMemo를 사용해야 할까요? 알아봅시다.](https://github.com/yeonjuan/dev-blog/blob/master/JavaScript/should-you-really-use-usememo.md)
+
+### useMemo를 사용해도 렌더링 시간 차이가 미미하거나 오히려 늘어날 수 있는 경우
+
+- 계산 비용이 저렴한 값: 단순한 덧셈, 뺄셈, 객체나 배열의 간단한 생성 등 연산 비용이 거의 들지 않는 값에 useMemo를 사용하는 것은 오히려 useMemo 내부의 비교 로직 때문에 약간의 오버헤드가 발생해서 렌더링 시간이 미미하게 늘어나거나 거의 차이가 없을 수 있다.
+  (React 공식 홈페이지에서는 1ms 이상 걸리는 경우 메모 해두는 것이 좋다고 이야기 한다.)
+
+```javascript
+const sum = useMemo(() => {
+  return a + b
+}, [a, b])
+```
+
+- 렌더링이 자주 발생하는 값: useMemo는 렌더링 성능을 최적화하기 위한 훅이지만, 렌더링이 자주 발생하는 값에 대해 useMemo를 사용하면 오히려 성능 저하를 초래할 수 있다. 예를 들어, 매번 새로운 배열을 생성하는 경우에는 useMemo를 사용하지 않는 것이 더 나을 수 있다.
+
+  (예시: 배열이나 객체를 생성하는 경우나 렌더링 시점에 따라 값이 변경되어 의존성 배열이 자주 변경되는 경우)
+
+```javascript
+const newArray = useMemo(() => {
+  return Array.from({ length: 1000 }, (_, i) => i)
+}, [])
+```
+
+### 참고 자료
+
+- https://github.com/yeonjuan/dev-blog/blob/master/JavaScript/should-you-really-use-usememo.md
+- https://javascript.plainenglish.io/stop-using-usememo-now-e5d07d2bbf70#5aca
+- https://react.dev/reference/react/useMemo
