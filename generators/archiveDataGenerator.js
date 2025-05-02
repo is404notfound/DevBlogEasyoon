@@ -29,6 +29,9 @@ const URLS = [
   'https://www.angularminds.com/blog/protected-routes-in-react-router-authentication-and-authorization',
   'https://www.angularminds.com/blog/whats-new-in-react-v19',
   'https://github.com/naver/fe-news/blob/master/issues/2025-03.md?utm_source=substack&utm_medium=email',
+  'https://www.elancer.co.kr/blog/detail/267',
+  'https://velog.io/@jerrychu/%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B2%BD%ED%97%98%EC%97%90-%EB%A7%9E%EC%B6%B0-Skeleton-UI-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0',
+  'https://tech.kakaopay.com/post/skeleton-ui-idea/',
 ]
 const OUTPUT_PATH = './generators/output/archive-data.json'
 const puppeteer = require('puppeteer')
