@@ -1,0 +1,209 @@
+---
+title: '[번역글]【Javascript】시간의 취급(Timestamp ⇄ Date 객체)'
+date: '2025-05-22'
+tags: ['FE', 'Javascript', 'Date', 'Timestamp', 'Unix Timestamp']
+draft: false
+---
+
+# 1. Date 객체 만들기
+
+---
+
+우선은 Date 객체의 작성으로부터.
+
+## 현재 시간으로 생성
+
+---
+
+```javascript
+new Date()
+```
+
+## 연/월/일/시/분/초의 값을 건네주어 작성
+
+---
+
+```javascript
+console.log(new Date(2015))
+// Thu Jan 01 1970 09:00:02 GMT+0900
+
+console.log(new Date(2015, 0))
+// Thu Jan 01 2015 00:00:00 GMT+0900
+
+console.log(new Date(2015, 15))
+// Fri Apr 01 2016 00:00:00 GMT+0900
+
+console.log(new Date(2015, 0, 20))
+// Tue Jan 20 2015 00:00:00 GMT+0900
+
+console.log(new Date(2015, 0, 40))
+// Mon Feb 09 2015 00:00:00 GMT+0900
+
+console.log(new Date(2015, 0, 20, 14))
+// Tue Jan 20 2015 14:00:00 GMT+0900
+
+console.log(new Date(2015, 0, 20, 25))
+// Wed Jan 21 2015 01:00:00 GMT+0900
+
+console.log(new Date(2015, 0, 20, 9, 30))
+// Tue Jan 20 2015 09:30:00 GMT+0900
+
+console.log(new Date(2015, 0, 20, 9, 75))
+// Tue Jan 20 2015 10:15:00 GMT+0900
+
+console.log(new Date(2015, 0, 20, 9, 30, 45))
+// Tue Jan 20 2015 09:30:45 GMT+0900
+
+console.log(new Date(2015, 0, 20, 9, 30, 85))
+// Tue Jan 20 2015 09:31:25 GMT+0900
+
+console.log(new Date(2015, 0, 20, 9, 30, -30))
+// Tue Jan 20 2015 09:31:25 GMT+0900
+```
+
+## 문자열을 전달하여 생성
+
+---
+
+`<input type="date">또는 <input type="time">`선택한 값을 기반으로 Date 객체를 만들 때 사용합니다.
+
+```javascript
+console.log(new Date('2000-04-01T18:39:00'))
+// Sat Apr 01 2000 18:39:00 GMT+0900 (일본시기준)
+
+console.log(new Date('2000-04-01'))
+// Sat Apr 01 2000 09:00:00 GMT+0900 (일본시기준)
+
+console.log(new Date('2000-04-01 10:00'))
+// Sat Apr 01 2000 10:00:00 GMT+0900 (일본시기준)
+
+console.log(new Date('2000-04-01 05:43:21'))
+// Sat Apr 01 2000 05:43:21 GMT+0900 (일본시기준)
+
+console.log(new Date('2000/05/01 06:20:00'))
+// Mon May 01 2000 06:20:00 GMT+0900 (일본시기준)
+
+console.log(new Date('July 1, 2000 07:15:30'))
+// Sat Jul 01 2000 07:15:30 GMT+0900 (일본시기준)
+
+console.log(new Date('8 3, 1995 08:05:20'))
+// Thu Aug 03 1995 08:05:20 GMT+0900 (일본시기준)
+
+console.log(new Date('09 08, 1994 09:00:00'))
+// Thu Sep 08 1994 09:00:00 GMT+0900 (일본시기준)
+```
+
+# 2. 변환(Timestamp ⇄ Date 객체)
+
+---
+
+## Timestamp란?
+
+---
+
+- 「1970년 1월 1일 오전 0시 0분 0초(UTC)」로부터의 경과 초수로 표현한 것
+- '1970년 1월 1일 오전 0시 0분 1초'라면 '1'처럼 UTC에서 '1970년 1월 1일 오전 0시 0분 0초'를 기준으로 거기에서 경과 초수로 날짜와 시간을 표현하는 방법
+
+## UTC란?
+
+---
+
+- Coordinated Universal Time
+- 한국, 일본 시간에서 9시간 뺀 시간(협정 세계시)
+- UTC에 9시간 더한 것이 한국, 일본 시간
+
+## UnixTime → Date 객체
+
+---
+
+「1567566215」와 같은 숫자로부터, 「2022/01/01」의 형태로 변환.
+UnixTime는 초단위이며, Date 객체로 변환하려면 밀리 세컨드로 다시 계산 할 필요가 있기 때문에, timestamp \* 1000 필요.
+
+```javascript
+//UnixTimestamp = 1648758600로 검증
+let date = new Date(timestamp * 1000)
+
+console.log(date.getFullYear()) //2022
+console.log(date.toLocaleDateString().slice(5)) //4/1
+console.log(date.toLocaleTimeString().slice(0, -3)) //5:30
+```
+
+- 역자의 추가 설명 : 구글 api를 통해 타임스탬프를 얻는 경우도 많다.
+
+## Date 객체 → UnixTime
+
+---
+
+2022/01/01과 같은 형태에서, 「1567566215」의 형태로 변환.Date
+객체는 밀리 세컨드 단위이며, UnixTime로 변환하려면 초단위로 다시계산 할 필요가 있기 때문에, timestamp / 1000필요.
+
+```javascript
+let date = new Date()
+let timestamp = Math.floor(date.getTime() / 1000)
+
+console.log(timestamp) //1651585200
+```
+
+# 그 외 참고
+
+---
+
+- 지정된 날짜와 시간의 Date 인스턴스 만들기 : https://gray-code.com/javascript/make-a-date-instance-with-specified-time/
+- UNIX 시간과의 상호 변환 : https://so-zou.jp/web-app/tech/programming/javascript/grammar/object/date.htm#no9
+
+---
+
+# 추가 코멘트 번역
+
+현재의 UNIX 타임을 취득하고 싶은 경우에 한해서, Date.now()를 사용하는 편이 Date 인스턴스를 생성할 필요도 없고 간단할까 생각합니다.
+
+```javascript
+console.log(Math.floor(Date.now() / 1000))
+```
+
+그 후,
+
+```
+let timestamp = Math.round( date.getTime() / 1000 );
+```
+
+위, 소수 제거에 round를 사용하면 실제보다 0.5초 빨라져 버리므로, floor를 사용하는 편이 좋습니다.
+
+```javascript
+<div><span id='t0'></span> : base</div>
+<div><span id='t1'></span> : floor</div>
+<div><span id='t2'></span> : round</div>
+<div><span id='t3'></span> : ceil</div>
+
+<script>
+const
+ t0 = document.getElementById('t0'),
+ t1 = document.getElementById('t1'),
+ t2 = document.getElementById('t2'),
+ t3 = document.getElementById('t3');
+
+(function _(){
+  const time = new Date().getTime();
+  t0.textContent = new Date(time).toString();
+  t1.textContent = new Date(Math.floor(time / 1000) * 1000).toString();
+  t2.textContent = new Date(Math.round(time / 1000) * 1000).toString();
+  t3.textContent = new Date(Math.ceil(time / 1000) * 1000).toString();
+  setTimeout(_);
+})();
+</script>
+```
+
+### 역자의 추가 코멘트
+
+왜 floor를 사용해야 하는지에 대한 설명이 부족한 것 같아 추가합니다.
+
+Date.now()는 밀리세컨드 단위로 현재 시간을 반환합니다. 이 값을 초 단위로 변환하기 위해 1000으로 나누면 소수점이 생기게 됩니다.
+
+이 소수점을 제거하기 위해 Math.floor()를 사용하여 내림을 하여 정수로 만들어야 합니다.
+
+만약 Math.round()를 사용하면 반올림이 되어 실제보다 0.5초 더 빠른 시간이 나오게 됩니다.
+
+---
+
+- 원문 :
+  https://qiita.com/shiho97797/items/1b4190e9d685862b1621#date%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E4%BD%9C%E6%88%90
