@@ -1,8 +1,8 @@
 import { ISchedule } from 'tui-calendar'
 
 export const currentYear = 2025
-export const currentMonth = 8
-export const currentLastDate = 31
+export const currentMonth = 9
+export const currentLastDate = 30
 export const schedules: ISchedule[] = [
   // {
   //   id: '1',
