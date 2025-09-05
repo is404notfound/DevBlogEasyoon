@@ -493,5 +493,17 @@
     "twitter:description": "카카오페이에서 프론트엔드 개발을 하며 스켈레톤 UI와 사용자 경험 향상에 대해 고민한 내용을 공유합니다.",
     "og:image": "https://tech.kakaopay.com/_astro/thumb.d735eb97_Z1tqoMx.png",
     "twitter:image": "https://tech.kakaopay.com/_astro/thumb.d735eb97_Z1tqoMx.png"
+  },
+  {
+    "note": "",
+    "og:locale": "ko_KR",
+    "og:site_name": "tech.kakao.com",
+    "article:publisher": "https://www.facebook.com/kakaotech/",
+    "og:title": "Mocking으로 생산성까지 챙기는 FE 개발 - tech.kakao.com",
+    "og:url": "https://tech.kakao.com/posts/458",
+    "og:type": "article",
+    "og:description": "안녕하세요, 카카오엔터프라이즈 검색플랫폼프론트파트의 Lawrence.net입니다....",
+    "og:image": "https://img1.kakaocdn.net/thumb/U896x0/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakao_tech%2Fimage%2F2021%2F09%2Fimages%2Fmain-15.png",
+    "og:image:url": "https://img1.kakaocdn.net/thumb/U896x0/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakao_tech%2Fimage%2F2021%2F09%2Fimages%2Fmain-15.png"
   }
 ]
