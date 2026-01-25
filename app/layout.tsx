@@ -16,7 +16,6 @@ import '../i18n';
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 // import CanvasCat from '@/components/CanvasCat';
-import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import PopupWrapper from '@/components/PopupWrapper'
 import SearchWrapper from '@/components/search/SearchWrapper'
@@ -91,29 +90,109 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   }, [getStyleTags]);
 
+  useEffect(() => {
+    // Add favicon and other head elements
+    const linkAppleTouch = document.createElement('link');
+    linkAppleTouch.rel = 'apple-touch-icon';
+    linkAppleTouch.setAttribute('sizes', '76x76');
+    linkAppleTouch.href = '/static/favicons/apple-touch-icon.png';
+    document.head.appendChild(linkAppleTouch);
+
+    const linkIcon32 = document.createElement('link');
+    linkIcon32.rel = 'icon';
+    linkIcon32.type = 'image/png';
+    linkIcon32.setAttribute('sizes', '32x32');
+    linkIcon32.href = '/static/favicons/favicon-32x32.png';
+    document.head.appendChild(linkIcon32);
+
+    const linkIcon16 = document.createElement('link');
+    linkIcon16.rel = 'icon';
+    linkIcon16.type = 'image/png';
+    linkIcon16.setAttribute('sizes', '16x16');
+    linkIcon16.href = '/static/favicons/favicon-16x16.png';
+    document.head.appendChild(linkIcon16);
+
+    const linkManifest = document.createElement('link');
+    linkManifest.rel = 'manifest';
+    linkManifest.href = '/static/favicons/site.webmanifest';
+    document.head.appendChild(linkManifest);
+
+    const linkMaskIcon = document.createElement('link');
+    linkMaskIcon.rel = 'mask-icon';
+    linkMaskIcon.href = '/static/favicons/safari-pinned-tab.svg';
+    linkMaskIcon.setAttribute('color', '#5bbad5');
+    document.head.appendChild(linkMaskIcon);
+
+    const metaTileColor = document.createElement('meta');
+    metaTileColor.name = 'msapplication-TileColor';
+    metaTileColor.content = '#000000';
+    document.head.appendChild(metaTileColor);
+
+    const metaThemeLight = document.createElement('meta');
+    metaThemeLight.name = 'theme-color';
+    metaThemeLight.setAttribute('media', '(prefers-color-scheme: light)');
+    metaThemeLight.content = '#fff';
+    document.head.appendChild(metaThemeLight);
+
+    const metaThemeDark = document.createElement('meta');
+    metaThemeDark.name = 'theme-color';
+    metaThemeDark.setAttribute('media', '(prefers-color-scheme: dark)');
+    metaThemeDark.content = '#000';
+    document.head.appendChild(metaThemeDark);
+
+    const linkRSS = document.createElement('link');
+    linkRSS.rel = 'alternate';
+    linkRSS.type = 'application/rss+xml';
+    linkRSS.href = '/feed.xml';
+    document.head.appendChild(linkRSS);
+
+    const linkFlowbite = document.createElement('link');
+    linkFlowbite.href = 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css';
+    linkFlowbite.rel = 'stylesheet';
+    document.head.appendChild(linkFlowbite);
+
+    const metaAdsense = document.createElement('meta');
+    metaAdsense.name = 'google-adsense-account';
+    metaAdsense.content = 'ca-pub-6978995302170972';
+    document.head.appendChild(metaAdsense);
+
+    const metaVerification1 = document.createElement('meta');
+    metaVerification1.name = 'google-site-verification';
+    metaVerification1.content = 'yRvR1PpfIXBPplOYqxtKFy9exK_FuOsG8mMEDQYeRrs';
+    document.head.appendChild(metaVerification1);
+
+    const metaVerification2 = document.createElement('meta');
+    metaVerification2.name = 'google-site-verification';
+    metaVerification2.content = '5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I';
+    document.head.appendChild(metaVerification2);
+
+    const scriptApexcharts = document.createElement('script');
+    scriptApexcharts.src = 'https://cdn.jsdelivr.net/npm/apexcharts';
+    document.head.appendChild(scriptApexcharts);
+
+    return () => {
+      // Cleanup: remove elements if they exist
+      const elements = [
+        linkAppleTouch, linkIcon32, linkIcon16, linkManifest, linkMaskIcon,
+        metaTileColor, metaThemeLight, metaThemeDark, linkRSS, linkFlowbite,
+        metaAdsense, metaVerification1, metaVerification2, scriptApexcharts
+      ];
+      elements.forEach(element => {
+        if (element.parentNode === document.head) {
+          document.head.removeChild(element);
+        }
+      });
+    };
+  }, []);
+
   return (
     <html
       lang={siteMetadata.language}
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <Head>
-        <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-        <link rel="manifest" href="/static/favicons/site.webmanifest" />
-        <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-      </Head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6978995302170972" crossOrigin="anonymous"></script>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLG953S5XG"></script>
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6978995302170972" crossOrigin="anonymous"></Script>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LLG953S5XG"></Script>
       <Script id="google-analytics" strategy="afterInteractive">
         {`
         window.dataLayer = window.dataLayer || [];
@@ -122,9 +201,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         gtag('config', 'G-LLG953S5XG');
       `}
       </Script>
-      <meta name="google-adsense-account" content="ca-pub-6978995302170972"></meta>
-      <meta name="google-site-verification" content="yRvR1PpfIXBPplOYqxtKFy9exK_FuOsG8mMEDQYeRrs" />
-      <meta name="google-site-verification" content="5l483OR37tc7--oH3yCgu74KMqTq7xeyirlmFxy0s4I" />
       <body className="antialiased dark:bg-gray-800 dark:text-pink-500 light:bg-pink light:text-gray-100" >
         <div dangerouslySetInnerHTML={{ __html: styleTags }} />
         <RecoilRoot>

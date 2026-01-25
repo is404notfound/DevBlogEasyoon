@@ -69,7 +69,8 @@ const securityHeaders = [
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
-    assetPrefix: 'https://devblogeasyoon.xyz/',
+    basePath: '/DevBlogEasyoon',
+    // assetPrefix: 'https://devblogeasyoon.xyz/',
     reactStrictMode: true,
     compiler: {
       styledComponents: {
