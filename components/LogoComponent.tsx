@@ -4,6 +4,8 @@ import styled, { keyframes } from 'styled-components'
 
 const LogoComponent = ({ src }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+  const resolvedSrc = src?.startsWith('/') ? `${basePath}${src}` : src;
 
   return (
     <LogoContainer
@@ -11,7 +13,7 @@ const LogoComponent = ({ src }) => {
       onMouseOut={() => setIsHovered(false)}
     >
       <LogoImage
-        src={src}
+        src={resolvedSrc}
         alt="Logo"
       />
       {/* {isHovered && <Wave />} */}

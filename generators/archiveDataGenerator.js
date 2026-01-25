@@ -32,6 +32,8 @@ const URLS = [
   'https://www.elancer.co.kr/blog/detail/267',
   'https://velog.io/@jerrychu/%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B2%BD%ED%97%98%EC%97%90-%EB%A7%9E%EC%B6%B0-Skeleton-UI-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0',
   'https://tech.kakaopay.com/post/skeleton-ui-idea/',
+  'https://tech.kakao.com/posts/458',
+  'https://velog.io/@tmdgh0221/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-%EB%A0%88%EC%9D%B4%EC%96%B4-2-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0',
 ]
 const OUTPUT_PATH = './generators/output/archive-data.json'
 const puppeteer = require('puppeteer')
