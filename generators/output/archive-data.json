@@ -1,5 +1,17 @@
 [
   {
+    "note": ""
+  },
+  {
+    "note": ""
+  },
+  {
+    "note": ""
+  },
+  {
+    "note": ""
+  },
+  {
     "note": "",
     "og:site_name": "YouTube",
     "og:url": "https://www.youtube.com/watch?v=Ino03JPppU4",
@@ -55,6 +67,9 @@
     "article:published_time": "2023-01-04T21:39:03+09:00",
     "og:regDate": "20230104093903",
     "article:modified_time": "2023-01-05T10:44:59+09:00"
+  },
+  {
+    "note": ""
   },
   {
     "note": "",
@@ -140,6 +155,9 @@
     "url": "https://usingu.co.kr/frontend/javascript/dom-node-nodelist-element-htmlelement-htmlcollection/"
   },
   {
+    "note": ""
+  },
+  {
     "note": "",
     "og:site_name": "YouTube",
     "og:url": "https://www.youtube.com/watch?v=7BHs1BzA4fs",
@@ -162,6 +180,12 @@
     "al:android:app_name": "YouTube",
     "al:android:package": "com.google.android.youtube",
     "fb:app_id": "87741124305"
+  },
+  {
+    "note": ""
+  },
+  {
+    "note": ""
   },
   {
     "note": "",
@@ -237,6 +261,9 @@
     "twitter:image:height": "210",
     "article:published_time": "2024-11-01T20:24:29+09:00",
     "article:modified_time": "2024-11-01T20:24:29+09:00"
+  },
+  {
+    "note": ""
   },
   {
     "note": "",
@@ -362,5 +389,18 @@
     "og:title": "이더리움 레이어 2 살펴보기",
     "og:description": "Explore Ethereum Layer-2 Solution",
     "og:image": "https://velog.velcdn.com/images/tmdgh0221/post/1a60c129-97f0-4683-a903-14ca221c2315/eth1.png"
+  },
+  {
+    "note": "",
+    "og:title": "UX관점에서 살펴보는 ERC-4337 Use case for Web3 Game",
+    "og:description": "Account Abstraction(계정 추상화)이란? Web3 Game에 ERC-4337기반의 Account Abstraction이 도입된다는 가정하에 여러 Use case를 UX관점에서 살펴본다. ",
+    "og:image": "https://resource.xangle.io/files/content/ERC-4337_UX-01-155043a5-1b52-4a8e-a13b-3c784d41e1cb.jpg",
+    "og:image:width": "128",
+    "og:image:height": "128",
+    "og:url": "https://xangle.io/research/detail/1198",
+    "og:locale": "ko_KR",
+    "og:type": "website",
+    "og:site_name": "Xangle",
+    "og:article:author": "Xangle"
   }
 ]

@@ -34,6 +34,7 @@ const URLS = [
   'https://tech.kakaopay.com/post/skeleton-ui-idea/',
   'https://tech.kakao.com/posts/458',
   'https://velog.io/@tmdgh0221/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-%EB%A0%88%EC%9D%B4%EC%96%B4-2-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0',
+  'https://xangle.io/research/detail/1198',
 ]
 const OUTPUT_PATH = './generators/output/archive-data.json'
 const puppeteer = require('puppeteer')
