@@ -94,21 +94,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // Add favicon and other head elements
     const linkAppleTouch = document.createElement('link');
     linkAppleTouch.rel = 'apple-touch-icon';
-    linkAppleTouch.sizes = '76x76';
+    linkAppleTouch.setAttribute('sizes', '76x76');
     linkAppleTouch.href = '/static/favicons/apple-touch-icon.png';
     document.head.appendChild(linkAppleTouch);
 
     const linkIcon32 = document.createElement('link');
     linkIcon32.rel = 'icon';
     linkIcon32.type = 'image/png';
-    linkIcon32.sizes = '32x32';
+    linkIcon32.setAttribute('sizes', '32x32');
     linkIcon32.href = '/static/favicons/favicon-32x32.png';
     document.head.appendChild(linkIcon32);
 
     const linkIcon16 = document.createElement('link');
     linkIcon16.rel = 'icon';
     linkIcon16.type = 'image/png';
-    linkIcon16.sizes = '16x16';
+    linkIcon16.setAttribute('sizes', '16x16');
     linkIcon16.href = '/static/favicons/favicon-16x16.png';
     document.head.appendChild(linkIcon16);
 
