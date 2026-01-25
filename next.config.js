@@ -68,8 +68,13 @@ const securityHeaders = [
  **/
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
+  const isProduction = process.env.NODE_ENV === 'production'
+  const basePath = isProduction ? '/DevBlogEasyoon' : ''
   return plugins.reduce((acc, next) => next(acc), {
-    basePath: '/DevBlogEasyoon',
+    basePath,
+    env: {
+      NEXT_PUBLIC_BASE_PATH: basePath,
+    },
     // assetPrefix: 'https://devblogeasyoon.xyz/',
     reactStrictMode: true,
     compiler: {
